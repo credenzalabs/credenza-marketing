@@ -1,0 +1,298 @@
+/*
+ * CREDENZA MARKETING SITE — DESIGN SYSTEM v6.1
+ * Philosophy: Four colors. Midnight anchor, dusty sky, warm olive, cool linen.
+ *
+ * BRAND COLORS:
+ *   --midnight:   #21353f  — anchor: nav, wordmark, dark surfaces
+ *   --sky:        #b8ccd2  — CTA buttons, nav underline, primary interactive
+ *   --sky-hover:  #99b8bd  — CTA hover state
+ *   --olive:      #6f6e4b  — data, map active states, accent text
+ *   --linen:      #f0f0ec  — page background (interchangeable with white)
+ *
+ * NEUTRALS (warm-toned, pulled toward linen):
+ *   --n1: #1c1c19  Ink       — primary text, headings
+ *   --n2: #3a3a34  Charcoal  — label caps, strong secondary
+ *   --n3: #6a6a62  Stone     — body copy
+ *   --n4: #9e9e96  Pebble    — metadata, timestamps
+ *   --n5: #cfccc4  Linen     — disabled, borders
+ *   --n6: #e4e1d8  Bone      — dividers, hover fills
+ *
+ * SURFACES:
+ *   --s1: #fdfcf9  Card      — cards, panels
+ *   --s2: #f0f0ec  Page      — page background
+ *   --s3: #edeae3  Recessed  — inputs, inactive states
+ *   --border: #d8d4ca        — all card/input borders
+ *
+ * Typography:
+ *   Display: Freight Display Pro (serif) — editorial, luxury
+ *   Body/UI: Inter — clean, precise, technical
+ *
+ * Radius: 2px for cards/panels, 1px for CTAs/badges
+ * Layout: Left-anchored asymmetry, generous vertical rhythm
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Credenza brand tokens */
+  --color-brand-midnight:   #21353f;
+  --color-brand-sky:        #b8ccd2;
+  --color-brand-olive:      #6f6e4b;
+  --color-brand-linen:      #f0f0ec;
+  --color-brand-ink:        #1c1c19;
+  --color-brand-stone:      #6a6a62;
+  --color-brand-border:     #d8d4ca;
+}
+
+:root {
+  /* Credenza brand variables */
+  --midnight:   #21353f;
+  --sky:        #b8ccd2;
+  --sky-hover:  #99b8bd;
+  --olive:      #6f6e4b;
+  --linen:      #f0f0ec;
+
+  --n1: #1c1c19;
+  --n2: #3a3a34;
+  --n3: #6a6a62;
+  --n4: #9e9e96;
+  --n5: #cfccc4;
+  --n6: #e4e1d8;
+
+  --s1: #fdfcf9;
+  --s2: #f0f0ec;
+  --s3: #edeae3;
+
+  --radius: 0.125rem; /* 2px — panel radius */
+  --background: var(--s2);
+  --foreground: var(--n1);
+  --card: var(--s1);
+  --card-foreground: var(--n1);
+  --popover: var(--s1);
+  --popover-foreground: var(--n1);
+  --primary: var(--sky);
+  --primary-foreground: var(--midnight);
+  --secondary: var(--s3);
+  --secondary-foreground: var(--n1);
+  --muted: var(--s3);
+  --muted-foreground: var(--n4);
+  --accent: var(--sky);
+  --accent-foreground: var(--midnight);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #d8d4ca;
+  --input: #d8d4ca;
+  --ring: var(--sky);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1360px;
+    }
+  }
+
+  /* Freight Display Pro — editorial serif display */
+  .font-freight {
+    font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .font-freight-bold {
+    font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  /* Olive rule — luxury editorial left-border accent */
+  .cobalt-rule {
+    border-left: 2px solid #6f6e4b;
+    padding-left: 1.25rem;
+  }
+
+  /* Sky badge */
+  .teal-badge {
+    background-color: rgba(184, 204, 210, 0.15);
+    color: #7aa0a8;
+    border: 1px solid rgba(184, 204, 210, 0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1px;
+  }
+
+  /* Midnight badge (dark) */
+  .cobalt-badge {
+    background-color: rgba(24, 24, 32, 0.08);
+    color: #21353f;
+    border: 1px solid rgba(24, 24, 32, 0.2);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1px;
+  }
+
+  /* Section number watermark */
+  .section-num {
+    font-family: 'freight-display-pro', Georgia, serif;
+    font-size: 7rem;
+    font-weight: 500;
+    color: rgba(184, 204, 210, 0.12);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Dot grid texture */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(184, 204, 210, 0.18) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Primary CTA button — sky fill, midnight text */
+  .btn-cobalt {
+    background-color: #b8ccd2;
+    color: #21353f;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border-radius: 2px;
+    border: none;
+    transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .btn-cobalt:hover {
+    background-color: #99b8bd;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(24, 24, 32, 0.15);
+  }
+
+  /* Ghost button — border */
+  .btn-ghost-cobalt {
+    background-color: transparent;
+    color: #1c1c19;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border-radius: 2px;
+    border: 0.5px solid #d8d4ca;
+    transition: all 200ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .btn-ghost-cobalt:hover {
+    background-color: rgba(184, 204, 210, 0.12);
+    border-color: #b8ccd2;
+    color: #1c1c19;
+  }
+
+  /* Scroll reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Image hover zoom */
+  .img-zoom {
+    overflow: hidden;
+  }
+  .img-zoom img {
+    transition: transform 600ms ease;
+  }
+  .img-zoom:hover img {
+    transform: scale(1.04);
+  }
+}
