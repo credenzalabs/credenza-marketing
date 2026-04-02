@@ -236,11 +236,11 @@ function Hero() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Verify once.
+              One profile.
               <br />
-              <span className="italic" style={{ color: C.oliveMid }}>Recognized</span>
+              <span className="italic" style={{ color: C.oliveMid }}>Every vendor.</span>
               <br />
-              everywhere.
+              No more paperwork.
             </h1>
 
             <p
@@ -371,8 +371,13 @@ function HowItWorks() {
     },
     {
       num: "04",
+      title: "Change once, update everywhere",
+      body: "New address, new teammate, new business name—update your profile once and every vendor in the Credenza network gets the change automatically. No emails, no re-applications, no calling each showroom individually.",
+    },
+    {
+      num: "05",
       title: "Stay current without the work",
-      body: "Credenza monitors your cert expiration dates. When something needs attention, we notify you—so your exemption status never changes because of a paperwork deadline you missed.",
+      body: "Credenza monitors your cert expiration dates and notifies you before anything lapses—so your exemption status never changes because of a paperwork deadline you missed.",
     },
   ];
 
@@ -391,7 +396,7 @@ function HowItWorks() {
               <span className="italic" style={{ color: C.oliveMid }}>Then you're done.</span>
             </h2>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Most designers complete their Credenza profile in under 20 minutes.
+              Complete your profile in just a few minutes.
               After that, every vendor application is a single click.
             </p>
           </div>
@@ -769,7 +774,7 @@ function NetworkEffect() {
 function FirmTeam() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#edeae3" }}>
+    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#fdfcf9" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
@@ -805,8 +810,8 @@ function FirmTeam() {
                 },
                 {
                   icon: <Shield size={14} />,
-                  title: "Role-based access control",
-                  body: "Principals and firm owners can manage who sees what. Revoke access instantly when someone leaves. Add new team members to all your accounts when they join.",
+                  title: "The right access for every role",
+                  body: "Designate authorized signers for resale certificates. Give your accountant a read-only view of order history and tax documents. Let junior designers browse and purchase without signing legal documents. Everyone sees exactly what they need.",
                 },
                 {
                   icon: <FileText size={14} />,
@@ -815,8 +820,8 @@ function FirmTeam() {
                 },
                 {
                   icon: <Zap size={14} />,
-                  title: "Seamless onboarding and offboarding",
-                  body: "When a new designer joins your firm, add them to all your vendor accounts in one step. When someone leaves, revoke their access across every program at once.",
+                  title: "One step to add or remove anyone",
+                  body: "New hire joins? Add them once and they're on every vendor account. Someone leaves? Revoke access across every program at once—no calling showrooms, no resetting shared passwords.",
                 },
               ].map((item) => (
                 <div
