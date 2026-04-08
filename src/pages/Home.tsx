@@ -584,7 +584,7 @@ function PositioningSection() {
               className="p-8"
               style={{
                 border: `1px solid ${C.sageDark}`,
-                backgroundColor: C.white,
+                backgroundColor: "#ffffff",
               }}
             >
               <div style={{ fontFamily: "Inter, sans-serif", fontSize: "1.1rem", color: C.oliveMid, letterSpacing: "0.06em", fontWeight: 400, marginBottom: "1.25rem" }}>
