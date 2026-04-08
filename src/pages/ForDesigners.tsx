@@ -90,7 +90,7 @@ function Nav() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const navLinks = ["For Designers", "For Vendors", "Integrations", "Pricing"];
+  const navLinks = ["For Designers", "For Vendors"];
 
   return (
     <header
@@ -758,15 +758,15 @@ function Footer() {
             </p>
           </div>
           {[
-            { heading: "Product", links: ["For Designers", "For Vendors", "Integrations", "Pricing"] },
-            { heading: "Company", links: ["About", "Blog", "Careers", "Press"] },
-            { heading: "Resources", links: ["Documentation", "Status", "Support"] },
+            { heading: "Product", links: ["For Designers", "For Vendors"] },
+            { heading: "Company", links: ["Blog"] },
+            { heading: "Contact", links: ["info@usecredenza.com"] },
           ].map((col) => (
             <div key={col.heading}>
               <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.charcoalMid, fontWeight: 600, marginBottom: "1rem" }}>{col.heading}</h4>
               <div className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <a key={link} href={link === "For Designers" ? "/for-designers" : "#"} className="no-underline transition-colors duration-150"
+                  <a key={link} href={link === "For Designers" ? "/for-designers" : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoalSoft }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
