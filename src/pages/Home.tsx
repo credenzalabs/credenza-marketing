@@ -534,7 +534,7 @@ function PositioningSection() {
         />
         <div
           className="absolute inset-0"
-          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.88) 0%, rgba(33,53,63,0.6) 50%, rgba(33,53,63,0.1) 100%)` }}
+          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.75) 50%, rgba(33,53,63,0.25) 100%)` }}
         />
         <PhotoCredit name="Designed by Nick Olsen · Photo by Reid Rolls" />
         <div className="relative z-10 container py-24 md:py-32">
@@ -559,6 +559,7 @@ function PositioningSection() {
       </div>
 
       {/* Three pillars below the image */}
+      <div style={{ backgroundColor: C.ivory, borderTop: `1px solid ${C.sageDark}` }}>
       <div className="container py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -601,6 +602,7 @@ function PositioningSection() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
