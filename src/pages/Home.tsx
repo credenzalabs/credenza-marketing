@@ -184,7 +184,7 @@ function Nav() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const navLinks = ["For Designers", "For Vendors", "Pricing"];
+  const navLinks = ["For Designers", "For Vendors"];
 
   return (
     <header
@@ -303,7 +303,7 @@ function SecurityStrip() {
           style={{ paddingTop: "0.55rem", paddingBottom: "0.55rem" }}
         >
           {[
-            { icon: <Lock size={10} />, text: "Bank-level encryption · All data in transit and at rest" },
+            { icon: <Lock size={10} />, text: "Encrypted in transit and at rest" },
             { icon: <Shield size={10} />, text: "SOC 2 Type II in progress" },
             { icon: <Check size={10} />, text: "No data sold. No third-party ad tracking." },
           ].map((item) => (
@@ -330,8 +330,6 @@ function SecurityStrip() {
 // ─── Hero ────────────────────────────────────────────────────────────────────────
 const HERO_FIRMS = [
   { name: "Studio Dorion", location: "New York, NY", main: IMAGES.studioDorionBrownstone, secondary: IMAGES.studioDorionNoho },
-  { name: "Emily Janak Interiors", location: "Jackson, WY", main: IMAGES.emilyJanakLivingRoom, secondary: IMAGES.emilyJanakDining },
-  { name: "Caroline Gidiere Design", location: "Birmingham, AL", main: IMAGES.carolineGidiereSitting, secondary: IMAGES.carolineGidiereBedroom },
 ];
 
 function Hero() {
@@ -384,8 +382,9 @@ function Hero() {
                 maxWidth: "400px",
               }}
             >
-              Trade verification, onboarding, and exemption compliance, built for
-              vendors who take their program seriously—and the designers they serve.
+              Every designer pre-vetted. Every certificate compliant. Every customer
+              onboarded. Trade verification, tax compliance, and onboarding—built for
+              vendors who take their program seriously, and the designers they serve.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
@@ -412,9 +411,9 @@ function Hero() {
             {/* Trust signals—thin rule style */}
             <div className="flex flex-col gap-2.5">
               {[
-                { icon: <FileText size={12} />, text: "Compliant resale certs · All 50 states · State-specific forms" },
-                { icon: <Shield size={12} />, text: "Verified Trade Profile · Powered by Credenza" },
-                { icon: <Store size={12} />, text: "Shopify & ERP integration · Auto-creates trade accounts" },
+                { icon: <FileText size={12} />, text: "Compliant resale certificates · Single & multi-state · 46 jurisdictions" },
+                { icon: <Shield size={12} />, text: "Verified trade profile · Powered by Credenza" },
+                { icon: <Store size={12} />, text: "Shopify integration · Auto-creates & -exempts trade accounts" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2.5">
                   <span style={{ color: C.charcoalSoft, flexShrink: 0 }}>{item.icon}</span>
@@ -430,13 +429,14 @@ function Hero() {
           <div className="lg:col-span-7 flex">
             <div className="grid grid-cols-7 gap-3 flex-1">
               {/* Main image—fills full height of left copy column */}
-              <div className="col-span-4 overflow-hidden" style={{ minHeight: "400px" }}>
+              <div className="col-span-4 overflow-hidden relative" style={{ minHeight: "400px" }}>
                 <img
                   src={firm.main}
                   alt={`${firm.name} project`}
                   className="w-full h-full object-cover"
                   style={{ transform: "scale(1.02)", objectPosition: "left center" }}
                 />
+                <PhotoCredit name="Photos by Ethan Harrington" />
               </div>
 
               {/* Secondary image + caption below, 3 cols */}
@@ -552,7 +552,7 @@ function PositioningSection() {
               Your client relationships stay yours. Your margin stays yours.
               Credenza is the trusted identity layer that makes trade programs
               work—the plumbing your designers
-              and your team never have to think about.
+              and your team never have to worry about.
             </p>
           </div>
         </div>
@@ -575,7 +575,7 @@ function PositioningSection() {
             {
               num: "03",
               title: "Verified once. Trusted everywhere.",
-              body: <>We pre-verify credentials so your team can say yes—<em>fast.</em></>,
+              body: <>Designers verify a reusable profile once. Every vendor on the platform benefits. The data is verified. The decision is yours.</>,
             },
           ].map((item) => (
             <div
@@ -638,7 +638,7 @@ function PortableIdentitySection() {
               A designer fills out one profile, gets verified once, and that profile works across every vendor on the platform. No re-entering business information, tax IDs, references, or uploading certs again. At renewal, Credenza re-verifies the sales tax ID is still active before re-generating the new certificate.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.charcoalMid, maxWidth: "460px", marginBottom: "2.5rem" }}>
-              The second application is one click. The third is one click. Every application after the first is one click—because the profile is already verified.
+              Every application after the first is one click—because your best clients shouldn't have to keep proving themselves.
             </p>
 
             {/* Vendor-side callout */}
@@ -647,7 +647,7 @@ function PortableIdentitySection() {
               style={{ borderLeft: `3px solid ${C.olive}`, backgroundColor: C.oliveLight }}
             >
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", lineHeight: 1.75, color: C.charcoal, fontStyle: "italic" }}>
-Your designers already have verified profiles when they apply. Higher completion rates. Better data quality. Less friction—because the hard part is already done.
+Returning designers already have verified profiles when they apply. Higher completion rates. Better data quality. Less friction—because the hard part is already done.
               </p>
             </div>
           </div>
@@ -746,11 +746,11 @@ function VerificationSection() {
     { label: "License verification (where required)", detail: "Interior design license verified in the 8 states with practice acts; architecture licenses cross-referenced with NCARB records. Tax permit verification active in 21+ states. Not a blanket check—coverage is state-specific and clearly scoped." },
     { label: "Resale certificates", detail: "State-specific or multi-state form, signed by authorized firm representative" },
     { label: "Trade references", detail: "Verified on and off platform—existing vendor accounts within the Credenza network, plus direct outreach to references outside it" },
-    { label: "Press & showhouse recognition", detail: "AD, Veranda, Elle Decor, Kips Bay Decorator Show House, and more" },
+    { label: "Press & showhouse recognition", detail: <><i>AD</i>, <i>Veranda</i>, <i>Elle Decor</i>, <i>House Beautiful</i>, Kips Bay, and more</> },
   ];
 
   return (
-    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#edeae3" }}>
+    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Copy */}
@@ -765,36 +765,31 @@ function VerificationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>Zero manual follow-up.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Generic document tools store what you send them. Credenza
-              verifies it—cross-referencing Secretary of State records,
-              state licensing boards, NCARB, ASID, and more. Every check
-              runs in parallel, so a complete verification takes minutes,
-              not days of back-and-forth.
+              Credenza verifies the person behind the paperwork—cross-referencing Secretary of State records, state licensing boards, NCARB, ASID, and more. Nine checks, run in parallel on every applicant, so your team doesn't have to.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              The result: a verified profile your team can trust on sight—
-              and a designer who never has to prove themselves again.
+              The result: a trade program that protects its value—because every member is actually in the trade.
             </p>
             {/* Stat callout */}
             <div
               className="mt-8 flex items-center gap-5 px-5 py-4"
-              style={{ backgroundColor: "#edeae3", border: `1px solid ${C.sageDark}` }}
+              style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
             >
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", fontWeight: 700, color: C.oliveMid, lineHeight: 1, letterSpacing: "-0.03em", flexShrink: 0 }}>9</div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", fontWeight: 700, color: C.tealMid, lineHeight: 1, letterSpacing: "-0.03em", flexShrink: 0 }}>9</div>
               <div>
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 600, color: C.charcoal }}>Automated verification checks</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, marginTop: "2px" }}>Run in parallel on every profile. Expand each check below to see what we verify.</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, marginTop: "2px" }}>Run in parallel on every profile. Expand each check to see what we verify.</div>
               </div>
             </div>
           </div>
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
-            <div className="border-t" style={{ borderColor: C.sageDark }}>
+            <div className="border p-6" style={{ borderColor: C.sageDark, backgroundColor: "#ffffff" }}>
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (
-                  <div key={item.label} className="border-b" style={{ borderColor: C.sageDark }}>
+                  <div key={item.label} className={i < checks.length - 1 ? "border-b" : ""} style={{ borderColor: C.sageDark }}>
                     <button
                       onClick={() => setOpenIdx(isOpen ? null : i)}
                       className="w-full flex items-center gap-4 py-4 text-left"
@@ -884,24 +879,25 @@ function CertSection() {
           </div>
           <div className="lg:col-span-5">
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Other tools send a pre-filled form with the vendor’s name and address—then hand it back to the designer to complete. Credenza fills every field, validates the data before it enters the certificate, and presents a ready-to-sign document. First time and every renewal.
+              Other tools pre-fill the vendor name and address—then hand the certificate back to the designer to complete. Credenza validates the data, fills every field, and presents a ready-to-sign document to your client. Effortless—first and every time.
             </p>
           </div>
         </div>
 
         {/* Comparison strip */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px mb-12" style={{ backgroundColor: C.sageDark }}>
-          <div className="p-6" style={{ backgroundColor: C.ivory }}>
-            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.charcoalSoft, marginBottom: "0.75rem" }}>Other tools</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 mb-12" style={{ border: `1px solid ${C.sageDark}` }}>
+          <div className="p-8" style={{ backgroundColor: C.ivory, borderRight: `1px solid ${C.sageDark}` }}>
+            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.charcoalSoft, fontWeight: 600, marginBottom: "1rem" }}>Other tools</div>
             <div className="flex flex-col gap-2.5">
               {[
-                "Pre-fill vendor name and address only",
+                "Pre-fill vendor name and address only—if at all",
                 "Designer downloads and fills in the rest",
                 "No validation—bad data goes straight into the cert",
                 "Wrong document risk: designer can submit a seller's permit, W-9, or any other form",
                 "Exemption scope left to the designer to figure out—often under-claimed",
-                "Upload states: designer re-uploads to every new vendor",
+                "State-issued forms: designer re-uploads to every new vendor",
                 "Renewal: same manual process, repeated every 1–3 years",
+                "When something's wrong, it's your problem—vendors chase designers for corrections",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-2.5">
                   <div className="mt-1 w-3 h-3 flex-shrink-0 flex items-center justify-center" style={{ border: `1px solid ${C.sageDark}` }}>
@@ -912,18 +908,19 @@ function CertSection() {
               ))}
             </div>
           </div>
-          <div className="p-6" style={{ backgroundColor: "#FFFFFF" }}>
-            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "0.75rem" }}>Credenza</div>
+          <div className="p-8" style={{ backgroundColor: "#FFFFFF" }}>
+            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.tealMid, fontWeight: 600, marginBottom: "1rem" }}>Credenza</div>
             <div className="flex flex-col gap-2.5">
               {[
                 "Every field pre-filled from the designer's verified profile",
-                "Sales tax ID validated before it enters the certificate",
+                "Tax IDs and EINs verified against state and federal records—not just format-checked",
                 "Correct form routed automatically for each designer-vendor intersection",
                 "Designer can only submit the right document—wrong forms aren't an option",
                 "Maximum exemption applied—designers often don't know which forms they're eligible to use",
-                "Upload states: upload once, all connected vendors receive it",
+                "State-issued forms: upload once, all connected vendors receive it",
                 "Renewal: Credenza detects expiry, pre-fills the new cert, sales tax ID re-verified active, designer signs",
-                "No-expiry states: business info confirmed every 3 years—closed firms don't keep trade pricing",
+                "No-expiry states: business info re-confirmed every 3 years—stale data means a non-compliant certificate",
+                "Problems caught before submission—your team never plays middleman",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-2.5">
                   <div className="mt-1 w-3 h-3 flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}>
@@ -939,14 +936,14 @@ function CertSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left: brief features */}
           <div className="lg:col-span-5">
+            <h3 className="font-freight mb-6" style={{ fontSize: "1.5rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.2, fontStyle: "italic" }}>
+              It's not management—it's strategy.
+            </h3>
             <div className="flex flex-col gap-0 border-t" style={{ borderColor: C.sageDark }}>
               {[
-                { title: "46 sales-tax states covered", body: "Every state-specific form—NY ST-120, CA BOE-230, TX 01-339, and all others—generated with the correct format, fields, and exemption scope." },
-                { title: "Validated data, not just collected data", body: "Sales tax IDs, EINs, and entity names are verified against authoritative sources before they appear in any certificate. Invalid data never reaches a vendor." },
-                { title: "The right form, every time—no exceptions", body: "Credenza determines the correct form for each designer-vendor intersection and routes accordingly. Designers are never presented with the wrong document type. A seller\u2019s permit, a W-9, a generic exemption form—none of those can be submitted in place of the correct resale certificate." },
-                { title: "Maximum exemption, every time", body: "Most designers don\u2019t know which exemption forms they\u2019re eligible to use in each state. Credenza does. It selects the correct exemption form for the designer\u2019s situation and applies the broadest scope they\u2019re entitled to—so they\u2019re never under-exempted because of a knowledge gap." },
-                { title: "Signed by authorized representatives only", body: "Resale certs are legal documents signed under penalty of perjury. Credenza enforces signing authority—only firm owners and designated signers can execute them." },
-                { title: "Living compliance", body: "Entity name change? New product category? Credenza detects the gap and requests a fresh cert automatically. For states with no certificate expiration, Credenza confirms business information is still current every three years—protecting your margin from firms that have closed and your liability from certs tied to a defunct business." },
+                { title: "Validated businesses, not just collected data", body: "Sales tax IDs, EINs, and business details are verified against authoritative sources—not just for format, but to confirm the business behind the certificate is real and active. Invalid data gets caught before it reaches you." },
+                { title: "Maximum exemption, every time", body: "Credenza\u2019s Tax Strategy Engine selects the correct (and fewest) forms needed to maximize the designer\u2019s tax exemption where they do business. Designers save more buying from you—and remember who made it easy." },
+                { title: "Living compliance", body: "Cert approaching expiration? Credenza requests renewal, re-verifies the tax ID, and revokes the exemption if the designer doesn\u2019t act—so nothing on file goes stale." },
               ].map((item) => (
                 <div key={item.title} className="py-6 border-b" style={{ borderColor: C.sageDark }}>
                   <h3 className="font-freight mb-2" style={{ fontSize: "1.05rem", color: C.charcoal, letterSpacing: "-0.015em", lineHeight: 1.2 }}>{item.title}</h3>
@@ -1088,7 +1085,7 @@ function ForVendors() {
             >
               Your rules. Your approvals.
               <br />
-              <span className="italic" style={{ color: C.teal }}>Your program.</span>
+              <span className="italic" style={{ color: C.teal }}>In minutes.</span>
             </h2>
           </div>
         </div>
@@ -1098,20 +1095,20 @@ function ForVendors() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Requirements */}
           <div>
-            <h3 className="font-freight mb-4" style={{ fontSize: "1.5rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-              Set exactly what you require.
+            <h3 className="font-freight mb-4" style={{ fontSize: "2rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              Set the bar.
             </h3>
             <p className="mb-8" style={{ fontFamily: "Inter, sans-serif", fontSize: '15px', lineHeight: 1.75, color: C.charcoalMid }}>
               Every vendor's trade program is different. A high-volume fabric
               house and a luxury furniture atelier have very different bars.
               Credenza lets you configure exactly what's required to apply—
-              and what earns a deserving designer faster approval.
+              and what earns a qualified designer faster approval.
             </p>
             <div className="border-t" style={{ borderColor: C.sageDark }}>
               {[
-                { title: "Set your own application requirements", body: "Require a resale cert, EIN, business license, ASID membership, or any combination. Credenza's form adapts to your rules—designers see your requirements clearly." },
-                { title: "Define auto-approval conditions", body: "Designers who meet your criteria are approved in minutes—not days, not weeks. Nights and weekends included. No one waits for a human to come back to the office." },
-                { title: "Always in control", body: "Auto-approval is a choice, not a requirement. You can review every application manually, turn on auto-approval for designers who meet your criteria, or mix both. Credenza never approves anyone without your explicit criteria being met." },
+                { title: "Define your requirements", body: "Require a resale cert, EIN, business license, ASID membership, or any combination. Credenza's application form adapts to what you need—designers see exactly what to submit." },
+                { title: "Approved in minutes, not days", body: "Designers who meet your criteria can be approved instantly—nights, weekends, Spring Market. No one waits for a human to come back to the office." },
+                { title: "Always in control", body: "Auto-approval is a choice, not a requirement. Review every application manually, auto-approve when your criteria are met, or mix both. Credenza never approves anyone without your explicit rules being satisfied." },
               ].map((item) => (
                 <div key={item.title} className="py-6 border-b" style={{ borderColor: C.sageDark }}>
                   <h4 className="font-freight mb-2" style={{ fontSize: "1.1rem", color: C.charcoal, letterSpacing: "-0.015em" }}>{item.title}</h4>
@@ -1123,15 +1120,6 @@ function ForVendors() {
 
           {/* Right: Auto-approval mockup */}
           <div>
-            <h3 className="font-freight mb-4" style={{ fontSize: "1.5rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-              Approved in minutes, not days.
-            </h3>
-            <p className="mb-8" style={{ fontFamily: "Inter, sans-serif", fontSize: '13px', lineHeight: 1.75, color: C.charcoalMid }}>
-              When a designer meets your criteria, Credenza's rule engine
-              evaluates their verified profile instantly and notifies both
-              parties—no inbox required.
-            </p>
-
             {/* Rule engine mockup */}
             <div style={{ backgroundColor: C.forest, overflow: "hidden" }}>
               <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
@@ -1232,7 +1220,7 @@ function IntegrationsSection() {
                   icon: <Store size={18} />,
                   title: "Shopify",
                   badge: "Available now",
-                  body: "Approved designers become Shopify customers instantly—tagged with your trade pricing, state-level tax exemptions applied, and placed in the correct tier. No CSV exports. No manual customer creation.",
+                  body: "Approved designers become Shopify customers instantly—tagged with your trade pricing, state-level tax exemptions applied, and placed in the correct tier. No manual entry. No misapplied exemptions. Instant gratification for all.",
                 },
                 {
                   icon: <Settings size={18} />,
@@ -1276,9 +1264,9 @@ function IntegrationsSection() {
             <div className="flex flex-col gap-2.5">
               {[
                 "Shopify customer account created on approval",
-                "State-level tax exemption applied at the correct rate",
+                "Tax exemption applied automatically at the state level",
                 "Trade pricing tier set based on your program rules",
-                "Cert expiration tracked—exemptions updated on renewal",
+                "Cert expirations monitored—renewals requested, exemptions revoked until current",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <div className="w-1 h-1 flex-shrink-0" style={{ backgroundColor: C.tealMid }} />
@@ -1298,12 +1286,12 @@ function TiersSection() {
   const ref = useReveal();
   // Example tiers — vendor-defined names and discount levels
   const exampleTiers = [
-    { name: "Trade",     discount: "20%",  min: "No minimum",    note: "Standard application" },
-    { name: "Preferred", discount: "30%",  min: "$10,000 / yr",  note: "Vendor-reviewed" },
-    { name: "Principal", discount: "40%",  min: "$50,000 / yr",  note: "Invite only" },
+    { name: "Trade",     discount: "20%",  min: "No minimum" },
+    { name: "Preferred", discount: "30%",  min: "$10,000 / yr" },
+    { name: "Principal", discount: "40%",  min: "$50,000 / yr" },
   ];
   return (
-    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#FFFFFF" }}>
+    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Left: copy */}
@@ -1318,7 +1306,7 @@ function TiersSection() {
               <span className="italic" style={{ color: C.teal }}>Your rules.</span>
             </h2>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Your program, your structure. Define the tier names, discount levels, and order minimums. Credenza enforces them—placing designers automatically on approval.
+              Your program, your structure. Define the tier names, discount levels, and order minimums. Credenza enforces them—assigning designers to the right tier automatically on approval.
             </p>
             <p className="mt-4" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: C.charcoalMid }}>
               One vendor might run two tiers. Another might run five. The structure is yours.
@@ -1339,8 +1327,8 @@ function TiersSection() {
             {/* Tier rows */}
             <div style={{ backgroundColor: C.charcoal }}>
               {/* Column headers */}
-              <div className="grid px-5 py-2" style={{ gridTemplateColumns: "1fr 80px 120px 1fr", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                {["Tier name", "Discount", "Min. spend", "Placement"].map(h => (
+              <div className="grid px-5 py-2" style={{ gridTemplateColumns: "1fr 80px 1fr", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                {["Tier name", "Discount", "Min. spend"].map(h => (
                   <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>{h}</span>
                 ))}
               </div>
@@ -1349,14 +1337,13 @@ function TiersSection() {
                   key={tier.name}
                   className="grid px-5 py-4 items-center"
                   style={{
-                    gridTemplateColumns: "1fr 80px 120px 1fr",
+                    gridTemplateColumns: "1fr 80px 1fr",
                     borderBottom: i < exampleTiers.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
                   }}
                 >
                   <span className="font-freight" style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.9)", letterSpacing: "-0.01em" }}>{tier.name}</span>
                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.teal, fontWeight: 600 }}>{tier.discount}</span>
                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.55)" }}>{tier.min}</span>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", fontStyle: "italic" }}>{tier.note}</span>
                 </div>
               ))}
             </div>
@@ -1385,20 +1372,20 @@ function DataSection() {
     {
       label: "Program performance",
       headline: "Know your numbers.",
-      body: "Approval rates, time-to-decision, auto-approval volume, and month-over-month growth—tracked automatically so you always know how your program is performing.",
-      items: ["Approval rate & avg. days to decision", "Auto-approval volume", "Monthly new approvals + cumulative growth", "Pending review queue"],
+      body: "Approval rates, revenue, penetration, and growth—tracked automatically. See which firms are ordering, which aren\u2019t, and what\u2019s driving the difference.",
+      items: ["Approval rate & time to decision", "Revenue trends & highest-value firms", "Ordering penetration across your network", "After-hours approvals that prove auto-approval works"],
     },
     {
       label: "Designer analytics",
       headline: "Know who you're working with.",
-      body: "Every approved designer comes with a profile: firm size, annual revenue, audience, credentials, and geographic market. Segment your trade community by tier, activity, or value.",
-      items: ["VIP accounts—high-revenue or large firms", "New & active approvals (last 30 days)", "Dormant accounts with no certs on file", "Audience size and portfolio signals"],
+      body: "Every approved designer comes with a verified profile. Segment your trade community by revenue, firm size, profession, credentials, or ordering behavior.",
+      items: ["Firm demographics & profession breakdown", "Verification signal coverage", "Ordering vs non-ordering firm comparison", "Approval drivers—what signals predict success"],
     },
     {
-      label: "Market intelligence",
-      headline: "Know where your market is.",
-      body: "See where your approved designers are concentrated by state, identify nexus coverage gaps before they become compliance issues, and understand the geographic shape of your trade community.",
-      items: ["Geographic concentration by state", "Firms per region", "Nexus states without cert coverage", "Compliance health across your network"],
+      label: "Compliance & geography",
+      headline: "Know where your risk is.",
+      body: "Certificate health, expiration alerts, and geographic concentration—so you can see compliance gaps before they become audit issues.",
+      items: ["Certificate health & expiration tracking", "Nexus coverage gaps", "Designer concentration by state", "Risk alerts surfaced automatically"],
     },
   ];
   return (
@@ -1416,40 +1403,39 @@ function DataSection() {
             <span className="italic" style={{ color: C.teal }}>your growth.</span>
           </h2>
           <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
-            Running your program is the floor, not the ceiling. Every application, approval, and certificate generates intelligence you can act on.
+            Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
           </p>
         </div>
 
         {/* Three-column metric cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {metrics.map((m, i) => (
             <div
               key={i}
               className="p-8 md:p-10"
               style={{
-                backgroundColor: i === 1 ? "rgba(184,204,210,0.06)" : C.forest,
-                outline: i !== 1 ? "1px solid rgba(255,255,255,0.12)" : "none",
+                backgroundColor: "#ffffff",
               }}
             >
               <div
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.teal, marginBottom: "1.25rem" }}
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "1.25rem" }}
               >
                 {m.label}
               </div>
               <h3
                 className="font-freight mb-4"
-                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, color: C.ivory, letterSpacing: "-0.02em" }}
+                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, color: C.charcoal, letterSpacing: "-0.02em" }}
               >
                 {m.headline}
               </h3>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75, color: "rgba(240,240,236,0.6)", marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75, color: C.charcoalMid, marginBottom: "1.5rem" }}>
                 {m.body}
               </p>
               <div className="space-y-2">
                 {m.items.map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
-                    <div className="mt-1.5 w-1 h-1 flex-shrink-0 rounded-full" style={{ backgroundColor: C.teal }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: "rgba(240,240,236,0.75)", lineHeight: 1.5 }}>{item}</span>
+                    <div className="mt-1.5 w-1 h-1 flex-shrink-0 rounded-full" style={{ backgroundColor: C.tealMid }} />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: C.charcoalSoft, lineHeight: 1.5 }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -1477,12 +1463,12 @@ function GallerySection() {
           <PhotoCredit name="Designed by Ellen Kavanaugh" />
         </div>
       </div>
-      <div className="container py-12 text-center">
+      <div className="container pt-12 pb-[18px] text-center" style={{ marginTop: "70px" }}>
         <p
           className="font-freight mx-auto"
           style={{ fontSize: "clamp(1.3rem, 2vw, 1.75rem)", color: C.charcoalMid, lineHeight: 1.4, letterSpacing: "-0.015em", maxWidth: "600px", fontStyle: "italic" }}
         >
-          Infrastructure worthy of the work it supports.
+          Your product is considered. Your trade program should be too.
         </p>
       </div>
     </section>
@@ -1580,13 +1566,13 @@ function Footer() {
           <div className="col-span-2">
             <img src={LOGO_BLACK} alt="Credenza" style={{ height: "32px", width: "auto", marginBottom: "1rem" }} />
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7, color: C.charcoalSoft, maxWidth: "240px" }}>
-              The standard for trade programs in interior design.
+              The design trade's operating system.
             </p>
           </div>
           {[
-            { heading: "Product", links: ["For Designers", "For Vendors", "Pricing"] },
-            { heading: "Company", links: ["About", "Blog", "Careers", "Press"] },
-            { heading: "Resources", links: ["Documentation", "Status", "Support"] },
+            { heading: "Product", links: [{ label: "For Designers", href: "/for-designers" }, { label: "For Vendors", href: "#" }] },
+            { heading: "Company", links: [{ label: "Blog", href: "/blog" }] },
+            { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (
             <div key={col.heading}>
               <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.charcoalMid, fontWeight: 600, marginBottom: "1rem" }}>
@@ -1595,14 +1581,14 @@ function Footer() {
               <div className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
                   <a
-                    key={link}
-                    href="#"
+                    key={link.label}
+                    href={link.href}
                     className="no-underline transition-colors duration-150"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoalSoft }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
                   >
-                    {link}
+                    {link.label}
                   </a>
                 ))}
               </div>
@@ -1614,14 +1600,168 @@ function Footer() {
             © 2026 Credenza Labs, Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
-            {["Privacy", "Terms", "Security"].map((item) => (
-              <a key={item} href="#" className="no-underline" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}>
-                {item}
-              </a>
-            ))}
+            <button
+              type="button"
+              onClick={() => document.getElementById('privacy-modal')?.showModal()}
+              className="no-underline cursor-pointer bg-transparent border-none p-0"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
+            >
+              Privacy
+            </button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('terms-modal')?.showModal()}
+              className="no-underline cursor-pointer bg-transparent border-none p-0"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
+            >
+              Terms
+            </button>
           </div>
+
+          {/* Privacy Policy Modal */}
+          <dialog
+            id="privacy-modal"
+            className="backdrop:bg-black/40 p-0 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            style={{ border: `1px solid ${C.sageDark}`, backgroundColor: "#ffffff" }}
+            onClick={(e) => { if (e.target === e.currentTarget) (e.target as HTMLDialogElement).close(); }}
+          >
+            <div className="p-10">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="font-freight" style={{ fontSize: "1.5rem", color: C.charcoal, letterSpacing: "-0.02em" }}>Privacy Policy</h2>
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('privacy-modal')?.closest('dialog')?.close()}
+                  className="bg-transparent border-none cursor-pointer text-lg"
+                  style={{ color: C.charcoalSoft }}
+                >
+                  ✕
+                </button>
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.8, color: C.charcoalMid }}>
+                <p style={{ color: C.charcoalSoft, marginBottom: "1.5rem" }}>Effective Date: November 8, 2025 · Last Updated: November 8, 2025</p>
+                <p className="mb-4">Welcome to Credenza ("Credenza," "we," "our," or "us"). This Privacy Policy explains how we collect, use, and protect information when you visit usecredenza.com or use our related services (collectively, the "Platform").</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>1. Information We Collect</h3>
+                <p className="mb-2">We may collect:</p>
+                <ul className="mb-4 pl-5" style={{ listStyleType: "disc" }}>
+                  <li className="mb-2">Account and contact information you provide—such as your name, company name, email address, and phone number—when you request a demo, create an account, or contact us.</li>
+                  <li className="mb-2">Business and compliance information you upload or enter into the Platform, including resale certificates, tax IDs, or professional credentials.</li>
+                  <li className="mb-2">Usage data automatically gathered through cookies, analytics tools, and log files (for example: IP address, browser type, and pages visited).</li>
+                </ul>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>2. How We Use Information</h3>
+                <p className="mb-2">We use your information to:</p>
+                <ul className="mb-4 pl-5" style={{ listStyleType: "disc" }}>
+                  <li className="mb-2">Provide, operate, and improve the Credenza Platform.</li>
+                  <li className="mb-2">Verify business and professional information you submit.</li>
+                  <li className="mb-2">Communicate with you about your account, compliance requirements, and product updates.</li>
+                  <li className="mb-2">Analyze Platform performance and user engagement.</li>
+                  <li className="mb-2">Comply with applicable laws and protect our rights.</li>
+                </ul>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>3. Cookies and Analytics</h3>
+                <p className="mb-4">We use cookies and similar technologies to recognize your browser, analyze traffic, and enhance your experience. You can adjust cookie settings in your browser, but some parts of the Platform may not function properly without them.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>4. Sharing of Information</h3>
+                <p className="mb-2">We do not sell or rent personal data. We may share information only with:</p>
+                <ul className="mb-4 pl-5" style={{ listStyleType: "disc" }}>
+                  <li className="mb-2">Service providers who help us host, process, or analyze data under confidentiality agreements.</li>
+                  <li className="mb-2">Vendors or partners you choose to connect with through the Platform, to facilitate trade-program verification.</li>
+                  <li className="mb-2">Legal authorities if required to comply with law or protect against misuse of the Platform.</li>
+                </ul>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>5. Data Retention</h3>
+                <p className="mb-4">We retain information as long as your account is active or as needed to provide our services, comply with legal obligations, or resolve disputes. You may request deletion of your data by contacting us.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>6. Security</h3>
+                <p className="mb-4">We employ reasonable technical and administrative safeguards to protect your data. However, no online system is completely secure, and we cannot guarantee absolute protection.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>7. Your Rights</h3>
+                <p className="mb-4">You may request access, correction, or deletion of your personal data by contacting us. Depending on your location, you may also have additional rights under local privacy laws.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>8. Updates to This Policy</h3>
+                <p className="mb-4">We may revise this Privacy Policy periodically. The most current version will always be posted on this page with the updated date.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>9. Contact Us</h3>
+                <p>If you have questions about this Privacy Policy or our data practices, please contact:</p>
+                <p className="mt-2">Credenza<br />Email: <a href="mailto:info@usecredenza.com" style={{ color: C.tealMid }}>info@usecredenza.com</a><br />Website: usecredenza.com</p>
+              </div>
+            </div>
+          </dialog>
+
+          {/* Terms of Use Modal */}
+          <dialog
+            id="terms-modal"
+            className="backdrop:bg-black/40 p-0 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            style={{ border: `1px solid ${C.sageDark}`, backgroundColor: "#ffffff" }}
+            onClick={(e) => { if (e.target === e.currentTarget) (e.target as HTMLDialogElement).close(); }}
+          >
+            <div className="p-10">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="font-freight" style={{ fontSize: "1.5rem", color: C.charcoal, letterSpacing: "-0.02em" }}>Terms of Use</h2>
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('terms-modal')?.closest('dialog')?.close()}
+                  className="bg-transparent border-none cursor-pointer text-lg"
+                  style={{ color: C.charcoalSoft }}
+                >
+                  ✕
+                </button>
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.8, color: C.charcoalMid }}>
+                <p style={{ color: C.charcoalSoft, marginBottom: "1.5rem" }}>Effective Date: November 8, 2025 · Last Updated: November 8, 2025</p>
+                <p className="mb-4">Welcome to Credenza ("Credenza," "we," "our," or "us"). These Terms of Use ("Terms") govern your access to and use of usecredenza.com and any related services or applications (collectively, the "Platform").</p>
+                <p className="mb-4">By accessing or using the Platform, you agree to these Terms. If you do not agree, please do not use Credenza.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>1. Overview</h3>
+                <p className="mb-4">Credenza provides identity verification and trade-program management services for the design industry. The Platform is currently in development, and functionality may change without notice.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>2. Eligibility</h3>
+                <p className="mb-4">You must be at least 18 years old and capable of entering into a binding contract to use the Platform. By using Credenza, you represent that you meet these requirements.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>3. User Accounts</h3>
+                <p className="mb-4">If you create an account, you are responsible for maintaining its confidentiality and for all activities under your account. Notify us immediately of any unauthorized use.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>4. Acceptable Use</h3>
+                <p className="mb-2">You agree not to:</p>
+                <ul className="mb-4 pl-5" style={{ listStyleType: "disc" }}>
+                  <li className="mb-2">Use the Platform for any unlawful purpose or in violation of these Terms.</li>
+                  <li className="mb-2">Impersonate any person or entity, or falsely claim an affiliation.</li>
+                  <li className="mb-2">Interfere with or disrupt the Platform's operation or servers.</li>
+                  <li className="mb-2">Attempt to gain unauthorized access to any part of the Platform.</li>
+                </ul>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>5. Intellectual Property</h3>
+                <p className="mb-4">All content, trademarks, and data on the Platform—including text, graphics, logos, and software—are owned by Credenza or our licensors. You may not copy, modify, distribute, or create derivative works without our prior written consent.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>6. User Content</h3>
+                <p className="mb-4">By submitting information (e.g., documents, certificates, or profile details) to the Platform, you grant Credenza a non-exclusive, worldwide, royalty-free license to use, store, and display that content solely to provide and improve our services.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>7. Disclaimers</h3>
+                <p className="mb-4">The Platform is provided "as is" and "as available." We make no warranties, express or implied, regarding its operation, accuracy, or availability. We do not guarantee that the Platform will be error-free or uninterrupted.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>8. Limitation of Liability</h3>
+                <p className="mb-4">To the fullest extent permitted by law, Credenza and its affiliates, officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>9. Termination</h3>
+                <p className="mb-4">We reserve the right to suspend or terminate your access to the Platform at any time, with or without cause or notice, if we believe you have violated these Terms or engaged in conduct harmful to Credenza or other users.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>10. Governing Law and Disputes</h3>
+                <p className="mb-4">These Terms are governed by the laws of the State of Delaware, without regard to conflict-of-law principles. Any disputes shall be resolved in the state or federal courts located in Delaware.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>11. Changes to These Terms</h3>
+                <p className="mb-4">We may update these Terms from time to time. Continued use of the Platform after changes are posted constitutes your acceptance of the revised Terms.</p>
+
+                <h3 className="font-freight mt-6 mb-3" style={{ fontSize: "1.05rem", color: C.charcoal }}>12. Contact Information</h3>
+                <p>For questions or concerns about these Terms, please contact us at:</p>
+                <p className="mt-2">Credenza<br />Email: <a href="mailto:info@usecredenza.com" style={{ color: C.tealMid }}>info@usecredenza.com</a><br />Website: usecredenza.com</p>
+              </div>
+            </div>
+          </dialog>
         </div>
       </div>
     </footer>
@@ -1647,13 +1787,10 @@ function MigrationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>come with you.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Credenza imports your existing approved designer list, maps each client to
-              a verified profile, and generates any missing resale certificates—so your
-              relationships carry over intact and your designers don't have to start over.
+              Credenza imports your existing roster, groups contacts by firm, deduplicates, and reads your existing certificates—so your relationships carry over intact and your designers don't have to start over.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              You're not replacing a program. You're putting the right infrastructure
-              under the client relationships you've already built.
+              This isn't just for new applicants. Your existing clients come onto the platform with their history intact—and from here, everything stays current automatically.
             </p>
             {/* Timeline callout */}
             <div
@@ -1662,16 +1799,16 @@ function MigrationSection() {
             >
               <div
                 className="flex items-center justify-center flex-shrink-0"
-                style={{ width: "36px", height: "36px", backgroundColor: C.oliveDim, border: `1px solid ${C.oliveBorder}` }}
+                style={{ width: "36px", height: "36px", backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
               >
-                <Zap size={16} style={{ color: C.oliveMid }} />
+                <Zap size={16} style={{ color: C.tealMid }} />
               </div>
               <div>
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 700, color: C.charcoal, letterSpacing: "-0.01em" }}>
                   Live in hours, not months.
                 </div>
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, marginTop: "2px" }}>
-                  Import your roster, configure your rules, and launch—same day.
+                  Import your roster, close your compliance gaps, and go live—same day.
                 </div>
               </div>
             </div>
@@ -1684,22 +1821,17 @@ function MigrationSection() {
                 {
                   step: "01",
                   title: "Import your existing roster",
-                  body: "Share your current approved designer list. We map every contact to a verified Credenza profile—or flag the ones that need fresh verification.",
+                  body: "Import directly from Shopify or share a list. Credenza groups contacts by firm, deduplicates, matches against existing profiles, and extracts data from your notes, tags, and cert files. Bulk upload your existing certificates—we\u2019ll read each one, match it to the right client, calculate expiration dates, and monitor them from here.",
                 },
                 {
                   step: "02",
-                  title: "Configure your program rules",
-                  body: "Set your tiers, discount levels, auto-approval criteria, and application requirements. Takes an afternoon, not a quarter.",
+                  title: "Recognize your existing clients",
+                  body: "Imported clients are already in your program—no reapplication needed. If a designer joins Credenza on their own or through another vendor, the relationship is already there.",
                 },
                 {
                   step: "03",
-                  title: "Generate missing certificates",
-                  body: "Credenza identifies any designers in your program without current resale certs and requests them automatically—so your compliance file is complete from launch.",
-                },
-                {
-                  step: "04",
-                  title: "Connect your Shopify store",
-                  body: "Your approved designers become active Shopify customers with trade pricing and tax exemptions applied. No manual customer creation. No spreadsheet.",
+                  title: "Close compliance gaps",
+                  body: "Credenza identifies designers without current resale certs and prompts them to generate and sign—so you\u2019re compliant from day one. Want to start fresh? Invite existing clients to connect and submit new certificates with compliant, verified data.",
                 },
               ].map((item) => (
                 <div key={item.step} className="py-7 border-b" style={{ borderColor: C.sageDark }}>
@@ -1746,13 +1878,13 @@ function SecuritySection() {
   const pillars = [
     {
       icon: <Lock size={18} style={{ color: C.teal }} />,
-      title: "Bank-level encryption at rest",
-      body: "EINs, tax IDs, and sensitive identifiers are encrypted in the database. Keys are stored in a hardware-secured vault—not in code, not in environment variables.",
+      title: "Encrypted at rest",
+      body: "EINs, tax IDs, and sensitive identifiers are encrypted in the database using application-level encryption. All underlying storage is encrypted at rest.",
     },
     {
       icon: <Shield size={18} style={{ color: C.teal }} />,
       title: "Strict data isolation",
-      body: "No designer can see another designer's data. No firm can see another firm's data. Isolation is enforced at the database layer by row-level security—not application logic.",
+      body: "No designer can see another designer's data. No firm can see another firm's data. Vendors only see designers who apply to their program—never the other way around. Isolation is enforced at the database layer by row-level security—not application logic.",
     },
     {
       icon: <FileText size={18} style={{ color: C.teal }} />,
