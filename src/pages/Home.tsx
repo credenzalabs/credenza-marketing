@@ -1602,7 +1602,7 @@ function Footer() {
           <div className="flex gap-6">
             <button
               type="button"
-              onClick={() => document.getElementById('privacy-modal')?.showModal()}
+              onClick={() => (document.getElementById('privacy-modal') as HTMLDialogElement)?.showModal()}
               className="no-underline cursor-pointer bg-transparent border-none p-0"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft }}
               onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
@@ -1612,7 +1612,7 @@ function Footer() {
             </button>
             <button
               type="button"
-              onClick={() => document.getElementById('terms-modal')?.showModal()}
+              onClick={() => (document.getElementById('terms-modal') as HTMLDialogElement)?.showModal()}
               className="no-underline cursor-pointer bg-transparent border-none p-0"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft }}
               onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
