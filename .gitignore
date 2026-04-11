@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 # OS
 .DS_Store
 *.local
+.vercel

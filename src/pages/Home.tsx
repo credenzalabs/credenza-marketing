@@ -205,18 +205,18 @@ function Nav() {
             {navLinks.map((item) => (
               <a
                 key={item}
-                href={item === "For Designers" ? "/for-designers" : "#"}
+                href={item === "For Designers" ? "/for-designers" : "/"}
                 className="no-underline transition-colors duration-200"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "0.72rem",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase" as const,
-                  color: C.charcoalMid,
-                  fontWeight: 500,
+                  color: item === "For Vendors" ? C.olive : C.charcoalMid,
+                  fontWeight: item === "For Vendors" ? 600 : 500,
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalMid)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = item === "For Vendors" ? C.olive : C.charcoalMid)}
               >
                 {item}
               </a>
@@ -264,8 +264,8 @@ function Nav() {
         <div className="md:hidden border-t" style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}>
           <div className="container py-6 flex flex-col gap-5">
             {navLinks.map((item) => (
-              <a key={item} href="#" className="no-underline"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: C.charcoal, fontWeight: 500 }}>
+              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"} className="no-underline"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: item === "For Vendors" ? C.olive : C.charcoal, fontWeight: item === "For Vendors" ? 600 : 500 }}>
                 {item}
               </a>
             ))}
@@ -329,7 +329,7 @@ function SecurityStrip() {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
 const HERO_FIRMS = [
-  { name: "Studio Dorion", location: "New York, NY", main: IMAGES.studioDorionBrownstone, secondary: IMAGES.studioDorionNoho },
+  { name: "Studio Dorion", location: "New York, NY", main: IMAGES.studioDorionBrownstone, secondary: IMAGES.studioDorionNoho, credit: "Photos by Ethan Harrington", mainPos: "left center", secondaryPos: "center center" },
 ];
 
 function Hero() {
@@ -434,9 +434,9 @@ function Hero() {
                   src={firm.main}
                   alt={`${firm.name} project`}
                   className="w-full h-full object-cover"
-                  style={{ transform: "scale(1.02)", objectPosition: "left center" }}
+                  style={{ transform: "scale(1.02)", objectPosition: firm.mainPos }}
                 />
-                <PhotoCredit name="Photos by Ethan Harrington" />
+                <PhotoCredit name={firm.credit} />
               </div>
 
               {/* Secondary image + caption below, 3 cols */}
@@ -446,6 +446,7 @@ function Hero() {
                     src={firm.secondary}
                     alt={`${firm.name} interior`}
                     className="w-full h-full object-cover"
+                    style={{ objectPosition: firm.secondaryPos }}
                   />
                 </div>
                 {/* Verified profile card — full width, left aligned */}
@@ -1075,9 +1076,9 @@ function ForVendors() {
     <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
       {/* Full-bleed header image */}
       <div className="relative overflow-hidden" style={{ minHeight: "70vh" }}>
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/bunny-williams-bedroom_fb34ed35.webp" alt="Luxury interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
+        <img src="/thomas-loof-living-room.png" alt="Luxury interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(33,53,63,0.88) 0%, rgba(33,53,63,0.6) 50%, rgba(33,53,63,0.1) 100%)` }} />
-        <PhotoCredit name="Designed by Bunny Williams · Photo by Reid Rolls" />
+        <PhotoCredit name="Photo by Thomas Loof" />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>For vendors & showrooms</Eyebrow>
@@ -1456,13 +1457,13 @@ function GallerySection() {
     <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
       {/* Full-width masonry-style gallery—no padding, edge to edge */}
       <div className="grid grid-cols-12 gap-1" style={{ height: "55vh", minHeight: "340px" }}>
-        <div className="col-span-12 md:col-span-7 overflow-hidden h-full relative">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp" alt="Kavanaugh Lakeside interior" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-          <PhotoCredit name="Designed by Ellen Kavanaugh" />
+        <div className="col-span-12 md:col-span-6 overflow-hidden h-full relative">
+          <img src="/thomas-loof-sunroom.jpg" alt="Sunroom interior" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" style={{ objectPosition: "center center" }} />
+          <PhotoCredit name="Design by Ariel Okin · Photo by Thomas Loof" />
         </div>
-        <div className="col-span-12 md:col-span-5 overflow-hidden h-full relative">
-          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-ocean-dining_d7523c68.webp" alt="Kavanaugh Ocean dining room" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-          <PhotoCredit name="Designed by Ellen Kavanaugh" />
+        <div className="col-span-12 md:col-span-6 overflow-hidden h-full relative">
+          <img src="/thomas-loof-green-stripe.jpg" alt="Interior vignette" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" style={{ objectPosition: "center center" }} />
+          <PhotoCredit name="Photo by Thomas Loof" />
         </div>
       </div>
       <div className="container pt-12 pb-[18px] text-center" style={{ marginTop: "70px" }}>
@@ -1485,9 +1486,9 @@ function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
           {/* Left: Image */}
           <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
-            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/benjamin-vandiver-kitchen_799e82d1.webp" alt="Benjamin Vandiver West Village kitchen" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="/thomas-loof-blue-bedroom.jpg" alt="Bedroom interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
             <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
-            <PhotoCredit name="Designed by Benjamin Vandiver" dark />
+            <PhotoCredit name="Photo by Thomas Loof" dark />
           </div>
 
           {/* Right: Form */}
@@ -1572,7 +1573,7 @@ function Footer() {
             </p>
           </div>
           {[
-            { heading: "Product", links: [{ label: "For Designers", href: "/for-designers" }, { label: "For Vendors", href: "#" }] },
+            { heading: "Product", links: [{ label: "For Designers", href: "/for-designers" }, { label: "For Vendors", href: "/" }] },
             { heading: "Company", links: [{ label: "Blog", href: "/blog" }] },
             { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (
@@ -1789,7 +1790,7 @@ function MigrationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>come with you.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Credenza imports your existing roster, groups contacts by firm, deduplicates, and reads your existing certificates—so your relationships carry over intact and your designers don't have to start over.
+              Your existing trade clients, certificates, and account history come with you—no reapplication required.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               This isn't just for new applicants. Your existing clients come onto the platform with their history intact—and from here, everything stays current automatically.

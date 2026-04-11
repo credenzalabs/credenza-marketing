@@ -15,7 +15,8 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, FileText, Shield, Users, Zap, Menu, X, CreditCard, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, FileText, Info, Shield, Users, Zap, Menu, X, CreditCard, ChevronRight } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const C = {
   teal:         "#b8ccd2",
@@ -39,12 +40,48 @@ const C = {
 const LOGO_BLACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png";
 
 const IMAGES = {
-  coastalLiving:        "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/coastal_living_room_bd460d9c.png",
-  luxuryInterior:       "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/luxury_interior_22ba73a9.png",
-  architecturalDetail:  "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/architectural_detail_3b5faa0a.png",
-  residentialSpace:     "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/residential_space_8175bb89.png",
-  coastalDining:        "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/coastal_dining_86764f0d.png",
+  // Credited designer project photography
+  alisonRoseKitchen:         "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/alison-rose-kitchen_ed131ff5.jpg",
+  emilyJanakLivingRoom:      "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/emily-janak-living-room_5497e677.webp",
+  emilyJanakDining:          "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/emily-janak-dining_06074056.webp",
+  carolineGidiereBedroom:    "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/cg-overhill-bedroom_b4b2c11c.jpg",
+  benjaminVandiverKitchen:   "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/benjamin-vandiver-kitchen_799e82d1.webp",
+  nickOlsonReidRolls:        "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/nick-olson-reid-rolls_d58f9523.webp",
+  kavanaughLakeside:         "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp",
 };
+
+// --- Photo credit tooltip ---
+function PhotoCredit({ name, dark = false }: { name: string; dark?: boolean }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          className="absolute bottom-3 right-3 z-20 flex items-center justify-center"
+          style={{
+            width: "22px", height: "22px", borderRadius: "50%",
+            border: dark ? "1px solid rgba(0,0,0,0.2)" : "1px solid rgba(255,255,255,0.35)",
+            background: dark ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0.25)",
+            cursor: "default",
+          }}
+        >
+          <Info size={12} color={dark ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.65)"} />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="left"
+        sideOffset={6}
+        style={{
+          fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.06em",
+          textTransform: "uppercase", padding: "4px 8px",
+          background: "rgba(26,26,26,0.85)", color: "rgba(255,255,255,0.85)",
+          border: "none", borderRadius: "0", backdropFilter: "blur(4px)",
+        }}
+      >
+        {name}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
 
 // --- Scroll reveal ---
 function useReveal() {
@@ -109,7 +146,7 @@ function Nav() {
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? "/for-designers" : "#"}
+              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"}
                 className="no-underline transition-colors duration-200"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoalMid, fontWeight: item === "For Designers" ? 600 : 500 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
@@ -128,7 +165,7 @@ function Nav() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: C.teal, color: C.forest, outline: "0.5px solid #99b8bd", outlineOffset: "2px", borderRadius: "0" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
-            >Request access</a>
+            >Get Started</a>
           </div>
 
           <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: C.forest }}>
@@ -141,7 +178,7 @@ function Nav() {
         <div className="md:hidden border-t" style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}>
           <div className="container py-6 flex flex-col gap-5">
             {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? "/for-designers" : "#"} className="no-underline"
+              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"} className="no-underline"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoal, fontWeight: 500 }}>
                 {item}
               </a>
@@ -157,7 +194,18 @@ function Nav() {
 /* =========================================================================
    1. HERO
    ========================================================================= */
+const HERO_IMAGES = [
+  { src: IMAGES.kavanaughLakeside, alt: "Interior by Ellen Kavanaugh", position: "center 40%", credit: "Ellen Kavanaugh Interiors" },
+  { src: "/marea-clark-entry.webp", alt: "Entry by Marea Clark", position: "center center", credit: "Marea Clark Interiors" },
+];
+
 function Hero() {
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 6000);
+    return () => clearInterval(timer);
+  }, []);
+  const hero = HERO_IMAGES[heroIndex];
   return (
     <section
       className="relative overflow-hidden"
@@ -171,7 +219,7 @@ function Hero() {
       <div className="container relative z-10 py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
-            <Eyebrow>For interior designers</Eyebrow>
+            <Eyebrow>Trade access, simplified</Eyebrow>
 
             <h1 className="font-freight mb-8" style={{ fontSize: "clamp(2.4rem, 3.8vw, 4rem)", lineHeight: 1.0, color: C.charcoal, letterSpacing: "-0.03em" }}>
               One place for
@@ -184,10 +232,10 @@ function Hero() {
             </h1>
 
             <p className="mb-10" style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: C.charcoalMid, maxWidth: "400px" }}>
-              Manage your trade accounts, generate resale certificates engineered
-              for maximum tax exemption wherever you do business, and apply instantly to
-              vendors on the Credenza platform—so you spend your time designing,
-              not filing paperwork.
+              Your vendors, workrooms, installers, and every trade relationship
+              your firm depends on—organized in one dashboard. Generate the right
+              resale certificate for every state, and apply to new vendors
+              instantly—so you spend your time designing, not filing paperwork.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
@@ -195,17 +243,12 @@ function Hero() {
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: C.teal, color: C.forest, outline: "0.5px solid #99b8bd", outlineOffset: "2px", borderRadius: "0" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
-              >Create your profile <ArrowRight size={14} /></a>
-              <a href="#accounts" className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.charcoal, border: `1px solid ${C.sageDark}`, borderRadius: "0", backgroundColor: "transparent" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = C.forest; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = C.sageDark; }}
-              >See how it works</a>
+              >Get Started—It's Free <ArrowRight size={14} /></a>
             </div>
 
             <div className="flex flex-col gap-2.5">
               {[
-                { icon: <FileText size={12} />, text: "Certs engineered for maximum exemption wherever you buy" },
+                { icon: <FileText size={12} />, text: "The right cert for every state, every vendor, every purchase" },
                 { icon: <CreditCard size={12} />, text: "Every account, rep, and discount code in one dashboard" },
                 { icon: <Zap size={12} />, text: "Apply instantly to vendors on the Credenza platform" },
               ].map((item) => (
@@ -217,30 +260,10 @@ function Hero() {
             </div>
           </div>
 
-          {/* Photography */}
-          <div className="lg:col-span-7 relative">
-            <div className="grid grid-cols-12 gap-3 h-full">
-              <div className="col-span-8 overflow-hidden" style={{ aspectRatio: "3/4", position: "relative" }}>
-                <img src={IMAGES.luxuryInterior} alt="Luxury interior" className="w-full h-full object-cover" style={{ display: "block" }} />
-              </div>
-              <div className="col-span-4 flex flex-col gap-3">
-                <div className="overflow-hidden flex-1" style={{ minHeight: "0" }}>
-                  <img src={IMAGES.architecturalDetail} alt="Architectural detail" className="w-full h-full object-cover" style={{ display: "block", aspectRatio: "1/1" }} />
-                </div>
-                <div className="p-4 flex flex-col gap-2" style={{ backgroundColor: C.forest, flexShrink: 0 }}>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "rgba(240,240,236,0.45)" }}>Verified Trade Profile</div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", fontWeight: 600, color: C.ivory }}>Studio Whitmore</div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: C.teal }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", color: C.teal }}>Powered by Credenza</span>
-                  </div>
-                  <div className="pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: "rgba(240,240,236,0.4)", marginBottom: "3px" }}>Tax-exempt in</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(240,240,236,0.7)" }}>12 states</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Photography — rotating single image */}
+          <div className="lg:col-span-7 overflow-hidden relative" style={{ aspectRatio: "1/1" }}>
+            <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ display: "block", objectPosition: hero.position }} />
+            <PhotoCredit name={hero.credit} />
           </div>
         </div>
       </div>
@@ -254,17 +277,6 @@ function Hero() {
    ========================================================================= */
 function TaxStrategy() {
   const ref = useReveal();
-  const [activeState, setActiveState] = useState(0);
-  const states = [
-    { abbr: "NY", form: "ST-120", name: "New York" },
-    { abbr: "CA", form: "BOE-230", name: "California" },
-    { abbr: "TX", form: "01-339", name: "Texas" },
-    { abbr: "GA", form: "ST-5", name: "Georgia" },
-    { abbr: "IL", form: "CRT-61", name: "Illinois" },
-    { abbr: "NJ", form: "ST-3", name: "New Jersey" },
-    { abbr: "CO", form: "DR 0563", name: "Colorado" },
-    { abbr: "PA", form: "REV-1220", name: "Pennsylvania" },
-  ];
 
   return (
     <section id="tax-strategy" ref={ref} className="reveal py-24 md:py-36" style={{ backgroundColor: "#FFFFFF" }}>
@@ -281,9 +293,10 @@ function TaxStrategy() {
           </div>
           <div className="lg:col-span-5 flex items-end">
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Every state has different rules. Credenza's tax strategy engine evaluates your
-              registrations and determines the optimal path—so you claim every exemption
-              you're entitled to, with the right form, filled out correctly.
+              Every state has different rules, different forms, different exemptions.
+              Credenza evaluates your registrations, finds the optimal path, and
+              generates the right certificate—so you never leave money on the table
+              or wonder if you checked the wrong box.
             </p>
           </div>
         </div>
@@ -315,122 +328,24 @@ function TaxStrategy() {
           ))}
         </div>
 
-        {/* Cert generator mockup — full width */}
-        <div style={{ backgroundColor: C.forest, overflow: "hidden" }}>
-          {/* Top bar */}
-          <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-            <div className="flex items-center gap-2">
-              <FileText size={13} style={{ color: C.teal }} />
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 600, color: C.ivory }}>Certificate Generator</span>
-            </div>
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", color: "rgba(255,255,255,0.35)" }}>
-              {states[activeState].name} ({activeState + 1} of {states.length})
-            </span>
+        {/* Cert generator screenshot + stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start" style={{ border: `1px solid ${C.sageDark}` }}>
+          <div className="lg:col-span-9 overflow-hidden">
+            <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" className="w-full h-auto block" />
           </div>
-
-          {/* State tabs */}
-          <div className="flex gap-0 border-b overflow-x-auto" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-            {states.map((s, i) => (
-              <button key={s.abbr} onClick={() => setActiveState(i)}
-                className="px-4 py-2.5 transition-all duration-150 flex-shrink-0"
-                style={{
-                  backgroundColor: activeState === i ? "rgba(184,204,210,0.12)" : "transparent",
-                  borderBottom: activeState === i ? `2px solid ${C.teal}` : "2px solid transparent",
-                  color: activeState === i ? C.teal : "rgba(255,255,255,0.35)",
-                  fontFamily: "Inter, sans-serif", fontSize: "0.68rem",
-                  fontWeight: activeState === i ? 600 : 400, letterSpacing: "0.04em", cursor: "pointer",
-                }}
-              >{s.abbr}</button>
+          <div className="lg:col-span-3 flex flex-col h-full" style={{ borderLeft: `1px solid ${C.sageDark}` }}>
+            {[
+              { stat: "39", label: "state forms supported" },
+              { stat: "45", label: "taxable states covered" },
+              { stat: "MTC + SST", label: "cross-state strategies" },
+              { stat: "Auto", label: "expiration monitoring" },
+            ].map((item, i) => (
+              <div key={item.label} className="flex-1 px-6 py-6" style={{ borderBottom: i < 3 ? `1px solid ${C.sageDark}` : "none" }}>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "1.5rem", fontWeight: 300, color: C.charcoal, letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>{item.stat}</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", color: C.charcoalSoft, letterSpacing: "0.02em" }}>{item.label}</div>
+              </div>
             ))}
           </div>
-
-          {/* Split: preview + sidebar */}
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            {/* PDF preview */}
-            <div className="lg:col-span-8 p-6 md:p-8">
-              <div style={{ backgroundColor: C.white, padding: "1.5rem" }}>
-                <div className="flex items-start justify-between mb-5 pb-4 border-b" style={{ borderColor: C.sage }}>
-                  <div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "4px" }}>
-                      {states[activeState].name} &middot; Form {states[activeState].form}
-                    </div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", fontWeight: 700, color: C.charcoal }}>Resale Certificate</div>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1" style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}>
-                    <Check size={9} style={{ color: C.teal }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", color: C.teal, fontWeight: 600 }}>Compliant</span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-5">
-                  {[
-                    { label: "Purchaser", value: "Studio Whitmore LLC" },
-                    { label: "Seller", value: "Whitfield & Co." },
-                    { label: "Tax Reg. No.", value: "NY-88-2194-7" },
-                    { label: "Exemption type", value: "Resale — tangible personal property" },
-                  ].map((f) => (
-                    <div key={f.label}>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.56rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "2px" }}>{f.label}</div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: C.charcoal, fontWeight: 500 }}>{f.value}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 border-t" style={{ borderColor: C.sage }}>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.56rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "6px" }}>Authorized signature</div>
-                  <div style={{ fontFamily: "cursive", fontSize: "1.6rem", color: C.forest, lineHeight: 1.1, borderBottom: `1px solid ${C.sage}`, paddingBottom: "4px" }}>Jane Whitmore</div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", color: C.charcoalSoft, marginTop: "4px" }}>Principal, Studio Whitmore LLC</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Field sidebar */}
-            <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l p-5 md:p-6 flex flex-col gap-3.5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "0.25rem" }}>
-                Edit fields
-              </div>
-              {[
-                { label: "Vendor", value: "Whitfield & Co." },
-                { label: "Goods / services", value: "Fabrics, furniture, trimmings" },
-                { label: "Business type", value: "LLC" },
-                { label: "State tax ID", value: "NY-88-2194-7" },
-                { label: "Title", value: "Principal" },
-                { label: "Date", value: "March 20, 2026" },
-              ].map((f) => (
-                <div key={f.label}>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.52rem", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "2px" }}>{f.label}</div>
-                  <div className="px-2.5 py-1.5" style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.7)" }}>{f.value}</span>
-                  </div>
-                </div>
-              ))}
-              <div className="mt-auto pt-4 flex gap-2 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                <button className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5"
-                  style={{ backgroundColor: C.teal, color: C.forest, fontFamily: "Inter, sans-serif", fontSize: "0.62rem", fontWeight: 400, letterSpacing: "0.08em", textTransform: "uppercase" as const }}>
-                  <FileText size={11} /> Download
-                </button>
-                <button className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5"
-                  style={{ backgroundColor: "transparent", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)", fontFamily: "Inter, sans-serif", fontSize: "0.62rem", fontWeight: 400, letterSpacing: "0.08em", textTransform: "uppercase" as const }}>
-                  Send to vendor
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Coverage stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-b" style={{ borderColor: C.sageDark }}>
-          {[
-            { stat: "39", label: "state forms supported" },
-            { stat: "45", label: "taxable states covered" },
-            { stat: "MTC + SST", label: "cross-state strategies" },
-            { stat: "Auto", label: "expiration monitoring" },
-          ].map((item, i) => (
-            <div key={item.label} className="py-6" style={{ borderRight: i < 3 ? `1px solid ${C.sageDark}` : "none", paddingLeft: i > 0 ? "1.5rem" : "0", paddingRight: "1.5rem" }}>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "1.5rem", fontWeight: 300, color: C.charcoal, letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>{item.stat}</div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", color: C.charcoalSoft, letterSpacing: "0.02em" }}>{item.label}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -444,7 +359,7 @@ function TaxStrategy() {
 function AccountManagement() {
   const ref = useReveal();
   return (
-    <section id="accounts" ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#edeae3" }}>
+    <section id="accounts" ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
@@ -454,58 +369,21 @@ function AccountManagement() {
               <br />
               <span className="italic" style={{ color: C.oliveMid }}>One dashboard.</span>
             </h2>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              No more digging through emails to find an account number,
-              discount code, or your rep's phone number. Credenza gives
-              your whole firm a single view of every trade relationship.
+            <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+              Vendors, workrooms, installers, fabric houses—every trade
+              relationship your firm has, in one place. No more digging
+              through emails for an account number, discount code, or
+              your rep's phone number.
+            </p>
+            <p className="font-freight italic" style={{ fontSize: "1.1rem", lineHeight: 1.5, color: C.charcoal, letterSpacing: "-0.01em" }}>
+              Your trade relationships are your business. Now they're organized like it.
             </p>
           </div>
 
           <div className="lg:col-span-7">
-            {/* Account dashboard mockup */}
-            <div style={{ border: `1px solid ${C.sageDark}`, backgroundColor: "#FFFFFF", overflow: "hidden" }}>
-              {/* Header */}
-              <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: C.sageDark }}>
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", fontWeight: 600, color: C.charcoal, letterSpacing: "0.04em" }}>Trade Accounts</span>
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: C.charcoalSoft }}>4 active accounts</span>
-              </div>
-
-              {/* Account rows */}
-              {[
-                { vendor: "Whitfield & Co.", rep: "Sarah Chen", status: "Active", discount: "Trade Net 30", cert: "NY, CA, TX" },
-                { vendor: "Harmon Textiles", rep: "James Liu", status: "Active", discount: "40% off MSRP", cert: "NY, NJ" },
-                { vendor: "Bellworth Home", rep: "Maria Santos", status: "Active", discount: "Trade pricing", cert: "CA, IL, GA" },
-                { vendor: "Linden & Park", rep: "Unassigned", status: "Pending", discount: "--", cert: "NY" },
-              ].map((row, i) => (
-                <div key={row.vendor} className="grid grid-cols-12 gap-3 items-center px-5 py-3.5 border-b" style={{ borderColor: i < 3 ? C.sage : "transparent" }}>
-                  <div className="col-span-3">
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 600, color: C.charcoal }}>{row.vendor}</div>
-                  </div>
-                  <div className="col-span-2">
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.52rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "1px" }}>Rep</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", color: row.rep === "Unassigned" ? C.charcoalSoft : C.charcoal }}>{row.rep}</div>
-                  </div>
-                  <div className="col-span-2">
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.52rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "1px" }}>Discount</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", color: C.charcoal }}>{row.discount}</div>
-                  </div>
-                  <div className="col-span-2">
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.52rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "1px" }}>Certs on file</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", color: C.charcoal }}>{row.cert}</div>
-                  </div>
-                  <div className="col-span-2 text-right">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5" style={{
-                      backgroundColor: row.status === "Active" ? C.oliveDim : C.tealDim,
-                      border: `1px solid ${row.status === "Active" ? C.oliveBorder : C.tealBorder}`,
-                    }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.55rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: row.status === "Active" ? C.olive : C.tealMid }}>{row.status}</span>
-                    </span>
-                  </div>
-                  <div className="col-span-1 text-right">
-                    <ChevronRight size={14} style={{ color: C.charcoalSoft }} />
-                  </div>
-                </div>
-              ))}
+            {/* Real product screenshot */}
+            <div className="overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
+              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard showing vendor cards with hero images, rep info, discount tiers, and portal credentials" className="w-full h-auto block" />
             </div>
           </div>
         </div>
@@ -536,24 +414,32 @@ function VerifiedProfile() {
   const ref = useReveal();
   return (
     <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
-      {/* Full-bleed image with text overlay */}
+      {/* Full-bleed image with text overlay + profile card mockup */}
       <div className="relative overflow-hidden" style={{ minHeight: "55vh" }}>
-        <img src={IMAGES.coastalLiving} alt="Interior" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/emily-jones-nightstand.webp" alt="Bedroom by Emily Jones Interiors" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+        <PhotoCredit name="Emily Jones Interiors" />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.7) 50%, rgba(33,53,63,0.2) 100%)` }} />
         <div className="relative z-10 container py-24 md:py-32">
-          <div className="max-w-xl">
-            <Eyebrow light>Your verified profile</Eyebrow>
-            <h2 className="font-freight mb-6" style={{ fontSize: "clamp(2.2rem, 4vw, 3.75rem)", lineHeight: 1.05, color: C.white, letterSpacing: "-0.025em" }}>
-              Verified once.
-              <br />
-              <span className="italic" style={{ color: C.teal }}>Stronger over time.</span>
-            </h2>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "rgba(255,255,255,0.8)", maxWidth: "460px" }}>
-              Your EIN confirmed against IRS records. Your license validated with the
-              state board. Your memberships checked against ASID and NCIDQ directories.
-              Everything that makes your certificates and applications credible—verified
-              once and stored in one place.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5">
+              <Eyebrow light>Your verified profile</Eyebrow>
+              <h2 className="font-freight mb-6" style={{ fontSize: "clamp(2.2rem, 4vw, 3.75rem)", lineHeight: 1.05, color: C.white, letterSpacing: "-0.025em" }}>
+                Verified once.
+                <br />
+                <span className="italic" style={{ color: C.teal }}>Trusted everywhere.</span>
+              </h2>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "rgba(255,255,255,0.8)", maxWidth: "460px" }}>
+                Your EIN confirmed against IRS records. Your license validated with the
+                state board. Your memberships checked against ASID and NCIDQ directories.
+                Everything that makes your certificates and applications credible—verified
+                once and stored in one place.
+              </p>
+            </div>
+
+            {/* Real profile screenshot */}
+            <div className="lg:col-span-6 lg:col-start-7 hidden lg:block">
+              <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+            </div>
           </div>
         </div>
       </div>
@@ -562,28 +448,37 @@ function VerifiedProfile() {
       <div className="container py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t" style={{ borderColor: C.sageDark }}>
           {[
-            { label: "Business entity & EIN", detail: "Verified against IRS records via TINCheck—confirming your EIN matches your business name.", badge: "Verified" },
-            { label: "State professional license", detail: "Validated directly against state license boards in NY, FL, GA, IL, LA, NV, TX, and DC.", badge: "Verified" },
-            { label: "Sales tax registrations", detail: "State-specific format validation. Stored so your certificates are always pre-filled correctly.", badge: "Verified" },
-            { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA—checked against member directories.", badge: "Verified" },
+            { label: "EIN number", detail: "Verified against IRS records—building the credibility that gets you approved faster.", badge: "Verified" },
+            { label: "Professional licenses", detail: "Interior design licenses checked against state boards in NY, FL, GA, IL, LA, NV, TX, and DC. Architecture licenses validated against NCARB.", badge: "Verified" },
+            { label: "Sales tax registrations", detail: "Verified directly with 28 states. Stored so your certificates are always pre-filled correctly.", badge: "Verified" },
+            { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA—if you're a member, we'll make sure it counts.", badge: "Verified" },
             { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice.", badge: "Verified" },
-            { label: "Showhouse & press recognition", detail: "Matched against our database of 960+ showhouse participants and press coverage across 16 design publications.", badge: "We add this" },
+            { label: "Press recognition & showhouse participation", detail: "Matched against thousands of showhouse participants and press coverage across major design publications.", badge: "Enriched" },
           ].map((item, i) => (
             <div key={item.label} className="flex items-start gap-4 py-5 border-b" style={{ borderColor: C.sageDark, paddingRight: i % 2 === 0 ? "2rem" : "0", paddingLeft: i % 2 === 1 ? "2rem" : "0", borderRight: i % 2 === 0 ? `1px solid ${C.sageDark}` : "none" }}>
-              <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "20px", height: "20px", backgroundColor: item.badge === "We add this" ? C.tealDim : C.oliveDim, border: `1px solid ${item.badge === "We add this" ? C.tealBorder : C.oliveBorder}` }}>
-                <Check size={10} style={{ color: item.badge === "We add this" ? C.tealMid : C.oliveMid }} />
+              <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "20px", height: "20px", backgroundColor: C.oliveDim, border: `1px solid ${C.oliveBorder}` }}>
+                <Check size={10} style={{ color: C.oliveMid }} />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", fontWeight: 600, color: C.charcoal }}>{item.label}</span>
-                  {item.badge === "We add this" && (
-                    <span className="px-1.5 py-0.5" style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}`, fontFamily: "Inter, sans-serif", fontSize: "0.5rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: C.tealMid }}>We add this</span>
+                  {item.badge === "Enriched" && (
+                    <span className="px-1.5 py-0.5" style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}`, fontFamily: "Inter, sans-serif", fontSize: "0.5rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: C.tealMid }}>Enriched</span>
                   )}
                 </div>
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: C.charcoalSoft, lineHeight: 1.5 }}>{item.detail}</p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Supporting copy */}
+        <div className="mt-14 text-center mx-auto" style={{ maxWidth: "640px" }}>
+          <p className="font-freight italic" style={{ fontSize: "clamp(1.3rem, 2.2vw, 1.6rem)", lineHeight: 1.5, color: C.charcoalMid, letterSpacing: "-0.01em" }}>
+            A license, a membership, a decade of published work, a growing social
+            following—however you've built your career, Credenza turns it into a
+            profile that speaks for you. Prove yourself once. Never again.
+          </p>
         </div>
       </div>
     </section>
@@ -607,31 +502,34 @@ function FirmTeam() {
               <br />
               <span className="italic" style={{ color: C.oliveMid }}>Everyone on the team.</span>
             </h2>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+            <p className="mb-4" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               Every team member gets their own login with the right level
-              of access. Order notifications route to your firm's shared
-              contact email. Add or remove anyone in one step.
+              of access. Add or remove anyone in one step—and every vendor
+              in the network sees the change instantly.
             </p>
-          </div>
 
-          <div className="lg:col-span-7">
             <div className="border-t" style={{ borderColor: C.sageDark }}>
               {[
-                { icon: <Users size={14} />, title: "Individual logins, no shared passwords", body: "Each person has their own credentials. No 2FA headaches when someone's traveling, no guessing who's logged in." },
-                { icon: <Shield size={14} />, title: "The right access for every role", body: "Designate authorized signers for resale certificates. Give your accountant read-only access to tax documents. Let junior designers browse without signing legal documents." },
-                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once and they see every vendor account. Someone leaves? Revoke access across every program at once." },
+                { icon: <Users size={14} />, title: "Individual logins, no shared passwords", body: "Each person has their own credentials. No 2FA headaches when someone's traveling." },
+                { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Each signer attests their authority per state requirements." },
+                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke access across every program at once." },
               ].map((item) => (
-                <div key={item.title} className="flex items-start gap-5 py-6 border-b" style={{ borderColor: C.sageDark }}>
-                  <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "28px", height: "28px", backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}>
+                <div key={item.title} className="flex items-start gap-4 py-4 border-b" style={{ borderColor: C.sageDark }}>
+                  <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "24px", height: "24px", backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}>
                     <span style={{ color: C.tealMid }}>{item.icon}</span>
                   </div>
                   <div className="flex-1">
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", fontWeight: 600, color: C.charcoal, marginBottom: "4px" }}>{item.title}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: C.charcoalSoft, lineHeight: 1.6 }}>{item.body}</div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", fontWeight: 600, color: C.charcoal, marginBottom: "2px" }}>{item.title}</div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: C.charcoalSoft, lineHeight: 1.55 }}>{item.body}</div>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Team members screenshot */}
+          <div className="lg:col-span-7">
+            <img src="/team-members-screenshot.png" alt="Team members panel showing owner and team member roles" className="w-full h-auto block" style={{ maxWidth: "620px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
       </div>
@@ -652,33 +550,39 @@ function Network() {
           <div className="lg:col-span-5">
             <Eyebrow light>The Credenza network</Eyebrow>
             <h2 className="font-freight mb-6" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, color: C.white, letterSpacing: "-0.025em" }}>
-              Apply once.
+              One-click
               <br />
-              <span className="italic" style={{ color: C.teal }}>Recognized everywhere.</span>
+              <span className="italic" style={{ color: C.teal }}>trade access.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              Credenza is building a network of vendors who run their trade programs
-              on our platform. As vendors join, your verified profile and certificates
-              attach automatically—no new forms, no document uploads. Check the
-              vendor's terms and click Apply.
+              Credenza is building a network of vendors whose trade programs are
+              powered by Credenza. As vendors join, your verified profile goes with you
+              automatically—no new forms, no document uploads, no repeat
+              applications. One click and you're in.
             </p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              The profile and certificates you build today will work at every vendor
-              that joins the network tomorrow.
+            <p className="font-freight italic mb-8" style={{ fontSize: "1.15rem", lineHeight: 1.5, color: C.teal, letterSpacing: "-0.01em" }}>
+              Set up once. Every new vendor is just one click away.
             </p>
+
+            <div className="flex flex-col gap-5">
+              {[
+                { title: "Your profile travels with you", body: "Everything you verify with Credenza is securely stored to reuse with any vendor. Your next vendor application could be one click." },
+                { title: "Just click Apply", body: "When a vendor powers its program with Credenza, your next application is one click. No forms, no uploads." },
+                { title: "Approved faster", body: "Approved in minutes, not days. Your verified profile can be matched against vendor criteria automatically—no back-and-forth, no waiting." },
+              ].map((item) => (
+                <div key={item.title}>
+                  <h3 className="font-freight mb-1" style={{ fontSize: "1.1rem", color: C.white, letterSpacing: "-0.02em", lineHeight: 1.2 }}>{item.title}</h3>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(240,240,236,0.55)" }}>{item.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col gap-0 border-t" style={{ borderColor: "rgba(240,240,236,0.12)" }}>
-            {[
-              { title: "Your profile travels with you", body: "Everything you verify with Credenza belongs to you—not to any vendor. Your credentials, your certificates, your account history." },
-              { title: "One click to apply", body: "When a vendor runs their trade program on Credenza, applying means checking their terms and clicking a button. Your verified profile does the rest." },
-              { title: "Approved faster", body: "Vendors who use Credenza set their own approval criteria. If your verified profile meets them, you're often approved in minutes—not days." },
-            ].map((item) => (
-              <div key={item.title} className="py-6 border-b" style={{ borderColor: "rgba(240,240,236,0.12)" }}>
-                <h3 className="font-freight mb-2" style={{ fontSize: "1.25rem", color: C.white, letterSpacing: "-0.02em", lineHeight: 1.2 }}>{item.title}</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: "rgba(240,240,236,0.55)" }}>{item.body}</p>
-              </div>
-            ))}
+          <div className="lg:col-span-7 flex flex-col gap-0">
+            {/* One-click apply screenshot */}
+            <div>
+              <img src="/one-click-apply-screenshot.png" alt="One-click trade application showing verified profile and express apply flow" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+            </div>
           </div>
         </div>
       </div>
@@ -690,14 +594,37 @@ function Network() {
 /* =========================================================================
    7. CTA
    ========================================================================= */
+const ACCESS_REQUEST_URL = "https://hdcyqdxksgnexbtfxsdk.supabase.co/functions/v1/vendor-request-access";
+
 function CTASection() {
   const ref = useReveal();
+  const [form, setForm] = useState({ name: "", email: "", company: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.company.trim()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch(ACCESS_REQUEST_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name.trim(), email: form.email.trim(), company: form.company.trim() }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
           <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
-            <img src={IMAGES.residentialSpace} alt="Residential space" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="/sarah-bartholomew-living-room.webp" alt="Living room by Sarah Bartholomew" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "15% center" }} />
+            <PhotoCredit name="Design by Sarah Bartholomew Design. Photo by Melanie Acevedo" />
             <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
           </div>
 
@@ -709,32 +636,48 @@ function CTASection() {
               <span className="italic" style={{ color: C.oliveMid }}>starts here.</span>
             </h2>
             <p className="mb-8" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7, color: C.charcoalMid }}>
-              Credenza is in early access. Join the waitlist and we'll reach out
-              to get your profile set up—so you're ready the moment your first
-              Credenza-powered vendor goes live.
+              Credenza is in early access. Request access and we'll help you
+              set up your profile—so you're ready the moment you need it.
             </p>
-            <div className="flex flex-col gap-3">
-              {[
-                { placeholder: "Your name", type: "text" },
-                { placeholder: "Work email", type: "email" },
-                { placeholder: "Firm name", type: "text" },
-              ].map((field) => (
-                <input key={field.placeholder} type={field.type} placeholder={field.placeholder}
-                  className="w-full px-4 py-3 outline-none transition-all duration-150"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", border: `1px solid ${C.sageDark}`, backgroundColor: C.white, color: C.charcoal, borderRadius: "0" }}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = C.olive)}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = C.sageDark)}
-                />
-              ))}
-              <button className="w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: C.teal, color: C.forest, borderRadius: "0", cursor: "pointer", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
-              >Join the waitlist <ArrowRight size={14} /></button>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, textAlign: "center" as const, marginTop: "0.25rem" }}>
-                We'll reach out within 48 hours.
-              </p>
-            </div>
+
+            {status === "sent" ? (
+              <div className="flex flex-col items-center gap-3 py-8">
+                <div className="flex items-center justify-center" style={{ width: "40px", height: "40px", backgroundColor: C.oliveDim, border: `1px solid ${C.oliveBorder}` }}>
+                  <Check size={18} style={{ color: C.oliveMid }} />
+                </div>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", fontWeight: 600, color: C.charcoal }}>We've got your request.</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", color: C.charcoalSoft }}>We'll be in touch soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                {[
+                  { placeholder: "Your name", type: "text", key: "name" as const },
+                  { placeholder: "Work email", type: "email", key: "email" as const },
+                  { placeholder: "Firm name", type: "text", key: "company" as const },
+                ].map((field) => (
+                  <input key={field.placeholder} type={field.type} placeholder={field.placeholder}
+                    value={form[field.key]}
+                    onChange={(e) => setForm((f) => ({ ...f, [field.key]: e.target.value }))}
+                    required
+                    className="w-full px-4 py-3 outline-none transition-all duration-150"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", border: `1px solid ${C.sageDark}`, backgroundColor: C.white, color: C.charcoal, borderRadius: "0" }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = C.olive)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = C.sageDark)}
+                  />
+                ))}
+                <button type="submit" disabled={status === "sending"}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: status === "sending" ? C.sageDark : C.teal, color: C.forest, borderRadius: "0", cursor: status === "sending" ? "default" : "pointer", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+                  onMouseEnter={(e) => { if (status !== "sending") (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
+                  onMouseLeave={(e) => { if (status !== "sending") (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
+                >{status === "sending" ? "Sending..." : "Get Started\u2014It's Free"} {status !== "sending" && <ArrowRight size={14} />}</button>
+                {status === "error" && (
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#b44", textAlign: "center" as const }}>
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+              </form>
+            )}
           </div>
         </div>
       </div>
@@ -754,7 +697,7 @@ function Footer() {
           <div className="col-span-2">
             <img src={LOGO_BLACK} alt="Credenza" style={{ height: "32px", width: "auto", marginBottom: "1rem" }} />
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7, color: C.charcoalSoft, maxWidth: "240px" }}>
-              The standard for trade programs in interior design.
+              The design trade's operating system.
             </p>
           </div>
           {[
@@ -766,7 +709,7 @@ function Footer() {
               <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.charcoalMid, fontWeight: 600, marginBottom: "1rem" }}>{col.heading}</h4>
               <div className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <a key={link} href={link === "For Designers" ? "/for-designers" : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150"
+                  <a key={link} href={link === "For Designers" ? "/for-designers" : link === "For Vendors" ? "/" : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoalSoft }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
