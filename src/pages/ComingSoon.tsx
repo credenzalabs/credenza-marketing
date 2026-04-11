@@ -75,7 +75,7 @@ export default function ComingSoon() {
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: C.white }}>
       {/* Left: image */}
-      <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
+      <div className="hidden lg:block lg:w-1/2 fixed top-0 left-0 bottom-0 overflow-hidden">
         <img
           src={BG_IMAGE}
           alt="Interior by Studio Dorion"
@@ -86,7 +86,7 @@ export default function ComingSoon() {
       </div>
 
       {/* Right: content */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-20 py-16">
+      <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-16">
         <div style={{ maxWidth: "440px" }}>
           <img src={LOGO} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem" }} />
 
