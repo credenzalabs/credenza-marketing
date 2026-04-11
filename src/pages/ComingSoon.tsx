@@ -82,7 +82,7 @@ export default function ComingSoon() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "left center" }}
         />
-        <PhotoCredit name="Design by Studio Dorion · Photos by Ethan Harrington" />
+        <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" />
       </div>
 
       {/* Right: content */}
