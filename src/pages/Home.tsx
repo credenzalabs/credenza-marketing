@@ -615,9 +615,9 @@ function PortableIdentitySection() {
   const vendors = [
     { name: "Vanthorpe & Co.", type: "Furniture atelier" },
     { name: "Hive Modern", type: "Showroom" },
-    { name: "Arteriors", type: "Lighting & décor" },
-    { name: "Holly Hunt", type: "Fabric & furniture" },
-    { name: "Kravet", type: "Fabric & trim" },
+    { name: "Lumen & Ash", type: "Lighting & décor" },
+    { name: "Harlow & Stone", type: "Fabric & furniture" },
+    { name: "Whitfield Textiles", type: "Fabric & trim" },
   ];
   return (
     <section ref={ref} className="reveal" style={{ backgroundColor: C.ivory, borderTop: `1px solid ${C.sageDark}` }}>
@@ -655,79 +655,9 @@ Returning designers already have verified profiles when they apply. Higher compl
             </div>
           </div>
 
-          {/* Right: profile card traveling across vendors */}
-          <div className="flex flex-col gap-4">
-
-            {/* Profile card */}
-            <div
-              className="p-5 mb-2"
-              style={{ backgroundColor: C.forest, border: `1px solid rgba(255,255,255,0.08)` }}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.teal, marginBottom: "0.4rem" }}>Verified Trade Profile</div>
-                  <div style={{ fontFamily: "'freight-display-pro', Georgia, serif", fontSize: "1.3rem", color: C.white, letterSpacing: "-0.01em" }}>Studio Whitmore LLC</div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(240,240,236,0.5)", marginTop: "0.2rem" }}>Interior Design · New York, NY</div>
-                </div>
-                <div
-                  className="flex items-center gap-1.5 px-2.5 py-1"
-                  style={{ backgroundColor: "rgba(184,204,210,0.15)", border: `1px solid ${C.tealBorder}` }}
-                >
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: C.teal }} />
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.teal }}>Verified</span>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { label: "EIN", value: "47-2819304", verified: true },
-                  { label: "Sales Tax ID", value: "NY-88-2194-7", verified: true },
-                  { label: "ASID", value: "Member #88241", verified: true },
-                  { label: "Resale Cert", value: "NY ST-120 · on file", verified: true },
-                ].map((f) => (
-                  <div key={f.label} className="px-3 py-2" style={{ backgroundColor: "rgba(255,255,255,0.05)", borderLeft: `2px solid ${C.tealBorder}` }}>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(240,240,236,0.4)", marginBottom: "0.2rem" }}>{f.label}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: C.white }}>{f.value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Vendor application rows */}
-            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.charcoalSoft, marginBottom: "0.25rem", paddingLeft: "0.25rem" }}>Applied to</div>
-            <div className="flex flex-col gap-2">
-              {vendors.map((v, i) => (
-                <div
-                  key={v.name}
-                  className="flex items-center justify-between px-4 py-3"
-                  style={{ backgroundColor: C.white, border: `1px solid ${C.sageDark}` }}
-                >
-                  <div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoal, fontWeight: 500 }}>{v.name}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft }}>{v.type}</div>
-                  </div>
-                  {i === 0 ? (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1" style={{ backgroundColor: C.cobaltDim, border: `1px solid ${C.cobaltBorder}` }}>
-                      <Check size={10} style={{ color: C.cobalt }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.cobalt }}>Approved</span>
-                    </div>
-                  ) : i === 1 ? (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1" style={{ backgroundColor: C.cobaltDim, border: `1px solid ${C.cobaltBorder}` }}>
-                      <Check size={10} style={{ color: C.cobalt }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.cobalt }}>Approved</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1" style={{ backgroundColor: C.oliveDim, border: `1px solid ${C.oliveBorder}` }}>
-                      <Zap size={10} style={{ color: C.oliveMid }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.oliveMid }}>Express apply</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", lineHeight: 1.6, color: C.charcoalSoft, paddingLeft: "0.25rem", marginTop: "0.25rem" }}>
-              Full profile verified once at application. Sales tax ID re-verified at each renewal. Every subsequent application uses the same verified data—no re-entry, no re-upload.
-            </p>
+          {/* Right: profile screenshot */}
+          <div>
+            <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
 
         </div>
