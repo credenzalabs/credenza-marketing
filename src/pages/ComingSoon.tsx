@@ -86,7 +86,7 @@ export default function ComingSoon() {
       </div>
 
       {/* Right: content */}
-      <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-16">
+      <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-16 min-h-screen max-h-screen overflow-hidden">
         <div style={{ maxWidth: "440px" }}>
           <img src={LOGO} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem" }} />
 
