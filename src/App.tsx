@@ -4,7 +4,7 @@ import ForDesigners from "./pages/ForDesigners";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 
-const COMING_SOON = import.meta.env.VITE_COMING_SOON === "true";
+const COMING_SOON = true; // hardcoded until image licensing is complete
 
 export default function App() {
   if (COMING_SOON) {
