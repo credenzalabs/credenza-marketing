@@ -121,7 +121,7 @@ export default function ComingSoon() {
                 We've got your request.
               </p>
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoalSoft }}>
-                We'll be in touch soon.
+                We'll be in touch when we launch.
               </p>
             </div>
           ) : (
@@ -171,7 +171,7 @@ export default function ComingSoon() {
                 onMouseEnter={(e) => { if (status !== "sending") (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
                 onMouseLeave={(e) => { if (status !== "sending") (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
               >
-                {status === "sending" ? "Sending..." : "Request early access"}
+                {status === "sending" ? "Sending..." : "Join the waitlist"}
               </button>
               {status === "error" && (
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#b44", textAlign: "center" }}>
@@ -181,13 +181,14 @@ export default function ComingSoon() {
             </form>
           )}
 
-          <p
-            className="mt-12"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, lineHeight: 1.6 }}
-          >
-            &copy; 2026 Credenza Labs, Inc.
-          </p>
         </div>
+
+        <p
+          className="mt-auto pt-12"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, lineHeight: 1.6 }}
+        >
+          &copy; 2026 Credenza Labs, Inc.
+        </p>
       </div>
     </div>
   );
