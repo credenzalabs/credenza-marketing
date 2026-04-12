@@ -1052,61 +1052,10 @@ function ForVendors() {
             </div>
           </div>
 
-          {/* Right: Auto-approval mockup */}
-          <div>
-            {/* Rule engine mockup */}
-            <div style={{ backgroundColor: C.forest, overflow: "hidden" }}>
-              <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>
-                  Approval rules · Your program
-                </div>
-              </div>
-              <div className="p-5">
-                {/* Rule conditions */}
-                <div className="mb-4">
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem" }}>
-                    Auto-approve when all conditions are met:
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    {[
-                      { label: "ASID membership verified", status: "pass" },
-                      { label: "License verified (practice-act state)", status: "pass" },
-                      { label: "EIN matches Secretary of State", status: "pass" },
-                      { label: "Valid sales tax ID", status: "pass" },
-                    ].map((rule) => (
-                      <div key={rule.label} className="flex items-center gap-3 px-3 py-2.5"
-                        style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                        <div className="w-4 h-4 flex items-center justify-center flex-shrink-0"
-                          style={{
-                            backgroundColor: rule.status === "pass" ? "rgba(184,204,210,0.2)" : "rgba(107,114,128,0.15)",
-                            border: rule.status === "pass" ? `1px solid ${C.tealBorder}` : "1px solid rgba(107,114,128,0.3)",
-                          }}>
-                          <Check size={9} style={{ color: rule.status === "pass" ? C.teal : C.charcoalSoft }} />
-                        </div>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.7)" }}>{rule.label}</span>
-                        {rule.status === "optional" && (
-                          <span className="ml-auto" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: C.charcoalSoft }}>optional</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Result */}
-                <div className="flex items-center gap-3 px-4 py-3 mt-2"
-                  style={{ backgroundColor: "rgba(184,204,210,0.12)", border: `1px solid ${C.tealBorder}` }}>
-                  <Zap size={14} style={{ color: C.teal, flexShrink: 0 }} />
-                  <div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 600, color: C.teal }}>
-                      Auto-approved · 4 minutes after submission
-                    </div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", color: "rgba(255,255,255,0.4)", marginTop: "1px" }}>
-                      Trade account created
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right: Approval rules screenshots */}
+          <div className="flex flex-col gap-6">
+            <img src="/hard-rules-screenshot.png" alt="Hard Rules configuration with EIN Verified condition required for approval" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            <img src="/conditional-groups-screenshot.png" alt="Conditional Groups with flexible approval paths including website, membership, showhouse, press, Instagram, and trade references" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
       </div>
