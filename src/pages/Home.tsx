@@ -638,7 +638,7 @@ function PortableIdentitySection() {
               Always current.
             </h2>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.charcoalMid, maxWidth: "460px", marginBottom: "2rem" }}>
-              A designer fills out one profile, gets verified once, and that profile works across every vendor on the platform. No re-entering business information, tax IDs, references, or uploading certs again. At renewal, Credenza re-verifies the sales tax ID is still active before re-generating the new certificate.
+              A designer fills out one profile, gets verified once, and that profile works across every vendor on the platform. No re-entering business information, tax IDs, references, or uploading certs again.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.charcoalMid, maxWidth: "460px", marginBottom: "2.5rem" }}>
               Every application after the first is one click—because your best clients shouldn't have to keep proving themselves.
@@ -655,9 +655,10 @@ Returning designers already have verified profiles when they apply. Higher compl
             </div>
           </div>
 
-          {/* Right: profile screenshot */}
-          <div>
+          {/* Right: screenshots */}
+          <div className="flex flex-col gap-6">
             <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            <img src="/discover-brands-screenshot.png" alt="Discover more brands on Credenza with one-click apply" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
 
         </div>
@@ -1246,51 +1247,9 @@ function TiersSection() {
             </p>
           </div>
 
-          {/* Right: example program config mockup */}
+          {/* Right: product screenshot */}
           <div className="lg:col-span-7">
-            {/* Mockup header */}
-            <div className="px-5 py-3 flex items-center justify-between" style={{ backgroundColor: C.charcoal, borderBottom: `1px solid rgba(255,255,255,0.08)` }}>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: C.tealBorder }} />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(255,255,255,0.4)" }}>Program configuration · Example</span>
-              </div>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", color: "rgba(255,255,255,0.25)" }}>Credenza Admin</span>
-            </div>
-
-            {/* Tier rows */}
-            <div style={{ backgroundColor: C.charcoal }}>
-              {/* Column headers */}
-              <div className="grid px-5 py-2" style={{ gridTemplateColumns: "1fr 80px 1fr", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                {["Tier name", "Discount", "Min. spend"].map(h => (
-                  <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>{h}</span>
-                ))}
-              </div>
-              {exampleTiers.map((tier, i) => (
-                <div
-                  key={tier.name}
-                  className="grid px-5 py-4 items-center"
-                  style={{
-                    gridTemplateColumns: "1fr 80px 1fr",
-                    borderBottom: i < exampleTiers.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                  }}
-                >
-                  <span className="font-freight" style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.9)", letterSpacing: "-0.01em" }}>{tier.name}</span>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.teal, fontWeight: 600 }}>{tier.discount}</span>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.55)" }}>{tier.min}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Footer note */}
-            <div className="px-5 py-3 flex items-center gap-2" style={{ backgroundColor: C.charcoal, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: C.tealBorder }} />
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", color: "rgba(255,255,255,0.3)" }}>Designers are placed automatically on approval. Tier names, discounts, and thresholds are yours to define.</span>
-            </div>
-
-            {/* Callout below */}
-            <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: C.charcoalSoft, lineHeight: 1.6 }}>
-              The tiers above are illustrative. Your program might look entirely different—and that's the point.
-            </p>
+            <img src="/discount-tiers-screenshot.png" alt="Discount Tiers configuration showing Trade, Preferred, and Elite tiers with discount percentages and order minimums" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
       </div>
