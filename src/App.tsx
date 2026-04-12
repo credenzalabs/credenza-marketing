@@ -4,25 +4,15 @@ import ForDesigners from "./pages/ForDesigners";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 
-const COMING_SOON = true; // hardcoded until image licensing is complete
-
 export default function App() {
-  if (COMING_SOON) {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<ComingSoon />} />
-        </Routes>
-      </BrowserRouter>
-    );
-  }
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/for-designers" element={<ForDesigners />} />
-        <Route path="*" element={<NotFound />} />
+        {/* Hidden preview routes */}
+        <Route path="/preview" element={<Home />} />
+        <Route path="/preview/for-designers" element={<ForDesigners />} />
+        {/* Public routes — splash page */}
+        <Route path="*" element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>
   );
