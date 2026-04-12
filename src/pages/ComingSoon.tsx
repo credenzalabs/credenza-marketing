@@ -73,8 +73,19 @@ export default function ComingSoon() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: C.white }}>
-      {/* Left: image */}
+    <div className="min-h-screen flex flex-col lg:flex-row" style={{ backgroundColor: C.white }}>
+      {/* Mobile: top image */}
+      <div className="lg:hidden relative overflow-hidden" style={{ height: "35vh", minHeight: "200px" }}>
+        <img
+          src={BG_IMAGE}
+          alt="Interior by Studio Dorion"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "left center" }}
+        />
+        <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" />
+      </div>
+
+      {/* Desktop: left image */}
       <div className="hidden lg:block lg:w-1/2 fixed top-0 left-0 bottom-0 overflow-hidden">
         <img
           src={BG_IMAGE}
@@ -86,7 +97,7 @@ export default function ComingSoon() {
       </div>
 
       {/* Right: content */}
-      <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-16 min-h-screen max-h-screen overflow-hidden">
+      <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-10 lg:py-16 lg:min-h-screen lg:max-h-screen lg:overflow-hidden">
         <div style={{ maxWidth: "520px" }}>
           <img src={LOGO} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem", marginTop: "1rem" }} />
 

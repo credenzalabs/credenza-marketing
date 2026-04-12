@@ -328,12 +328,18 @@ function SecurityStrip() {
 }
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
-const HERO_FIRMS = [
-  { name: "Studio Dorion", location: "New York, NY", main: IMAGES.studioDorionBrownstone, secondary: IMAGES.studioDorionNoho, credit: "Photos by Ethan Harrington", mainPos: "left center", secondaryPos: "center center" },
+const HERO_IMAGES = [
+  { src: IMAGES.studioDorionBrownstone, alt: "Studio Dorion brownstone", position: "left center", credit: "Design by Studio Dorion · Photo by Ethan Harrington" },
+  { src: "/caitlin-kah-credenza.jpg", alt: "Interior by Caitlin Kah Interiors", position: "center center", credit: "Design by Caitlin Kah Interiors · Photo by Carmel Brantley" },
 ];
 
 function Hero() {
-  const [firm] = useState(() => HERO_FIRMS[Math.floor(Math.random() * HERO_FIRMS.length)]);
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 6000);
+    return () => clearInterval(timer);
+  }, []);
+  const hero = HERO_IMAGES[heroIndex];
   const visible = true;
 
   return (
@@ -425,51 +431,15 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Photography—side by side */}
-          <div className="lg:col-span-7 flex">
-            <div className="grid grid-cols-7 gap-3 flex-1">
-              {/* Main image—fills full height of left copy column */}
-              <div className="col-span-4 overflow-hidden relative" style={{ minHeight: "400px" }}>
-                <img
-                  src={firm.main}
-                  alt={`${firm.name} project`}
-                  className="w-full h-full object-cover"
-                  style={{ transform: "scale(1.02)", objectPosition: firm.mainPos }}
-                />
-                <PhotoCredit name={firm.credit} />
-              </div>
-
-              {/* Secondary image + caption below, 3 cols */}
-              <div className="col-span-3 flex flex-col">
-                <div className="overflow-hidden flex-1" style={{ minHeight: "300px" }}>
-                  <img
-                    src={firm.secondary}
-                    alt={`${firm.name} interior`}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: firm.secondaryPos }}
-                  />
-                </div>
-                {/* Verified profile card — full width, left aligned */}
-                <div style={{
-                  marginTop: "0.75rem",
-                  border: `1px solid ${C.sageDark}`,
-                  padding: "0.75rem 0.875rem",
-                  backgroundColor: C.ivory,
-                  /* card uses ivory */
-                }}>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.5rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "0.3rem" }}>
-                    Verified Trade Profile
-                  </div>
-                  <div className="font-freight" style={{ fontSize: "1rem", color: C.charcoal, lineHeight: 1.2, marginBottom: "0.35rem" }}>
-                    {firm.name}
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: C.tealMid }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.55rem", color: C.charcoalSoft, letterSpacing: "0.03em" }}>Powered by Credenza</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right: Photography — single rotating image */}
+          <div className="lg:col-span-7 overflow-hidden relative" style={{ aspectRatio: "1/1" }}>
+            <img
+              src={hero.src}
+              alt={hero.alt}
+              className="w-full h-full object-cover"
+              style={{ display: "block", objectPosition: hero.position }}
+            />
+            <PhotoCredit name={hero.credit} />
           </div>
         </div>
       </div>
@@ -806,9 +776,9 @@ function CertSection() {
               className="font-freight"
               style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)", lineHeight: 1.05, color: C.charcoal, letterSpacing: "-0.025em" }}
             >
-              Just sign.
+              Completed, compliant,
               <br />
-              <span className="italic" style={{ color: C.oliveMid }}>Everything else is already done.</span>
+              <span className="italic" style={{ color: C.oliveMid }}>and ready to sign.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
@@ -1290,21 +1260,9 @@ function DataSection() {
 
 // ─── Gallery ─────────────────────────────────────────────────────────────────────
 function GallerySection() {
-  const ref = useReveal();
   return (
-    <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
-      {/* Full-width masonry-style gallery—no padding, edge to edge */}
-      <div className="grid grid-cols-12 gap-1" style={{ height: "55vh", minHeight: "340px" }}>
-        <div className="col-span-12 md:col-span-6 overflow-hidden h-full relative">
-          <img src="/thomas-loof-sunroom.jpg" alt="Sunroom interior" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" style={{ objectPosition: "center center" }} />
-          <PhotoCredit name="Design by Ariel Okin · Photo by Thomas Loof" />
-        </div>
-        <div className="col-span-12 md:col-span-6 overflow-hidden h-full relative">
-          <img src="/thomas-loof-green-stripe.jpg" alt="Interior vignette" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" style={{ objectPosition: "center center" }} />
-          <PhotoCredit name="Photo by Thomas Loof" />
-        </div>
-      </div>
-      <div className="container pt-12 pb-[18px] text-center" style={{ marginTop: "70px" }}>
+    <section className="visible pt-24 md:pt-32 pb-0" style={{ backgroundColor: "#FFFFFF" }}>
+      <div className="container text-center">
         <p
           className="font-freight mx-auto"
           style={{ fontSize: "clamp(1.3rem, 2vw, 1.75rem)", color: C.charcoalMid, lineHeight: 1.4, letterSpacing: "-0.015em", maxWidth: "600px", fontStyle: "italic" }}
@@ -1324,9 +1282,9 @@ function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
           {/* Left: Image */}
           <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
-            <img src="/thomas-loof-blue-bedroom.jpg" alt="Bedroom interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+            <img src={IMAGES.studioDorionNoho} alt="Studio Dorion NoHo apartment" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 35%" }} />
             <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
-            <PhotoCredit name="Photo by Thomas Loof" dark />
+            <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" dark />
           </div>
 
           {/* Right: Form */}
@@ -1740,42 +1698,49 @@ function SecuritySection() {
   ];
   return (
     <section ref={ref} className="reveal" style={{ backgroundColor: C.forest, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-      <div className="container py-20 md:py-28">
-        {/* Headline */}
-        <div className="mb-14 max-w-2xl">
-          <Eyebrow light>Data &amp; security</Eyebrow>
-          <h2
-            className="font-freight"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)", lineHeight: 1.08, color: C.white, letterSpacing: "-0.025em" }}
-          >
-            The data behind trade programs
-            <br />
-            is tax-sensitive.
-            <br />
-            <span className="italic" style={{ color: C.teal }}>We treat it that way.</span>
-          </h2>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+        {/* Left: image */}
+        <div className="lg:col-span-5 relative overflow-hidden hidden lg:block" style={{ minHeight: "600px" }}>
+          <img src="/thomas-loof-ombre-living.jpg" alt="Living room interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+          <PhotoCredit name="Photo by Thomas Loof" />
         </div>
 
-        {/* Four pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
-          {pillars.map((p) => (
-            <div
-              key={p.title}
-              className="p-7"
-              style={{ backgroundColor: C.forest }}
+        {/* Right: content */}
+        <div className="lg:col-span-7 py-20 md:py-28 px-8 lg:px-16">
+          <div className="mb-14 max-w-2xl pl-7">
+            <Eyebrow light>Data &amp; security</Eyebrow>
+            <h2
+              className="font-freight"
+              style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)", lineHeight: 1.08, color: C.white, letterSpacing: "-0.025em" }}
             >
-              <div className="mb-4">{p.icon}</div>
-              <h3
-                className="font-freight mb-3"
-                style={{ fontSize: "1.1rem", color: C.white, lineHeight: 1.2, letterSpacing: "-0.015em" }}
+              The data behind trade programs
+              <br />
+              is tax-sensitive.
+              <br />
+              <span className="italic" style={{ color: C.teal }}>We treat it that way.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
+            {pillars.map((p) => (
+              <div
+                key={p.title}
+                className="p-7"
+                style={{ backgroundColor: C.forest }}
               >
-                {p.title}
-              </h3>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(240,240,236,0.6)" }}>
-                {p.body}
-              </p>
-            </div>
-          ))}
+                <div className="mb-4">{p.icon}</div>
+                <h3
+                  className="font-freight mb-3"
+                  style={{ fontSize: "1.1rem", color: C.white, lineHeight: 1.2, letterSpacing: "-0.015em" }}
+                >
+                  {p.title}
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(240,240,236,0.6)" }}>
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
