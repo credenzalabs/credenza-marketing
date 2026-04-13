@@ -1285,10 +1285,10 @@ function CTASection() {
     <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
-          {/* Left: Image */}
-          <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
+          {/* Left: Image — mobile top, desktop left */}
+          <div className="relative overflow-hidden" style={{ minHeight: "280px" }}>
             <img src="/studio-dorion-pound-ridge-hires.jpg" alt="Studio Dorion Pound Ridge entry" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
-            <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
+            <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
             <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" dark />
           </div>
 
@@ -1705,7 +1705,7 @@ function SecuritySection() {
     <section ref={ref} className="reveal" style={{ backgroundColor: C.forest, borderTop: `1px solid rgba(255,255,255,0.06)` }}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Left: image */}
-        <div className="lg:col-span-5 relative overflow-hidden hidden lg:block" style={{ minHeight: "600px" }}>
+        <div className="lg:col-span-5 relative overflow-hidden" style={{ minHeight: "250px" }}>
           <img src="/thomas-loof-ombre-living.jpg" alt="Living room by Amy Lau Design" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
           <PhotoCredit name="Design by Amy Lau Design · Photo by Thomas Loof" />
         </div>
