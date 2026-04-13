@@ -758,6 +758,150 @@ function VerificationSection() {
 }
 
 // ─── Resale Certificates ─────────────────────────────────────────────────────────
+// ─── Animated Application Form ──────────────────────────────────────────────────
+const APP_FIELDS = [
+  { label: "Legal Business Name", value: "Studio Whitmore LLC", verify: null, flag: false },
+  { label: "EIN", value: "47-2819304", verify: "Verified against IRS", flag: false },
+  { label: "Profession", value: "Interior Designer / Decorator", verify: null, flag: false },
+  { label: "State Tax ID (NY)", value: "NY-88-2194-7", verify: "Active registration", flag: false },
+  { label: "ASID Membership", value: "#88241", verify: "Active member confirmed", flag: false },
+  { label: "Website", value: "studiowhitmore.com", verify: "Legitimate interior design business confirmed", flag: false },
+  { label: "Instagram", value: "@studiowhitmore", verify: "14.2K followers", flag: false },
+  { label: "Years in Business", value: "12", verify: null, flag: false },
+];
+
+function AnimatedApplicationForm() {
+  const [visibleFields, setVisibleFields] = useState(0);
+  const [verifiedFields, setVerifiedFields] = useState<Set<number>>(new Set());
+  const [typingField, setTypingField] = useState(-1);
+  const [typedChars, setTypedChars] = useState(0);
+
+  useEffect(() => {
+    let fieldIndex = 0;
+    let charIndex = 0;
+    let phase: "typing" | "verifying" | "pause" = "typing";
+
+    const tick = () => {
+      const field = APP_FIELDS[fieldIndex];
+      if (!field) {
+        // Reset and loop
+        setTimeout(() => {
+          setVisibleFields(0);
+          setVerifiedFields(new Set());
+          setTypingField(-1);
+          setTypedChars(0);
+          fieldIndex = 0;
+          charIndex = 0;
+          phase = "typing";
+          timer = setTimeout(tick, 1000);
+        }, 4000);
+        return;
+      }
+
+      if (phase === "typing") {
+        setVisibleFields(fieldIndex + 1);
+        setTypingField(fieldIndex);
+        if (charIndex <= field.value.length) {
+          setTypedChars(charIndex);
+          charIndex++;
+          timer = setTimeout(tick, 30 + Math.random() * 40);
+        } else {
+          phase = field.verify ? "verifying" : "pause";
+          timer = setTimeout(tick, field.verify ? 400 : 200);
+        }
+      } else if (phase === "verifying") {
+        setVerifiedFields((prev) => new Set(prev).add(fieldIndex));
+        phase = "pause";
+        timer = setTimeout(tick, 300);
+      } else {
+        fieldIndex++;
+        charIndex = 0;
+        phase = "typing";
+        timer = setTimeout(tick, 150);
+      }
+    };
+
+    let timer = setTimeout(tick, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div style={{
+      backgroundColor: "#f8f6f1",
+      border: "1px solid #e0dcd4",
+      overflow: "hidden",
+      maxWidth: "520px",
+      marginLeft: "auto",
+      boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+    }}>
+      {/* Header */}
+      <div className="px-5 py-4 border-b" style={{ borderColor: "#e0dcd4" }}>
+        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#9a9690", marginBottom: "0.4rem" }}>Step 2 of 3</div>
+        <div className="font-freight" style={{ fontSize: "1.35rem", color: "#1c1c19", fontWeight: 300 }}>Your business</div>
+        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#9a9690", marginTop: "0.25rem" }}>Business details are verified as you enter them.</div>
+      </div>
+
+      {/* Fields */}
+      <div className="px-5 py-4">
+        <div className="flex flex-col gap-0">
+          {APP_FIELDS.slice(0, visibleFields).map((field, i) => {
+            const isTyping = i === typingField;
+            const isVerified = verifiedFields.has(i);
+            const displayValue = isTyping ? field.value.slice(0, typedChars) : field.value;
+
+            return (
+              <div key={field.label} className="py-3 border-b" style={{ borderColor: "#e0dcd4" }}>
+                <div className="flex items-center justify-between mb-1">
+                  <div style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                    color: "#9a9690",
+                  }}>
+                    {field.label}
+                  </div>
+                  {isVerified && field.verify && (
+                    <div
+                      className="flex items-center gap-1 px-1.5 py-0.5"
+                      style={{
+                        backgroundColor: "rgba(58,110,112,0.08)",
+                        border: "1px solid rgba(58,110,112,0.2)",
+                        animation: "fadeIn 0.3s ease",
+                      }}
+                    >
+                      <Check size={8} style={{ color: "#3a6e70" }} />
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.5rem", fontWeight: 600, color: "#3a6e70", letterSpacing: "0.04em" }}>
+                        {field.verify}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.88rem",
+                  color: "#1c1c19",
+                  borderBottom: isTyping ? "1px solid #1c1c19" : "1px solid transparent",
+                  paddingBottom: "2px",
+                  minHeight: "1.3rem",
+                }}>
+                  {displayValue}
+                  {isTyping && <span style={{ borderRight: "1.5px solid #1c1c19", marginLeft: "1px", animation: "blink 0.8s step-end infinite" }}>&nbsp;</span>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-2px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blink { 50% { border-color: transparent; } }
+      `}</style>
+    </div>
+  );
+}
+
 function CertSection() {
   const ref = useReveal();
   const [activeState, setActiveState] = useState(0);
@@ -864,112 +1008,9 @@ function CertSection() {
             </div>
           </div>
 
-          {/* Right: Cert mockup */}
+          {/* Right: Animated Application Form */}
           <div className="lg:col-span-7">
-            <div style={{ backgroundColor: C.forest, overflow: "hidden" }}>
-              {/* Browser chrome */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#e57373" }} />
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#ffb74d" }} />
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#81c784" }} />
-                <span className="ml-2" style={{ fontFamily: "monospace", fontSize: "0.68rem", color: "rgba(255,255,255,0.3)" }}>
-                  usecredenza.com/generate
-                </span>
-              </div>
-              <div className="p-6">
-                {/* State selector */}
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "0.6rem" }}>
-                  Select state
-                </div>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {states.map((s, i) => (
-                    <button
-                      key={s.abbr}
-                      onClick={() => setActiveState(i)}
-                      className="px-2.5 py-1 transition-all duration-150"
-                      style={{
-                        backgroundColor: activeState === i ? "rgba(184,204,210,0.18)" : "rgba(255,255,255,0.04)",
-                        border: activeState === i ? `1px solid ${C.tealBorder}` : "1px solid rgba(255,255,255,0.08)",
-                        color: activeState === i ? C.teal : "rgba(255,255,255,0.4)",
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "0.72rem",
-                        fontWeight: activeState === i ? 600 : 400,
-                        cursor: "pointer",
-                      }}
-                    >
-                      {s.abbr} · {s.form}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Cert preview */}
-                <div style={{ backgroundColor: C.white, padding: "1.25rem" }}>
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-4 pb-3 border-b" style={{ borderColor: C.sage }}>
-                    <div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "3px" }}>
-                        {states[activeState].name} · Form {states[activeState].form}
-                      </div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", fontWeight: 700, color: C.charcoal }}>
-                        Resale Certificate
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 px-2.5 py-1" style={{ backgroundColor: C.cobaltDim, border: `1px solid ${C.cobaltBorder}` }}>
-                      <Check size={9} style={{ color: C.cobalt }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", color: C.cobalt, fontWeight: 600 }}>Compliant</span>
-                    </div>
-                  </div>
-
-                  {/* All fields — fully filled, each with a validated badge */}
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-4">
-                    {[
-                      { label: "Purchaser", value: "Studio Whitmore LLC", validated: true },
-                      { label: "Seller", value: "Vanthorpe & Co.", validated: false },
-                      { label: "EIN", value: "47-2819304", validated: true },
-                      { label: "Sales Tax ID", value: "NY-88-2194-7", validated: true },
-                      { label: "Business address", value: "142 W 26th St, New York NY", validated: true },
-                      { label: "Cert Date", value: "March 20, 2026", validated: false },
-                    ].map((f) => (
-                      <div key={f.label}>
-                        <div className="flex items-center gap-1 mb-0.5">
-                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.54rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{f.label}</div>
-                          {f.validated && (
-                            <div className="flex items-center gap-0.5" style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}`, padding: "0px 4px" }}>
-                              <Check size={6} style={{ color: C.tealMid }} />
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.5rem", color: C.tealMid, fontWeight: 600, letterSpacing: "0.04em" }}>validated</span>
-                            </div>
-                          )}
-                        </div>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", color: C.charcoal, fontWeight: 500 }}>{f.value}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Signature area */}
-                  <div className="pt-3 border-t" style={{ borderColor: C.sage }}>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.56rem", color: C.charcoalSoft, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "4px" }}>Authorized signature</div>
-                    <div style={{ fontFamily: "cursive", fontSize: "1.5rem", color: C.forest, lineHeight: 1.1, borderBottom: `1px solid ${C.sage}`, paddingBottom: "4px" }}>Elsie de Wolfe</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: C.charcoalSoft, marginTop: "3px" }}>Principal, Studio de Wolfe LLC · Authorized signer</div>
-                  </div>
-                </div>
-
-                {/* Footer */}
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: C.tealMid }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", color: "rgba(255,255,255,0.4)" }}>
-                      Stored in profile · all connected vendors receive this cert
-                    </span>
-                  </div>
-                  <button
-                    className="flex items-center gap-1.5 px-3 py-1.5"
-                    style={{ backgroundColor: C.teal, color: C.forest, fontFamily: "Inter, sans-serif", fontSize: "0.65rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-                  >
-                    <FileText size={11} /> Download PDF
-                  </button>
-                </div>
-              </div>
-            </div>
+            <AnimatedApplicationForm />
           </div>
         </div>
       </div>
