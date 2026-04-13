@@ -231,6 +231,11 @@ function Hero() {
               every vendor.
             </h1>
 
+            {/* Mobile-only hero image after headline */}
+            <div className="lg:hidden mb-8 overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ objectPosition: hero.position }} />
+            </div>
+
             <p className="mb-10" style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: C.charcoalMid, maxWidth: "400px" }}>
               Your vendors, workrooms, installers, and every trade relationship
               your firm depends on—organized in one dashboard. Generate the right
@@ -260,8 +265,8 @@ function Hero() {
             </div>
           </div>
 
-          {/* Photography — rotating single image */}
-          <div className="lg:col-span-7 overflow-hidden relative" style={{ aspectRatio: "1/1" }}>
+          {/* Photography — desktop only */}
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block" style={{ aspectRatio: "1/1" }}>
             <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ display: "block", objectPosition: hero.position }} />
             <PhotoCredit name={hero.credit} />
           </div>
