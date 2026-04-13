@@ -335,8 +335,12 @@ function TaxStrategy() {
 
         {/* Cert generator screenshot + stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start" style={{ border: `1px solid ${C.sageDark}` }}>
-          <div className="lg:col-span-9 overflow-hidden">
+          <div className="lg:col-span-9 overflow-hidden relative">
             <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" className="w-full h-auto block" />
+            <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2" style={{ backgroundColor: "rgba(255,255,255,0.95)", border: `1px solid ${C.tealBorder}`, backdropFilter: "blur(8px)" }}>
+              <Zap size={12} style={{ color: C.tealMid }} />
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.tealMid }}>Generated in seconds</span>
+            </div>
           </div>
           <div className="lg:col-span-3 flex flex-col h-full" style={{ borderLeft: `1px solid ${C.sageDark}` }}>
             {[
