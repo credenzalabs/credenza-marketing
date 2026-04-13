@@ -317,7 +317,7 @@ function TaxStrategy() {
               body: "Resale certificates expire. Credenza monitors every expiration date and notifies you before anything lapses—so your tax-exempt status never changes because of a deadline you missed.",
             },
           ].map((card, i) => (
-            <div key={card.title} className="py-8 pr-8 border-b" style={{ borderColor: C.sageDark, borderRight: i < 2 ? `1px solid ${C.sageDark}` : "none", paddingLeft: i > 0 ? "2rem" : "0" }}>
+            <div key={card.title} className="py-8 md:pr-8 border-b" style={{ borderColor: C.sageDark, paddingLeft: 0 }}>
               <h3 className="font-freight mb-3" style={{ fontSize: "1.35rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 {card.title}
               </h3>
@@ -395,7 +395,7 @@ function AccountManagement() {
             { title: "Rep info at your fingertips", body: "Your assigned sales rep, their direct line, their email—synced from the vendor and always current. No more hunting through old emails." },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
           ].map((item, i) => (
-            <div key={item.title} className="py-8 pr-8" style={{ borderBottom: `1px solid ${C.sageDark}`, borderRight: i < 2 ? `1px solid ${C.sageDark}` : "none", paddingLeft: i > 0 ? "2rem" : "0" }}>
+            <div key={item.title} className="py-8 md:pr-8" style={{ borderBottom: `1px solid ${C.sageDark}`, borderRight: i < 2 ? `1px solid ${C.sageDark}` : "none", paddingLeft: 0 }}>
               <h3 className="font-freight mb-2" style={{ fontSize: "1.15rem", color: C.charcoal, letterSpacing: "-0.015em", lineHeight: 1.2 }}>{item.title}</h3>
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.charcoalMid }}>{item.body}</p>
             </div>
@@ -437,7 +437,7 @@ function VerifiedProfile() {
             </div>
 
             {/* Real profile screenshot */}
-            <div className="lg:col-span-6 lg:col-start-7 hidden lg:block">
+            <div className="lg:col-span-6 lg:col-start-7">
               <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
             </div>
           </div>
@@ -455,7 +455,7 @@ function VerifiedProfile() {
             { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice.", badge: "Verified" },
             { label: "Press recognition & showhouse participation", detail: "Matched against thousands of showhouse participants and press coverage across major design publications.", badge: "Enriched" },
           ].map((item, i) => (
-            <div key={item.label} className="flex items-start gap-4 py-5 border-b" style={{ borderColor: C.sageDark, paddingRight: i % 2 === 0 ? "2rem" : "0", paddingLeft: i % 2 === 1 ? "2rem" : "0", borderRight: i % 2 === 0 ? `1px solid ${C.sageDark}` : "none" }}>
+            <div key={item.label} className="flex items-start gap-4 py-5 border-b" style={{ borderColor: C.sageDark }}>
               <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "20px", height: "20px", backgroundColor: C.oliveDim, border: `1px solid ${C.oliveBorder}` }}>
                 <Check size={10} style={{ color: C.oliveMid }} />
               </div>
@@ -622,10 +622,10 @@ function CTASection() {
     <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
-          <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
+          <div className="relative overflow-hidden" style={{ minHeight: "250px" }}>
             <img src="/sarah-bartholomew-living-room.webp" alt="Living room by Sarah Bartholomew" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "15% center" }} />
             <PhotoCredit name="Design by Sarah Bartholomew Design. Photo by Melanie Acevedo" />
-            <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
+            <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
           </div>
 
           <div className="p-10 md:p-14" style={{ backgroundColor: "#FFFFFF" }}>
