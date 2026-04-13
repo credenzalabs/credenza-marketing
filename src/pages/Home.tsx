@@ -378,6 +378,11 @@ function Hero() {
               trade program.
             </h1>
 
+            {/* Mobile-only hero image after headline */}
+            <div className="lg:hidden mb-8 overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ objectPosition: hero.position }} />
+            </div>
+
             <p
               className="mb-10"
               style={{
@@ -431,8 +436,8 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Photography — single rotating image */}
-          <div className="lg:col-span-7 overflow-hidden relative" style={{ aspectRatio: "1/1" }}>
+          {/* Right: Photography — desktop only */}
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block" style={{ aspectRatio: "1/1" }}>
             <img
               src={hero.src}
               alt={hero.alt}
