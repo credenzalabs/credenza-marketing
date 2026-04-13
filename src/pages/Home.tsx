@@ -184,6 +184,8 @@ function Nav() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  const isPreview = window.location.pathname.startsWith("/preview");
+  const prefix = isPreview ? "/preview" : "";
   const navLinks = ["For Designers", "For Vendors"];
 
   return (
@@ -205,7 +207,7 @@ function Nav() {
             {navLinks.map((item) => (
               <a
                 key={item}
-                href={item === "For Designers" ? "/for-designers" : "/"}
+                href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`}
                 className="no-underline transition-colors duration-200"
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -264,7 +266,7 @@ function Nav() {
         <div className="md:hidden border-t" style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}>
           <div className="container py-6 flex flex-col gap-5">
             {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"} className="no-underline"
+              <a key={item} href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`} className="no-underline"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: item === "For Vendors" ? C.olive : C.charcoal, fontWeight: item === "For Vendors" ? 600 : 500 }}>
                 {item}
               </a>
@@ -1368,6 +1370,7 @@ function CTASection() {
 
 // ─── Footer ──────────────────────────────────────────────────────────────────────
 function Footer() {
+  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
   return (
     <footer className="border-t" style={{ borderColor: C.sage, backgroundColor: "#FFFFFF" }}>
       <div className="container py-16">
@@ -1379,7 +1382,7 @@ function Footer() {
             </p>
           </div>
           {[
-            { heading: "Product", links: [{ label: "For Designers", href: "/for-designers" }, { label: "For Vendors", href: "/" }] },
+            { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }] },
             { heading: "Company", links: [{ label: "Blog", href: "/blog" }] },
             { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (
@@ -1711,7 +1714,7 @@ function SecuritySection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Left: image */}
         <div className="lg:col-span-5 relative overflow-hidden" style={{ minHeight: "250px" }}>
-          <img src="/thomas-loof-ombre-living.jpg" alt="Living room by Amy Lau Design" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+          <img src="/thomas-loof-ombre-living.jpg" alt="Living room by Amy Lau Design" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 60%" }} />
           <PhotoCredit name="Design by Amy Lau Design · Photo by Thomas Loof" />
         </div>
 

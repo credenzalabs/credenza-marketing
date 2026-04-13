@@ -120,6 +120,7 @@ function Eyebrow({ children, light = false }: { children: React.ReactNode; light
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
@@ -140,13 +141,13 @@ function Nav() {
     >
       <div className="container">
         <div className="flex items-center justify-between" style={{ height: scrolled ? "64px" : "80px", transition: "height 0.3s ease" }}>
-          <a href="/" className="no-underline flex items-center flex-shrink-0">
+          <a href={`${prefix}/`} className="no-underline flex items-center flex-shrink-0">
             <img src={LOGO_BLACK} alt="Credenza" style={{ height: scrolled ? "36px" : "44px", width: "auto", maxWidth: "180px", objectFit: "contain", transition: "height 0.3s ease", flexShrink: 0 }} />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"}
+              <a key={item} href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`}
                 className="no-underline transition-colors duration-200"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoalMid, fontWeight: item === "For Designers" ? 600 : 500 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
@@ -178,7 +179,7 @@ function Nav() {
         <div className="md:hidden border-t" style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}>
           <div className="container py-6 flex flex-col gap-5">
             {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? "/for-designers" : "/"} className="no-underline"
+              <a key={item} href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`} className="no-underline"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoal, fontWeight: 500 }}>
                 {item}
               </a>
@@ -710,6 +711,7 @@ function CTASection() {
    FOOTER
    ========================================================================= */
 function Footer() {
+  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
   return (
     <footer className="border-t" style={{ borderColor: C.sage, backgroundColor: "#FFFFFF" }}>
       <div className="container py-16">
@@ -729,7 +731,7 @@ function Footer() {
               <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.charcoalMid, fontWeight: 600, marginBottom: "1rem" }}>{col.heading}</h4>
               <div className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <a key={link} href={link === "For Designers" ? "/for-designers" : link === "For Vendors" ? "/" : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150"
+                  <a key={link} href={link === "For Designers" ? `${prefix}/for-designers` : link === "For Vendors" ? `${prefix}/` : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", color: C.charcoalSoft }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = C.charcoal)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalSoft)}
