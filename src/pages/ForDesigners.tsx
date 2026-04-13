@@ -369,6 +369,10 @@ function AccountManagement() {
               <br />
               <span className="italic" style={{ color: C.oliveMid }}>One dashboard.</span>
             </h2>
+            {/* Mobile-only image after headline */}
+            <div className="lg:hidden mb-6 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
+              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" className="w-full h-auto block" />
+            </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               Vendors, workrooms, installers, fabric houses—every trade
               relationship your firm has, in one place. No more digging
@@ -380,10 +384,9 @@ function AccountManagement() {
             </p>
           </div>
 
-          <div className="lg:col-span-7">
-            {/* Real product screenshot */}
+          <div className="lg:col-span-7 hidden lg:block">
             <div className="overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
-              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard showing vendor cards with hero images, rep info, discount tiers, and portal credentials" className="w-full h-auto block" />
+              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" className="w-full h-auto block" />
             </div>
           </div>
         </div>
@@ -502,6 +505,10 @@ function FirmTeam() {
               <br />
               <span className="italic" style={{ color: C.oliveMid }}>Everyone on the team.</span>
             </h2>
+            {/* Mobile-only image after headline */}
+            <div className="lg:hidden mb-6">
+              <img src="/team-members-screenshot.png" alt="Team members panel" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            </div>
             <p className="mb-4" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               Every team member gets their own login with the right level
               of access. Add or remove anyone in one step—and every vendor
@@ -527,8 +534,8 @@ function FirmTeam() {
             </div>
           </div>
 
-          {/* Team members screenshot */}
-          <div className="lg:col-span-7">
+          {/* Team members screenshot — desktop only */}
+          <div className="lg:col-span-7 hidden lg:block">
             <img src="/team-members-screenshot.png" alt="Team members panel showing owner and team member roles" className="w-full h-auto block" style={{ maxWidth: "620px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
@@ -554,6 +561,10 @@ function Network() {
               <br />
               <span className="italic" style={{ color: C.teal }}>trade access.</span>
             </h2>
+            {/* Mobile-only image after headline */}
+            <div className="lg:hidden mb-6">
+              <img src="/one-click-apply-screenshot.png" alt="One-click trade application" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+            </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
               Credenza is building a network of vendors whose trade programs are
               powered by Credenza. As vendors join, your verified profile goes with you
@@ -578,8 +589,8 @@ function Network() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col gap-0">
-            {/* One-click apply screenshot */}
+          <div className="lg:col-span-7 hidden lg:flex flex-col gap-0">
+            {/* One-click apply screenshot — desktop only */}
             <div>
               <img src="/one-click-apply-screenshot.png" alt="One-click trade application showing verified profile and express apply flow" className="w-full h-auto block" style={{ maxWidth: "560px", marginLeft: "auto", boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
             </div>
