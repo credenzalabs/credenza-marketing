@@ -620,7 +620,7 @@ function PortableIdentitySection() {
               style={{ borderLeft: `3px solid ${C.olive}`, backgroundColor: C.oliveLight }}
             >
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", lineHeight: 1.75, color: C.charcoal, fontStyle: "italic" }}>
-Returning designers already have verified profiles when they apply. Higher completion rates. Better data quality. Less friction—because the hard part is already done.
+Higher completion rates. Better data quality. Less friction—because the hard part is already done.
               </p>
             </div>
           </div>
@@ -1062,9 +1062,9 @@ function IntegrationsSection() {
             </h2>
             <p className="mb-8" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               Approval is not the finish line—it’s the starting gun. The moment
-              a designer is approved, Credenza creates their customer account,
-              applies the correct state-level tax exemption, and sets their
-              trade pricing tier. No one on your team touches a keyboard.
+              a designer is approved, Credenza creates their trade account
+              and applies the correct state-level tax exemption. No one on
+              your team touches a keyboard.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -1073,7 +1073,7 @@ function IntegrationsSection() {
                   icon: <Store size={18} />,
                   title: "Shopify",
                   badge: "Available now",
-                  body: "Approved designers become Shopify customers instantly—tagged with your trade pricing, state-level tax exemptions applied, and placed in the correct tier. No manual entry. No misapplied exemptions. Instant gratification for all.",
+                  body: "Approved designers become Shopify customers instantly—tagged with your trade pricing and state-level tax exemptions applied. No manual entry. No misapplied exemptions.",
                 },
                 {
                   icon: <Settings size={18} />,
@@ -1118,7 +1118,7 @@ function IntegrationsSection() {
               {[
                 "Shopify customer account created on approval",
                 "Tax exemption applied automatically at the state level",
-                "Trade pricing tier set based on your program rules",
+                "Upgrade clients to the next pricing tier with one click as the relationship grows",
                 "Cert expirations monitored—renewals requested, exemptions revoked until current",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3">
@@ -1146,9 +1146,9 @@ function TiersSection() {
   return (
     <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: copy */}
-          <div className="lg:col-span-5">
+          <div>
             <Eyebrow>Program structure</Eyebrow>
             <h2
               className="font-freight mb-6"
@@ -1167,7 +1167,7 @@ function TiersSection() {
           </div>
 
           {/* Right: product screenshot */}
-          <div className="lg:col-span-7">
+          <div>
             <img src="/discount-tiers-screenshot.png" alt="Discount Tiers configuration showing Trade, Preferred, and Elite tiers with discount percentages and order minimums" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
@@ -1202,20 +1202,25 @@ function DataSection() {
   return (
     <section ref={ref} className="reveal py-24 md:py-36" style={{ backgroundColor: C.forest }}>
       <div className="container">
-        {/* Section header */}
-        <div className="mb-16 max-w-xl">
-          <Eyebrow light>Program intelligence</Eyebrow>
-          <h2
-            className="font-freight"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, color: C.ivory, letterSpacing: "-0.025em" }}
-          >
-            Data that powers
-            <br />
-            <span className="italic" style={{ color: C.teal }}>your growth.</span>
-          </h2>
-          <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
-            Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
-          </p>
+        {/* Section header + dashboard screenshot */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 items-center">
+          <div>
+            <Eyebrow light>Program intelligence</Eyebrow>
+            <h2
+              className="font-freight"
+              style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, color: C.ivory, letterSpacing: "-0.025em" }}
+            >
+              Data that powers
+              <br />
+              <span className="italic" style={{ color: C.teal }}>your growth.</span>
+            </h2>
+            <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
+              Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
+            </p>
+          </div>
+          <div>
+            <img src="/dashboard-insights.png" alt="Program Insights dashboard" className="w-full h-auto" />
+          </div>
         </div>
 
         {/* Three-column metric cards */}
@@ -1282,7 +1287,7 @@ function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
           {/* Left: Image */}
           <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
-            <img src={IMAGES.studioDorionNoho} alt="Studio Dorion NoHo apartment" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 35%" }} />
+            <img src="/studio-dorion-pound-ridge.jpg" alt="Studio Dorion Pound Ridge entry" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
             <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
             <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" dark />
           </div>
@@ -1594,7 +1599,7 @@ function MigrationSection() {
             {/* Timeline callout */}
             <div
               className="mt-10 flex items-center gap-4 px-5 py-4"
-              style={{ backgroundColor: C.white, border: `1px solid ${C.sageDark}` }}
+              style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
             >
               <div
                 className="flex items-center justify-center flex-shrink-0"
@@ -1683,7 +1688,7 @@ function SecuritySection() {
     {
       icon: <Shield size={18} style={{ color: C.teal }} />,
       title: "Strict data isolation",
-      body: "No designer can see another designer's data. No firm can see another firm's data. Vendors only see designers who apply to their program—never the other way around. Isolation is enforced at the database layer by row-level security—not application logic.",
+      body: "No designer can see another designer's data. No firm can see another firm's data. Vendors only see designers who apply to their program. Isolation is enforced at the database layer by row-level security.",
     },
     {
       icon: <FileText size={18} style={{ color: C.teal }} />,
@@ -1701,8 +1706,8 @@ function SecuritySection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Left: image */}
         <div className="lg:col-span-5 relative overflow-hidden hidden lg:block" style={{ minHeight: "600px" }}>
-          <img src="/thomas-loof-ombre-living.jpg" alt="Living room interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
-          <PhotoCredit name="Photo by Thomas Loof" />
+          <img src="/thomas-loof-ombre-living.jpg" alt="Living room by Amy Lau Design" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+          <PhotoCredit name="Design by Amy Lau Design · Photo by Thomas Loof" />
         </div>
 
         {/* Right: content */}
