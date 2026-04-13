@@ -977,9 +977,9 @@ function ForVendors() {
     <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
       {/* Full-bleed header image */}
       <div className="relative overflow-hidden" style={{ minHeight: "70vh" }}>
-        <img src="/thomas-loof-living-room.png" alt="Luxury interior" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+        <img src="/benjamin-vandiver-west-village.webp" alt="West Village interior by Benjamin Vandiver" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(33,53,63,0.88) 0%, rgba(33,53,63,0.6) 50%, rgba(33,53,63,0.1) 100%)` }} />
-        <PhotoCredit name="Photo by Thomas Loof" />
+        <PhotoCredit name="Design by Benjamin Vandiver · Photo by Joshua McHugh" />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>For vendors & showrooms</Eyebrow>
@@ -1287,7 +1287,7 @@ function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden" style={{ border: `1px solid ${C.sageDark}` }}>
           {/* Left: Image */}
           <div className="relative overflow-hidden hidden lg:block" style={{ minHeight: "480px" }}>
-            <img src="/studio-dorion-pound-ridge.jpg" alt="Studio Dorion Pound Ridge entry" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+            <img src="/studio-dorion-pound-ridge-hires.jpg" alt="Studio Dorion Pound Ridge entry" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
             <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
             <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" dark />
           </div>
