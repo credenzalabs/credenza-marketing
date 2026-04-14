@@ -1555,8 +1555,7 @@ function DataSection() {
                   return (
                     <div>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>100%</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certs current · 5 top states</span>
+                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>Top Regions</span>
                       </div>
                       <div className="flex flex-col gap-1.5">
                         {states.map(s => (
