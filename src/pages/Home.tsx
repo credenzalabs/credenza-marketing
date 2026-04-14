@@ -1494,25 +1494,25 @@ function DataSection() {
               {/* Mini chart at bottom */}
               <div className="mt-auto pt-5" style={{ borderTop: `1px solid ${chartColors.border}`, minHeight: "140px" }}>
                 {i === 0 && (() => {
-                  const pts = [18, 22, 20, 45, 42, 38, 34];
-                  const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
-                  const w = 220; const h = 50; const max = Math.max(...pts);
-                  const coords = pts.map((p, j) => ({ x: 4 + (j / (pts.length - 1)) * (w - 8), y: 4 + (1 - p / max) * (h - 8) }));
-                  const d = coords.map((c, j) => `${j === 0 ? "M" : "L"}${c.x},${c.y}`).join(" ");
+                  const pct = 33;
+                  const size = 48;
+                  const stroke = 4;
+                  const r = (size - stroke) / 2;
+                  const circ = 2 * Math.PI * r;
+                  const offset = circ - (pct / 100) * circ;
                   return (
-                    <div>
-                      <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>378</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>applications · last 6 months</span>
-                      </div>
-                      <svg width={w} height={h}>
-                        <path d={d} fill="none" stroke={chartColors.teal} strokeWidth={2} />
-                        {coords.map((c, j) => (
-                          <circle key={j} cx={c.x} cy={c.y} r={j === coords.length - 1 ? 4 : 2.5} fill={j === coords.length - 1 ? chartColors.tealDark : chartColors.teal} stroke="#fff" strokeWidth={1.5} />
-                        ))}
+                    <div className="flex items-center gap-4">
+                      <svg width={size} height={size} className="shrink-0 -rotate-90">
+                        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
+                        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={chartColors.olive} strokeWidth={stroke}
+                          strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="butt" />
                       </svg>
-                      <div className="flex justify-between mt-1" style={{ width: w }}>
-                        {months.map(mo => <span key={mo} style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#c8c4bc" }}>{mo}</span>)}
+                      <div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>33%</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Penetration</span>
+                        </div>
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc", marginTop: "3px" }}>561 of 1,701 firms ordering</p>
                       </div>
                     </div>
                   );
