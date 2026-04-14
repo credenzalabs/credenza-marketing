@@ -676,7 +676,7 @@ function VerificationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>Zero manual follow-up.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Credenza verifies the person behind the paperwork. EINs against IRS records. Tax IDs with state portals. Licenses with state boards. Memberships against ASID, NCARB, and NCIDQ directories. Websites, Instagram, press coverage, and showhouse history—all researched automatically. Nine checks, run in parallel on every applicant, so your team spends their time on the business—not vetting applications.
+              Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team spends their time on the business—not vetting applications.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               The result: a trade program that protects its value—because every member is actually in the trade.
