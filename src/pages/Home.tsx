@@ -1037,16 +1037,6 @@ function ForVendors() {
                 </div>
               </div>
 
-              {/* Row 2: empty placeholder */}
-              <div className="flex items-center gap-3 py-3">
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62", width: "28px", flexShrink: 0 }}>and</span>
-                <div className="flex-1 flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A" }}>
-                  Resale Certificate <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
-                </div>
-                <div className="flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A", width: "80px", flexShrink: 0 }}>
-                  is active <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
-                </div>
-              </div>
 
               <div className="mt-6">
                 <div className="inline-flex items-center gap-2 px-5 py-2.5" style={{ backgroundColor: "#1A1A1A", color: "#fff", fontFamily: "Inter, sans-serif", fontSize: "13px" }}>
@@ -1075,7 +1065,6 @@ function ForVendors() {
                 { connector: "or", dashed: true, field: "Verified Professional Membership/Accreditation" },
                 { connector: "or", dashed: true, field: "Showhouse Participant" },
                 { connector: "or", dashed: true, field: "Has Press Feature" },
-                { connector: "or", dashed: true, field: "Instagram Verified" },
                 { connector: "or", dashed: true, field: "Has Trade References" },
               ].map((rule, i) => (
                 <div key={i} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid #f0ede8" }}>
