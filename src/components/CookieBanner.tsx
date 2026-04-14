@@ -3,6 +3,28 @@ import { useEffect, useState } from "react";
 const STORAGE_KEY = "credenza.cookie-consent";
 type Choice = "granted" | "denied";
 
+const REGULATED_REGIONS = new Set([
+  "US-CA","US-CO","US-CT","US-UT","US-VA","US-TX","US-OR",
+  "US-MT","US-IA","US-DE","US-NH","US-NJ","US-TN",
+  "GB","AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR",
+  "DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT",
+  "NL","NO","PL","PT","RO","SK","SI","ES","SE",
+  "BR","CA",
+]);
+
+function readCookie(name: string): string | null {
+  const match = document.cookie.match(
+    new RegExp("(?:^|; )" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "=([^;]*)")
+  );
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function isRegulatedRegion(): boolean {
+  const region = readCookie("geo-region");
+  if (!region) return false;
+  return REGULATED_REGIONS.has(region);
+}
+
 function readChoice(): Choice | null {
   try {
     const v = localStorage.getItem(STORAGE_KEY);
@@ -33,7 +55,9 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!readChoice()) setVisible(true);
+    if (readChoice()) return;
+    if (!isRegulatedRegion()) return;
+    setVisible(true);
   }, []);
 
   if (!visible) return null;
