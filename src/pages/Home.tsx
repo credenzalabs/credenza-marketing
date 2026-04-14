@@ -650,11 +650,11 @@ function VerificationSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const checks = [
     { label: "EIN / Business entity", detail: "Verified against IRS records—with business name match." },
-    { label: "Sales tax ID", detail: "State-specific format validation and active registration check in available states" },
+    { label: "Sales tax ID", detail: "State-specific format validation and active registration check in 28 states" },
     { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA directories—verified against member records" },
     { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice" },
     { label: "Instagram / portfolio", detail: "Evidence of an active, client-facing design practice" },
-    { label: "License verification (where required)", detail: "Interior design license verified in the 8 states with practice acts; architecture licenses cross-referenced with NCARB records. Tax permit verification active in 21+ states. Not a blanket check—coverage is state-specific and clearly scoped." },
+    { label: "License verification (where required)", detail: "Interior design license verified in the 8 states with practice acts; architecture licenses cross-referenced with NCARB records." },
     { label: "Resale certificates", detail: "State-specific or multi-state form, signed by authorized firm representative" },
     { label: "Trade references", detail: "Verified on and off platform—existing vendor accounts within the Credenza network, plus direct outreach to references outside it" },
     { label: "Press & showhouse recognition", detail: <><i>AD</i>, <i>Veranda</i>, <i>Elle Decor</i>, <i>House Beautiful</i>, Kips Bay, and more</> },
@@ -1015,7 +1015,7 @@ function ForVendors() {
           </div>
 
           {/* Right: Approval rules mockups */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4" style={{ transform: "scale(0.82)", transformOrigin: "top right" }}>
             {/* Hard Rules */}
             <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "2rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               <div className="flex items-start justify-between mb-2">
