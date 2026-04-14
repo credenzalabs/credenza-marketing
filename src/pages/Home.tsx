@@ -1252,11 +1252,10 @@ function ProgramInsightsMockup() {
       </div>
 
       {/* Hero KPI rings — 5 across */}
-      <div className="grid grid-cols-5 gap-2 mb-4">
-        <KpiRingMock value="2,475" label="Members" pct={100} color="#A9CFD3" sub="1,701 firms" />
+      <div className="grid grid-cols-4 gap-2 mb-4">
+        <KpiRingMock value="2,475" label="Trade" pct={100} color="#A9CFD3" sub="1,701 firms" />
         <KpiRingMock value="82" suffix="%" label="Approval" pct={82} color="#A9CFD3" sub="0.5d avg" />
         <KpiRingMock value="47" suffix="%" label="Auto" pct={47} color="#A9CFD3" sub="323 total" />
-        <KpiRingMock value="100" suffix="%" label="Certs" pct={100} color="#8B8B55" sub="108 on file" />
         <KpiRingMock value="33" suffix="%" label="Ordering" pct={33} color="#8B8B55" sub="561 ordering" />
       </div>
 
