@@ -1416,6 +1416,107 @@ function ProgramInsightsMockup() {
   );
 }
 
+function AnimatedChart({ index, colors }: { index: number; colors: { teal: string; tealDark: string; olive: string; border: string } }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const pct33 = visible ? 33 : 0;
+  const size = 48; const stroke = 4; const r = (size - stroke) / 2; const circ = 2 * Math.PI * r;
+
+  const segments = [
+    { label: "Residential", pct: 62, color: colors.teal },
+    { label: "Hospitality", pct: 18, color: colors.olive },
+    { label: "Commercial", pct: 12, color: colors.tealDark },
+    { label: "Other", pct: 8, color: "#c8c4bc" },
+  ];
+
+  const states = [
+    { name: "California", members: 108, firms: 72, pct: 100 },
+    { name: "New York", members: 84, firms: 58, pct: 78 },
+    { name: "Texas", members: 56, firms: 39, pct: 52 },
+    { name: "Florida", members: 48, firms: 35, pct: 44 },
+    { name: "Illinois", members: 36, firms: 27, pct: 33 },
+  ];
+
+  return (
+    <div ref={ref} className="mt-auto pt-5" style={{ borderTop: `1px solid ${colors.border}`, minHeight: "140px" }}>
+      {index === 0 && (
+        <div className="flex items-center gap-4">
+          <svg width={size} height={size} className="shrink-0 -rotate-90">
+            <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
+            <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={colors.olive} strokeWidth={stroke}
+              strokeDasharray={circ} strokeDashoffset={circ - (pct33 / 100) * circ} strokeLinecap="butt"
+              style={{ transition: "stroke-dashoffset 1.2s ease-out" }} />
+          </svg>
+          <div>
+            <div className="flex items-baseline gap-1">
+              <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>33%</span>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Penetration</span>
+            </div>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc", marginTop: "3px" }}>561 of 1,701 firms ordering</p>
+          </div>
+        </div>
+      )}
+      {index === 1 && (
+        <div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>1,701</span>
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>firms by focus</span>
+          </div>
+          <div className="flex h-2 w-full overflow-hidden mb-2" style={{ borderRadius: "1px" }}>
+            {segments.map(s => (
+              <div key={s.label} style={{ width: visible ? `${s.pct}%` : "0%", backgroundColor: s.color, transition: "width 1s ease-out" }} />
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {segments.map(s => (
+              <div key={s.label} className="flex items-center gap-1.5">
+                <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      {index === 2 && (() => {
+        const certSegments = [
+          { label: "Current", pct: 96, color: colors.teal },
+          { label: "Expiring soon", pct: 3, color: colors.olive },
+          { label: "Lapsed", pct: 1, color: "#8f2d48" },
+        ];
+        return (
+          <div>
+            <div className="flex items-baseline gap-2 mb-3">
+              <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>96%</span>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certs current</span>
+            </div>
+            <div className="flex h-3 w-full overflow-hidden mb-3" style={{ borderRadius: "1px" }}>
+              {certSegments.map(s => (
+                <div key={s.label} style={{ width: visible ? `${s.pct}%` : "0%", backgroundColor: s.color, transition: "width 1s ease-out" }} />
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {certSegments.map(s => (
+                <div key={s.label} className="flex items-center gap-1.5">
+                  <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+    </div>
+  );
+}
+
 function DataSection() {
   const ref = useReveal();
   const metrics = [
@@ -1491,89 +1592,8 @@ function DataSection() {
                 ))}
               </div>
 
-              {/* Mini chart at bottom */}
-              <div className="mt-auto pt-5" style={{ borderTop: `1px solid ${chartColors.border}`, minHeight: "140px" }}>
-                {i === 0 && (() => {
-                  const pct = 33;
-                  const size = 48;
-                  const stroke = 4;
-                  const r = (size - stroke) / 2;
-                  const circ = 2 * Math.PI * r;
-                  const offset = circ - (pct / 100) * circ;
-                  return (
-                    <div className="flex items-center gap-4">
-                      <svg width={size} height={size} className="shrink-0 -rotate-90">
-                        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
-                        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={chartColors.olive} strokeWidth={stroke}
-                          strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="butt" />
-                      </svg>
-                      <div>
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>33%</span>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Penetration</span>
-                        </div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc", marginTop: "3px" }}>561 of 1,701 firms ordering</p>
-                      </div>
-                    </div>
-                  );
-                })()}
-                {i === 1 && (() => {
-                  const segments = [
-                    { label: "Residential", pct: 62, color: chartColors.teal },
-                    { label: "Hospitality", pct: 18, color: chartColors.olive },
-                    { label: "Commercial", pct: 12, color: chartColors.tealDark },
-                    { label: "Other", pct: 8, color: "#c8c4bc" },
-                  ];
-                  return (
-                    <div>
-                      <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>1,701</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>firms by focus</span>
-                      </div>
-                      <div className="flex h-2 w-full overflow-hidden mb-2" style={{ borderRadius: "1px" }}>
-                        {segments.map(s => <div key={s.label} style={{ width: `${s.pct}%`, backgroundColor: s.color }} />)}
-                      </div>
-                      <div className="flex flex-wrap gap-x-4 gap-y-1">
-                        {segments.map(s => (
-                          <div key={s.label} className="flex items-center gap-1.5">
-                            <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
-                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })()}
-                {i === 2 && (() => {
-                  const states = [
-                    { name: "California", members: 108, firms: 72, pct: 100 },
-                    { name: "New York", members: 84, firms: 58, pct: 78 },
-                    { name: "Texas", members: 56, firms: 39, pct: 52 },
-                    { name: "Florida", members: 48, firms: 35, pct: 44 },
-                    { name: "Illinois", members: 36, firms: 27, pct: 33 },
-                  ];
-                  return (
-                    <div>
-                      <div className="flex items-baseline gap-2 mb-3">
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Top Regions</span>
-                      </div>
-                      <div className="flex flex-col gap-1.5">
-                        {states.map(s => (
-                          <div key={s.name}>
-                            <div className="flex items-baseline justify-between mb-0.5">
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: C.charcoal }}>{s.name}</span>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#a8a49c" }}>{s.members} · {s.firms} firms</span>
-                            </div>
-                            <div className="h-[4px]" style={{ backgroundColor: "#e4e1d8" }}>
-                              <div style={{ width: `${s.pct}%`, height: "100%", backgroundColor: s.pct > 60 ? chartColors.teal : chartColors.olive }} />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })()}
-              </div>
+              {/* Mini chart at bottom — animated on scroll */}
+              <AnimatedChart index={i} colors={chartColors} />
             </div>
             );
           })}
