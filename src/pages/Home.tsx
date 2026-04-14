@@ -1423,7 +1423,7 @@ function DataSection() {
       label: "Program performance",
       headline: "Know your numbers.",
       body: "Approval rates, revenue, penetration, and growth—tracked automatically. See which firms are ordering, which aren\u2019t, and what\u2019s driving the difference.",
-      items: ["Approval rate & time to decision", "Revenue trends & highest-value firms", "Ordering penetration across your network", "After-hours approvals that prove auto-approval works"],
+      items: ["Approval rate & time to decision", "Revenue trends & highest-value firms", "Ordering penetration across your network"],
     },
     {
       label: "Designer analytics",
@@ -1492,7 +1492,7 @@ function DataSection() {
               </div>
 
               {/* Mini chart at bottom */}
-              <div className="mt-auto pt-5" style={{ borderTop: `1px solid ${chartColors.border}` }}>
+              <div className="mt-auto pt-5" style={{ borderTop: `1px solid ${chartColors.border}`, minHeight: "140px" }}>
                 {i === 0 && (() => {
                   const pts = [18, 22, 20, 45, 42, 38, 34];
                   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
@@ -1502,7 +1502,7 @@ function DataSection() {
                   return (
                     <div>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>378</span>
+                        <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>378</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>applications · last 6 months</span>
                       </div>
                       <svg width={w} height={h}>
@@ -1527,7 +1527,7 @@ function DataSection() {
                   return (
                     <div>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>1,701</span>
+                        <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>1,701</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>firms by focus</span>
                       </div>
                       <div className="flex h-2 w-full overflow-hidden mb-2" style={{ borderRadius: "1px" }}>
@@ -1555,7 +1555,7 @@ function DataSection() {
                   return (
                     <div>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>Top Regions</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Top Regions</span>
                       </div>
                       <div className="flex flex-col gap-1.5">
                         {states.map(s => (
