@@ -866,7 +866,7 @@ function CertSection() {
           </div>
 
           {/* Right: Static application form mockup with inline verification */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 flex items-center">
             <div style={{
               backgroundColor: "#FFFFFF",
               border: "1px solid #e0dcd4",
