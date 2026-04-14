@@ -1014,10 +1014,91 @@ function ForVendors() {
             </div>
           </div>
 
-          {/* Right: Approval rules screenshots */}
+          {/* Right: Approval rules mockups */}
           <div className="flex flex-col gap-6">
-            <img src="/hard-rules-screenshot.png" alt="Hard Rules configuration" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
-            <img src="/conditional-groups-screenshot.png" alt="Conditional Groups configuration" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            {/* Hard Rules */}
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "2rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Hard Rules</h3>
+                <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #6B2D2D", color: "#6B2D2D", backgroundColor: "rgba(107,45,45,0.04)", borderRadius: "1px" }}>Required for Approval</span>
+              </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6a6a62", lineHeight: 1.6, marginBottom: "1.75rem" }}>
+                Every rule must pass for auto-approval. If any hard rule fails, the application is sent to manual review.
+              </p>
+
+              {/* Row 1: EIN Verified / is true */}
+              <div className="flex items-center gap-3 py-3" style={{ borderBottom: "1px solid #f0ede8" }}>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", width: "36px", flexShrink: 0 }}>If</span>
+                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                  EIN Verified <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                </div>
+                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                  is true <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                </div>
+              </div>
+
+              {/* Row 2: empty placeholder */}
+              <div className="flex items-center gap-3 py-3">
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", width: "36px", flexShrink: 0 }}>and</span>
+                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#c8c4bc" }}>
+                  Select field... <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                </div>
+                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#c8c4bc", width: "130px", flexShrink: 0 }}>
+                  &nbsp; <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5" style={{ backgroundColor: "#1A1A1A", color: "#fff", fontFamily: "Inter, sans-serif", fontSize: "13px" }}>
+                  + Add a hard rule
+                </div>
+              </div>
+            </div>
+
+            {/* Conditional Groups */}
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "2rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Conditional Groups</h3>
+                <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #8B7B2B", color: "#8B7B2B", borderRadius: "1px" }}>Flexible</span>
+              </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6a6a62", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+                Flexible paths to approval. Click the <em>and</em>/<em>or</em> between rows to switch how they combine. If any group passes, the application is auto-approved. Groups are connected by OR—create multiple groups for different approval paths.
+              </p>
+
+              {/* Group 1 label */}
+              <div className="mb-5">
+                <span className="font-freight pb-1" style={{ fontSize: "16px", color: "#6a6a62", borderBottom: "1px solid #e0dcd4", display: "inline-block" }}>Group 1</span>
+              </div>
+
+              {[
+                { connector: "If", dashed: false, field: "Website Confirms Design Firm" },
+                { connector: "or", dashed: true, field: "Verified Professional Membership/Accreditation" },
+                { connector: "or", dashed: true, field: "Showhouse Participant" },
+                { connector: "or", dashed: true, field: "Has Press Feature" },
+                { connector: "or", dashed: true, field: "Instagram Verified" },
+                { connector: "or", dashed: true, field: "Has Trade References" },
+              ].map((rule, i) => (
+                <div key={i} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid #f0ede8" }}>
+                  {rule.dashed ? (
+                    <span className="px-2 py-0.5 text-[13px] flex-shrink-0 text-center" style={{ border: "1.5px dashed #A9CFD3", color: "#3a6e70", fontFamily: "Inter, sans-serif", fontWeight: 500, borderRadius: "1px", minWidth: "36px" }}>{rule.connector}</span>
+                  ) : (
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", minWidth: "36px", flexShrink: 0 }}>{rule.connector}</span>
+                  )}
+                  <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                    {rule.field} <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                  </div>
+                  <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                    is true <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                  </div>
+                </div>
+              ))}
+
+              <div className="mt-6">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5" style={{ backgroundColor: "#1A1A1A", color: "#fff", fontFamily: "Inter, sans-serif", fontSize: "13px" }}>
+                  + Add a rule
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
