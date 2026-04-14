@@ -1177,7 +1177,7 @@ function KpiRingMock({ value, suffix, label, pct, color, sub }: { value: string;
   const circ = 2 * Math.PI * r;
   const offset = circ - (pct / 100) * circ;
   return (
-    <div className="bg-white px-3 py-3 flex items-start gap-2" style={{ border: "1px solid #ece9e3", minWidth: 0 }}>
+    <div className="bg-white px-3 py-2.5 flex items-center gap-2.5" style={{ border: "1px solid #ece9e3", minWidth: 0 }}>
       <svg width={size} height={size} className="shrink-0 -rotate-90" style={{ marginTop: 2 }}>
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
@@ -1188,8 +1188,7 @@ function KpiRingMock({ value, suffix, label, pct, color, sub }: { value: string;
           <span className="font-freight text-[18px] leading-none" style={{ color: "#1A1A1A" }}>{value}</span>
           {suffix && <span style={{ fontSize: "12px", color: "#a8a49c" }}>{suffix}</span>}
         </div>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#a8a49c", marginTop: "3px" }}>{label}</p>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc", marginTop: "2px" }}>{sub}</p>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#a8a49c", marginTop: "1px" }}>{label}</p>
       </div>
     </div>
   );
