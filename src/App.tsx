@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ForDesigners from "./pages/ForDesigners";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
+import CookieBanner from "./components/CookieBanner";
 import { trackPageview } from "./lib/analytics";
 
 function PageviewTracker() {
@@ -12,6 +13,12 @@ function PageviewTracker() {
     trackPageview(pathname + search);
   }, [pathname, search]);
   return null;
+}
+
+function ConditionalCookieBanner() {
+  const { pathname } = useLocation();
+  const isPreview = pathname.startsWith("/preview");
+  return isPreview ? <CookieBanner /> : null;
 }
 
 export default function App() {
@@ -25,6 +32,7 @@ export default function App() {
         {/* Public routes — splash page */}
         <Route path="*" element={<ComingSoon />} />
       </Routes>
+      <ConditionalCookieBanner />
     </BrowserRouter>
   );
 }

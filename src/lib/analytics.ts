@@ -15,14 +15,18 @@ export function trackPageview(path: string) {
   window.gtag?.("config", GA_ID, { page_path: path });
 }
 
+function toTitleCase(s: string): string {
+  return s.replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 function getLabel(el: HTMLElement): string {
   const explicit = el.getAttribute("data-analytics-label");
-  if (explicit) return explicit;
+  if (explicit) return toTitleCase(explicit);
   const text = (el.textContent || "").trim().replace(/\s+/g, " ");
-  if (text) return text.slice(0, 100);
+  if (text) return toTitleCase(text.slice(0, 100));
   const aria = el.getAttribute("aria-label");
-  if (aria) return aria;
-  return "(no label)";
+  if (aria) return toTitleCase(aria);
+  return "(No Label)";
 }
 
 function hostnameOf(href: string): string {
