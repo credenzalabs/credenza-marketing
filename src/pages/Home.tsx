@@ -988,7 +988,7 @@ function ForVendors() {
       </div>
 
       <div className="container py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Requirements */}
           <div>
             <h3 className="font-freight mb-4" style={{ fontSize: "2rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
