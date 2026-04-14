@@ -1257,7 +1257,7 @@ function ProgramInsightsMockup() {
         <KpiRingMock value="82" suffix="%" label="Approval" pct={82} color="#A9CFD3" sub="0.5d avg" />
         <KpiRingMock value="47" suffix="%" label="Auto" pct={47} color="#A9CFD3" sub="323 total" />
         <KpiRingMock value="100" suffix="%" label="Certs" pct={100} color="#8B8B55" sub="108 on file" />
-        <KpiRingMock value="33" suffix="%" label="Penetration" pct={33} color="#8B8B55" sub="561 ordering" />
+        <KpiRingMock value="33" suffix="%" label="Ordering" pct={33} color="#8B8B55" sub="561 ordering" />
       </div>
 
       {/* Bottom row — 4 cards */}
