@@ -872,6 +872,8 @@ function CertSection() {
               border: "1px solid #e0dcd4",
               overflow: "hidden",
               boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+              pointerEvents: "none" as const,
+              userSelect: "none" as const,
               transform: "scale(0.85)",
               transformOrigin: "top right",
             }}>
@@ -1017,7 +1019,7 @@ function ForVendors() {
           {/* Right: Approval rules mockups */}
           <div className="flex flex-col gap-3" style={{ transform: "scale(0.88)", transformOrigin: "top right" }}>
             {/* Hard Rules */}
-            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)", pointerEvents: "none" as const, userSelect: "none" as const }}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Hard Rules</h3>
                 <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #6B2D2D", color: "#6B2D2D", backgroundColor: "rgba(107,45,45,0.04)", borderRadius: "1px" }}>Required for Approval</span>
@@ -1046,7 +1048,7 @@ function ForVendors() {
             </div>
 
             {/* Conditional Groups */}
-            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)", pointerEvents: "none" as const, userSelect: "none" as const }}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Conditional Groups</h3>
                 <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #8B7B2B", color: "#8B7B2B", borderRadius: "1px" }}>Flexible</span>
@@ -1230,7 +1232,7 @@ function TiersSection() {
 
           {/* Right: product mockup */}
           <div style={{ transform: "scale(0.88)", transformOrigin: "top right" }}>
-            <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #e0dcd4", padding: "1.75rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #e0dcd4", padding: "1.75rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)", pointerEvents: "none", userSelect: "none" }}>
               {/* Header */}
               <div className="mb-4">
                 <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, color: "#1A1A1A", letterSpacing: "0.04em" }}>Discount Tiers</h3>
