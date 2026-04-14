@@ -1061,23 +1061,23 @@ function ForVendors() {
               </div>
 
               {[
-                { connector: "If", dashed: false, field: "Website Confirms Design Firm" },
-                { connector: "or", dashed: true, field: "Verified Professional Membership/Accreditation" },
-                { connector: "or", dashed: true, field: "Showhouse Participant" },
-                { connector: "or", dashed: true, field: "Has Press Feature" },
-                { connector: "or", dashed: true, field: "Has Trade References" },
+                { connector: "If", dashed: false, field: "Website Confirms Design Firm", op: "is true" },
+                { connector: "or", dashed: true, field: "Verified Professional Membership/Accreditation", op: "is true" },
+                { connector: "or", dashed: true, field: "Showhouse Participant", op: "is true" },
+                { connector: "or", dashed: true, field: "Has Press Feature", op: "is true" },
+                { connector: "or", dashed: true, field: "Trade Reference Count", op: "≥ 3" },
               ].map((rule, i) => (
                 <div key={i} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid #f0ede8" }}>
                   {rule.dashed ? (
                     <span className="px-1.5 py-0.5 text-[11px] flex-shrink-0 text-center" style={{ border: "1.5px dashed #A9CFD3", color: "#3a6e70", fontFamily: "Inter, sans-serif", fontWeight: 500, borderRadius: "1px", minWidth: "28px" }}>{rule.connector}</span>
                   ) : (
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", minWidth: "36px", flexShrink: 0 }}>{rule.connector}</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62", minWidth: "28px", flexShrink: 0 }}>{rule.connector}</span>
                   )}
                   <div className="flex-1 flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A" }}>
                     {rule.field} <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                   </div>
                   <div className="flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A", width: "80px", flexShrink: 0 }}>
-                    is true <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                    {rule.op} <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                   </div>
                 </div>
               ))}
