@@ -1016,8 +1016,72 @@ function ForVendors() {
 
           {/* Right: Approval rules screenshots */}
           <div className="flex flex-col gap-6">
-            <img src="/hard-rules-screenshot.png" alt="Hard Rules configuration with EIN Verified condition required for approval" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
-            <img src="/conditional-groups-screenshot.png" alt="Conditional Groups with flexible approval paths including website, membership, showhouse, press, Instagram, and trade references" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            {/* Hard Rules mockup */}
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.5rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Hard Rules</h3>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #6B2D2D", color: "#6B2D2D", backgroundColor: "rgba(107,45,45,0.04)", borderRadius: "1px" }}>Required for Approval</span>
+              </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6a6a62", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+                Every rule must pass for auto-approval. If any hard rule fails, the application is sent to manual review.
+              </p>
+
+              {[
+                { connector: "If", field: "EIN", operator: "is", value: "Verified" },
+                { connector: "and", field: "Resale Certificate", operator: "is", value: "Submitted" },
+              ].map((rule, i) => (
+                <div key={i} className="flex items-center gap-3 py-3" style={{ borderBottom: i === 0 ? "1px solid #e0dcd4" : "none" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 600, color: "#6a6a62", width: "28px", textTransform: "lowercase" as const }}>{rule.connector}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.field}</span>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>{rule.operator}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.value}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Conditional Groups mockup */}
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.5rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)", marginTop: "1rem" }}>
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Conditional Groups</h3>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #8B7B2B", color: "#8B7B2B", borderRadius: "1px" }}>Flexible</span>
+              </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6a6a62", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+                If any group passes, the application is auto-approved.
+              </p>
+
+              {/* Group 1 */}
+              {[
+                { connector: "If", field: "Website", operator: "is", value: "Active" },
+                { connector: "and", field: "Membership", operator: "is", value: "Verified" },
+              ].map((rule, i) => (
+                <div key={`g1-${i}`} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid #f0ede8" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 600, color: "#6a6a62", width: "28px", textTransform: "lowercase" as const }}>{rule.connector}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.field}</span>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>{rule.operator}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.value}</span>
+                </div>
+              ))}
+
+              {/* OR divider */}
+              <div className="flex items-center gap-4 my-4">
+                <div className="flex-1" style={{ height: "1px", backgroundColor: "#e0dcd4" }} />
+                <span className="text-[11px] font-semibold uppercase px-3 py-1" style={{ letterSpacing: "0.1em", color: "#8B7B2B", backgroundColor: "rgba(139,123,43,0.06)", border: "1px solid rgba(139,123,43,0.15)", borderRadius: "1px" }}>or</span>
+                <div className="flex-1" style={{ height: "1px", backgroundColor: "#e0dcd4" }} />
+              </div>
+
+              {/* Group 2 */}
+              {[
+                { connector: "If", field: "Showhouse", operator: "is", value: "Confirmed" },
+                { connector: "or", field: "Press", operator: "is", value: "Found" },
+              ].map((rule, i) => (
+                <div key={`g2-${i}`} className="flex items-center gap-3 py-2.5" style={{ borderBottom: i === 0 ? "1px solid #f0ede8" : "none" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 600, color: "#6a6a62", width: "28px", textTransform: "lowercase" as const }}>{rule.connector}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.field}</span>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>{rule.operator}</span>
+                  <span className="px-2.5 py-1.5 text-[13px]" style={{ border: "1px solid #e0dcd4", color: "#1A1A1A", fontFamily: "Inter, sans-serif" }}>{rule.value}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -1151,16 +1215,97 @@ function TiersSection() {
               <span className="italic" style={{ color: C.teal }}>Your rules.</span>
             </h2>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Your program, your structure. Define the tier names, discount levels, and order minimums. Credenza enforces them—assigning designers to the right tier automatically on approval.
+              Set a flat discount for everyone, define multiple tiers with different discount levels, or let trade pricing vary by product. Credenza assigns designers to the right tier on approval—and you can upgrade them as the relationship grows.
             </p>
             <p className="mt-4" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              One vendor might run two tiers. Another might run five. The structure is yours.
+              One vendor might run two tiers. Another might run five. Another might not discount at all. The structure is yours.
             </p>
           </div>
 
           {/* Right: product screenshot */}
           <div>
-            <img src="/discount-tiers-screenshot.png" alt="Discount Tiers configuration showing Trade, Preferred, and Elite tiers with discount percentages and order minimums" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #e0dcd4", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, color: "#1A1A1A", letterSpacing: "0.04em" }}>Discount Tiers</h3>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62", marginTop: "4px" }}>
+                    Order minimums are informational—displayed to approved designers but not enforced.
+                  </p>
+                </div>
+                <button style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6b7280", border: "1px solid #e0dcd4", padding: "4px 8px", display: "flex", alignItems: "center", gap: "4px" }}>
+                  + Add Tier
+                </button>
+              </div>
+
+              {/* Column headers */}
+              <div className="grid gap-3 items-center px-1 mb-2" style={{ gridTemplateColumns: "1fr 80px 90px 60px 28px", fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
+                <span>Label</span>
+                <span>Discount %</span>
+                <span>Order Min</span>
+                <span>Base</span>
+                <span />
+              </div>
+
+              {/* Tier rows */}
+              {[
+                { label: "Trade", discount: "20", min: "500", isBase: true },
+                { label: "Preferred", discount: "30", min: "1000", isBase: false },
+                { label: "Elite", discount: "40", min: "1500", isBase: false },
+              ].map((tier) => (
+                <div
+                  key={tier.label}
+                  className="grid gap-3 items-center px-1 py-2.5"
+                  style={{
+                    gridTemplateColumns: "1fr 80px 90px 60px 28px",
+                    backgroundColor: tier.isBase ? "rgba(169,207,211,0.05)" : undefined,
+                    borderBottom: "1px solid #f0ede8",
+                  }}
+                >
+                  <input
+                    readOnly
+                    value={tier.label}
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", border: "1px solid #e0dcd4", padding: "6px 8px", width: "100%", backgroundColor: "#fff" }}
+                  />
+                  <div className="flex items-center gap-1">
+                    <input
+                      readOnly
+                      value={tier.discount}
+                      style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", border: "1px solid #e0dcd4", padding: "6px 8px", width: "100%", backgroundColor: "#fff", textAlign: "right" as const }}
+                    />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>%</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>$</span>
+                    <input
+                      readOnly
+                      value={tier.min}
+                      style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", border: "1px solid #e0dcd4", padding: "6px 8px", width: "100%", backgroundColor: "#fff" }}
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <div
+                      className="flex items-center justify-center rounded-full"
+                      style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: tier.isBase ? "#F0F6F7" : "#fff",
+                        border: `1px solid ${tier.isBase ? "#A9CFD3" : "#e0dcd4"}`,
+                      }}
+                    >
+                      {tier.isBase && <div className="rounded-full" style={{ width: 8, height: 8, backgroundColor: "#A9CFD3" }} />}
+                    </div>
+                  </div>
+                  <button style={{ color: "#c4c4c4" }}>
+                    <X size={14} />
+                  </button>
+                </div>
+              ))}
+
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62", marginTop: "12px" }}>
+                The base tier is auto-assigned when a designer is approved. You can upgrade designers later.
+              </p>
+            </div>
           </div>
         </div>
       </div>
