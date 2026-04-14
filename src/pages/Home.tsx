@@ -649,7 +649,7 @@ function VerificationSection() {
   const ref = useReveal();
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const checks = [
-    { label: "EIN / Business entity", detail: "Cross-referenced with Secretary of State registry" },
+    { label: "EIN / Business entity", detail: "Verified against IRS records—with business name match." },
     { label: "Sales tax ID", detail: "State-specific format validation and active registration check in available states" },
     { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA directories—verified against member records" },
     { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice" },
@@ -676,7 +676,7 @@ function VerificationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>Zero manual follow-up.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Credenza verifies the person behind the paperwork—cross-referencing Secretary of State records, state licensing boards, NCARB, ASID, and more. Nine checks, run in parallel on every applicant, so your team doesn't have to.
+              Credenza verifies the person behind the paperwork—checking EINs against IRS records, validating state tax IDs, confirming memberships with ASID and NCARB, and more. Nine checks, run in parallel on every applicant, so your team doesn't have to.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               The result: a trade program that protects its value—because every member is actually in the trade.
