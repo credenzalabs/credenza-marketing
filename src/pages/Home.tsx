@@ -657,7 +657,7 @@ function VerificationSection() {
     { label: "License verification (where required)", detail: "Interior design license verified in the 8 states with practice acts; architecture licenses cross-referenced with NCARB records." },
     { label: "Resale certificates", detail: "State-specific or multi-state form, signed by authorized firm representative" },
     { label: "Trade references", detail: "Verified on and off platform—existing vendor accounts within the Credenza network, plus direct outreach to references outside it" },
-    { label: "Press & showhouse recognition", detail: <><i>AD</i>, <i>Veranda</i>, <i>Elle Decor</i>, <i>House Beautiful</i>, Kips Bay, and more</> },
+    { label: "Press & showhouse recognition", detail: <><i>AD</i>, <i>Veranda</i>, <i>Elle Decor</i>, <i>House Beautiful</i>, <i>Southern Living</i>, <i>Luxe</i>, Kips Bay, and more</> },
   ];
 
   return (
