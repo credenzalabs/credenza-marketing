@@ -676,7 +676,7 @@ function VerificationSection() {
               <span className="italic" style={{ color: C.oliveMid }}>Zero manual follow-up.</span>
             </h2>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
-              Credenza verifies the person behind the paperwork—checking EINs against IRS records, validating state tax IDs, confirming memberships with ASID and NCARB, and more. Nine checks, run in parallel on every applicant, so your team doesn't have to.
+              Credenza verifies the person behind the paperwork. EINs against IRS records. Tax IDs with state portals. Licenses with state boards. Memberships against ASID, NCARB, and NCIDQ directories. Websites, Instagram, press coverage, and showhouse history—all researched automatically. Nine checks, run in parallel on every applicant, so your team spends their time on the business—not vetting applications.
             </p>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
               The result: a trade program that protects its value—because every member is actually in the trade.
@@ -853,7 +853,7 @@ function CertSection() {
             </h3>
             <div className="flex flex-col gap-0 border-t" style={{ borderColor: C.sageDark }}>
               {[
-                { title: "Validated businesses, not just collected data", body: "Sales tax IDs, EINs, and business details are verified against authoritative sources—not just for format, but to confirm the business behind the certificate is real and active. Invalid data gets caught before it reaches you." },
+                { title: "Validated businesses, not just collected data", body: "Other tools check formatting—Credenza confirms the business is real, active, and relevant. Invalid data gets caught before it reaches you." },
                 { title: "Maximum exemption, every time", body: "Credenza\u2019s Tax Strategy Engine selects the correct (and fewest) forms needed to maximize the designer\u2019s tax exemption where they do business. Designers save more buying from you—and remember who made it easy." },
                 { title: "Living compliance", body: "Cert approaching expiration? Credenza requests renewal, re-verifies the tax ID, and revokes the exemption if the designer doesn\u2019t act—so nothing on file goes stale." },
               ].map((item) => (
