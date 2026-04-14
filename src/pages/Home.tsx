@@ -1040,11 +1040,11 @@ function ForVendors() {
               {/* Row 2: empty placeholder */}
               <div className="flex items-center gap-3 py-3">
                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", width: "36px", flexShrink: 0 }}>and</span>
-                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#c8c4bc" }}>
-                  Select field... <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                  Resale Certificate <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
-                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#c8c4bc", width: "130px", flexShrink: 0 }}>
-                  &nbsp; <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
+                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                  is active <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
               </div>
 
