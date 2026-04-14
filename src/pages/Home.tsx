@@ -1015,9 +1015,9 @@ function ForVendors() {
           </div>
 
           {/* Right: Approval rules mockups */}
-          <div className="flex flex-col gap-4" style={{ transform: "scale(0.82)", transformOrigin: "top right" }}>
+          <div className="flex flex-col gap-4">
             {/* Hard Rules */}
-            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "2rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Hard Rules</h3>
                 <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #6B2D2D", color: "#6B2D2D", backgroundColor: "rgba(107,45,45,0.04)", borderRadius: "1px" }}>Required for Approval</span>
@@ -1028,22 +1028,22 @@ function ForVendors() {
 
               {/* Row 1: EIN Verified / is true */}
               <div className="flex items-center gap-3 py-3" style={{ borderBottom: "1px solid #f0ede8" }}>
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", width: "36px", flexShrink: 0 }}>If</span>
-                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62", width: "28px", flexShrink: 0 }}>If</span>
+                <div className="flex-1 flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A" }}>
                   EIN Verified <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
-                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                <div className="flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A", width: "80px", flexShrink: 0 }}>
                   is true <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
               </div>
 
               {/* Row 2: empty placeholder */}
               <div className="flex items-center gap-3 py-3">
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", width: "36px", flexShrink: 0 }}>and</span>
-                <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62", width: "28px", flexShrink: 0 }}>and</span>
+                <div className="flex-1 flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A" }}>
                   Resale Certificate <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
-                <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                <div className="flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A", width: "80px", flexShrink: 0 }}>
                   is active <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                 </div>
               </div>
@@ -1056,7 +1056,7 @@ function ForVendors() {
             </div>
 
             {/* Conditional Groups */}
-            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "2rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="font-freight" style={{ fontSize: "20px", fontWeight: 400, letterSpacing: "0.04em", color: "#1A1A1A" }}>Conditional Groups</h3>
                 <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #8B7B2B", color: "#8B7B2B", borderRadius: "1px" }}>Flexible</span>
@@ -1080,14 +1080,14 @@ function ForVendors() {
               ].map((rule, i) => (
                 <div key={i} className="flex items-center gap-3 py-2.5" style={{ borderBottom: "1px solid #f0ede8" }}>
                   {rule.dashed ? (
-                    <span className="px-2 py-0.5 text-[13px] flex-shrink-0 text-center" style={{ border: "1.5px dashed #A9CFD3", color: "#3a6e70", fontFamily: "Inter, sans-serif", fontWeight: 500, borderRadius: "1px", minWidth: "36px" }}>{rule.connector}</span>
+                    <span className="px-1.5 py-0.5 text-[11px] flex-shrink-0 text-center" style={{ border: "1.5px dashed #A9CFD3", color: "#3a6e70", fontFamily: "Inter, sans-serif", fontWeight: 500, borderRadius: "1px", minWidth: "28px" }}>{rule.connector}</span>
                   ) : (
                     <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#6a6a62", minWidth: "36px", flexShrink: 0 }}>{rule.connector}</span>
                   )}
-                  <div className="flex-1 flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A" }}>
+                  <div className="flex-1 flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A" }}>
                     {rule.field} <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                   </div>
-                  <div className="flex items-center justify-between px-3 py-2.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", width: "130px", flexShrink: 0 }}>
+                  <div className="flex items-center justify-between px-2 py-1.5" style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1A1A", width: "80px", flexShrink: 0 }}>
                     is true <ChevronDown size={14} style={{ color: "#c8c4bc" }} />
                   </div>
                 </div>
