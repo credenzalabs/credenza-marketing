@@ -1312,7 +1312,7 @@ function DataSection() {
             </p>
           </div>
           <div>
-            <ProgramInsightsMockup />
+            <img src="/dashboard-insights.png" alt="Program Insights dashboard" className="w-full h-auto" />
           </div>
         </div>
 
