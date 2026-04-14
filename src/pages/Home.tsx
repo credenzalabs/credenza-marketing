@@ -1464,11 +1464,35 @@ function DataSection() {
             return (
             <div
               key={i}
-              className="p-8 md:p-10"
+              className="p-8 md:p-10 flex flex-col"
               style={{ backgroundColor: "#ffffff" }}
             >
-              {/* Mini chart per card */}
-              <div className="mb-6 pb-5" style={{ borderBottom: `1px solid ${chartColors.border}` }}>
+              {/* Text content first */}
+              <div
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "1.25rem" }}
+              >
+                {m.label}
+              </div>
+              <h3
+                className="font-freight mb-4"
+                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, color: C.charcoal, letterSpacing: "-0.02em" }}
+              >
+                {m.headline}
+              </h3>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75, color: C.charcoalMid, marginBottom: "1.5rem" }}>
+                {m.body}
+              </p>
+              <div className="space-y-2 mb-6">
+                {m.items.map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <div className="mt-1.5 w-1 h-1 flex-shrink-0 rounded-full" style={{ backgroundColor: C.tealMid }} />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: C.charcoalSoft, lineHeight: 1.5 }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mini chart at bottom */}
+              <div className="mt-auto pt-5" style={{ borderTop: `1px solid ${chartColors.border}` }}>
                 {i === 0 && (() => {
                   const pts = [18, 22, 20, 45, 42, 38, 34];
                   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
@@ -1550,29 +1574,6 @@ function DataSection() {
                     </div>
                   );
                 })()}
-              </div>
-
-              <div
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "1.25rem" }}
-              >
-                {m.label}
-              </div>
-              <h3
-                className="font-freight mb-4"
-                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, color: C.charcoal, letterSpacing: "-0.02em" }}
-              >
-                {m.headline}
-              </h3>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75, color: C.charcoalMid, marginBottom: "1.5rem" }}>
-                {m.body}
-              </p>
-              <div className="space-y-2">
-                {m.items.map((item) => (
-                  <div key={item} className="flex items-start gap-2.5">
-                    <div className="mt-1.5 w-1 h-1 flex-shrink-0 rounded-full" style={{ backgroundColor: C.tealMid }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: C.charcoalSoft, lineHeight: 1.5 }}>{item}</span>
-                  </div>
-                ))}
               </div>
             </div>
             );
