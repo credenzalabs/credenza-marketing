@@ -12,7 +12,11 @@ function track(event: string, params: Record<string, unknown> = {}) {
 }
 
 export function trackPageview(path: string) {
-  window.gtag?.("config", GA_ID, { page_path: path });
+  window.gtag?.("event", "page_view", {
+    page_path: path,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
 }
 
 function toTitleCase(s: string): string {
