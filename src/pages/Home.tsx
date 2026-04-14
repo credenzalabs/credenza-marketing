@@ -1441,37 +1441,117 @@ function DataSection() {
   return (
     <section ref={ref} className="reveal py-24 md:py-36" style={{ backgroundColor: C.forest }}>
       <div className="container">
-        {/* Section header + dashboard screenshot */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 items-center">
-          <div>
-            <Eyebrow light>Program intelligence</Eyebrow>
-            <h2
-              className="font-freight"
-              style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, color: C.ivory, letterSpacing: "-0.025em" }}
-            >
-              Data that powers
-              <br />
-              <span className="italic" style={{ color: C.teal }}>your growth.</span>
-            </h2>
-            <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
-              Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
-            </p>
-          </div>
-          <div>
-            <img src="/dashboard-insights.png" alt="Program Insights dashboard" className="w-full h-auto" />
-          </div>
+        {/* Section header */}
+        <div className="mb-16 max-w-xl">
+          <Eyebrow light>Program intelligence</Eyebrow>
+          <h2
+            className="font-freight"
+            style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, color: C.ivory, letterSpacing: "-0.025em" }}
+          >
+            Data that powers
+            <br />
+            <span className="italic" style={{ color: C.teal }}>your growth.</span>
+          </h2>
+          <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
+            Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
+          </p>
         </div>
 
-        {/* Three-column metric cards */}
+        {/* Three-column metric cards with inline charts */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {metrics.map((m, i) => (
+          {metrics.map((m, i) => {
+            const chartColors = { teal: "#A9CFD3", tealDark: "#3a6e70", olive: "#8B8B55", border: "#ece9e3" };
+            return (
             <div
               key={i}
               className="p-8 md:p-10"
-              style={{
-                backgroundColor: "#ffffff",
-              }}
+              style={{ backgroundColor: "#ffffff" }}
             >
+              {/* Mini chart per card */}
+              <div className="mb-6 pb-5" style={{ borderBottom: `1px solid ${chartColors.border}` }}>
+                {i === 0 && (() => {
+                  const pts = [18, 22, 20, 45, 42, 38, 34];
+                  const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
+                  const w = 220; const h = 50; const max = Math.max(...pts);
+                  const coords = pts.map((p, j) => ({ x: 4 + (j / (pts.length - 1)) * (w - 8), y: 4 + (1 - p / max) * (h - 8) }));
+                  const d = coords.map((c, j) => `${j === 0 ? "M" : "L"}${c.x},${c.y}`).join(" ");
+                  return (
+                    <div>
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>378</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>applications · last 6 months</span>
+                      </div>
+                      <svg width={w} height={h}>
+                        <path d={d} fill="none" stroke={chartColors.teal} strokeWidth={2} />
+                        {coords.map((c, j) => (
+                          <circle key={j} cx={c.x} cy={c.y} r={j === coords.length - 1 ? 4 : 2.5} fill={j === coords.length - 1 ? chartColors.tealDark : chartColors.teal} stroke="#fff" strokeWidth={1.5} />
+                        ))}
+                      </svg>
+                      <div className="flex justify-between mt-1" style={{ width: w }}>
+                        {months.map(mo => <span key={mo} style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#c8c4bc" }}>{mo}</span>)}
+                      </div>
+                    </div>
+                  );
+                })()}
+                {i === 1 && (() => {
+                  const segments = [
+                    { label: "Residential", pct: 62, color: chartColors.teal },
+                    { label: "Hospitality", pct: 18, color: chartColors.olive },
+                    { label: "Commercial", pct: 12, color: chartColors.tealDark },
+                    { label: "Other", pct: 8, color: "#c8c4bc" },
+                  ];
+                  return (
+                    <div>
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>1,701</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>firms by focus</span>
+                      </div>
+                      <div className="flex h-2 w-full overflow-hidden mb-2" style={{ borderRadius: "1px" }}>
+                        {segments.map(s => <div key={s.label} style={{ width: `${s.pct}%`, backgroundColor: s.color }} />)}
+                      </div>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1">
+                        {segments.map(s => (
+                          <div key={s.label} className="flex items-center gap-1.5">
+                            <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
+                {i === 2 && (() => {
+                  const states = [
+                    { name: "California", members: 108, firms: 72, pct: 100 },
+                    { name: "New York", members: 84, firms: 58, pct: 78 },
+                    { name: "Texas", members: 56, firms: 39, pct: 52 },
+                    { name: "Florida", members: 48, firms: 35, pct: 44 },
+                    { name: "Illinois", members: 36, firms: 27, pct: 33 },
+                  ];
+                  return (
+                    <div>
+                      <div className="flex items-baseline gap-2 mb-3">
+                        <span className="font-freight text-[28px] leading-none" style={{ color: C.charcoal }}>100%</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certs current · 5 top states</span>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        {states.map(s => (
+                          <div key={s.name}>
+                            <div className="flex items-baseline justify-between mb-0.5">
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: C.charcoal }}>{s.name}</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#a8a49c" }}>{s.members} · {s.firms} firms</span>
+                            </div>
+                            <div className="h-[4px]" style={{ backgroundColor: "#e4e1d8" }}>
+                              <div style={{ width: `${s.pct}%`, height: "100%", backgroundColor: s.pct > 60 ? chartColors.teal : chartColors.olive }} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
               <div
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "1.25rem" }}
               >
@@ -1495,7 +1575,8 @@ function DataSection() {
                 ))}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
