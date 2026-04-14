@@ -1015,7 +1015,7 @@ function ForVendors() {
           </div>
 
           {/* Right: Approval rules mockups */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3" style={{ transform: "scale(0.88)", transformOrigin: "top right" }}>
             {/* Hard Rules */}
             <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               <div className="flex items-start justify-between mb-2">
