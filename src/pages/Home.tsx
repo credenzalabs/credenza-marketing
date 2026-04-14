@@ -1244,7 +1244,7 @@ function SmallKpiMock({ label, value, sub, color, icon }: { label: string; value
 
 function ProgramInsightsMockup() {
   return (
-    <div style={{ backgroundColor: "#FAF9F7", transform: "scale(0.78)", transformOrigin: "top right" }}>
+    <div style={{ backgroundColor: "#FAF9F7", padding: "1rem" }}>
       {/* Header */}
       <div className="flex items-baseline justify-between mb-3">
         <h3 className="font-freight" style={{ fontSize: "20px", color: "#1A1A1A", fontWeight: 400 }}>Program Insights</h3>
