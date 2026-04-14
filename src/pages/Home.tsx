@@ -871,8 +871,8 @@ function CertSection() {
               backgroundColor: "#FFFFFF",
               border: "1px solid #e0dcd4",
               overflow: "hidden",
-              boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
-              transform: "rotate(-1.5deg)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08)",
+              transform: "perspective(1200px) rotateY(-4deg) rotateX(2deg)",
               transform: "scale(0.85)",
               transformOrigin: "top right",
             }}>
@@ -1016,7 +1016,7 @@ function ForVendors() {
           </div>
 
           {/* Right: Approval rules mockups */}
-          <div className="flex flex-col gap-3" style={{ transform: "scale(0.88) rotate(-1.5deg)", transformOrigin: "top right" }}>
+          <div className="flex flex-col gap-3" style={{ transform: "scale(0.88) perspective(1200px) rotateY(-4deg) rotateX(2deg)", transformOrigin: "top right" }}>
             {/* Hard Rules */}
             <div style={{ backgroundColor: "#fff", border: "1px solid #e0dcd4", borderRadius: "2px", padding: "1.25rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               <div className="flex items-start justify-between mb-2">
@@ -1230,7 +1230,7 @@ function TiersSection() {
           </div>
 
           {/* Right: product mockup */}
-          <div style={{ transform: "scale(0.88) rotate(-1.5deg)", transformOrigin: "top right" }}>
+          <div style={{ transform: "scale(0.88) perspective(1200px) rotateY(-4deg) rotateX(2deg)", transformOrigin: "top right" }}>
             <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #e0dcd4", padding: "1.75rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               {/* Header */}
               <div className="mb-4">
