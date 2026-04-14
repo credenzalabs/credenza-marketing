@@ -1052,7 +1052,7 @@ function ForVendors() {
                 <span className="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wide" style={{ border: "1px solid #8B7B2B", color: "#8B7B2B", borderRadius: "1px" }}>Flexible</span>
               </div>
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6a6a62", lineHeight: 1.6, marginBottom: "1.5rem" }}>
-                Flexible paths to approval. Click the <em>and</em>/<em>or</em> between rows to switch how they combine. If any group passes, the application is auto-approved. Groups are connected by OR—create multiple groups for different approval paths.
+                Flexible paths to approval. Click the <em>and</em> / <em>or</em> between rows to switch how they combine. If any group passes, the application is auto-approved. Groups are connected by OR—create multiple groups for different approval paths.
               </p>
 
               {/* Group 1 label */}
@@ -1228,8 +1228,8 @@ function TiersSection() {
             </p>
           </div>
 
-          {/* Right: product screenshot */}
-          <div>
+          {/* Right: product mockup */}
+          <div style={{ transform: "scale(0.88)", transformOrigin: "top right" }}>
             <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #e0dcd4", padding: "1.75rem", boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}>
               {/* Header */}
               <div className="mb-4">
