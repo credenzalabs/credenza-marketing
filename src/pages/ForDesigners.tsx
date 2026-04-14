@@ -323,7 +323,7 @@ function TaxStrategy() {
               body: "Resale certificates expire. Credenza monitors every expiration date and notifies you before anything lapses—so your tax-exempt status never changes because of a deadline you missed.",
             },
           ].map((card, i) => (
-            <div key={card.title} className="py-8 md:pr-8 border-b" style={{ borderColor: C.sageDark, paddingLeft: 0 }}>
+            <div key={card.title} className={`py-8 md:pr-8 border-b ${i > 0 ? "md:pl-8" : ""}`} style={{ borderColor: C.sageDark }}>
               <h3 className="font-freight mb-3" style={{ fontSize: "1.35rem", color: C.charcoal, letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 {card.title}
               </h3>
@@ -408,7 +408,7 @@ function AccountManagement() {
             { title: "Rep info at your fingertips", body: "Your assigned sales rep, their direct line, their email—synced from the vendor and always current. No more hunting through old emails." },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
           ].map((item, i) => (
-            <div key={item.title} className="py-8 md:pr-8" style={{ borderBottom: `1px solid ${C.sageDark}`, borderRight: i < 2 ? `1px solid ${C.sageDark}` : "none", paddingLeft: 0 }}>
+            <div key={item.title} className={`py-8 md:pr-8 ${i > 0 ? "md:pl-8" : ""}`} style={{ borderBottom: `1px solid ${C.sageDark}`, borderRight: i < 2 ? `1px solid ${C.sageDark}` : "none" }}>
               <h3 className="font-freight mb-2" style={{ fontSize: "1.15rem", color: C.charcoal, letterSpacing: "-0.015em", lineHeight: 1.2 }}>{item.title}</h3>
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.charcoalMid }}>{item.body}</p>
             </div>
