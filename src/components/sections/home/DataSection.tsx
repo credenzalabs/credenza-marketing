@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { FileText, MoveRight, Shield, Store } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
 
 // ─── Data / Growth ───────────────────────────────────────────────────────────────
 // ─── Program Insights Mockup ─────────────────────────────────────────────────
@@ -13,8 +12,11 @@ function KpiRingMock({ value, suffix, label, pct, color, sub }: { value: string;
   const circ = 2 * Math.PI * r;
   const offset = circ - (pct / 100) * circ;
   return (
-    <div className="bg-white px-3 py-2.5 flex items-center gap-2.5" style={{ border: "1px solid #ece9e3", minWidth: 0 }}>
-      <svg width={size} height={size} className="shrink-0 -rotate-90" style={{ marginTop: 2 }}>
+    <div
+      className="bg-white px-3 py-2.5 flex items-center gap-2.5 min-w-0"
+      style={{ border: "1px solid #ece9e3" }}
+    >
+      <svg width={size} height={size} className="shrink-0 -rotate-90 mt-0.5">
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
           strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="butt" />
@@ -24,7 +26,12 @@ function KpiRingMock({ value, suffix, label, pct, color, sub }: { value: string;
           <span className="font-freight text-[18px] leading-none" style={{ color: "#1A1A1A" }}>{value}</span>
           {suffix && <span style={{ fontSize: "12px", color: "#a8a49c" }}>{suffix}</span>}
         </div>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#a8a49c", marginTop: "1px" }}>{label}</p>
+        <p
+          className="uppercase font-semibold mt-px"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", letterSpacing: "0.08em", color: "#a8a49c" }}
+        >
+          {label}
+        </p>
       </div>
     </div>
   );
@@ -40,16 +47,29 @@ function SparkMock({ label, value, sub, color, points }: { label: string; value:
   }));
   const d = coords.map((c, i) => `${i === 0 ? "M" : "L"}${c.x},${c.y}`).join(" ");
   return (
-    <div className="bg-white px-4 py-3.5 relative overflow-hidden" style={{ border: "1px solid #ece9e3" }}>
+    <div
+      className="bg-white px-4 py-3.5 relative overflow-hidden"
+      style={{ border: "1px solid #ece9e3" }}
+    >
       <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ backgroundColor: color }} />
       <div className="flex items-start justify-between pl-2">
         <div>
           <div className="flex items-center gap-1.5 mb-1">
             <MoveRight size={11} style={{ color: "#a8a49c" }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#a8a49c" }}>{label}</span>
+            <span
+              className="uppercase font-semibold"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", letterSpacing: "0.1em", color: "#a8a49c" }}
+            >
+              {label}
+            </span>
           </div>
           <p className="font-freight text-[18px] leading-none" style={{ color: "#1A1A1A" }}>{value}</p>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#c8c4bc", marginTop: "4px" }}>{sub}</p>
+          <p
+            className="mt-1"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#c8c4bc" }}
+          >
+            {sub}
+          </p>
         </div>
         <svg width={w} height={h} className="shrink-0 mt-1">
           <path d={d} fill="none" stroke={color} strokeWidth={1.5} />
@@ -64,15 +84,28 @@ function SparkMock({ label, value, sub, color, points }: { label: string; value:
 
 function SmallKpiMock({ label, value, sub, color, icon }: { label: string; value: string; sub: string; color: string; icon: React.ReactNode }) {
   return (
-    <div className="bg-white px-4 py-3.5 relative overflow-hidden" style={{ border: "1px solid #ece9e3" }}>
+    <div
+      className="bg-white px-4 py-3.5 relative overflow-hidden"
+      style={{ border: "1px solid #ece9e3" }}
+    >
       <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ backgroundColor: color }} />
       <div className="pl-2">
         <div className="flex items-center gap-1.5 mb-1">
           <span style={{ color: "#a8a49c" }}>{icon}</span>
-          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#a8a49c" }}>{label}</span>
+          <span
+            className="uppercase font-semibold"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", letterSpacing: "0.1em", color: "#a8a49c" }}
+          >
+            {label}
+          </span>
         </div>
         <p className="font-freight text-[18px] leading-none" style={{ color: "#1A1A1A" }}>{value}</p>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#c8c4bc", marginTop: "4px" }}>{sub}</p>
+        <p
+          className="mt-1"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#c8c4bc" }}
+        >
+          {sub}
+        </p>
       </div>
     </div>
   );
@@ -80,10 +113,15 @@ function SmallKpiMock({ label, value, sub, color, icon }: { label: string; value
 
 function ProgramInsightsMockup() {
   return (
-    <div style={{ backgroundColor: "#FAF9F7", padding: "1rem" }}>
+    <div className="p-4" style={{ backgroundColor: "#FAF9F7" }}>
       {/* Header */}
       <div className="flex items-baseline justify-between mb-3">
-        <h3 className="font-freight" style={{ fontSize: "20px", color: "#1A1A1A", fontWeight: 400 }}>Program Insights</h3>
+        <h3
+          className="font-freight font-normal"
+          style={{ fontSize: "20px", color: "#1A1A1A" }}
+        >
+          Program Insights
+        </h3>
         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#a8a49c" }}>2,575 approved designers</span>
       </div>
 
@@ -136,7 +174,11 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
   ];
 
   return (
-    <div ref={ref} className="mt-auto pt-5" style={{ borderTop: `1px solid ${colors.border}`, minHeight: "140px" }}>
+    <div
+      ref={ref}
+      className="mt-auto pt-5 min-h-[140px]"
+      style={{ borderTop: `1px solid ${colors.border}` }}
+    >
       {index === 0 && (
         <div className="flex items-center gap-4">
           <svg width={size} height={size} className="shrink-0 -rotate-90">
@@ -147,20 +189,30 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
           </svg>
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>33%</span>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: "#a8a49c" }}>Penetration</span>
+              <span className="font-freight text-[20px] leading-none text-charcoal">33%</span>
+              <span
+                className="uppercase font-semibold"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.06em", color: "#a8a49c" }}
+              >
+                Penetration
+              </span>
             </div>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc", marginTop: "3px" }}>561 of 1,701 firms ordering</p>
+            <p
+              className="mt-[3px]"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#c8c4bc" }}
+            >
+              561 of 1,701 firms ordering
+            </p>
           </div>
         </div>
       )}
       {index === 1 && (
         <div>
           <div className="flex items-baseline gap-2 mb-3">
-            <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>1,701</span>
+            <span className="font-freight text-[20px] leading-none text-charcoal">1,701</span>
             <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>firms by focus</span>
           </div>
-          <div className="flex h-2 w-full overflow-hidden mb-2" style={{ borderRadius: "1px" }}>
+          <div className="flex h-2 w-full overflow-hidden mb-2 rounded-[1px]">
             {segments.map(s => (
               <div key={s.label} style={{ width: visible ? `${s.pct}%` : "0%", backgroundColor: s.color, transition: "width 1s ease-out" }} />
             ))}
@@ -168,7 +220,7 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             {segments.map(s => (
               <div key={s.label} className="flex items-center gap-1.5">
-                <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
+                <div className="w-1.5 h-1.5" style={{ backgroundColor: s.color }} />
                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
               </div>
             ))}
@@ -184,10 +236,10 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
         return (
           <div>
             <div className="flex items-baseline gap-2 mb-3">
-              <span className="font-freight text-[20px] leading-none" style={{ color: C.charcoal }}>96%</span>
+              <span className="font-freight text-[20px] leading-none text-charcoal">96%</span>
               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certs current</span>
             </div>
-            <div className="flex h-3 w-full overflow-hidden mb-3" style={{ borderRadius: "1px" }}>
+            <div className="flex h-3 w-full overflow-hidden mb-3 rounded-[1px]">
               {certSegments.map(s => (
                 <div key={s.label} style={{ width: visible ? `${s.pct}%` : "0%", backgroundColor: s.color, transition: "width 1s ease-out" }} />
               ))}
@@ -195,7 +247,7 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
             <div className="flex flex-wrap gap-x-4 gap-y-1">
               {certSegments.map(s => (
                 <div key={s.label} className="flex items-center gap-1.5">
-                  <div style={{ width: 6, height: 6, backgroundColor: s.color }} />
+                  <div className="w-1.5 h-1.5" style={{ backgroundColor: s.color }} />
                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{s.label} {s.pct}%</span>
                 </div>
               ))}
@@ -230,20 +282,23 @@ export function DataSection() {
     },
   ];
   return (
-    <section ref={ref} className="reveal py-24 md:py-36" style={{ backgroundColor: C.forest }}>
+    <section ref={ref} className="reveal py-24 md:py-36 bg-forest">
       <div className="container">
         {/* Section header */}
         <div className="mb-16 max-w-xl">
           <Eyebrow light>Program intelligence</Eyebrow>
           <h2
-            className="font-freight"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, color: C.ivory, letterSpacing: "-0.025em" }}
+            className="font-freight text-ivory"
+            style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.9rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
             Data that powers
             <br />
-            <span className="italic" style={{ color: C.teal }}>your growth.</span>
+            <span className="italic text-teal">your growth.</span>
           </h2>
-          <p className="mt-5" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}>
+          <p
+            className="mt-5"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(240,240,236,0.65)" }}
+          >
             Running your program is the floor, not the ceiling. Every application, approval, certificate, and order generates intelligence you can act on.
           </p>
         </div>
@@ -253,31 +308,36 @@ export function DataSection() {
           {metrics.map((m, i) => {
             const chartColors = { teal: "#A9CFD3", tealDark: "#3a6e70", olive: "#8B8B55", border: "#ece9e3" };
             return (
-            <div
-              key={i}
-              className="p-8 md:p-10 flex flex-col"
-              style={{ backgroundColor: "#ffffff" }}
-            >
+            <div key={i} className="p-8 md:p-10 flex flex-col bg-white">
               {/* Text content first */}
               <div
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.tealMid, marginBottom: "1.25rem" }}
+                className="uppercase text-teal-mid mb-5"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em" }}
               >
                 {m.label}
               </div>
               <h3
-                className="font-freight mb-4"
-                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, color: C.charcoal, letterSpacing: "-0.02em" }}
+                className="font-freight mb-4 text-charcoal"
+                style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
               >
                 {m.headline}
               </h3>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75, color: C.charcoalMid, marginBottom: "1.5rem" }}>
+              <p
+                className="text-charcoal-mid mb-6"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }}
+              >
                 {m.body}
               </p>
               <div className="space-y-2 mb-6">
                 {m.items.map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
-                    <div className="mt-1.5 w-1 h-1 flex-shrink-0 rounded-full" style={{ backgroundColor: C.tealMid }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: C.charcoalSoft, lineHeight: 1.5 }}>{item}</span>
+                    <div className="mt-1.5 w-1 h-1 shrink-0 rounded-full bg-teal-mid" />
+                    <span
+                      className="text-charcoal-soft"
+                      style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", lineHeight: 1.5 }}
+                    >
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>

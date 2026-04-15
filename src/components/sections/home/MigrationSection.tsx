@@ -1,48 +1,53 @@
 import { Zap } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
 
 // ─── Migration ───────────────────────────────────────────────────────────────────────
 export function MigrationSection() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
+    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: copy */}
           <div className="lg:col-span-6">
             <Eyebrow>Onboarding</Eyebrow>
             <h2
-              className="font-freight mb-6"
-              style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, color: C.charcoal, letterSpacing: "-0.025em" }}
+              className="font-freight mb-6 text-charcoal"
+              style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
               Your existing clients
               <br />
-              <span className="italic" style={{ color: C.oliveMid }}>come with you.</span>
+              <span className="italic text-olive-mid">come with you.</span>
             </h2>
-            <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+            <p
+              className="mb-6 text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
               Your existing trade clients, certificates, and account history come with you—no reapplication required.
             </p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+            <p
+              className="text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
               This isn't just for new applicants. Your existing clients come onto the platform with their history intact—and from here, everything stays current automatically.
             </p>
             {/* Timeline callout */}
-            <div
-              className="mt-10 flex items-center gap-4 px-5 py-4"
-              style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
-            >
-              <div
-                className="flex items-center justify-center flex-shrink-0"
-                style={{ width: "36px", height: "36px", backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
-              >
-                <Zap size={16} style={{ color: C.tealMid }} />
+            <div className="mt-10 flex items-center gap-4 px-5 py-4 bg-teal-dim border border-teal-border">
+              <div className="flex items-center justify-center shrink-0 w-9 h-9 bg-teal-dim border border-teal-border">
+                <Zap size={16} className="text-teal-mid" />
               </div>
               <div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 700, color: C.charcoal, letterSpacing: "-0.01em" }}>
+                <div
+                  className="text-charcoal font-bold"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", letterSpacing: "-0.01em" }}
+                >
                   Live in hours, not months.
                 </div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, marginTop: "2px" }}>
+                <div
+                  className="text-charcoal-soft mt-0.5"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
+                >
                   Import your roster, close your compliance gaps, and go live—same day.
                 </div>
               </div>
@@ -51,7 +56,7 @@ export function MigrationSection() {
 
           {/* Right: migration steps */}
           <div className="lg:col-span-6">
-            <div className="flex flex-col gap-0 border-t" style={{ borderColor: C.sageDark }}>
+            <div className="flex flex-col gap-0 border-t border-sage-dark">
               {[
                 {
                   step: "01",
@@ -69,30 +74,29 @@ export function MigrationSection() {
                   body: "Credenza identifies designers without current resale certs and prompts them to generate and sign—so you\u2019re compliant from day one. Want to start fresh? Invite existing clients to connect and submit new certificates with compliant, verified data.",
                 },
               ].map((item) => (
-                <div key={item.step} className="py-7 border-b" style={{ borderColor: C.sageDark }}>
+                <div key={item.step} className="py-7 border-b border-sage-dark">
                   <div className="flex items-start gap-5">
                     <div
+                      className="text-olive-mid font-normal shrink-0 min-w-7 pt-0.5"
                       style={{
                         fontFamily: "Inter, sans-serif",
                         fontSize: "0.85rem",
-                        color: C.oliveMid,
                         letterSpacing: "0.06em",
-                        fontWeight: 400,
-                        flexShrink: 0,
-                        paddingTop: "2px",
-                        minWidth: "28px",
                       }}
                     >
                       {item.step}
                     </div>
                     <div>
                       <h4
-                        className="font-freight mb-2"
-                        style={{ fontSize: "1.1rem", color: C.charcoal, letterSpacing: "-0.015em", lineHeight: 1.2 }}
+                        className="font-freight mb-2 text-charcoal"
+                        style={{ fontSize: "1.1rem", letterSpacing: "-0.015em", lineHeight: 1.2 }}
                       >
                         {item.title}
                       </h4>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.charcoalMid }}>
+                      <p
+                        className="text-charcoal-mid"
+                        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7 }}
+                      >
                         {item.body}
                       </p>
                     </div>

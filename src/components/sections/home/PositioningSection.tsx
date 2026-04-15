@@ -1,16 +1,15 @@
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
 import { IMAGES } from "./images";
 
 // ─── What Credenza Is ────────────────────────────────────────────────────────────
 export function PositioningSection() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal" style={{ backgroundColor: "#FFFFFF" }}>
+    <section ref={ref} className="reveal bg-white">
       {/* Full-bleed image with text overlay */}
-      <div className="relative overflow-hidden" style={{ minHeight: "70vh" }}>
+      <div className="relative overflow-hidden min-h-[70vh]">
         <img
           src={IMAGES.nickOlsonReidRolls}
           alt="Elegant interior"
@@ -25,10 +24,10 @@ export function PositioningSection() {
           <div className="max-w-xl">
             <Eyebrow light>What Credenza is</Eyebrow>
             <h2
-              className="font-freight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 4vw, 3.75rem)", lineHeight: 1.05, color: C.white, letterSpacing: "-0.025em" }}
+              className="font-freight mb-6 text-ivory"
+              style={{ fontSize: "clamp(2.2rem, 4vw, 3.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
-              <span className="italic" style={{ color: C.teal }}>Infrastructure,</span> not
+              <span className="italic text-teal">Infrastructure,</span> not
               <br />
               a marketplace.
             </h2>
@@ -43,50 +42,49 @@ export function PositioningSection() {
       </div>
 
       {/* Three pillars below the image */}
-      <div style={{ backgroundColor: C.ivory, borderTop: `1px solid ${C.sageDark}` }}>
-      <div className="container py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[
-            {
-              num: "01",
-              title: "Your brand. Your relationship.",
-              body: "Credenza runs the infrastructure behind your program. Your team focuses on the business, not the paperwork.",
-            },
-            {
-              num: "02",
-              title: "Your margin, untouched.",
-              body: "We don't take a percentage of sales, transactions, or designer spend.",
-            },
-            {
-              num: "03",
-              title: "Verified once. Trusted everywhere.",
-              body: <>Designers verify a reusable profile once. Every vendor on the platform benefits. The data is verified. The decision is yours.</>,
-            },
-          ].map((item) => (
-            <div
-              key={item.num}
-              className="p-8"
-              style={{
-                border: `1px solid ${C.sageDark}`,
-                backgroundColor: "#ffffff",
-              }}
-            >
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "1.1rem", color: C.oliveMid, letterSpacing: "0.06em", fontWeight: 400, marginBottom: "1.25rem" }}>
-                {item.num}
+      <div className="bg-ivory border-t border-sage-dark">
+        <div className="container py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              {
+                num: "01",
+                title: "Your brand. Your relationship.",
+                body: "Credenza runs the infrastructure behind your program. Your team focuses on the business, not the paperwork.",
+              },
+              {
+                num: "02",
+                title: "Your margin, untouched.",
+                body: "We don't take a percentage of sales, transactions, or designer spend.",
+              },
+              {
+                num: "03",
+                title: "Verified once. Trusted everywhere.",
+                body: <>Designers verify a reusable profile once. Every vendor on the platform benefits. The data is verified. The decision is yours.</>,
+              },
+            ].map((item) => (
+              <div key={item.num} className="p-8 border border-sage-dark bg-white">
+                <div
+                  className="text-olive-mid font-normal mb-5"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "1.1rem", letterSpacing: "0.06em" }}
+                >
+                  {item.num}
+                </div>
+                <h3
+                  className="font-freight mb-3 text-charcoal"
+                  style={{ fontSize: "1.35rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className="text-charcoal-mid"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", lineHeight: 1.7 }}
+                >
+                  {item.body}
+                </p>
               </div>
-              <h3
-                className="font-freight mb-3"
-                style={{ fontSize: "1.35rem", color: C.charcoal, lineHeight: 1.2, letterSpacing: "-0.02em" }}
-              >
-                {item.title}
-              </h3>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", lineHeight: 1.7, color: C.charcoalMid }}>
-                {item.body}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

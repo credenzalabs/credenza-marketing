@@ -1,16 +1,11 @@
 import { Check, Lock, Shield } from "lucide-react";
-import { C } from "@/lib/constants";
 
 // ─── Security Strip ─────────────────────────────────────────────────────────────
 export function SecurityStrip() {
   return (
     <div
-      style={{
-        backgroundColor: C.forest,
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        position: "relative",
-        zIndex: 40,
-      }}
+      className="bg-forest relative z-40"
+      style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
     >
       <div className="container">
         <div
@@ -23,7 +18,7 @@ export function SecurityStrip() {
             { icon: <Check size={10} />, text: "No data sold. No third-party ad tracking." },
           ].map((item) => (
             <div key={item.text} className="flex items-center gap-1.5">
-              <span style={{ color: C.teal, flexShrink: 0 }}>{item.icon}</span>
+              <span className="text-teal shrink-0">{item.icon}</span>
               <span
                 style={{
                   fontFamily: "Inter, sans-serif",

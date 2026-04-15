@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
 
 // ─── Verification ────────────────────────────────────────────────────────────────
 export function VerificationSection() {
@@ -21,86 +20,98 @@ export function VerificationSection() {
   ];
 
   return (
-    <section ref={ref} className="reveal py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
+    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Copy */}
           <div className="lg:col-span-5">
             <Eyebrow>Verification engine</Eyebrow>
             <h2
-              className="font-freight mb-6"
-              style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, color: C.charcoal, letterSpacing: "-0.025em" }}
+              className="font-freight mb-6 text-charcoal"
+              style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
               Nine checks.
               <br />
-              <span className="italic" style={{ color: C.oliveMid }}>Zero manual follow-up.</span>
+              <span className="italic text-olive-mid">Zero manual follow-up.</span>
             </h2>
-            <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+            <p
+              className="mb-6 text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
               Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team spends their time on the business—not vetting applications.
             </p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: C.charcoalMid }}>
+            <p
+              className="text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
               The result: a trade program that protects its value—because every member is actually in the trade.
             </p>
             {/* Stat callout */}
-            <div
-              className="mt-8 flex items-center gap-5 px-5 py-4"
-              style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
-            >
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", fontWeight: 700, color: C.tealMid, lineHeight: 1, letterSpacing: "-0.03em", flexShrink: 0 }}>9</div>
+            <div className="mt-8 flex items-center gap-5 px-5 py-4 bg-teal-dim border border-teal-border">
+              <div
+                className="text-teal-mid font-bold leading-none shrink-0"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", letterSpacing: "-0.03em" }}
+              >
+                9
+              </div>
               <div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", fontWeight: 600, color: C.charcoal }}>Automated verification checks</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, marginTop: "2px" }}>Run in parallel on every profile. Expand each check to see what we verify.</div>
+                <div
+                  className="text-charcoal font-semibold"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem" }}
+                >
+                  Automated verification checks
+                </div>
+                <div
+                  className="text-charcoal-soft mt-0.5"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
+                >
+                  Run in parallel on every profile. Expand each check to see what we verify.
+                </div>
               </div>
             </div>
           </div>
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
-            <div className="border p-6" style={{ borderColor: C.sageDark, backgroundColor: "#ffffff" }}>
+            <div className="border border-sage-dark bg-white p-6">
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (
-                  <div key={item.label} className={i < checks.length - 1 ? "border-b" : ""} style={{ borderColor: C.sageDark }}>
+                  <div key={item.label} className={`border-sage-dark ${i < checks.length - 1 ? "border-b" : ""}`}>
                     <button
                       onClick={() => setOpenIdx(isOpen ? null : i)}
-                      className="w-full flex items-center gap-4 py-4 text-left"
-                      style={{ background: "none", border: "none", cursor: "pointer", padding: "1.1rem 0" }}
+                      className="w-full flex items-center gap-4 text-left bg-transparent border-none cursor-pointer px-0 py-[1.1rem]"
                     >
-                      <div
-                        className="flex items-center justify-center flex-shrink-0"
-                        style={{ width: "22px", height: "22px", backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}` }}
-                      >
-                        <Check size={11} style={{ color: C.tealMid }} />
+                      <div className="flex items-center justify-center shrink-0 w-[22px] h-[22px] bg-teal-dim border border-teal-border">
+                        <Check size={11} className="text-teal-mid" />
                       </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem", fontWeight: 600, color: C.charcoal, flex: 1 }}>
+                      <span
+                        className="text-charcoal font-semibold flex-1"
+                        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }}
+                      >
                         {item.label}
                       </span>
-                      <div
-                        className="ml-auto flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1 mr-3"
-                        style={{ backgroundColor: C.tealDim, border: `1px solid ${C.tealBorder}`, borderRadius: "0" }}
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: C.tealMid }} />
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: C.tealMid, fontWeight: 600, letterSpacing: "0.06em" }}>VERIFIED</span>
+                      <div className="ml-auto shrink-0 flex items-center gap-1.5 px-2.5 py-1 mr-3 bg-teal-dim border border-teal-border rounded-none">
+                        <div className="w-1.5 h-1.5 rounded-full bg-teal-mid" />
+                        <span
+                          className="text-teal-mid font-semibold"
+                          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.06em" }}
+                        >
+                          VERIFIED
+                        </span>
                       </div>
                       <ChevronDown
                         size={14}
-                        style={{
-                          color: C.charcoalSoft,
-                          flexShrink: 0,
-                          transition: "transform 0.2s ease",
-                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                        }}
+                        className={`text-charcoal-soft shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                       />
                     </button>
                     {isOpen && (
                       <div
+                        className="text-charcoal-soft pb-4 pl-[38px]"
                         style={{
                           fontFamily: "Inter, sans-serif",
                           fontSize: "0.82rem",
-                          color: C.charcoalSoft,
                           lineHeight: 1.65,
-                          paddingBottom: "1rem",
-                          paddingLeft: "38px",
                         }}
                       >
                         {item.detail}

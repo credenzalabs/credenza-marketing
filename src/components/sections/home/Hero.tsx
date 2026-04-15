@@ -21,54 +21,49 @@ export function Hero() {
   const visible = true;
 
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "#FFFFFF", paddingTop: "64px", minHeight: "100vh", display: "flex", alignItems: "center" }}
-    >
+    <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-white">
       {/* Subtle dot texture */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle, ${C.sageDark} 1px, transparent 1px)`,
-        backgroundSize: "32px 32px",
-        opacity: 0.35,
-      }} />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-35"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${C.sageDark} 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
+        }}
+      />
 
       <div className="container relative z-10 py-12 md:py-16">
         {/* Editorial layout: text-heavy left, full-bleed image right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch" style={{ alignItems: "stretch" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
 
           {/* Left: Copy—5 columns */}
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
             <Eyebrow>The Standard for Trade Programs</Eyebrow>
 
             <h1
-              className="font-freight mb-8"
+              className="font-freight mb-8 leading-none text-charcoal"
               style={{
                 fontSize: "clamp(2.4rem, 3.8vw, 4rem)",
-                lineHeight: 1.0,
-                color: C.charcoal,
                 letterSpacing: "-0.03em",
               }}
             >
               The infrastructure
               <br />
-              behind every <span className="italic" style={{ color: C.oliveMid }}>distinguished</span>
+              behind every <span className="italic text-olive-mid">distinguished</span>
               <br />
               trade program.
             </h1>
 
             {/* Mobile-only hero image after headline */}
-            <div className="lg:hidden mb-8 overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            <div className="lg:hidden mb-8 overflow-hidden aspect-[4/3]">
               <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ objectPosition: hero.position }} />
             </div>
 
             <p
-              className="mb-10"
+              className="mb-10 text-charcoal-mid max-w-[400px]"
               style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "1rem",
                 lineHeight: 1.75,
-                color: C.charcoalMid,
-                maxWidth: "400px",
               }}
             >
               Every designer pre-vetted. Every certificate compliant. Every customer
@@ -79,19 +74,15 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
               <a
                 href="#"
-                className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: C.teal, color: C.forest, outline: "0.5px solid #99b8bd", outlineOffset: "2px", borderRadius: "0" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
+                className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
               >
                 Request access
               </a>
               <a
                 href="#"
-                className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.charcoal, border: `1px solid ${C.sageDark}`, borderRadius: "0", backgroundColor: "transparent" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = C.forest; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = C.sageDark; }}
+                className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-transparent text-charcoal border border-sage-dark hover:border-forest"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em" }}
               >
                 See how it works
               </a>
@@ -105,8 +96,11 @@ export function Hero() {
                 { icon: <Store size={12} />, text: "Shopify integration · Auto-creates & -exempts trade accounts" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2.5">
-                  <span style={{ color: C.charcoalSoft, flexShrink: 0 }}>{item.icon}</span>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", color: C.charcoalSoft, letterSpacing: "0.02em" }}>
+                  <span className="shrink-0 text-charcoal-soft">{item.icon}</span>
+                  <span
+                    className="text-charcoal-soft"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.02em" }}
+                  >
                     {item.text}
                   </span>
                 </div>
@@ -115,12 +109,12 @@ export function Hero() {
           </div>
 
           {/* Right: Photography — desktop only */}
-          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block" style={{ aspectRatio: "1/1" }}>
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
             <img
               src={hero.src}
               alt={hero.alt}
-              className="w-full h-full object-cover"
-              style={{ display: "block", objectPosition: hero.position }}
+              className="w-full h-full object-cover block"
+              style={{ objectPosition: hero.position }}
             />
             <PhotoCredit name={hero.credit} />
           </div>
@@ -129,8 +123,8 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
-        <div style={{ width: "1px", height: "40px", backgroundColor: C.sageDark }} />
-        <ChevronDown size={14} style={{ color: C.charcoalSoft }} />
+        <div className="w-px h-10 bg-sage-dark" />
+        <ChevronDown size={14} className="text-charcoal-soft" />
       </div>
     </section>
   );

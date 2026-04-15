@@ -61,7 +61,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Credenza brand tokens */
+  /* Credenza brand tokens (original semantic names — kept for compatibility) */
   --color-brand-midnight:   #21353f;
   --color-brand-sky:        #b8ccd2;
   --color-brand-olive:      #6f6e4b;
@@ -69,6 +69,37 @@
   --color-brand-ink:        #1c1c19;
   --color-brand-stone:      #6a6a62;
   --color-brand-border:     #d8d4ca;
+
+  /* Full C palette — mirrors the keys of the `C` object in src/lib/constants.ts.
+     Each entry generates bg-*, text-*, border-*, outline-* etc. utility classes.
+     NOTE: C.white = #f0f0ec is NOT true white — use `ivory` (same hex) instead,
+     so that Tailwind's built-in `white` keeps meaning #ffffff. */
+  --color-teal:             #b8ccd2;
+  --color-teal-light:       #d8e8ec;
+  --color-teal-mid:         #7aa0a8;
+  --color-teal-dim:         rgba(184, 204, 210, 0.15);
+  --color-teal-border:      rgba(184, 204, 210, 0.4);
+  --color-forest:           #21353f;
+  --color-forest-dim:       rgba(33, 53, 63, 0.06);
+  --color-forest-border:    rgba(33, 53, 63, 0.18);
+  --color-brown:            #6f6e4b;
+  --color-brown-light:      #dddec4;
+  --color-brown-dim:        rgba(111, 110, 75, 0.1);
+  --color-charcoal:         #1c1c19;
+  --color-charcoal-mid:     #3a3a34;
+  --color-charcoal-soft:    #6a6a62;
+  --color-ivory:            #f0f0ec;
+  --color-page-white:       #fdfcf9;
+  --color-sage:             #e4e1d8;
+  --color-sage-dark:        #d8d4ca;
+  --color-olive:            #6f6e4b;
+  --color-olive-mid:        #8a8a5e;
+  --color-olive-dim:        rgba(111, 110, 75, 0.1);
+  --color-olive-border:     rgba(111, 110, 75, 0.3);
+  --color-olive-light:      #dddec4;
+  --color-cobalt:           #7aa0a8;
+  --color-cobalt-dim:       rgba(184, 204, 210, 0.08);
+  --color-cobalt-border:    rgba(184, 204, 210, 0.25);
 }
 
 :root {

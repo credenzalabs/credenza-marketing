@@ -1,5 +1,4 @@
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
 
 // ─── Logo Bar ────────────────────────────────────────────────────────────────────
 export function LogoBar() {
@@ -8,26 +7,26 @@ export function LogoBar() {
   return (
     <section
       ref={ref}
-      className="reveal py-10 border-y"
-      style={{ borderColor: C.sage, backgroundColor: "#FFFFFF" }}
+      className="reveal py-10 border-y border-sage bg-white"
     >
       <div className="container">
         <div className="flex flex-col items-center gap-5">
-          <span style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "0.65rem",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase" as const,
-            color: C.charcoalSoft,
-          }}>
+          <span
+            className="uppercase text-charcoal-soft"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "0.65rem",
+              letterSpacing: "0.14em",
+            }}
+          >
             Trusted by
           </span>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
             {names.map((name) => (
               <span
                 key={name}
-                className="font-freight"
-                style={{ fontSize: "1rem", color: C.oliveMid, letterSpacing: "-0.01em" }}
+                className="font-freight text-olive-mid"
+                style={{ fontSize: "1rem", letterSpacing: "-0.01em" }}
               >
                 {name}
               </span>
