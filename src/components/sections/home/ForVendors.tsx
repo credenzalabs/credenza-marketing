@@ -13,6 +13,7 @@ export function ForVendors() {
         <img
           src="/benjamin-vandiver-west-village.webp"
           alt="West Village interior by Benjamin Vandiver"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center center" }}
         />

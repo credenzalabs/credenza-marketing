@@ -13,6 +13,7 @@ export function PositioningSection() {
         <img
           src={IMAGES.nickOlsonReidRolls}
           alt="Elegant interior"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div

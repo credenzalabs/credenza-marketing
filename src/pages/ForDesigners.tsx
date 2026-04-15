@@ -177,7 +177,7 @@ function TaxStrategy() {
         {/* Cert generator screenshot + stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start border border-sage-dark">
           <div className="lg:col-span-9 overflow-hidden relative">
-            <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" className="w-full h-auto block" />
+            <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" loading="lazy" className="w-full h-auto block" />
             <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 border border-teal-border" style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(8px)" }}>
               <Zap size={12} className="text-teal-mid" />
               <span className="font-semibold uppercase text-teal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.08em" }}>Generated in seconds</span>
@@ -221,7 +221,7 @@ function AccountManagement() {
             </h2>
             {/* Mobile-only image after headline */}
             <div className="lg:hidden mb-6 overflow-hidden border border-sage-dark">
-              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" className="w-full h-auto block" />
+              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
             </div>
             <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Vendors, workrooms, installers, fabric houses—every trade
@@ -236,7 +236,7 @@ function AccountManagement() {
 
           <div className="lg:col-span-7 hidden lg:block">
             <div className="overflow-hidden border border-sage-dark">
-              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" className="w-full h-auto block" />
+              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
             </div>
           </div>
         </div>
@@ -269,7 +269,7 @@ function VerifiedProfile() {
     <section ref={ref} className="reveal bg-white">
       {/* Full-bleed image with text overlay + profile card mockup */}
       <div className="relative overflow-hidden min-h-[55vh]">
-        <img src="/emily-jones-nightstand.webp" alt="Bedroom by Emily Jones Interiors" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+        <img src="/emily-jones-nightstand.webp" alt="Bedroom by Emily Jones Interiors" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
         <PhotoCredit name="Emily Jones Interiors" />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.7) 50%, rgba(33,53,63,0.2) 100%)` }} />
         <div className="relative z-10 container py-24 md:py-32">
@@ -291,7 +291,7 @@ function VerifiedProfile() {
 
             {/* Real profile screenshot */}
             <div className="lg:col-span-6 lg:col-start-7">
-              <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" className="w-full h-auto block ml-auto max-w-[560px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+              <img src="/profile-screenshot.png" alt="Trade profile showing business details, memberships, licenses, and trade references" loading="lazy" className="w-full h-auto block ml-auto max-w-[560px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
             </div>
           </div>
         </div>
@@ -357,7 +357,7 @@ function FirmTeam() {
             </h2>
             {/* Mobile-only image after headline */}
             <div className="lg:hidden mb-6">
-              <img src="/team-members-screenshot.png" alt="Team members panel" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+              <img src="/team-members-screenshot.png" alt="Team members panel" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Every team member gets their own login with the right level
@@ -386,7 +386,7 @@ function FirmTeam() {
 
           {/* Team members screenshot — desktop only */}
           <div className="lg:col-span-7 hidden lg:block">
-            <img src="/team-members-screenshot.png" alt="Team members panel showing owner and team member roles" className="w-full h-auto block ml-auto max-w-[620px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
+            <img src="/team-members-screenshot.png" alt="Team members panel showing owner and team member roles" loading="lazy" className="w-full h-auto block ml-auto max-w-[620px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
           </div>
         </div>
       </div>
@@ -413,7 +413,7 @@ function Network() {
             </h2>
             {/* Mobile-only image after headline */}
             <div className="lg:hidden mb-6">
-              <img src="/one-click-apply-screenshot.png" alt="One-click trade application" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+              <img src="/one-click-apply-screenshot.png" alt="One-click trade application" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
               Credenza is building a network of vendors whose trade programs are
@@ -442,7 +442,7 @@ function Network() {
           <div className="lg:col-span-7 hidden lg:flex flex-col gap-0">
             {/* One-click apply screenshot — desktop only */}
             <div>
-              <img src="/one-click-apply-screenshot.png" alt="One-click trade application showing verified profile and express apply flow" className="w-full h-auto block ml-auto max-w-[560px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+              <img src="/one-click-apply-screenshot.png" alt="One-click trade application showing verified profile and express apply flow" loading="lazy" className="w-full h-auto block ml-auto max-w-[560px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
             </div>
           </div>
         </div>
@@ -484,7 +484,7 @@ function CTASection() {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-sage-dark">
           <div className="relative overflow-hidden min-h-[250px]">
-            <img src="/sarah-bartholomew-living-room.webp" alt="Living room by Sarah Bartholomew" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "15% center" }} />
+            <img src="/sarah-bartholomew-living-room.webp" alt="Living room by Sarah Bartholomew" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "15% center" }} />
             <PhotoCredit name="Design by Sarah Bartholomew Design. Photo by Melanie Acevedo" />
             <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
           </div>
@@ -553,7 +553,7 @@ function Footer() {
       <div className="container py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2">
-            <img src={LOGO_BLACK} alt="Credenza" className="h-8 w-auto mb-4" />
+            <img src={LOGO_BLACK} alt="Credenza" loading="lazy" className="h-8 w-auto mb-4" />
             <p className="text-charcoal-soft max-w-[240px]" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7 }}>
               The design trade's operating system.
             </p>

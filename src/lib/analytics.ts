@@ -5,8 +5,6 @@ declare global {
   }
 }
 
-const GA_ID = "G-6PZS5Z3PCW";
-
 function track(event: string, params: Record<string, unknown> = {}) {
   window.gtag?.("event", event, params);
 }

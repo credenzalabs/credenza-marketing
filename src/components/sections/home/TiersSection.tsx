@@ -127,8 +127,8 @@ export function TiersSection() {
                       {tier.isBase && <div className="rounded-full w-2 h-2" style={{ backgroundColor: "#A9CFD3" }} />}
                     </div>
                   </div>
-                  <button style={{ color: "#c4c4c4" }}>
-                    <X size={14} />
+                  <button type="button" aria-hidden="true" tabIndex={-1} style={{ color: "#c4c4c4" }}>
+                    <X size={14} aria-hidden="true" />
                   </button>
                 </div>
               ))}

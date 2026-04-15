@@ -40,6 +40,7 @@ export function SecuritySection() {
           <img
             src="/thomas-loof-ombre-living.jpg"
             alt="Living room by Amy Lau Design"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: "center 60%" }}
           />

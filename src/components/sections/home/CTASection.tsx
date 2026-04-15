@@ -15,6 +15,7 @@ export function CTASection() {
             <img
               src="/studio-dorion-pound-ridge-hires.jpg"
               alt="Studio Dorion Pound Ridge entry"
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
               style={{ objectPosition: "center center" }}
             />

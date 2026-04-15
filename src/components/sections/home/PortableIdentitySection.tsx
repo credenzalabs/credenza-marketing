@@ -58,12 +58,14 @@ export function PortableIdentitySection() {
             <img
               src="/profile-screenshot.png"
               alt="Trade profile showing business details, memberships, licenses, and trade references"
+              loading="lazy"
               className="w-full h-auto block max-w-[560px] ml-auto"
               style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}
             />
             <img
               src="/discover-brands-screenshot.png"
               alt="Discover more brands on Credenza with one-click apply"
+              loading="lazy"
               className="w-full h-auto block max-w-[560px] ml-auto"
               style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }}
             />

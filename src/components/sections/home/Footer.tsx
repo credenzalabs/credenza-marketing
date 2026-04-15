@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2">
-            <img src={LOGO_BLACK} alt="Credenza" className="h-8 w-auto mb-4" />
+            <img src={LOGO_BLACK} alt="Credenza" loading="lazy" className="h-8 w-auto mb-4" />
             <p
               className="text-charcoal-soft max-w-[240px]"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7 }}
@@ -85,10 +85,11 @@ export function Footer() {
                 </h2>
                 <button
                   type="button"
+                  aria-label="Close privacy policy"
                   onClick={() => document.getElementById('privacy-modal')?.closest('dialog')?.close()}
                   className="bg-transparent border-none cursor-pointer text-lg text-charcoal-soft"
                 >
-                  ✕
+                  <span aria-hidden="true">✕</span>
                 </button>
               </div>
               <div
@@ -162,10 +163,11 @@ export function Footer() {
                 </h2>
                 <button
                   type="button"
+                  aria-label="Close terms of use"
                   onClick={() => document.getElementById('terms-modal')?.closest('dialog')?.close()}
                   className="bg-transparent border-none cursor-pointer text-lg text-charcoal-soft"
                 >
-                  ✕
+                  <span aria-hidden="true">✕</span>
                 </button>
               </div>
               <div

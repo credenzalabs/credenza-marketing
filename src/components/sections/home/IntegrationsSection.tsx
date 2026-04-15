@@ -14,7 +14,7 @@ export function IntegrationsSection() {
           {/* Image */}
           <div className="lg:col-span-5 relative">
             <div className="overflow-hidden relative aspect-[4/5]">
-              <img src={IMAGES.alisonRoseKitchen} alt="Interior installation" className="w-full h-full object-cover" />
+              <img src={IMAGES.alisonRoseKitchen} alt="Interior installation" loading="lazy" className="w-full h-full object-cover" />
               <PhotoCredit name="Designed by Alison Rose NY · Photo by Reid Rolls" />
             </div>
 

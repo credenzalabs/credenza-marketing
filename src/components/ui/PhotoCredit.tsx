@@ -6,6 +6,8 @@ export function PhotoCredit({ name, dark = false }: { name: string; dark?: boole
     <Tooltip>
       <TooltipTrigger asChild>
         <button
+          type="button"
+          aria-label={`Photo credit: ${name}`}
           className="absolute bottom-3 right-3 z-20 flex items-center justify-center"
           style={{
             width: "22px",
@@ -16,7 +18,7 @@ export function PhotoCredit({ name, dark = false }: { name: string; dark?: boole
             cursor: "default",
           }}
         >
-          <Info size={12} color={dark ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.65)"} />
+          <Info size={12} aria-hidden="true" color={dark ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.65)"} />
         </button>
       </TooltipTrigger>
       <TooltipContent

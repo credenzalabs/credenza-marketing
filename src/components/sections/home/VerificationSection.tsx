@@ -79,10 +79,13 @@ export function VerificationSection() {
                 return (
                   <div key={item.label} className={`border-sage-dark ${i < checks.length - 1 ? "border-b" : ""}`}>
                     <button
+                      type="button"
                       onClick={() => setOpenIdx(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      aria-controls={`verification-detail-${i}`}
                       className="w-full flex items-center gap-4 text-left bg-transparent border-none cursor-pointer px-0 py-[1.1rem]"
                     >
-                      <div className="flex items-center justify-center shrink-0 w-[22px] h-[22px] bg-teal-dim border border-teal-border">
+                      <div aria-hidden="true" className="flex items-center justify-center shrink-0 w-[22px] h-[22px] bg-teal-dim border border-teal-border">
                         <Check size={11} className="text-teal-mid" />
                       </div>
                       <span
@@ -107,6 +110,7 @@ export function VerificationSection() {
                     </button>
                     {isOpen && (
                       <div
+                        id={`verification-detail-${i}`}
                         className="text-charcoal-soft pb-4 pl-[38px]"
                         style={{
                           fontFamily: "Inter, sans-serif",

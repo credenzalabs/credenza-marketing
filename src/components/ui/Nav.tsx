@@ -136,17 +136,22 @@ export function Nav({
           </div>
 
           <button
+            type="button"
             className="md:hidden p-2"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="primary-mobile-menu"
             style={{ color: C.forest }}
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
         <div
+          id="primary-mobile-menu"
           className="md:hidden border-t"
           style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}
         >
