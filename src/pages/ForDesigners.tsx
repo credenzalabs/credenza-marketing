@@ -14,30 +14,13 @@
  * thin 1px rules, asymmetric layouts, restrained color.
  */
 
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, FileText, Info, Shield, Users, Zap, Menu, X, CreditCard, ChevronRight } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-
-const C = {
-  teal:         "#b8ccd2",
-  tealMid:      "#7aa0a8",
-  tealDim:      "rgba(184,204,210,0.15)",
-  tealBorder:   "rgba(184,204,210,0.4)",
-  forest:       "#21353f",
-  charcoal:     "#1c1c19",
-  charcoalMid:  "#3a3a34",
-  charcoalSoft: "#6a6a62",
-  ivory:        "#f0f0ec",
-  sage:         "#e4e1d8",
-  sageDark:     "#d8d4ca",
-  white:        "#f0f0ec",
-  olive:        "#6f6e4b",
-  oliveMid:     "#8a8a5e",
-  oliveDim:     "rgba(111,110,75,0.10)",
-  oliveBorder:  "rgba(111,110,75,0.28)",
-};
-
-const LOGO_BLACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png";
+import { useEffect, useState } from "react";
+import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight } from "lucide-react";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Nav } from "@/components/ui/Nav";
+import { useReveal } from "@/hooks/useReveal";
+import { C, LOGO_BLACK } from "@/lib/constants";
 
 const IMAGES = {
   // Credited designer project photography
@@ -50,146 +33,6 @@ const IMAGES = {
   kavanaughLakeside:         "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp",
 };
 
-// --- Photo credit tooltip ---
-function PhotoCredit({ name, dark = false }: { name: string; dark?: boolean }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <button
-          className="absolute bottom-3 right-3 z-20 flex items-center justify-center"
-          style={{
-            width: "22px", height: "22px", borderRadius: "50%",
-            border: dark ? "1px solid rgba(0,0,0,0.2)" : "1px solid rgba(255,255,255,0.35)",
-            background: dark ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0.25)",
-            cursor: "default",
-          }}
-        >
-          <Info size={12} color={dark ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.65)"} />
-        </button>
-      </TooltipTrigger>
-      <TooltipContent
-        side="left"
-        sideOffset={6}
-        style={{
-          fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.06em",
-          textTransform: "uppercase", padding: "4px 8px",
-          background: "rgba(26,26,26,0.85)", color: "rgba(255,255,255,0.85)",
-          border: "none", borderRadius: "0", backdropFilter: "blur(4px)",
-        }}
-      >
-        {name}
-      </TooltipContent>
-    </Tooltip>
-  );
-}
-
-// --- Scroll reveal ---
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
-      { threshold: 0.08 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return ref;
-}
-
-// --- Eyebrow ---
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  const lineColor = light ? "rgba(240,240,236,0.3)" : C.charcoalSoft;
-  const textColor = light ? "rgba(240,240,236,0.55)" : C.charcoalSoft;
-  return (
-    <div className="flex items-center gap-3 mb-6">
-      <div style={{ width: "2rem", height: "1px", backgroundColor: lineColor, flexShrink: 0 }} />
-      <span style={{
-        fontFamily: "Inter, sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em",
-        textTransform: "uppercase" as const, color: textColor, fontWeight: 600,
-      }}>
-        {children}
-      </span>
-    </div>
-  );
-}
-
-// --- Navigation ---
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  const navLinks = ["For Designers", "For Vendors"];
-
-  return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-400"
-      style={{
-        backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? `0.5px solid ${C.sageDark}` : "0.5px solid transparent",
-      }}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between" style={{ height: scrolled ? "64px" : "80px", transition: "height 0.3s ease" }}>
-          <a href={`${prefix}/`} className="no-underline flex items-center flex-shrink-0">
-            <img src={LOGO_BLACK} alt="Credenza" style={{ height: scrolled ? "36px" : "44px", width: "auto", maxWidth: "180px", objectFit: "contain", transition: "height 0.3s ease", flexShrink: 0 }} />
-          </a>
-
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`}
-                className="no-underline transition-colors duration-200"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoalMid, fontWeight: item === "For Designers" ? 600 : 500 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = item === "For Designers" ? C.olive : C.charcoalMid)}
-              >{item}</a>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="no-underline transition-colors duration-200"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", color: C.charcoalMid, fontWeight: 500 }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalMid)}
-            >Sign in</a>
-            <a href="/" className="no-underline inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", fontWeight: 400, letterSpacing: "0.1em", textTransform: "uppercase" as const, backgroundColor: C.teal, color: C.forest, outline: "0.5px solid #99b8bd", outlineOffset: "2px", borderRadius: "0" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#99b8bd"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = C.teal; }}
-            >Get Started</a>
-          </div>
-
-          <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: C.forest }}>
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {menuOpen && (
-        <div className="md:hidden border-t" style={{ backgroundColor: "#FFFFFF", borderColor: C.sage }}>
-          <div className="container py-6 flex flex-col gap-5">
-            {navLinks.map((item) => (
-              <a key={item} href={item === "For Designers" ? `${prefix}/for-designers` : `${prefix}/`} className="no-underline"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", letterSpacing: "0.06em", textTransform: "uppercase" as const, color: item === "For Designers" ? C.olive : C.charcoal, fontWeight: 500 }}>
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
 
 
 /* =========================================================================
@@ -763,7 +606,7 @@ function Footer() {
 export default function ForDesigners() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <Nav />
+      <Nav activePage="designers" ctaLabel="Get Started" ctaHref="/" showMobileCta={false} />
       <Hero />
       <AccountManagement />
       <TaxStrategy />

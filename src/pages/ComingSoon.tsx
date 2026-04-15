@@ -1,57 +1,8 @@
 import { useState } from "react";
-import { Info } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { C, LOGO_BLACK, ACCESS_REQUEST_URL } from "@/lib/constants";
 
-const LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png";
 const BG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-park-slope-brownstone_543060ca.avif";
-
-function PhotoCredit({ name }: { name: string }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <button
-          className="absolute bottom-3 right-3 z-20 flex items-center justify-center"
-          style={{
-            width: "22px", height: "22px", borderRadius: "50%",
-            border: "1px solid rgba(255,255,255,0.35)",
-            background: "rgba(0,0,0,0.25)", cursor: "default",
-          }}
-        >
-          <Info size={12} color="rgba(255,255,255,0.65)" />
-        </button>
-      </TooltipTrigger>
-      <TooltipContent
-        side="left"
-        sideOffset={6}
-        style={{
-          fontFamily: "Inter, sans-serif", fontSize: "0.65rem",
-          letterSpacing: "0.06em", textTransform: "uppercase",
-          padding: "4px 8px", background: "rgba(26,26,26,0.85)",
-          color: "rgba(255,255,255,0.85)", border: "none",
-          borderRadius: "0", backdropFilter: "blur(4px)",
-        }}
-      >
-        {name}
-      </TooltipContent>
-    </Tooltip>
-  );
-}
-
-const C = {
-  charcoal: "#2c2c2c",
-  charcoalMid: "#555",
-  charcoalSoft: "#777",
-  forest: "#21353f",
-  teal: "#b8ccd2",
-  olive: "#6f6e4b",
-  oliveMid: "#8a8960",
-  sage: "#dddbd2",
-  sageDark: "#c8c5b8",
-  ivory: "#f8f7f2",
-  white: "#ffffff",
-};
-
-const ACCESS_REQUEST_URL = "https://hdcyqdxksgnexbtfxsdk.supabase.co/functions/v1/vendor-request-access";
 
 export default function ComingSoon() {
   const [form, setForm] = useState({ name: "", email: "", company: "" });
@@ -73,7 +24,7 @@ export default function ComingSoon() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row" style={{ backgroundColor: C.white }}>
+    <div className="min-h-screen flex flex-col lg:flex-row" style={{ backgroundColor: "#ffffff" }}>
       {/* Mobile: top image */}
       <div className="lg:hidden relative overflow-hidden" style={{ height: "35vh", minHeight: "200px" }}>
         <img
@@ -99,7 +50,7 @@ export default function ComingSoon() {
       {/* Right: content */}
       <div className="w-full lg:w-1/2 lg:ml-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-20 py-10 lg:py-16 lg:min-h-screen lg:max-h-screen lg:overflow-hidden">
         <div style={{ maxWidth: "520px" }}>
-          <img src={LOGO} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem", marginTop: "1rem" }} />
+          <img src={LOGO_BLACK} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem", marginTop: "1rem" }} />
 
           <div
             className="flex items-center gap-2 mb-8"
@@ -154,7 +105,7 @@ export default function ComingSoon() {
                     fontFamily: "Inter, sans-serif",
                     fontSize: "0.875rem",
                     border: `1px solid ${C.sageDark}`,
-                    backgroundColor: C.white,
+                    backgroundColor: "#ffffff",
                     color: C.charcoal,
                     borderRadius: "0",
                   }}
