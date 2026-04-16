@@ -13,8 +13,8 @@ export function CTASection() {
           {/* Left: Image — mobile top, desktop left */}
           <div className="relative overflow-hidden min-h-[280px]">
             <img
-              src="/studio-dorion-pound-ridge-hires.jpg"
-              alt="Studio Dorion Pound Ridge entry"
+              src="/cece-bowman-wsj-flowers.jpg"
+              alt="Interior with flowers by Cece Bowman"
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
               style={{ objectPosition: "center center" }}
@@ -23,7 +23,7 @@ export function CTASection() {
               className="absolute inset-0 hidden lg:block"
               style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }}
             />
-            <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" dark />
+            <PhotoCredit name="Design by Cece Bowman · Photo via WSJ Off Duty" dark />
           </div>
 
           {/* Right: Form */}

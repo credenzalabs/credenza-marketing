@@ -18,7 +18,7 @@ export function PositioningSection() {
         />
         <div
           className="absolute inset-0"
-          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.75) 50%, rgba(33,53,63,0.25) 100%)` }}
+          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.82) 0%, rgba(33,53,63,0.55) 50%, rgba(33,53,63,0.1) 100%)` }}
         />
         <PhotoCredit name="Designed by Nick Olsen · Photo by Reid Rolls" />
         <div className="relative z-10 container py-24 md:py-32">

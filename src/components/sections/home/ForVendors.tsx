@@ -11,17 +11,17 @@ export function ForVendors() {
       {/* Full-bleed header image */}
       <div className="relative overflow-hidden min-h-[70vh]">
         <img
-          src="/benjamin-vandiver-west-village.webp"
-          alt="West Village interior by Benjamin Vandiver"
+          src="/sarah-bartholomew-living-room.webp"
+          alt="Living room by Sarah Bartholomew"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center center" }}
         />
         <div
           className="absolute inset-0"
-          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.88) 0%, rgba(33,53,63,0.6) 50%, rgba(33,53,63,0.1) 100%)` }}
+          style={{ background: `linear-gradient(to right, rgba(33,53,63,0.7) 0%, rgba(33,53,63,0.4) 50%, rgba(33,53,63,0.05) 100%)` }}
         />
-        <PhotoCredit name="Design by Benjamin Vandiver · Photo by Joshua McHugh" />
+        <PhotoCredit name="Design by Sarah Bartholomew · Photo by Melanie Acevedo" />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>For vendors & showrooms</Eyebrow>

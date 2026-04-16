@@ -15,7 +15,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight, Copy } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
@@ -40,7 +40,7 @@ const IMAGES = {
    ========================================================================= */
 const HERO_IMAGES = [
   { src: IMAGES.kavanaughLakeside, alt: "Interior by Ellen Kavanaugh", position: "center 40%", credit: "Ellen Kavanaugh Interiors" },
-  { src: "/marea-clark-entry.webp", alt: "Entry by Marea Clark", position: "center center", credit: "Marea Clark Interiors" },
+  { src: "/studio-dorion-pound-ridge-hires.jpg", alt: "Studio Dorion Pound Ridge entry", position: "center center", credit: "Design by Studio Dorion · Photo by Ethan Harrington" },
 ];
 
 function Hero() {
@@ -175,26 +175,112 @@ function TaxStrategy() {
         </div>
 
         {/* Cert generator screenshot + stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start border border-sage-dark">
-          <div className="lg:col-span-9 overflow-hidden relative">
+        <div className="relative">
+          <div className="overflow-hidden border border-sage-dark relative">
             <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" loading="lazy" className="w-full h-auto block" />
             <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 border border-teal-border" style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(8px)" }}>
               <Zap size={12} className="text-teal-mid" />
               <span className="font-semibold uppercase text-teal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.08em" }}>Generated in seconds</span>
             </div>
           </div>
-          <div className="lg:col-span-3 flex flex-col h-full border-l border-sage-dark">
-            {[
-              { stat: "39", label: "state forms supported" },
-              { stat: "45", label: "taxable states covered" },
-              { stat: "MTC + SST", label: "cross-state strategies" },
-              { stat: "Auto", label: "expiration monitoring" },
-            ].map((item, i) => (
-              <div key={item.label} className={`flex-1 px-6 py-6 ${i < 3 ? "border-b border-sage-dark" : ""}`}>
-                <div className="font-light text-charcoal mb-1" style={{ fontFamily: "Inter, sans-serif", fontSize: "1.5rem", letterSpacing: "-0.02em" }}>{item.stat}</div>
-                <div className="text-charcoal-soft" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", letterSpacing: "0.02em" }}>{item.label}</div>
+
+          {/* Certificate Vault overlay — static mock */}
+          <div
+            className="absolute hidden lg:block pointer-events-none select-none bg-white"
+            style={{
+              width: "480px",
+              bottom: "-40px",
+              right: "-16px",
+              border: "1px solid #e0dcd4",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08)",
+              zIndex: 10,
+              fontFamily: "Inter, sans-serif",
+              fontSize: "12px",
+            }}
+          >
+            {/* Vault header */}
+            <div className="px-5 pt-5 pb-4">
+              <span
+                className="uppercase font-semibold"
+                style={{ fontSize: "0.55rem", letterSpacing: "0.1em", color: "#9a978f" }}
+              >
+                Certificate Vault
+              </span>
+              <h4
+                className="font-freight italic"
+                style={{ fontSize: "1.15rem", color: "#1A1A1A", letterSpacing: "-0.02em", lineHeight: 1.2, marginTop: "4px" }}
+              >
+                Your Resale Certificates
+              </h4>
+              <p style={{ fontSize: "10px", color: "#6a6a62", marginTop: "2px" }}>H2O Interiors</p>
+            </div>
+
+            {/* Stats bar */}
+            <div className="flex mx-5 mb-4" style={{ border: "1px solid #e0dcd4" }}>
+              <div className="flex-1 px-4 py-3" style={{ borderRight: "1px solid #e0dcd4" }}>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Shield size={10} style={{ color: "#6f6e4b" }} />
+                  <span style={{ fontSize: "9px", color: "#6f6e4b", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Secured</span>
+                </div>
+                <div style={{ fontSize: "20px", color: "#1A1A1A", fontWeight: 300 }}>6</div>
+                <div style={{ fontSize: "9px", color: "#9a978f" }}>certificates across 4 states, 3 vendors</div>
               </div>
-            ))}
+              <div className="px-4 py-3 flex flex-col items-center justify-center" style={{ minWidth: "80px" }}>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Shield size={10} style={{ color: "#3a6e70" }} />
+                  <span style={{ fontSize: "9px", color: "#3a6e70", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Active</span>
+                </div>
+                <div style={{ fontSize: "20px", color: "#1A1A1A", fontWeight: 300 }}>5</div>
+              </div>
+            </div>
+
+            {/* Cert rows */}
+            <div className="px-5 pb-4">
+              {[
+                { state: "New York", vendor: "Mercer Lighting", form: "NY ST-120", signed: "Apr 10, 2026", validity: "Valid Until Revoked", categories: "Lighting, Furniture" },
+                { state: "New York", vendor: "Atelier Sands", form: "NY ST-120", signed: "Apr 8, 2026", validity: "Valid Until Revoked", categories: "Wallcovering, Fabric" },
+                { state: "Connecticut", vendor: "Mercer Lighting", form: "CT CERT-100", signed: "Apr 10, 2026", validity: "Valid Until Revoked", categories: "Lighting, Furniture" },
+                { state: "Florida", vendor: "Atelier Sands", form: "FL DR-14", signed: "Jan 15, 2025", validity: "Expires May 2026", categories: "Wallcovering, Fabric", expiring: true },
+              ].map((cert, i) => (
+                <div
+                  key={i}
+                  className="py-3"
+                  style={{ borderTop: i === 0 ? "1px solid #e0dcd4" : "1px solid #f0ede8" }}
+                >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span style={{ fontSize: "12px", color: "#1A1A1A", fontWeight: 600 }}>{cert.state}</span>
+                    <span style={{ color: "#9a978f" }}>—</span>
+                    <span style={{ fontSize: "12px", color: "#1A1A1A" }}>{cert.vendor}</span>
+                    <span
+                      className="px-1.5 py-0.5"
+                      style={{ fontSize: "8px", color: "#6a6a62", border: "1px solid #e0dcd4", textTransform: "uppercase", letterSpacing: "0.03em" }}
+                    >
+                      {cert.form}
+                    </span>
+                    <span
+                      className="px-1.5 py-0.5"
+                      style={{
+                        fontSize: "8px",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.03em",
+                        color: (cert as any).expiring ? "#8B6914" : "#6f6e4b",
+                        backgroundColor: (cert as any).expiring ? "rgba(139,105,20,0.08)" : "rgba(111,110,75,0.08)",
+                      }}
+                    >
+                      {(cert as any).expiring ? "Expiring Soon" : "Active"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2" style={{ fontSize: "10px", color: "#9a978f" }}>
+                    <span>Signed {cert.signed}</span>
+                    <span>·</span>
+                    <span style={{ color: (cert as any).expiring ? "#8B6914" : "#6f6e4b", fontWeight: 500 }}>{cert.validity}</span>
+                    <span>·</span>
+                    <span>{cert.categories}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -223,20 +309,310 @@ function AccountManagement() {
             <div className="lg:hidden mb-6 overflow-hidden border border-sage-dark">
               <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
             </div>
-            <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
+            <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Vendors, workrooms, installers, fabric houses—every trade
               relationship your firm has, in one place. No more digging
               through emails for an account number, discount code, or
               your rep's phone number.
+            </p>
+            <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
+              Info from 1,300+ to-the-trade vendors is already in Credenza—just
+              start typing and add them to your dashboard in one click.
             </p>
             <p className="font-freight italic text-charcoal" style={{ fontSize: "1.1rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
               Your trade relationships are your business. Now they're organized like it.
             </p>
           </div>
 
-          <div className="lg:col-span-7 hidden lg:block">
-            <div className="overflow-hidden border border-sage-dark">
-              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
+          <div className="lg:col-span-7 hidden lg:block relative">
+            {/* Coded trade accounts dashboard mock */}
+            <div
+              className="overflow-hidden border border-sage-dark pointer-events-none select-none bg-white"
+              style={{ fontSize: "12px", fontFamily: "Inter, sans-serif" }}
+            >
+              {/* Dashboard header */}
+              <div className="px-5 pt-5 pb-0">
+                <div className="flex items-start justify-between mb-1">
+                  <div>
+                    <h3 className="font-freight font-normal" style={{ fontSize: "20px", color: "#1A1A1A", letterSpacing: "-0.01em" }}>
+                      Trade Accounts & Tradespeople
+                    </h3>
+                    <p style={{ fontSize: "11px", color: "#6a6a62", marginTop: "2px" }}>H2O Interiors</p>
+                  </div>
+                  <div className="flex gap-0 text-[10px]">
+                    <span className="px-2.5 py-1 text-white" style={{ backgroundColor: "#1A1A1A", fontSize: "10px" }}>All (7)</span>
+                    <span className="px-2.5 py-1" style={{ border: "1px solid #e0dcd4", color: "#6a6a62", fontSize: "10px" }}>Vendors (6)</span>
+                    <span className="px-2.5 py-1" style={{ border: "1px solid #e0dcd4", color: "#6a6a62", fontSize: "10px" }}>Services (1)</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: "11px", color: "#9a978f", marginBottom: "12px" }}>Your vendors, showrooms, and sources—accounts and shops, all in one place.</p>
+
+                {/* Action buttons */}
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 text-white" style={{ backgroundColor: "#1A1A1A", fontSize: "11px" }}>+ Add Source</span>
+                  <span className="inline-flex items-center px-3 py-1.5" style={{ border: "1px solid #e0dcd4", fontSize: "11px", color: "#1A1A1A" }}>Import CSV</span>
+                </div>
+
+                {/* Filters */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex-1 px-2.5 py-1.5" style={{ border: "1px solid #e0dcd4", color: "#b0ada5", fontSize: "11px" }}>Search vendors...</div>
+                  <div className="flex items-center gap-1 px-2.5 py-1.5" style={{ border: "1px solid #e0dcd4", color: "#6a6a62", fontSize: "11px" }}>All Types <ChevronRight size={10} className="rotate-90" /></div>
+                  <div className="flex items-center gap-1 px-2.5 py-1.5" style={{ border: "1px solid #e0dcd4", color: "#6a6a62", fontSize: "11px" }}>All Categories <ChevronRight size={10} className="rotate-90" /></div>
+                  <div className="flex items-center gap-1 px-2.5 py-1.5" style={{ border: "1px solid #e0dcd4", color: "#6a6a62", fontSize: "11px" }}>Sort: Name <ChevronRight size={10} className="rotate-90" /></div>
+                </div>
+
+                {/* Tab row */}
+                <div className="flex gap-0 border-b border-sage-dark">
+                  {["All (7)", "Accounts (4)", "Platform (4)", "Manual (3)", "Active (5)", "Pending (0)", "Favorites (0)"].map((tab, i) => (
+                    <span key={tab} className="px-3 py-2" style={{ fontSize: "10px", color: i === 0 ? "#1A1A1A" : "#9a978f", fontWeight: i === 0 ? 600 : 400, borderBottom: i === 0 ? "2px solid #1A1A1A" : "2px solid transparent" }}>{tab}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vendor cards grid */}
+              <div className="grid grid-cols-3 gap-0 px-5 py-4">
+                {[
+                  {
+                    name: "Mercer Lighting",
+                    tier: "Luxury",
+                    verified: true,
+                    tags: ["Lighting", "Furniture", "Accessories"],
+                    discount: "35%",
+                    spend: "$84,200",
+                    account: "#ML-10482",
+                    rep: "Maria Santos",
+                    email: "msantos@mercerlighting.com",
+                    phone: "(415) 555-0182",
+                    img: "/mercer-lighting-hero.jpg",
+                  },
+                  {
+                    name: "Atelier Sands",
+                    tier: "Premium",
+                    verified: false,
+                    tags: ["Wallcovering", "Fabric"],
+                    discount: "20%",
+                    spend: "$12,400",
+                    account: "#AS-5519",
+                    rep: "Lauren Cole",
+                    email: "lcole@ateliersands.com",
+                    phone: "(561) 555-0347",
+                    img: "/atelier-sands-hero.jpg",
+                  },
+                  {
+                    name: "Sunshine Upholstery",
+                    tier: "Premium",
+                    verified: false,
+                    tags: ["Drapery & Workroom"],
+                    discount: "",
+                    spend: "",
+                    account: "",
+                    rep: "",
+                    email: "",
+                    phone: "",
+                    img: "",
+                  },
+                ].map((v) => (
+                  <div key={v.name} className="p-3 bg-white flex flex-col" style={{ border: "1px solid #e8e4dd" }}>
+                    {/* Card image */}
+                    <div className="w-full aspect-[16/9] mb-3 rounded-[1px] overflow-hidden" style={{ backgroundColor: v.img ? undefined : "#b8ccd2" }}>
+                      {v.img && <img src={v.img} alt="" className="w-full h-full object-cover" />}
+                    </div>
+                    <div className="font-freight" style={{ fontSize: "14px", color: "#1A1A1A", letterSpacing: "-0.01em" }}>{v.name}</div>
+                    <div style={{ fontSize: "10px", color: "#6a6a62", marginTop: "1px", minHeight: "14px" }}>{v.tier || "\u00A0"}</div>
+                    <div style={{ minHeight: "18px" }}>
+                      {v.verified && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#3a6e70" }} />
+                          <span style={{ fontSize: "9px", color: "#3a6e70", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Credenza Verified</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {v.tags.map((t) => (
+                        <span key={t} className="px-1.5 py-0.5" style={{ fontSize: "9px", color: "#6a6a62", border: "1px solid #e0dcd4" }}>{t}</span>
+                      ))}
+                    </div>
+                    {/* Stats row — always present for alignment */}
+                    <div className="flex items-center gap-3 mt-3 pt-2" style={{ borderTop: "1px solid #f0ede8", minHeight: "44px" }}>
+                      {v.discount ? (
+                        <>
+                          <div>
+                            <div className="font-freight" style={{ fontSize: "18px", color: "#1A1A1A" }}>{v.discount}</div>
+                            <div style={{ fontSize: "8px", color: "#9a978f", textTransform: "uppercase", letterSpacing: "0.04em" }}>Discount</div>
+                          </div>
+                          {v.verified && v.spend && (
+                            <div>
+                              <div style={{ fontSize: "12px", color: "#1A1A1A" }}>{v.spend}</div>
+                              <div style={{ fontSize: "8px", color: "#9a978f", textTransform: "uppercase", letterSpacing: "0.04em" }}>YTD Spend</div>
+                            </div>
+                          )}
+                          {v.account && (
+                            <div className="whitespace-nowrap">
+                              <div style={{ fontSize: "11px", color: "#1A1A1A" }}>{v.account}</div>
+                              <div style={{ fontSize: "8px", color: "#9a978f", textTransform: "uppercase", letterSpacing: "0.04em" }}>Account</div>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="flex items-center gap-1" style={{ color: "#3a6e70", fontSize: "10px" }}>
+                          Add Details <ArrowRight size={9} />
+                        </div>
+                      )}
+                    </div>
+                    {/* Rep / footer row */}
+                    <div className="mt-auto pt-2" style={{ borderTop: "1px solid #f0ede8", minHeight: "60px" }}>
+                      {v.rep ? (
+                        <>
+                          <div style={{ fontSize: "8px", color: "#9a978f", textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "2px" }}>Sales Rep</div>
+                          <div style={{ fontSize: "11px", color: "#1A1A1A", fontWeight: 500 }}>{v.rep}</div>
+                          <div style={{ fontSize: "10px", color: "#6a6a62" }}>{v.email}</div>
+                          <div style={{ fontSize: "10px", color: "#6a6a62" }}>{v.phone}</div>
+                          <div className="flex items-center gap-2 mt-2">
+                            <span style={{ fontSize: "10px", color: "#3a6e70" }}>Login &rarr;</span>
+                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5" style={{ fontSize: "9px", color: "#6a6a62", border: "1px solid #e0dcd4" }}>User <Copy size={8} /></span>
+                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5" style={{ fontSize: "9px", color: "#6a6a62", border: "1px solid #e0dcd4" }}>Pass <Copy size={8} /></span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex items-center gap-1" style={{ color: "#9a978f", fontSize: "10px" }}>
+                          No rep assigned
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* "Add a Vendor" modal overlay — static mock */}
+            <div
+              className="absolute pointer-events-none select-none bg-white p-6 rounded-[2px]"
+              style={{
+                width: "340px",
+                bottom: "-32px",
+                right: "-24px",
+                border: "1px solid #e0dcd4",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08)",
+                zIndex: 10,
+              }}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-1">
+                <span
+                  className="uppercase font-semibold text-charcoal-soft"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.1em" }}
+                >
+                  New Source
+                </span>
+                <span className="text-charcoal-soft" style={{ fontSize: "14px", lineHeight: 1 }}>&times;</span>
+              </div>
+              <h4
+                className="font-freight text-charcoal mb-4"
+                style={{ fontSize: "1.2rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}
+              >
+                Add a Vendor or Source
+              </h4>
+
+              {/* Directory search */}
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Shield size={11} className="text-olive-mid" />
+                  <span
+                    className="font-semibold text-charcoal"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}
+                  >
+                    Search our directory
+                  </span>
+                </div>
+                <p
+                  className="text-charcoal-soft mb-2.5"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", lineHeight: 1.5 }}
+                >
+                  1,300+ to-the-trade vendors. Start typing to find and add.
+                </p>
+                <div
+                  className="px-3 py-2 bg-white mb-1"
+                  style={{ border: "1px solid #e0dcd4", fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#1A1A1A" }}
+                >
+                  Ben<span style={{ borderRight: "1.5px solid #1A1A1A", marginLeft: "1px" }} />
+                </div>
+                {/* Typeahead results */}
+                <div style={{ border: "1px solid #e0dcd4", borderTop: "none" }}>
+                  <div className="flex items-center justify-between px-3 py-2 bg-white" style={{ borderBottom: "1px solid #f0ede8" }}>
+                    <div>
+                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Ben Soleimani</div>
+                      <div style={{ fontSize: "0.6rem", color: "#9a978f" }}>Rugs · Furniture · Lighting</div>
+                    </div>
+                    <span style={{ fontSize: "0.6rem", color: "#3a6e70" }}>+ Add</span>
+                  </div>
+                  <div className="flex items-center justify-between px-3 py-2 bg-white">
+                    <div>
+                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Benisouk</div>
+                      <div style={{ fontSize: "0.6rem", color: "#9a978f" }}>Rugs · Textiles</div>
+                    </div>
+                    <span style={{ fontSize: "0.6rem", color: "#3a6e70" }}>+ Add</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex-1 h-px" style={{ backgroundColor: "#e0dcd4" }} />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: "#b0ada5" }}>or</span>
+                <div className="flex-1 h-px" style={{ backgroundColor: "#e0dcd4" }} />
+              </div>
+
+              {/* Auto-fill section */}
+              <div
+                className="p-4 mb-4"
+                style={{ backgroundColor: "rgba(184,204,210,0.1)", border: "1px solid rgba(184,204,210,0.3)" }}
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Zap size={11} className="text-teal-mid" />
+                  <span
+                    className="font-semibold text-charcoal"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}
+                  >
+                    Auto-fill from Website
+                  </span>
+                </div>
+                <p
+                  className="text-charcoal-soft mb-3"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", lineHeight: 1.5 }}
+                >
+                  Paste a URL and we'll pull name, categories, address, and trade portal.
+                </p>
+                <div className="flex gap-2">
+                  <div
+                    className="flex-1 px-3 py-2 bg-white text-charcoal-soft"
+                    style={{
+                      border: "1px solid #e0dcd4",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.75rem",
+                      color: "#b0ada5",
+                    }}
+                  >
+                    e.g. schumacher.com
+                  </div>
+                  <div
+                    className="flex items-center gap-1 px-3 py-2 text-white shrink-0"
+                    style={{
+                      backgroundColor: "#1A1A1A",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    Auto-fill <ArrowRight size={10} />
+                  </div>
+                </div>
+              </div>
+
+              <p
+                className="text-charcoal-soft text-center"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", color: "#b0ada5" }}
+              >
+                Or fill in manually · <span className="underline">Import via CSV</span>
+              </p>
             </div>
           </div>
         </div>
@@ -484,8 +860,11 @@ function CTASection() {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-sage-dark">
           <div className="relative overflow-hidden min-h-[250px]">
-            <img src="/sarah-bartholomew-living-room.webp" alt="Living room by Sarah Bartholomew" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "15% center" }} />
-            <PhotoCredit name="Design by Sarah Bartholomew Design. Photo by Melanie Acevedo" />
+            <img src="/marea-clark-entry.webp" alt="Entry by Marea Clark" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+            <PhotoCredit credits={[
+              { text: "Marea Clark Interiors", href: "https://www.mareaclarkinteriors.com/" },
+              { text: "Photo by Tim Lenz", href: "https://www.timlenzphoto.com/" },
+            ]} />
             <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
           </div>
 
@@ -527,7 +906,7 @@ function CTASection() {
                 <button type="submit" disabled={status === "sending"}
                   className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 font-normal uppercase text-forest rounded-none ${status === "sending" ? "bg-sage-dark cursor-default" : "bg-teal cursor-pointer hover:bg-[#99b8bd]"}`}
                   style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-                >{status === "sending" ? "Sending..." : "Get Started\u2014It's Free"} {status !== "sending" && <ArrowRight size={14} />}</button>
+                >{status === "sending" ? "Sending..." : "Get Started"} {status !== "sending" && <ArrowRight size={14} />}</button>
                 {status === "error" && (
                   <p className="text-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#b44" }}>
                     Something went wrong. Please try again.
