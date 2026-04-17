@@ -5,7 +5,7 @@ import { C, LOGO_BLACK, ACCESS_REQUEST_URL } from "@/lib/constants";
 const BG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-park-slope-brownstone_543060ca.avif";
 
 export default function ComingSoon() {
-  const [form, setForm] = useState({ name: "", email: "", company: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", role: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -113,6 +113,29 @@ export default function ComingSoon() {
                   onBlur={(e) => (e.currentTarget.style.borderColor = C.sageDark)}
                 />
               ))}
+              {/* Role selector */}
+              <div className="flex gap-3 mt-1">
+                {["Designer", "Vendor"].map((role) => (
+                  <button
+                    key={role}
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, role }))}
+                    className="flex-1 px-4 py-3 transition-all duration-150"
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.875rem",
+                      border: `1px solid ${form.role === role ? C.olive : C.sageDark}`,
+                      backgroundColor: form.role === role ? "rgba(111,110,75,0.06)" : "#ffffff",
+                      color: form.role === role ? C.olive : C.charcoal,
+                      borderRadius: "0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {role}
+                  </button>
+                ))}
+              </div>
+
               <button
                 type="submit"
                 disabled={status === "sending"}

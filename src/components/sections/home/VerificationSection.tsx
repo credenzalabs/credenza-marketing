@@ -44,7 +44,7 @@ export function VerificationSection() {
               className="text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              The result: a trade program that protects its value—because every member is actually in the trade.
+              The result: a trade program with real standards—because every member is actually in the trade.
             </p>
             {/* Stat callout */}
             <div className="mt-8 flex items-center gap-5 px-5 py-4 bg-teal-dim border border-teal-border">

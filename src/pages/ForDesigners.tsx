@@ -540,15 +540,15 @@ function AccountManagement() {
                 <div style={{ border: "1px solid #e0dcd4", borderTop: "none" }}>
                   <div className="flex items-center justify-between px-3 py-2 bg-white" style={{ borderBottom: "1px solid #f0ede8" }}>
                     <div>
-                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Ben Soleimani</div>
+                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Bennett & Solis</div>
                       <div style={{ fontSize: "0.6rem", color: "#9a978f" }}>Rugs · Furniture · Lighting</div>
                     </div>
                     <span style={{ fontSize: "0.6rem", color: "#3a6e70" }}>+ Add</span>
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 bg-white">
                     <div>
-                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Benisouk</div>
-                      <div style={{ fontSize: "0.6rem", color: "#9a978f" }}>Rugs · Textiles</div>
+                      <div style={{ fontSize: "0.75rem", color: "#1A1A1A", fontWeight: 500 }}>Benbrook Textiles</div>
+                      <div style={{ fontSize: "0.6rem", color: "#9a978f" }}>Fabric · Trim</div>
                     </div>
                     <span style={{ fontSize: "0.6rem", color: "#3a6e70" }}>+ Add</span>
                   </div>

@@ -50,7 +50,7 @@ export function PositioningSection() {
               {
                 num: "01",
                 title: "Your brand. Your relationship.",
-                body: "Credenza runs the infrastructure behind your program. Your team focuses on the business, not the paperwork.",
+                body: "Credenza is built to empower your trade relationships, not intercept them. We run the infrastructure—you own the relationship.",
               },
               {
                 num: "02",
