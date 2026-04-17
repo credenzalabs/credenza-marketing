@@ -176,7 +176,7 @@ function TaxStrategy() {
 
         {/* Cert generator screenshot + stats */}
         <div className="relative">
-          <div className="overflow-hidden border border-sage-dark relative">
+          <div className="overflow-hidden border border-sage-dark relative" style={{ maxWidth: "900px" }}>
             <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" loading="lazy" className="w-full h-auto block" />
             <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 border border-teal-border" style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(8px)" }}>
               <Zap size={12} className="text-teal-mid" />
@@ -621,7 +621,7 @@ function AccountManagement() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mt-16 border-t border-sage-dark">
           {[
             { title: "Certs attached to accounts", body: "When you generate a resale certificate, it links to the right vendor. When a cert expires, you know which accounts are affected." },
-            { title: "Rep info at your fingertips", body: "Your assigned sales rep, their direct line, their email—synced from the vendor and always current. No more hunting through old emails." },
+            { title: "Platform vendors sync automatically", body: "For vendors on the Credenza platform, your rep, discount tier, YTD spend, and account status stay current automatically—no manual updates." },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
           ].map((item, i) => (
             <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 2 ? "md:border-r md:border-sage-dark" : ""}`}>
@@ -745,7 +745,7 @@ function FirmTeam() {
               {[
                 { icon: <Users size={14} />, title: "Individual logins, no shared passwords", body: "Each person has their own credentials. No 2FA headaches when someone's traveling." },
                 { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Each signer attests their authority per state requirements." },
-                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke access across every program at once." },
+                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke their access to all your account info at once." },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 py-4 border-b border-sage-dark">
                   <div className="flex items-center justify-center shrink-0 mt-0.5 w-6 h-6 bg-teal-dim border border-teal-border">
@@ -771,6 +771,125 @@ function FirmTeam() {
 }
 
 
+/* ─── One-click apply mock (coded) ─── */
+function OneClickApplyMock({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`bg-white pointer-events-none select-none ${className}`}
+      style={{
+        fontFamily: "Inter, sans-serif",
+        fontSize: "13px",
+        border: "1px solid #e0dcd4",
+        boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)",
+      }}
+    >
+      <div className="px-8 pt-10 pb-8">
+        {/* Eyebrow */}
+        <span
+          className="uppercase font-semibold"
+          style={{ fontSize: "0.6rem", letterSpacing: "0.12em", color: "#9a978f" }}
+        >
+          Your Credenza profile is ready
+        </span>
+        <div className="mt-4 mb-5" style={{ width: "2rem", height: "1px", backgroundColor: "#e0dcd4" }} />
+
+        {/* Welcome */}
+        <h3
+          className="font-freight"
+          style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", color: "#1A1A1A", letterSpacing: "-0.02em", lineHeight: 1.1 }}
+        >
+          <span className="italic">Welcome back,</span> Jane.
+        </h3>
+        <p className="mt-3 mb-8" style={{ fontSize: "13px", color: "#9a978f", lineHeight: 1.5 }}>
+          Your trade profile is on file—review and click to submit your application.
+        </p>
+
+        {/* Profile card */}
+        <div
+          className="flex items-center justify-between p-5 mb-8"
+          style={{ backgroundColor: "#f7f5f1", border: "1px solid #e8e4dd" }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-[52px] h-[52px] shrink-0 overflow-hidden" style={{ border: "1px solid #e0dcd4" }}>
+              <img src="/h2o-interiors-logo.jpg" alt="H2O Interiors" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <div style={{ fontSize: "15px", color: "#1A1A1A", fontWeight: 600 }}>H2O Interiors</div>
+              <div style={{ fontSize: "12px", color: "#6a6a62", marginTop: "2px" }}>Jane Atwater · jane@h2ointeriors.com</div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="flex items-center gap-1.5">
+              <Check size={13} style={{ color: "#3a6e70" }} />
+              <span className="uppercase font-semibold" style={{ fontSize: "0.55rem", letterSpacing: "0.08em", color: "#3a6e70" }}>Profile Complete</span>
+            </div>
+            <div className="mt-1.5" style={{ fontSize: "11px", color: "#6a6a62", textDecoration: "underline" }}>Review your profile</div>
+          </div>
+        </div>
+
+        {/* Resale certificates */}
+        <div className="pb-6 mb-6" style={{ borderBottom: "1px solid #f0ede8" }}>
+          <span
+            className="uppercase font-semibold"
+            style={{ fontSize: "0.55rem", letterSpacing: "0.1em", color: "#9a978f" }}
+          >
+            Resale Certificates
+          </span>
+          <p className="mt-3" style={{ fontSize: "13px", color: "#1A1A1A", lineHeight: 1.7 }}>
+            We'll generate resale certificates automatically. We have your sales tax IDs on file for{" "}
+            <strong>2 states</strong>—<span style={{ color: "#3a6e70", textDecoration: "underline" }}>view all states</span>.{" "}
+            <span style={{ color: "#3a6e70", textDecoration: "underline" }}>Edit states</span>
+          </p>
+        </div>
+
+        {/* Tax-exempt */}
+        <div className="flex items-center justify-between pb-6 mb-6" style={{ borderBottom: "1px solid #f0ede8" }}>
+          <p style={{ fontSize: "13px", color: "#1A1A1A" }}>
+            You've elected <strong>tax-exempt purchasing</strong>.
+          </p>
+          <span style={{ fontSize: "12px", color: "#6a6a62", textDecoration: "underline" }}>Change</span>
+        </div>
+
+        {/* Checkboxes */}
+        <div className="flex flex-col gap-5 mb-10">
+          <label className="flex items-start gap-3">
+            <div className="w-[18px] h-[18px] shrink-0 mt-0.5" style={{ border: "2px solid #c8c4bc", borderRadius: "3px" }} />
+            <span style={{ fontSize: "13px", color: "#1A1A1A", lineHeight: 1.5 }}>
+              I agree to Mercer Lighting's <span style={{ textDecoration: "underline" }}>Trade Program Terms</span>
+            </span>
+          </label>
+          <label className="flex items-start gap-3">
+            <div className="w-[18px] h-[18px] shrink-0 mt-0.5" style={{ border: "2px solid #c8c4bc", borderRadius: "3px" }} />
+            <span style={{ fontSize: "13px", color: "#1A1A1A", lineHeight: 1.5 }}>
+              Keep me updated on new collections and trade exclusives from Mercer Lighting
+            </span>
+          </label>
+        </div>
+
+        {/* Apply button */}
+        <div
+          className="flex items-center justify-center gap-2 py-5 uppercase font-semibold"
+          style={{
+            backgroundColor: "#1A1A1A",
+            color: "#ffffff",
+            fontSize: "0.78rem",
+            letterSpacing: "0.12em",
+          }}
+        >
+          Apply to Mercer Lighting <ArrowRight size={14} />
+        </div>
+
+        {/* Powered by */}
+        <div className="flex items-center justify-center gap-1.5 mt-6">
+          <span style={{ fontSize: "0.6rem", color: "#b0ada5", letterSpacing: "0.04em" }}>Powered by</span>
+          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", color: "#9a978f", letterSpacing: "0.04em" }}>Credenza</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 /* =========================================================================
    6. THE CREDENZA NETWORK — where it's going
    ========================================================================= */
@@ -787,9 +906,9 @@ function Network() {
               <br />
               <span className="italic text-teal">trade access.</span>
             </h2>
-            {/* Mobile-only image after headline */}
+            {/* Mobile-only */}
             <div className="lg:hidden mb-6">
-              <img src="/one-click-apply-screenshot.png" alt="One-click trade application" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
+              <OneClickApplyMock />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
               Credenza is building a network of vendors whose trade programs are
@@ -816,10 +935,7 @@ function Network() {
           </div>
 
           <div className="lg:col-span-7 hidden lg:flex flex-col gap-0">
-            {/* One-click apply screenshot — desktop only */}
-            <div>
-              <img src="/one-click-apply-screenshot.png" alt="One-click trade application showing verified profile and express apply flow" loading="lazy" className="w-full h-auto block ml-auto max-w-[560px]" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.15)" }} />
-            </div>
+            <OneClickApplyMock className="ml-auto max-w-[560px]" />
           </div>
         </div>
       </div>
