@@ -59,8 +59,8 @@ export function PositioningSection() {
               },
               {
                 num: "03",
-                title: "Verified once. Trusted everywhere.",
-                body: <>Designers verify a reusable profile once. Every vendor on the platform benefits. The data is verified. The decision is yours.</>,
+                title: "Your rules. Your approvals.",
+                body: <>Credenza verifies the data behind every designer profile and sets up their account once approved. You set the criteria and make every call. We never approve on your behalf.</>,
               },
             ].map((item) => (
               <div key={item.num} className="p-8 border border-sage-dark bg-white">
