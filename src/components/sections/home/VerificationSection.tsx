@@ -20,7 +20,7 @@ export function VerificationSection() {
   ];
 
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
+    <section ref={ref} className="reveal py-24 md:py-32 bg-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Copy */}
@@ -73,7 +73,7 @@ export function VerificationSection() {
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
-            <div className="border border-sage-dark bg-white p-6">
+            <div className="border border-sage-dark bg-ivory p-6">
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (

@@ -1,7 +1,6 @@
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { IMAGES } from "./images";
 
 // ─── What Credenza Is ────────────────────────────────────────────────────────────
 export function PositioningSection() {
@@ -11,16 +10,17 @@ export function PositioningSection() {
       {/* Full-bleed image with text overlay */}
       <div className="relative overflow-hidden min-h-[70vh]">
         <img
-          src={IMAGES.nickOlsonReidRolls}
-          alt="Elegant interior"
+          src="/sarah-bartholomew-living-room.webp"
+          alt="Living room by Sarah Bartholomew"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center center" }}
         />
         <div
           className="absolute inset-0"
           style={{ background: `linear-gradient(to right, rgba(33,53,63,0.82) 0%, rgba(33,53,63,0.55) 50%, rgba(33,53,63,0.1) 100%)` }}
         />
-        <PhotoCredit name="Designed by Nick Olsen · Photo by Reid Rolls" />
+        <PhotoCredit name="Design by Sarah Bartholomew · Photo by Melanie Acevedo" />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>What Credenza is</Eyebrow>
@@ -59,8 +59,8 @@ export function PositioningSection() {
               },
               {
                 num: "03",
-                title: "Your rules. Your approvals.",
-                body: <>Credenza verifies the data behind every designer profile and sets up their account once approved. You set the criteria and make every call. We never approve on your behalf.</>,
+                title: "Your partner. Your roadmap.",
+                body: <>Credenza is early, and early vendors shape what we build. Your program's edges, exceptions, and day-to-day friction drive the roadmap. This is just the beginning.</>,
               },
             ].map((item) => (
               <div key={item.num} className="p-8 border border-sage-dark bg-white">

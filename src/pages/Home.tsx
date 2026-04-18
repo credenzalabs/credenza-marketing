@@ -25,12 +25,12 @@ export default function Home() {
       <Nav activePage="vendors" />
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
-      <PositioningSection />
       <PortableIdentitySection />
-      <IntegrationsSection />
       <VerificationSection />
-      <CertSection />
       <ForVendors />
+      <IntegrationsSection />
+      <CertSection />
+      <PositioningSection />
       <TiersSection />
       <DataSection />
       <MigrationSection />

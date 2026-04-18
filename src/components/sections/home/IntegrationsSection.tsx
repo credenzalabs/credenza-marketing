@@ -8,7 +8,7 @@ import { IMAGES } from "./images";
 export function IntegrationsSection() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-white">
+    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Image */}
@@ -36,7 +36,7 @@ export function IntegrationsSection() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
               Approval is not the finish line—it’s the starting gun. The moment
-              a designer is approved, Credenza creates their trade account
+              you approve a designer, Credenza creates their trade account
               and applies the correct state-level tax exemption. No one on
               your team touches a keyboard.
             </p>
@@ -58,7 +58,7 @@ export function IntegrationsSection() {
               ].map((item) => {
                 const available = item.badge === "Available now";
                 return (
-                  <div key={item.title} className="p-5 bg-ivory border border-sage-dark">
+                  <div key={item.title} className="p-5 bg-white border border-sage-dark">
                     <div className="flex items-start justify-between mb-3">
                       <span className="text-charcoal-soft">{item.icon}</span>
                       <span
