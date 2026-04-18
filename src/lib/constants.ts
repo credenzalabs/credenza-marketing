@@ -32,3 +32,14 @@ export const LOGO_BLACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png";
 
 export const ACCESS_REQUEST_URL = import.meta.env.VITE_ACCESS_REQUEST_URL as string;
+
+/** Root URL of the Credenza app (cert tool / designer dashboard). Used for
+ *  "Sign in" and "Join" links out of marketing. Env-driven so we can point
+ *  at local, preview, or production without a code change. Falls back to
+ *  https://usecredenza.com for production if unset. */
+export const APP_URL =
+  (import.meta.env.VITE_APP_URL as string | undefined) ?? "https://usecredenza.com";
+const appBase = APP_URL.replace(/\/$/, "");
+export const LOGIN_URL = `${appBase}/login`;
+export const JOIN_VENDOR_URL = `${appBase}/join/vendor`;
+export const JOIN_DESIGNER_URL = `${appBase}/join/designer`;

@@ -6,7 +6,7 @@ import { useReveal } from "@/hooks/useReveal";
 export function MigrationSection() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
+    <section ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: copy */}

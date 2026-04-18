@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, FileText, Shield, Store } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { C } from "@/lib/constants";
+import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 import { IMAGES } from "./images";
 import { withCredenzaUtm } from "@/utils/utm";
 
@@ -96,7 +96,7 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
               <a
-                href="#"
+                href={JOIN_VENDOR_URL}
                 className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
               >

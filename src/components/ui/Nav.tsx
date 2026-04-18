@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { C, LOGO_BLACK } from "@/lib/constants";
+import { C, LOGO_BLACK, LOGIN_URL } from "@/lib/constants";
 
 export interface NavProps {
   /** Which nav link should render in the accent olive color to indicate the active page. */
@@ -96,7 +96,7 @@ export function Nav({
 
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="#"
+              href={LOGIN_URL}
               className="no-underline transition-colors duration-200"
               style={{
                 fontFamily: "Inter, sans-serif",
@@ -182,7 +182,7 @@ export function Nav({
                 style={{ borderColor: C.sage }}
               >
                 <a
-                  href="#"
+                  href={LOGIN_URL}
                   className="no-underline text-center py-2.5 px-4"
                   style={{
                     fontFamily: "Inter, sans-serif",

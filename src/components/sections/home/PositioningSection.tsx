@@ -53,7 +53,7 @@ export function PositioningSection() {
       </div>
 
       {/* Three pillars below the image */}
-      <div className="bg-ivory border-t border-sage-dark">
+      <div className="bg-page-white border-t border-sage-dark">
         <div className="container py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[

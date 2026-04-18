@@ -4,6 +4,7 @@
  */
 
 import { Nav } from "@/components/ui/Nav";
+import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Hero } from "@/components/sections/home/Hero";
 import { PositioningSection } from "@/components/sections/home/PositioningSection";
 import { PortableIdentitySection } from "@/components/sections/home/PortableIdentitySection";
@@ -22,7 +23,7 @@ import { Footer } from "@/components/sections/home/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <Nav activePage="vendors" />
+      <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
       <PortableIdentitySection />

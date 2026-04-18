@@ -21,7 +21,7 @@ import { withCredenzaUtm } from "@/utils/utm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
-import { C, LOGO_BLACK } from "@/lib/constants";
+import { C, LOGO_BLACK, JOIN_DESIGNER_URL } from "@/lib/constants";
 
 const IMAGES = {
   // Credited designer project photography
@@ -110,7 +110,7 @@ function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
-              <a href="#" className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd]"
+              <a href={JOIN_DESIGNER_URL} className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd]"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
               >Get Started—It's Free <ArrowRight size={14} /></a>
             </div>
@@ -320,7 +320,7 @@ function TaxStrategy() {
 function AccountManagement() {
   const ref = useReveal();
   return (
-    <section id="accounts" ref={ref} className="reveal py-24 md:py-32 bg-ivory">
+    <section id="accounts" ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
@@ -1046,7 +1046,7 @@ function CTASection() {
                     value={form[field.key]}
                     onChange={(e) => setForm((f) => ({ ...f, [field.key]: e.target.value }))}
                     required
-                    className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark bg-ivory text-charcoal rounded-none focus:border-olive"
+                    className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark bg-page-white text-charcoal rounded-none focus:border-olive"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }}
                   />
                 ))}
@@ -1121,7 +1121,7 @@ function Footer() {
 export default function ForDesigners() {
   return (
     <div className="min-h-screen bg-white">
-      <Nav activePage="designers" ctaLabel="Get Started" ctaHref="/" showMobileCta={false} />
+      <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
       <Hero />
       <AccountManagement />
       <TaxStrategy />

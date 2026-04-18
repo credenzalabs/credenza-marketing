@@ -12,7 +12,7 @@ export function TiersSection() {
     { name: "Principal", discount: "40%",  min: "$50,000 / yr" },
   ];
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-ivory">
+    <section ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: copy */}

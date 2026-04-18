@@ -47,7 +47,7 @@ export function CertSection() {
 
         {/* Comparison strip */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 mb-12 border border-sage-dark">
-          <div className="p-8 bg-ivory border-r border-sage-dark">
+          <div className="p-8 bg-page-white border-r border-sage-dark">
             <div
               className="uppercase text-charcoal-soft font-semibold mb-4"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em" }}

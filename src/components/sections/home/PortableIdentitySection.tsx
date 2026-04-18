@@ -12,7 +12,7 @@ export function PortableIdentitySection() {
     { name: "Whitfield Textiles", type: "Fabric & trim" },
   ];
   return (
-    <section ref={ref} className="reveal bg-ivory border-t border-sage-dark">
+    <section ref={ref} className="reveal bg-page-white border-t border-sage-dark">
       <div className="container py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 

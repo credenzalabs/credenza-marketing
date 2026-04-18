@@ -73,7 +73,7 @@ export function VerificationSection() {
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
-            <div className="border border-sage-dark bg-ivory p-6">
+            <div className="border border-sage-dark bg-page-white p-6">
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (

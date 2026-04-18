@@ -1,7 +1,7 @@
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
-import { C } from "@/lib/constants";
+import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 
 // ─── CTA ────────────────────────────────────────────────────────────────
 export function CTASection() {
@@ -55,15 +55,16 @@ export function CTASection() {
                   key={field.placeholder}
                   type={field.type}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark focus:border-olive bg-ivory text-charcoal rounded-none"
+                  className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark focus:border-olive bg-page-white text-charcoal rounded-none"
                   style={{
                     fontFamily: "Inter, sans-serif",
                     fontSize: "0.875rem",
                   }}
                 />
               ))}
-              <button
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal cursor-pointer bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
+              <a
+                href={JOIN_VENDOR_URL}
+                className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal cursor-pointer bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "0.72rem",
@@ -73,7 +74,7 @@ export function CTASection() {
                 }}
               >
                 Request access
-              </button>
+              </a>
               <p
                 className="text-charcoal-soft text-center mt-1"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
