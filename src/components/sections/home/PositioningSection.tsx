@@ -1,6 +1,7 @@
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── What Credenza Is ────────────────────────────────────────────────────────────
 export function PositioningSection() {
@@ -20,7 +21,16 @@ export function PositioningSection() {
           className="absolute inset-0"
           style={{ background: `linear-gradient(to right, rgba(33,53,63,0.82) 0%, rgba(33,53,63,0.55) 50%, rgba(33,53,63,0.1) 100%)` }}
         />
-        <PhotoCredit name="Design by Sarah Bartholomew · Photo by Melanie Acevedo" />
+        <PhotoCredit
+          separator=""
+          credits={[
+            { text: "© " },
+            { text: "Melanie Acevedo", href: withCredenzaUtm("https://www.melanieacevedo.com/", "photo-credit", "positioning") },
+            { text: " (design by " },
+            { text: "Sarah Bartholomew", href: withCredenzaUtm("https://www.sarahbartholomew.com/", "designer-credit", "positioning") },
+            { text: ")" },
+          ]}
+        />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>What Credenza is</Eyebrow>

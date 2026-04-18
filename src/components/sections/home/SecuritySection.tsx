@@ -2,6 +2,7 @@ import { Check, FileText, Lock, Shield } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Security ────────────────────────────────────────────────────────────────
 export function SecuritySection() {
@@ -44,7 +45,16 @@ export function SecuritySection() {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: "center 60%" }}
           />
-          <PhotoCredit name="Design by Amy Lau Design · Photo by Thomas Loof" />
+          <PhotoCredit
+            separator=""
+            credits={[
+              { text: "© " },
+              { text: "Thomas Loof", href: withCredenzaUtm("https://www.thomasloof.com/", "photo-credit", "security") },
+              { text: " (design by " },
+              { text: "Amy Lau Design", href: withCredenzaUtm("https://www.amylaudesign.com/", "designer-credit", "security") },
+              { text: ")" },
+            ]}
+          />
         </div>
 
         {/* Right: content */}

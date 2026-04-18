@@ -17,6 +17,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight, Copy } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { withCredenzaUtm } from "@/utils/utm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
@@ -39,8 +40,30 @@ const IMAGES = {
    1. HERO
    ========================================================================= */
 const HERO_IMAGES = [
-  { src: IMAGES.kavanaughLakeside, alt: "Interior by Ellen Kavanaugh", position: "center 40%", credit: "Ellen Kavanaugh Interiors" },
-  { src: "/studio-dorion-pound-ridge-hires.jpg", alt: "Studio Dorion Pound Ridge entry", position: "center center", credit: "Design by Studio Dorion · Photo by Ethan Harrington" },
+  {
+    src: IMAGES.kavanaughLakeside,
+    alt: "Interior by Ellen Kavanaugh Interiors",
+    position: "center 40%",
+    credits: [
+      { text: "© " },
+      { text: "Carmel Brantley", href: withCredenzaUtm("https://www.brantleyphotography.com/", "photo-credit", "for-designers-hero") },
+      { text: " (design by " },
+      { text: "Ellen Kavanaugh Interiors", href: withCredenzaUtm("https://www.ellenkavanaugh.com/", "designer-credit", "for-designers-hero") },
+      { text: ")" },
+    ],
+  },
+  {
+    src: "/studio-dorion-pound-ridge-hires.jpg",
+    alt: "Studio Dorion Pound Ridge entry",
+    position: "center center",
+    credits: [
+      { text: "© " },
+      { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "for-designers-hero") },
+      { text: " (design by " },
+      { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "for-designers-hero") },
+      { text: ")" },
+    ],
+  },
 ];
 
 function Hero() {
@@ -109,7 +132,7 @@ function Hero() {
           {/* Photography — desktop only */}
           <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
             <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover block" style={{ objectPosition: hero.position }} />
-            <PhotoCredit name={hero.credit} />
+            <PhotoCredit credits={hero.credits} separator="" />
           </div>
         </div>
       </div>
@@ -979,10 +1002,16 @@ function CTASection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-sage-dark">
           <div className="relative overflow-hidden min-h-[250px]">
             <img src="/marea-clark-entry.webp" alt="Entry by Marea Clark" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
-            <PhotoCredit credits={[
-              { text: "Marea Clark Interiors", href: "https://www.mareaclarkinteriors.com/" },
-              { text: "Photo by Tim Lenz", href: "https://www.timlenzphoto.com/" },
-            ]} />
+            <PhotoCredit
+              separator=""
+              credits={[
+                { text: "© " },
+                { text: "Tim Lenz", href: withCredenzaUtm("https://www.timlenzphoto.com/", "photo-credit", "for-designers-hero") },
+                { text: "/OTTO (design by " },
+                { text: "Marea Clark Interiors", href: withCredenzaUtm("https://www.mareaclarkinteriors.com/", "designer-credit", "for-designers-hero") },
+                { text: ")" },
+              ]}
+            />
             <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
           </div>
 

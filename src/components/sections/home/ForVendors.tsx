@@ -3,6 +3,7 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { IMAGES } from "./images";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── For Vendors ─────────────────────────────────────────────────────────────────
 export function ForVendors() {
@@ -21,7 +22,16 @@ export function ForVendors() {
           className="absolute inset-0"
           style={{ background: `linear-gradient(to right, rgba(33,53,63,0.82) 0%, rgba(33,53,63,0.55) 50%, rgba(33,53,63,0.1) 100%)` }}
         />
-        <PhotoCredit name="Designed by Nick Olsen · Photo by Reid Rolls" />
+        <PhotoCredit
+          separator=""
+          credits={[
+            { text: "© " },
+            { text: "Reid Rolls", href: withCredenzaUtm("https://reidrolls.com/", "photo-credit", "for-vendors-hero") },
+            { text: " (design by " },
+            { text: "Nick Olsen", href: withCredenzaUtm("https://nickolsenstyle.com/", "designer-credit", "for-vendors-hero") },
+            { text: ")" },
+          ]}
+        />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="max-w-xl">
             <Eyebrow light>For vendors & showrooms</Eyebrow>

@@ -3,6 +3,7 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { IMAGES } from "./images";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Integrations ────────────────────────────────────────────────────────────────
 export function IntegrationsSection() {
@@ -15,7 +16,16 @@ export function IntegrationsSection() {
           <div className="lg:col-span-5 relative">
             <div className="overflow-hidden relative aspect-[4/5]">
               <img src={IMAGES.alisonRoseKitchen} alt="Interior installation" loading="lazy" className="w-full h-full object-cover" />
-              <PhotoCredit name="Designed by Alison Rose NY · Photo by Reid Rolls" />
+              <PhotoCredit
+                separator=""
+                credits={[
+                  { text: "© " },
+                  { text: "Reid Rolls", href: withCredenzaUtm("https://reidrolls.com/", "photo-credit", "integrations") },
+                  { text: " (design by " },
+                  { text: "Alison Rose NY", href: withCredenzaUtm("https://alisonroseny.com/", "designer-credit", "integrations") },
+                  { text: ")" },
+                ]}
+              />
             </div>
 
           </div>

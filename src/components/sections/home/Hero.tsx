@@ -4,11 +4,34 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C } from "@/lib/constants";
 import { IMAGES } from "./images";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
 const HERO_IMAGES = [
-  { src: IMAGES.studioDorionBrownstone, alt: "Studio Dorion brownstone", position: "left center", credit: "Design by Studio Dorion · Photo by Ethan Harrington" },
-  { src: "/caitlin-kah-credenza.jpg", alt: "Interior by Caitlin Kah Interiors", position: "center center", credit: "Design by Caitlin Kah Interiors · Photo by Carmel Brantley" },
+  {
+    src: IMAGES.studioDorionBrownstone,
+    alt: "Studio Dorion brownstone",
+    position: "left center",
+    credits: [
+      { text: "© " },
+      { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
+      { text: " (design by " },
+      { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
+      { text: ")" },
+    ],
+  },
+  {
+    src: "/caitlin-kah-credenza.jpg",
+    alt: "Interior by Caitlin Kah",
+    position: "center center",
+    credits: [
+      { text: "© " },
+      { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
+      { text: " (design by " },
+      { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "home-hero") },
+      { text: ")" },
+    ],
+  },
 ];
 
 export function Hero() {
@@ -116,7 +139,7 @@ export function Hero() {
               className="w-full h-full object-cover block"
               style={{ objectPosition: hero.position }}
             />
-            <PhotoCredit name={hero.credit} />
+            <PhotoCredit credits={hero.credits} separator="" />
           </div>
         </div>
       </div>

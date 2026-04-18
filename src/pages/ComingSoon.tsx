@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { C, LOGO_BLACK, ACCESS_REQUEST_URL } from "@/lib/constants";
+import { withCredenzaUtm } from "@/utils/utm";
+
+const STUDIO_DORION_CREDIT = [
+  { text: "© " },
+  { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "coming-soon") },
+  { text: " (design by " },
+  { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "coming-soon") },
+  { text: ")" },
+];
 
 const BG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-park-slope-brownstone_543060ca.avif";
 
@@ -33,7 +42,7 @@ export default function ComingSoon() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "left center" }}
         />
-        <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" />
+        <PhotoCredit credits={STUDIO_DORION_CREDIT} separator="" />
       </div>
 
       {/* Desktop: left image */}
@@ -44,7 +53,7 @@ export default function ComingSoon() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "left center" }}
         />
-        <PhotoCredit name="Design by Studio Dorion · Photo by Ethan Harrington" />
+        <PhotoCredit credits={STUDIO_DORION_CREDIT} separator="" />
       </div>
 
       {/* Right: content */}

@@ -8,11 +8,15 @@ interface PhotoCreditProps {
   name?: string;
   /** Structured credits with optional per-segment links. Takes precedence over `name`. */
   credits?: CreditSegment[];
+  /** Separator between segments. Default " · " for backwards compat. Pass
+   *  "" to render segments back-to-back when the credit reads as a sentence
+   *  with inline links (e.g. "© Tim Lenz/OTTO (design by Marea Clark…)"). */
+  separator?: string;
   dark?: boolean;
 }
 
-export function PhotoCredit({ name, credits, dark = false }: PhotoCreditProps) {
-  const plainText = credits ? credits.map((c) => c.text).join(" · ") : name ?? "";
+export function PhotoCredit({ name, credits, separator = " · ", dark = false }: PhotoCreditProps) {
+  const plainText = credits ? credits.map((c) => c.text).join(separator) : name ?? "";
 
   return (
     <Tooltip>
@@ -53,7 +57,7 @@ export function PhotoCredit({ name, credits, dark = false }: PhotoCreditProps) {
           <span>
             {credits.map((segment, i) => (
               <span key={i}>
-                {i > 0 && " · "}
+                {i > 0 && separator}
                 {segment.href ? (
                   <a
                     href={segment.href}
