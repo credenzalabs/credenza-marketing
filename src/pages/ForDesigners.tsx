@@ -139,10 +139,12 @@ function TaxStrategy() {
           </div>
           <div className="lg:col-span-5 flex items-end">
             <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Every state has different rules, different forms, different exemptions.
-              Credenza evaluates your registrations, finds the optimal path, and
-              generates the right certificate—so you never leave money on the table
-              or wonder if you checked the wrong box.
+              Work on a project in another state? Use a workroom across state lines?
+              Multi-state tax gets confusing fast. Every state has different rules,
+              different forms, different exemptions. Credenza evaluates your
+              registrations, finds the optimal path, and generates the right
+              certificate—so you never leave money on the table or wonder if you
+              checked the wrong box.
             </p>
           </div>
         </div>
