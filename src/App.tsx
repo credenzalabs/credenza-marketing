@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import ForDesigners from "./pages/ForDesigners";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 import CookieBanner from "./components/CookieBanner";
 import { trackPageview } from "./lib/analytics";
 
@@ -29,6 +31,9 @@ export default function App() {
         {/* Hidden preview routes */}
         <Route path="/preview" element={<Home />} />
         <Route path="/preview/for-designers" element={<ForDesigners />} />
+        {/* Legal pages — public and crawlable */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
         {/* Public routes — splash page */}
         <Route path="*" element={<ComingSoon />} />
       </Routes>
