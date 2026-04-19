@@ -5,8 +5,8 @@
  *   1. Hero — certs + accounts, what you get today
  *   2. Account Management — core feature, works today
  *   3. Tax Strategy & Certs — the killer feature
- *   4. Verified Profile — why everything is stronger
- *   5. Firm & Team — supporting feature
+ *   4. Firm & Team — supporting feature, works today
+ *   5. Verified Profile — the foundation for one-click apply
  *   6. The Credenza Network — where it's going
  *   7. CTA — early access waitlist
  *
@@ -661,7 +661,7 @@ function AccountManagement() {
 
 
 /* =========================================================================
-   4. VERIFIED PROFILE — why everything is stronger
+   5. VERIFIED PROFILE — the foundation for one-click apply
    ========================================================================= */
 function VerifiedProfile() {
   const ref = useReveal();
@@ -730,7 +730,8 @@ function VerifiedProfile() {
           <p className="font-freight italic text-charcoal-mid" style={{ fontSize: "clamp(1.3rem, 2.2vw, 1.6rem)", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
             A license, a membership, a decade of published work, a growing social
             following—however you've built your career, Credenza turns it into a
-            profile that speaks for you. Prove yourself once. Never again.
+            profile that speaks for you. As vendors join the network, your verified
+            profile travels with you—one click to apply, every time.
           </p>
         </div>
       </div>
@@ -740,7 +741,7 @@ function VerifiedProfile() {
 
 
 /* =========================================================================
-   5. FIRM & TEAM
+   4. FIRM & TEAM
    ========================================================================= */
 function FirmTeam() {
   const ref = useReveal();
@@ -760,16 +761,17 @@ function FirmTeam() {
               <img src="/team-members-screenshot.png" alt="Team members panel" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Every team member gets their own login with the right level
-              of access. Add or remove anyone in one step—and every vendor
-              in the network sees the change instantly.
+              Run Credenza however your firm operates—one shared login for
+              small studios, individual credentials for larger teams. Either
+              way, invites and permissions stay in sync across every vendor
+              in the network.
             </p>
 
             <div className="border-t border-sage-dark">
               {[
-                { icon: <Users size={14} />, title: "Individual logins, no shared passwords", body: "Each person has their own credentials. No 2FA headaches when someone's traveling." },
-                { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Each signer attests their authority per state requirements." },
-                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke their access to all your account info at once." },
+                { icon: <Users size={14} />, title: "Individual logins when you want them", body: "Give each team member their own credentials—no 2FA headaches when someone's traveling." },
+                { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Not authorized to sign? Send the pre-filled certificate to the firm owner or another authorized signer to complete." },
+                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke their access to your business info and trade accounts at once." },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 py-4 border-b border-sage-dark">
                   <div className="flex items-center justify-center shrink-0 mt-0.5 w-6 h-6 bg-teal-dim border border-teal-border">
@@ -1124,8 +1126,8 @@ export default function ForDesigners() {
       <Hero />
       <AccountManagement />
       <TaxStrategy />
-      <VerifiedProfile />
       <FirmTeam />
+      <VerifiedProfile />
       <Network />
       <CTASection />
       <Footer />
