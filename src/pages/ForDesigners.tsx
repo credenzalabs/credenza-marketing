@@ -163,11 +163,9 @@ function TaxStrategy() {
           <div className="lg:col-span-5 flex items-end">
             <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Work on a project in another state? Use a workroom across state lines?
-              Multi-state tax gets confusing fast. Every state has different rules,
-              different forms, different exemptions. Credenza evaluates your
-              registrations, finds the optimal path, and generates the right
-              certificate—so you never leave money on the table or wonder if you
-              checked the wrong box.
+              Multi-state tax gets confusing fast—every state has different rules,
+              different forms, different expirations, and it's easy to leave money
+              on the table or check the wrong box.
             </p>
           </div>
         </div>
@@ -176,16 +174,16 @@ function TaxStrategy() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-20 border-t border-sage-dark">
           {[
             {
-              title: "Your registrations, maximized",
-              body: "Registered in one MTC member state? That single registration may cover purchases in dozens of others. Credenza identifies where your existing registrations already give you coverage—so you don't register state-by-state when you don't have to.",
+              title: "One registration, many states",
+              body: "Did you know a single registration can earn you tax exemption in dozens of states if you need to ship out of state? Credenza finds you the broadest tax exemption possible with the fewest, every time—so you don't pay tax if you don't need to.",
             },
             {
-              title: "The right form, the right exemption",
-              body: "Each state has its own form, its own exemption categories, and its own rules about what qualifies. Credenza generates the correct form with the correct exemption type and scope—no guessing which box to check.",
+              title: "Filled in, not guessed at",
+              body: "We auto-fill legal business name, address, and comprehensive product categories from our to-the-trade vendor directory of 1,300+ brands to build you a compliant blanket certificate in seconds.",
             },
             {
               title: "Always current, never lapsed",
-              body: "Resale certificates expire. Credenza monitors every expiration date and notifies you before anything lapses—so your tax-exempt status never changes because of a deadline you missed.",
+              body: "Every certificate's expiration date is tracked in your vault. For vendors on Credenza, we notify you before anything lapses—so your tax-exempt status never changes because of a deadline you missed.",
             },
           ].map((card, i) => (
             <div key={card.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""}`}>
@@ -336,9 +334,9 @@ function AccountManagement() {
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Vendors, workrooms, installers, fabric houses—every trade
-              relationship your firm has, in one place. No more digging
-              through emails for an account number, discount code, or
-              your rep's phone number.
+              relationship your firm has, in one place. No more unruly
+              Google Sheets. No more digging through emails for an account
+              number, discount code, or your rep's phone number.
             </p>
             <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Info from 1,300+ to-the-trade vendors is already in Credenza—just
@@ -643,13 +641,14 @@ function AccountManagement() {
         </div>
 
         {/* Supporting points */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mt-16 border-t border-sage-dark">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 mt-16 border-t border-sage-dark">
           {[
-            { title: "Certs attached to accounts", body: "When you generate a resale certificate, it links to the right vendor. When a cert expires, you know which accounts are affected." },
-            { title: "Platform vendors sync automatically", body: "For vendors on the Credenza platform, your rep, discount tier, YTD spend, and account status stay current automatically—no manual updates." },
+            { title: "Certs attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
+            { title: "Vendor logins, securely stored", body: "Account numbers and portal passwords encrypted in transit and at rest. Copy user name and password with one click. Share access with your team; revoke when someone leaves." },
+            { title: "Platform vendors always in sync", body: "For vendors on Credenza, your personal trade discount, YTD spend, rep contact, current price lists, and latest catalogs sync straight from the vendor—so you have the most current information at your fingertips." },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
           ].map((item, i) => (
-            <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 2 ? "md:border-r md:border-sage-dark" : ""}`}>
+            <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
               <h3 className="font-freight mb-2 text-charcoal" style={{ fontSize: "1.15rem", letterSpacing: "-0.015em", lineHeight: 1.2 }}>{item.title}</h3>
               <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7 }}>{item.body}</p>
             </div>
