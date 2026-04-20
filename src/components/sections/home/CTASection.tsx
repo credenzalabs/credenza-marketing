@@ -13,17 +13,17 @@ export function CTASection() {
           {/* Left: Image — mobile top, desktop left */}
           <div className="relative overflow-hidden min-h-[280px]">
             <img
-              src="/cece-bowman-wsj-flowers.jpg"
-              alt="Interior with flowers by Cece Bowman"
+              src="/casita-mural-chair.jpg"
+              alt="Painted garden mural with a single chair in a 1920's casita"
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectPosition: "center center" }}
+              style={{ objectPosition: "center 80%" }}
             />
             <div
               className="absolute inset-0 hidden lg:block"
               style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }}
             />
-            <PhotoCredit name="Design by Cece Bowman · Photo via WSJ Off Duty" dark />
+            <PhotoCredit name="1920's casita · via Veranda" dark />
           </div>
 
           {/* Right: Form */}
