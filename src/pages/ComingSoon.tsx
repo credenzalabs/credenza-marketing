@@ -124,23 +124,26 @@ export default function ComingSoon() {
               ))}
               {/* Role selector */}
               <div className="flex gap-3 mt-1">
-                {["Designer", "Vendor"].map((role) => (
+                {[
+                  { label: "I'm a designer", value: "Designer" },
+                  { label: "I'm a vendor", value: "Vendor" },
+                ].map(({ label, value }) => (
                   <button
-                    key={role}
+                    key={value}
                     type="button"
-                    onClick={() => setForm((f) => ({ ...f, role }))}
+                    onClick={() => setForm((f) => ({ ...f, role: value }))}
                     className="flex-1 px-4 py-3 transition-all duration-150"
                     style={{
                       fontFamily: "Inter, sans-serif",
                       fontSize: "0.875rem",
-                      border: `1px solid ${form.role === role ? C.olive : C.sageDark}`,
-                      backgroundColor: form.role === role ? "rgba(111,110,75,0.06)" : "#ffffff",
-                      color: form.role === role ? C.olive : C.charcoal,
+                      border: `1px solid ${form.role === value ? C.olive : C.sageDark}`,
+                      backgroundColor: form.role === value ? "rgba(111,110,75,0.06)" : "#ffffff",
+                      color: form.role === value ? C.olive : C.charcoal,
                       borderRadius: "0",
                       cursor: "pointer",
                     }}
                   >
-                    {role}
+                    {label}
                   </button>
                 ))}
               </div>
