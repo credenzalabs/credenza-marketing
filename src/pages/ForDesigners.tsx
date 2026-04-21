@@ -1002,7 +1002,7 @@ function CTASection() {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-sage-dark">
           <div className="relative overflow-hidden min-h-[250px]">
-            <img src="/marea-clark-entry.webp" alt="Entry by Marea Clark" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+            <img src="/marea-clark-entry.jpg" alt="Entry by Marea Clark" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
             <PhotoCredit
               separator=""
               credits={[
