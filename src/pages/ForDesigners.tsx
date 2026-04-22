@@ -669,8 +669,17 @@ function VerifiedProfile() {
     <section ref={ref} className="reveal bg-white">
       {/* Full-bleed image with text overlay + profile card mockup */}
       <div className="relative overflow-hidden min-h-[55vh]">
-        <img src="/emily-jones-nightstand.webp" alt="Bedroom by Emily Jones Interiors" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
-        <PhotoCredit name="Emily Jones Interiors" />
+        <img src="/emily-jones-bedroom-nightstand.jpg" alt="Bedroom by Emily Jones Interiors" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
+        <PhotoCredit
+          separator=""
+          credits={[
+            { text: "© " },
+            { text: "Lindsay Salazar", href: withCredenzaUtm("https://www.lindsaysalazar.com/", "photo-credit", "for-designers-verified-profile") },
+            { text: " (design by " },
+            { text: "Emily Jones Interiors", href: withCredenzaUtm("https://emilyjonesinteriors.com/", "designer-credit", "for-designers-verified-profile") },
+            { text: ")" },
+          ]}
+        />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.7) 50%, rgba(33,53,63,0.2) 100%)` }} />
         <div className="relative z-10 container py-24 md:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

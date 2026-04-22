@@ -2,6 +2,7 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── CTA ────────────────────────────────────────────────────────────────
 export function CTASection() {
@@ -23,7 +24,17 @@ export function CTASection() {
               className="absolute inset-0 hidden lg:block"
               style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }}
             />
-            <PhotoCredit name="1920's casita · via Veranda" dark />
+            <PhotoCredit
+              dark
+              separator=""
+              credits={[
+                { text: "© " },
+                { text: "Carmel Brantley", href: withCredenzaUtm("https://www.brantleyphotography.com/", "photo-credit", "vendor-cta") },
+                { text: " (design by " },
+                { text: "Caroline Rafferty Interiors", href: withCredenzaUtm("https://www.carolinerafferty.com/", "designer-credit", "vendor-cta") },
+                { text: ")" },
+              ]}
+            />
           </div>
 
           {/* Right: Form */}
