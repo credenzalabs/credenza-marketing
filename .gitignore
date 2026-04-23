@@ -25,3 +25,8 @@ vite.config.ts.timestamp-*
 .DS_Store
 *.local
 .vercel
+
+# Local scratch / one-off mocks — not for production
+instagram-mockup.html
+src/pages/FlyerHighPoint.tsx
+src/pages/FlyerVendors.tsx
