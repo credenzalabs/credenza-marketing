@@ -206,85 +206,13 @@ function TaxStrategy() {
 
         {/* Cert generator mock + stats */}
         <div className="relative">
-          <div
-            className="overflow-hidden border border-sage-dark relative bg-white pointer-events-none select-none"
-            style={{ maxWidth: "900px", fontFamily: "Inter, sans-serif", fontSize: "13px" }}
-          >
-            <div className="grid grid-cols-12 gap-0">
-              {/* Left masthead */}
-              <div className="col-span-4 p-6" style={{ backgroundColor: "#fdfcf9", borderRight: "1px solid #e0dcd4" }}>
-                <span className="uppercase font-semibold" style={{ fontSize: "0.55rem", letterSpacing: "0.12em", color: "#6a6a62" }}>
-                  The Resale Certificate Engine
-                </span>
-                <h3 className="font-freight mt-4" style={{ fontSize: "1.45rem", color: "#1c1c19", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-                  <span className="italic">Bon voyage, </span>
-                  <span className="italic" style={{ color: "#3a6e70" }}>taxes.</span>
-                </h3>
-                <p className="mt-4" style={{ fontSize: "11px", color: "#6a6a62", lineHeight: 1.65 }}>
-                  Pick a vendor. We draft the right forms with your registrations baked in—because you didn't become a designer to fill in tax IDs.
-                </p>
-                <div className="mt-6" style={{ fontSize: "9px", letterSpacing: "0.1em", color: "#6a6a62", textTransform: "uppercase", fontWeight: 600 }}>
-                  H20 Interiors · Registered in AZ · CA · NY · TX
-                </div>
-              </div>
-
-              {/* Right working card — PREVIEW phase */}
-              <div className="col-span-8 p-6" style={{ borderLeft: "3px solid #acc4c5" }}>
-                {/* Step marker */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-baseline gap-2">
-                    <span className="italic" style={{ fontSize: "0.7rem", color: "#3a6e70", fontWeight: 500 }}>04</span>
-                    <span className="uppercase font-semibold" style={{ fontSize: "0.55rem", letterSpacing: "0.1em", color: "#6a6a62" }}>Preview · Sister Parish Design</span>
-                  </div>
-                  <span className="uppercase" style={{ fontSize: "0.55rem", color: "#6a6a62", letterSpacing: "0.1em" }}>← Start over</span>
-                </div>
-
-                {/* State tabs */}
-                <div className="flex items-center gap-5 mb-4" style={{ borderBottom: "1px solid #e0dcd4" }}>
-                  {["AZ", "CA", "NY", "TX"].map((s, i) => (
-                    <div
-                      key={s}
-                      className="pb-2"
-                      style={{
-                        fontSize: "11px",
-                        letterSpacing: "0.08em",
-                        fontWeight: i === 0 ? 700 : 500,
-                        color: i === 0 ? "#1c1c19" : "#9a978f",
-                        borderBottom: i === 0 ? "2px solid #1c1c19" : "2px solid transparent",
-                        marginBottom: "-1px",
-                      }}
-                    >
-                      {s}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Real cert preview */}
-                <div className="bg-white overflow-hidden" style={{ border: "1px solid #e0dcd4", boxShadow: "0 8px 28px rgba(0,0,0,0.08)" }}>
-                  <img
-                    src="/az-resale-cert-sample-1.png"
-                    alt="Arizona Form 5000A Resale Certificate generated via Credenza"
-                    loading="lazy"
-                    className="w-full h-auto block"
-                  />
-                </div>
-
-                {/* Footer actions */}
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <div style={{ width: "14px", height: "14px", border: "1.5px solid #c8c4bc", flexShrink: 0 }} />
-                    <span style={{ fontSize: "10px", color: "#6a6a62", lineHeight: 1.4 }}>I agree to Credenza's Terms of Use.</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="px-3 py-2 uppercase" style={{ border: "1px solid #1c1c19", fontSize: "9.5px", letterSpacing: "0.1em", color: "#1c1c19", fontWeight: 500 }}>Sign &amp; Save</div>
-                    <div className="flex items-center gap-1.5 px-3 py-2 uppercase" style={{ backgroundColor: "#1c1c19", color: "#ffffff", fontSize: "9.5px", letterSpacing: "0.1em", fontWeight: 500 }}>
-                      Sign &amp; Download <ArrowRight size={10} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+          <div className="overflow-hidden border border-sage-dark relative" style={{ maxWidth: "900px" }}>
+            <img
+              src="/cert-generator-engine.png"
+              alt="Credenza cert generator — 'Bon voyage, taxes.' preview of a Multistate Tax Commission (MTC) certificate for Melton Antiques covering Arizona, Missouri, and New Jersey, pre-filled for H20 Interiors"
+              loading="lazy"
+              className="w-full h-auto block"
+            />
             <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 border border-teal-border" style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(8px)" }}>
               <Zap size={12} className="text-teal-mid" />
               <span className="font-semibold uppercase text-teal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.08em" }}>Generated in seconds</span>
