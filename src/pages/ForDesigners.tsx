@@ -958,11 +958,10 @@ function Network() {
               <OneClickApplyMock />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              Credenza is building a network of vendors whose trade programs are
-              powered by Credenza. We're onboarding the first vendor partners now. As
-              more join, your verified profile goes with you automatically—no new
-              forms, no document uploads, no repeat applications. One click and
-              you're in.
+              We're onboarding the first vendor partners now. When vendors power
+              their trade programs with Credenza, your verified profile goes with
+              you automatically—no new forms, no document uploads, no repeat
+              applications. One click and you're in.
             </p>
             <p className="font-freight italic mb-8 text-teal" style={{ fontSize: "1.15rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
               Set up once. Every new vendor is just one click away.
