@@ -13,12 +13,11 @@ export function Footer() {
               className="text-charcoal-soft max-w-[240px]"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7 }}
             >
-              The design trade's operating system.
+              Trade access, simplified.
             </p>
           </div>
           {[
             { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }] },
-            { heading: "Company", links: [{ label: "Blog", href: "/blog" }] },
             { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (
             <div key={col.heading}>
