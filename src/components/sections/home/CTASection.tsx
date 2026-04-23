@@ -52,9 +52,8 @@ export function CTASection() {
               className="mb-8 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}
             >
-              Credenza is in early access. Join the waitlist and we'll
-              streamline your trade program so your clients actually thank
-              you for it.
+              Credenza is in early access. Join the waitlist and design the
+              trade program your clients will thank you for.
             </p>
             <div className="flex flex-col gap-3">
               {[
@@ -86,12 +85,6 @@ export function CTASection() {
               >
                 Request access
               </a>
-              <p
-                className="text-charcoal-soft text-center mt-1"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
-              >
-                We'll reach out within 48 hours to schedule a brief call.
-              </p>
             </div>
           </div>
         </div>
