@@ -27,7 +27,7 @@ export function Footer() {
               >
                 {col.heading}
               </h4>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-4">
                 {col.links.map((link) => (
                   <a
                     key={link.label}

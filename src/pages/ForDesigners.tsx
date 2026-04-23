@@ -7,21 +7,24 @@
  *   3. Tax Strategy & Certs — the killer feature
  *   4. Firm & Team — supporting feature, works today
  *   5. Verified Profile — the foundation for one-click apply
- *   6. The Credenza Network — where it's going
- *   7. CTA — early access waitlist
+ *   6. The Credenza Network — where it's going (vendors onboarding now)
+ *   7. Pricing — free for designers
+ *   8. CTA — sign-up link
+ *   9. FAQ
  *
  * DESIGN: "Editorial Luxury"—generous whitespace, Freight serif,
  * thin 1px rules, asymmetric layouts, restrained color.
  */
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight, Copy } from "lucide-react";
+import { ArrowRight, Check, FileText, Shield, Users, Zap, CreditCard, ChevronRight, Copy, Plus } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { withCredenzaUtm } from "@/utils/utm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
-import { C, LOGO_BLACK, JOIN_DESIGNER_URL } from "@/lib/constants";
+import { C, JOIN_DESIGNER_URL } from "@/lib/constants";
+import { Footer } from "@/components/sections/home/Footer";
 
 const IMAGES = {
   // Credited designer project photography
@@ -92,9 +95,9 @@ function Hero() {
               <br />
               every trade account,
               <br />
-              <span className="italic text-olive-mid">every certificate,</span>
+              <span className="italic text-olive-mid">every resale certificate,</span>
               <br />
-              every vendor.
+              every relationship.
             </h1>
 
             {/* Mobile-only hero image after headline */}
@@ -170,23 +173,27 @@ function TaxStrategy() {
           </div>
         </div>
 
-        {/* Three strategy cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-20 border-t border-sage-dark">
+        {/* Four strategy cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-20 border-t border-sage-dark">
           {[
             {
               title: "One registration, many states",
-              body: "Did you know a single registration can earn you tax exemption in dozens of states if you need to ship out of state? Credenza finds you the broadest tax exemption possible with the fewest, every time—so you don't pay tax if you don't need to.",
+              body: "Did you know a single registration can earn you tax exemption in dozens of states? Whether you're on a sourcing trip to Round Top or shipping out of state, Credenza finds you the broadest tax exemption possible with the fewest possible forms, every time—so you don't pay tax if you don't need to.",
             },
             {
               title: "Filled in, not guessed at",
-              body: "We auto-fill legal business name, address, and comprehensive product categories from our to-the-trade vendor directory of 1,300+ brands to build you a compliant blanket certificate in seconds.",
+              body: "We auto-fill legal business name, address, and comprehensive product categories from our to-the-trade vendor directory of 2,000+ brands to build you a compliant blanket certificate in seconds.",
             },
             {
               title: "Always current, never lapsed",
-              body: "Every certificate's expiration date is tracked in your vault. For vendors on Credenza, we notify you before anything lapses—so your tax-exempt status never changes because of a deadline you missed.",
+              body: "Every certificate's expiration date is tracked in your vault. For vendors on Credenza, we notify you before anything lapses—so your tax-exempt status never changes because of a missed deadline.",
+            },
+            {
+              title: "Bring your own cert",
+              body: "Six states require their own state-issued certificate—AL, FL, LA, NM, TN, WA. Upload yours once—Credenza tracks expirations and keeps it ready to send to any vendor on the Credenza network.",
             },
           ].map((card, i) => (
-            <div key={card.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""}`}>
+            <div key={card.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
               <h3 className="font-freight mb-3 text-charcoal" style={{ fontSize: "1.35rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
                 {card.title}
               </h3>
@@ -197,10 +204,87 @@ function TaxStrategy() {
           ))}
         </div>
 
-        {/* Cert generator screenshot + stats */}
+        {/* Cert generator mock + stats */}
         <div className="relative">
-          <div className="overflow-hidden border border-sage-dark relative" style={{ maxWidth: "900px" }}>
-            <img src="/cert-generator-screenshot.png" alt="Resale certificate generator showing a New York ST-120 form with vendor selection, state registration grid, and digital signing" loading="lazy" className="w-full h-auto block" />
+          <div
+            className="overflow-hidden border border-sage-dark relative bg-white pointer-events-none select-none"
+            style={{ maxWidth: "900px", fontFamily: "Inter, sans-serif", fontSize: "13px" }}
+          >
+            <div className="grid grid-cols-12 gap-0">
+              {/* Left masthead */}
+              <div className="col-span-4 p-6" style={{ backgroundColor: "#fdfcf9", borderRight: "1px solid #e0dcd4" }}>
+                <span className="uppercase font-semibold" style={{ fontSize: "0.55rem", letterSpacing: "0.12em", color: "#6a6a62" }}>
+                  The Resale Certificate Engine
+                </span>
+                <h3 className="font-freight mt-4" style={{ fontSize: "1.45rem", color: "#1c1c19", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+                  <span className="italic">Bon voyage, </span>
+                  <span className="italic" style={{ color: "#3a6e70" }}>taxes.</span>
+                </h3>
+                <p className="mt-4" style={{ fontSize: "11px", color: "#6a6a62", lineHeight: 1.65 }}>
+                  Pick a vendor. We draft the right forms with your registrations baked in—because you didn't become a designer to fill in tax IDs.
+                </p>
+                <div className="mt-6" style={{ fontSize: "9px", letterSpacing: "0.1em", color: "#6a6a62", textTransform: "uppercase", fontWeight: 600 }}>
+                  H20 Interiors · Registered in AZ · CA · NY · TX
+                </div>
+              </div>
+
+              {/* Right working card — PREVIEW phase */}
+              <div className="col-span-8 p-6" style={{ borderLeft: "3px solid #acc4c5" }}>
+                {/* Step marker */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="italic" style={{ fontSize: "0.7rem", color: "#3a6e70", fontWeight: 500 }}>04</span>
+                    <span className="uppercase font-semibold" style={{ fontSize: "0.55rem", letterSpacing: "0.1em", color: "#6a6a62" }}>Preview · Sister Parish Design</span>
+                  </div>
+                  <span className="uppercase" style={{ fontSize: "0.55rem", color: "#6a6a62", letterSpacing: "0.1em" }}>← Start over</span>
+                </div>
+
+                {/* State tabs */}
+                <div className="flex items-center gap-5 mb-4" style={{ borderBottom: "1px solid #e0dcd4" }}>
+                  {["AZ", "CA", "NY", "TX"].map((s, i) => (
+                    <div
+                      key={s}
+                      className="pb-2"
+                      style={{
+                        fontSize: "11px",
+                        letterSpacing: "0.08em",
+                        fontWeight: i === 0 ? 700 : 500,
+                        color: i === 0 ? "#1c1c19" : "#9a978f",
+                        borderBottom: i === 0 ? "2px solid #1c1c19" : "2px solid transparent",
+                        marginBottom: "-1px",
+                      }}
+                    >
+                      {s}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Real cert preview */}
+                <div className="bg-white overflow-hidden" style={{ border: "1px solid #e0dcd4", boxShadow: "0 8px 28px rgba(0,0,0,0.08)" }}>
+                  <img
+                    src="/az-resale-cert-sample-1.png"
+                    alt="Arizona Form 5000A Resale Certificate generated via Credenza"
+                    loading="lazy"
+                    className="w-full h-auto block"
+                  />
+                </div>
+
+                {/* Footer actions */}
+                <div className="mt-4 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div style={{ width: "14px", height: "14px", border: "1.5px solid #c8c4bc", flexShrink: 0 }} />
+                    <span style={{ fontSize: "10px", color: "#6a6a62", lineHeight: 1.4 }}>I agree to Credenza's Terms of Use.</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="px-3 py-2 uppercase" style={{ border: "1px solid #1c1c19", fontSize: "9.5px", letterSpacing: "0.1em", color: "#1c1c19", fontWeight: 500 }}>Sign &amp; Save</div>
+                    <div className="flex items-center gap-1.5 px-3 py-2 uppercase" style={{ backgroundColor: "#1c1c19", color: "#ffffff", fontSize: "9.5px", letterSpacing: "0.1em", fontWeight: 500 }}>
+                      Sign &amp; Download <ArrowRight size={10} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 border border-teal-border" style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(8px)" }}>
               <Zap size={12} className="text-teal-mid" />
               <span className="font-semibold uppercase text-teal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.08em" }}>Generated in seconds</span>
@@ -330,7 +414,7 @@ function AccountManagement() {
             </h2>
             {/* Mobile-only image after headline */}
             <div className="lg:hidden mb-6 overflow-hidden border border-sage-dark">
-              <img src="/trade-accounts-screenshot.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
+              <img src="/trade-accounts-screenshot-crop.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Vendors, workrooms, installers, fabric houses—every trade
@@ -339,7 +423,7 @@ function AccountManagement() {
               number, discount code, or your rep's phone number.
             </p>
             <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Info from 1,300+ to-the-trade vendors is already in Credenza—just
+              Info from 2,000+ to-the-trade vendors is already in Credenza—just
               start typing and add them to your dashboard in one click.
             </p>
             <p className="font-freight italic text-charcoal" style={{ fontSize: "1.1rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
@@ -551,7 +635,7 @@ function AccountManagement() {
                   className="text-charcoal-soft mb-2.5"
                   style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", lineHeight: 1.5 }}
                 >
-                  1,300+ to-the-trade vendors. Start typing to find and add.
+                  2,000+ to-the-trade vendors. Start typing to find and add.
                 </p>
                 <div
                   className="px-3 py-2 bg-white mb-1"
@@ -645,7 +729,7 @@ function AccountManagement() {
           {[
             { title: "Certs attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
             { title: "Vendor logins, securely stored", body: "Account numbers and portal passwords encrypted in transit and at rest. Copy user name and password with one click. Share access with your team; revoke when someone leaves." },
-            { title: "Platform vendors always in sync", body: "For vendors on Credenza, your personal trade discount, YTD spend, rep contact, current price lists, and latest catalogs sync straight from the vendor—so you have the most current information at your fingertips." },
+            { title: "Bring your whole book in one import", body: "Upload a CSV of your existing trade accounts—we match against our directory of 2,000+ brands and auto-fill categories, contact info, and portal links. Migrate decades of vendors in minutes." },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
           ].map((item, i) => (
             <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
@@ -770,15 +854,15 @@ function FirmTeam() {
               <img src="/team-members-screenshot.png" alt="Team members panel" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Run Credenza however your firm operates—one shared login for
-              small studios, individual credentials for larger teams. Either
-              way, invites and permissions stay in sync across every vendor
-              in the network.
+              Every team member gets their own login with role-based access.
+              Invites and permissions stay in sync across every vendor in the
+              network—add a new hire in one step, revoke access the moment
+              someone leaves.
             </p>
 
             <div className="border-t border-sage-dark">
               {[
-                { icon: <Users size={14} />, title: "Individual logins when you want them", body: "Give each team member their own credentials—no 2FA headaches when someone's traveling." },
+                { icon: <Users size={14} />, title: "Each person, their own login", body: "Every team member gets their own credentials—no shared passwords, no 2FA headaches when someone's traveling." },
                 { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Not authorized to sign? Send the pre-filled certificate to the firm owner or another authorized signer to complete." },
                 { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke their access to your business info and trade accounts at once." },
               ].map((item) => (
@@ -946,10 +1030,11 @@ function Network() {
               <OneClickApplyMock />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              Credenza is building a network of vendors whose trade programs are
-              powered by Credenza. As vendors join, your verified profile goes with you
-              automatically—no new forms, no document uploads, no repeat
-              applications. One click and you're in.
+              Credenza is building a network of vendors whose trade programs run
+              on the platform. We're onboarding the first vendor partners now. As
+              more join, your verified profile goes with you automatically—no new
+              forms, no document uploads, no repeat applications. One click and
+              you're in.
             </p>
             <p className="font-freight italic mb-8 text-teal" style={{ fontSize: "1.15rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
               Set up once. Every new vendor is just one click away.
@@ -959,7 +1044,7 @@ function Network() {
               {[
                 { title: "Your profile travels with you", body: "Everything you verify with Credenza is securely stored to reuse with any vendor. Your next vendor application could be one click." },
                 { title: "Just click Apply", body: "When a vendor powers its program with Credenza, your next application is one click. No forms, no uploads." },
-                { title: "Approved faster", body: "Approved in minutes, not days. Your verified profile can be matched against vendor criteria automatically—no back-and-forth, no waiting." },
+                { title: "Approved faster", body: "Once a vendor is live on Credenza, your verified profile is matched against their criteria automatically—approved in minutes, not days, with no back-and-forth." },
               ].map((item) => (
                 <div key={item.title}>
                   <h3 className="font-freight mb-1 text-ivory" style={{ fontSize: "1.1rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}>{item.title}</h3>
@@ -980,98 +1065,48 @@ function Network() {
 
 
 /* =========================================================================
-   7. CTA
+   7. PRICING — free for designers
    ========================================================================= */
-const ACCESS_REQUEST_URL = "https://hdcyqdxksgnexbtfxsdk.supabase.co/functions/v1/vendor-request-access";
-
-function CTASection() {
+function Pricing() {
   const ref = useReveal();
-  const [form, setForm] = useState({ name: "", email: "", company: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.company.trim()) return;
-    setStatus("sending");
-    try {
-      const res = await fetch(ACCESS_REQUEST_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name.trim(), email: form.email.trim(), company: form.company.trim() }),
-      });
-      if (!res.ok) throw new Error();
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
-  }
-
+  const included = [
+    "Unlimited resale certificates for every state",
+    "Trade account dashboard with encrypted credentials",
+    "CSV import to migrate your whole book in minutes",
+    "Verified profile—EIN, sales tax IDs, licenses, memberships",
+    "Unlimited team members, no per-seat fees",
+    "Automatic expiration tracking for every certificate",
+  ];
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-white">
+    <section id="pricing" ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-sage-dark">
-          <div className="relative overflow-hidden min-h-[250px]">
-            <img src="/marea-clark-entry.jpg" alt="Entry by Marea Clark" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center center" }} />
-            <PhotoCredit
-              separator=""
-              credits={[
-                { text: "© " },
-                { text: "Tim Lenz", href: withCredenzaUtm("https://www.timlenzphoto.com/", "photo-credit", "for-designers-hero") },
-                { text: "/OTTO (design by " },
-                { text: "Marea Clark Interiors", href: withCredenzaUtm("https://www.mareaclarkinteriors.com/", "designer-credit", "for-designers-hero") },
-                { text: ")" },
-              ]}
-            />
-            <div className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to right, transparent 60%, ${C.ivory} 100%)` }} />
-          </div>
-
-          <div className="p-10 md:p-14 bg-white">
-            <Eyebrow>Get started</Eyebrow>
-            <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
-              Your verified profile
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16">
+          <div className="lg:col-span-7">
+            <Eyebrow>Pricing</Eyebrow>
+            <h2 className="font-freight leading-none text-charcoal" style={{ fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)", letterSpacing: "-0.03em" }}>
+              Free for designers.
               <br />
-              <span className="italic text-olive-mid">starts here.</span>
+              <span className="italic text-olive-mid">Every seat.</span>
             </h2>
-            <p className="mb-8 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}>
-              Credenza is in early access. Request access and we'll help you
-              set up your profile—so you're ready the moment you need it.
-            </p>
-
-            {status === "sent" ? (
-              <div className="flex flex-col items-center gap-3 py-8">
-                <div className="flex items-center justify-center w-10 h-10 bg-olive-dim border border-olive-border">
-                  <Check size={18} className="text-olive-mid" />
-                </div>
-                <p className="font-semibold text-charcoal" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem" }}>We've got your request.</p>
-                <p className="text-charcoal-soft" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem" }}>We'll be in touch soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                {[
-                  { placeholder: "Your name", type: "text", key: "name" as const },
-                  { placeholder: "Work email", type: "email", key: "email" as const },
-                  { placeholder: "Firm name", type: "text", key: "company" as const },
-                ].map((field) => (
-                  <input key={field.placeholder} type={field.type} placeholder={field.placeholder}
-                    value={form[field.key]}
-                    onChange={(e) => setForm((f) => ({ ...f, [field.key]: e.target.value }))}
-                    required
-                    className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark bg-page-white text-charcoal rounded-none focus:border-olive"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }}
-                  />
-                ))}
-                <button type="submit" disabled={status === "sending"}
-                  className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 font-normal uppercase text-forest rounded-none ${status === "sending" ? "bg-sage-dark cursor-default" : "bg-teal cursor-pointer hover:bg-[#99b8bd]"}`}
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-                >{status === "sending" ? "Sending..." : "Get Started"} {status !== "sending" && <ArrowRight size={14} />}</button>
-                {status === "error" && (
-                  <p className="text-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", color: "#b44" }}>
-                    Something went wrong. Please try again.
-                  </p>
-                )}
-              </form>
-            )}
           </div>
+          <div className="lg:col-span-5 flex items-end">
+            <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
+              No credit card. No trial window. No seat limit. Generate certs,
+              manage trade accounts, verify your profile, and invite your whole
+              team at no cost to designers.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-sage-dark">
+          {included.map((item, i) => (
+            <div key={item} className={`flex items-start gap-4 py-5 border-b border-sage-dark ${i % 2 === 0 ? "md:pr-8" : "md:pl-8 md:border-l md:border-sage-dark"}`}>
+              <div className="flex items-center justify-center shrink-0 mt-0.5 w-5 h-5 bg-olive-dim border border-olive-border">
+                <Check size={10} className="text-olive-mid" />
+              </div>
+              <span className="text-charcoal" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.55 }}>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1080,47 +1115,136 @@ function CTASection() {
 
 
 /* =========================================================================
-   FOOTER
+   8. FAQ
    ========================================================================= */
-function Footer() {
-  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <footer className="border-t border-sage bg-white">
-      <div className="container py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-          <div className="col-span-2">
-            <img src={LOGO_BLACK} alt="Credenza" loading="lazy" className="h-8 w-auto mb-4" />
-            <p className="text-charcoal-soft max-w-[240px]" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.7 }}>
-              The design trade's operating system.
-            </p>
+    <div className="border-b border-sage-dark">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="w-full flex items-start justify-between gap-6 py-5 text-left cursor-pointer bg-transparent"
+      >
+        <h3 className="font-freight text-charcoal" style={{ fontSize: "1.15rem", letterSpacing: "-0.015em", lineHeight: 1.3 }}>
+          {q}
+        </h3>
+        <div className={`shrink-0 mt-1 text-charcoal-soft transition-transform duration-200 ${open ? "rotate-45" : ""}`}>
+          <Plus size={20} />
+        </div>
+      </button>
+      {open && (
+        <p
+          className="pb-5 pr-10 text-charcoal-mid"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.7 }}
+        >
+          {a}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function FAQ() {
+  const ref = useReveal();
+  const questions = [
+    {
+      q: "Is Credenza really free for designers?",
+      a: "Yes—no credit card, no trial window, no seat limit. Build a profile, generate certs, apply for trade programs, manage trade accounts, and invite your team at no cost to designers. Vendors pay for the platform.",
+    },
+    {
+      q: "Which states do you support?",
+      a: "All 46 states with sales tax, plus DC. We auto-fill the official PDF form for 39 states. Six states (AL, FL, LA, NM, TN, WA) require their own state-issued cert—upload yours once and Credenza keeps it ready to send to any vendor on the Credenza network.",
+    },
+    {
+      q: "How do I move my existing account/source list into Credenza?",
+      a: "If you're already tracking them in a Google Sheet or spreadsheet, export to CSV and drop it in. We match against our directory of 2,000+ to-the-trade brands and auto-fill categories for easy sourcing, corporate addresses and legal business names for resale certificate generation, and trade portal login links for quick access—your whole book migrated in minutes.",
+    },
+    {
+      q: "Can I add my own vendors?",
+      a: "Yes. Any vendor you shop with or tradesperson you work with can be added to your dashboard. If they're in our directory of 2,000+ brands, categories and contact info are pre-filled. If not, paste a URL and we'll pull the details, or add them manually in a few fields.",
+    },
+    {
+      q: "Is my trade profile secure?",
+      a: "Yes. Sensitive information in your trade profile—your EIN, sales tax IDs, and vendor portal credentials—is encrypted in transit and at rest. Your profile is visible only to team members you authorize. Revoke access the moment someone leaves the firm.",
+    },
+    {
+      q: "Is my vendor list private?",
+      a: "Yes. Your trade profile and account details are visible only to you and the team members you authorize. No other designer sees who you work with or what you pay. Your trade profile only reaches a vendor when your firm chooses to apply. Your accounts, discounts, and relationships stay yours.",
+    },
+  ];
+  return (
+    <section id="faq" ref={ref} className="reveal py-16 md:py-24 bg-white">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-8">
+          <div className="lg:col-span-7">
+            <Eyebrow>Frequently asked</Eyebrow>
+            <h2 className="font-freight leading-none text-charcoal" style={{ fontSize: "clamp(1.8rem, 3.2vw, 2.6rem)", letterSpacing: "-0.03em" }}>
+              Fair questions,
+              <br />
+              <span className="italic text-olive-mid">answered.</span>
+            </h2>
           </div>
-          {[
-            { heading: "Product", links: ["For Designers", "For Vendors"] },
-            { heading: "Company", links: ["Blog"] },
-            { heading: "Contact", links: ["info@usecredenza.com"] },
-          ].map((col) => (
-            <div key={col.heading}>
-              <h4 className="uppercase text-charcoal-mid font-semibold mb-4" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em" }}>{col.heading}</h4>
-              <div className="flex flex-col gap-2.5">
-                {col.links.map((link) => (
-                  <a key={link} href={link === "For Designers" ? `${prefix}/for-designers` : link === "For Vendors" ? `${prefix}/` : link === "Blog" ? "/blog" : link.includes("@") ? `mailto:${link}` : "#"} className="no-underline transition-colors duration-150 text-charcoal-soft hover:text-charcoal"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem" }}
-                  >{link}</a>
-                ))}
-              </div>
-            </div>
+        </div>
+
+        <div className="border-t border-sage-dark">
+          {questions.map((item) => (
+            <FAQItem key={item.q} q={item.q} a={item.a} />
           ))}
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-sage">
-          <p className="text-charcoal-soft" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}>&copy; 2026 Credenza Labs, Inc. All rights reserved.</p>
-          <div className="flex gap-6">
-            {["Privacy", "Terms", "Security"].map((item) => (
-              <a key={item} href="#" className="no-underline text-charcoal-soft hover:text-charcoal" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}>{item}</a>
-            ))}
+      </div>
+    </section>
+  );
+}
+
+
+/* =========================================================================
+   9. CTA
+   ========================================================================= */
+function CTASection() {
+  const ref = useReveal();
+  return (
+    <section ref={ref} className="reveal py-16 md:py-20 bg-white">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-5 overflow-hidden border border-sage-dark">
+          <div className="lg:col-span-3 relative overflow-hidden" style={{ aspectRatio: "4 / 3" }}>
+            <img
+              src="/marea-clark-entry.jpg"
+              alt="Entry by Marea Clark"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectPosition: "center center" }}
+            />
+            <PhotoCredit
+              separator=""
+              credits={[
+                { text: "© " },
+                { text: "Tim Lenz", href: withCredenzaUtm("https://www.timlenzphoto.com/", "photo-credit", "for-designers-cta") },
+                { text: "/OTTO (design by " },
+                { text: "Marea Clark Interiors", href: withCredenzaUtm("https://www.mareaclarkinteriors.com/", "designer-credit", "for-designers-cta") },
+                { text: ")" },
+              ]}
+            />
+          </div>
+          <div className="lg:col-span-2 bg-white p-10 md:p-12 lg:p-14 flex flex-col justify-center">
+            <Eyebrow>Get started</Eyebrow>
+            <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
+              Your verified profile
+              <br />
+              <span className="italic text-olive-mid">starts here.</span>
+            </h2>
+            <p className="mb-8 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}>
+              Every trade relationship you rely on, ready when you need it.
+              Less paperwork, more design. Free for designers—no credit card.
+            </p>
+            <a href={JOIN_DESIGNER_URL} className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd] self-start"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+            >Get Started—It's Free <ArrowRight size={14} /></a>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
   );
 }
 
@@ -1138,7 +1262,9 @@ export default function ForDesigners() {
       <FirmTeam />
       <VerifiedProfile />
       <Network />
+      <Pricing />
       <CTASection />
+      <FAQ />
       <Footer />
     </div>
   );
