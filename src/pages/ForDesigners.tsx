@@ -208,8 +208,8 @@ function TaxStrategy() {
         <div className="relative">
           <div className="overflow-hidden border border-sage-dark relative" style={{ maxWidth: "900px" }}>
             <img
-              src="/cert-generator-engine.png"
-              alt="Credenza cert generator — 'Bon voyage, taxes.' preview of a Multistate Tax Commission (MTC) certificate for Melton Antiques covering Arizona, Missouri, and New Jersey, pre-filled for H20 Interiors"
+              src="/cert-generator-engine.png?v=2"
+              alt="Credenza cert generator — complete view of a Multistate Tax Commission (MTC) certificate for Melton Antiques covering Arizona, Missouri, and New Jersey, pre-filled for H20 Interiors"
               loading="lazy"
               className="w-full h-auto block"
             />
@@ -958,8 +958,8 @@ function Network() {
               <OneClickApplyMock />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              Credenza is building a network of vendors whose trade programs run
-              on the platform. We're onboarding the first vendor partners now. As
+              Credenza is building a network of vendors whose trade programs are
+              powered by Credenza. We're onboarding the first vendor partners now. As
               more join, your verified profile goes with you automatically—no new
               forms, no document uploads, no repeat applications. One click and
               you're in.
@@ -1014,7 +1014,7 @@ function Pricing() {
             <h2 className="font-freight leading-none text-charcoal" style={{ fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)", letterSpacing: "-0.03em" }}>
               Free for designers.
               <br />
-              <span className="italic text-olive-mid">Every seat.</span>
+              <span className="italic text-olive-mid">Really.</span>
             </h2>
           </div>
           <div className="lg:col-span-5 flex items-end">
@@ -1091,7 +1091,7 @@ function FAQ() {
     },
     {
       q: "Can I add my own vendors?",
-      a: "Yes. Any vendor you shop with or tradesperson you work with can be added to your dashboard. If they're in our directory of 2,000+ brands, categories and contact info are pre-filled. If not, paste a URL and we'll pull the details, or add them manually in a few fields.",
+      a: "Yes. Any vendor you shop with or tradesperson you work with can be added to your dashboard. If they're in our directory of 2,000+ brands, categories and business info are pre-filled. If not, paste a URL and we'll pull the details, or add them manually in a few fields.",
     },
     {
       q: "Is my trade profile secure?",
