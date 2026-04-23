@@ -4,8 +4,8 @@ export function TermsOfUseContent() {
       className="text-charcoal-mid"
       style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.8 }}
     >
-      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: April 16, 2026</p>
-      <p className="mb-4">Welcome to Credenza ("Credenza," "we," "our," or "us"). These Terms of Use ("Terms") govern your access to and use of usecredenza.com and any related services or applications (collectively, the "Platform").</p>
+      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: April 23, 2026</p>
+      <p className="mb-4">These Terms of Use ("Terms") are a binding agreement between you and Credenza Labs, Inc. ("Credenza," "we," "our," or "us") and govern your access to and use of usecredenza.com and any related services or applications (collectively, the "Platform").</p>
       <p className="mb-4">By accessing or using the Platform, you agree to these Terms. If you do not agree, please do not use Credenza.</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>1. Overview</h2>
@@ -55,7 +55,7 @@ export function TermsOfUseContent() {
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>14. Contact Information</h2>
       <p>For questions or concerns about these Terms, please contact us at:</p>
-      <p className="mt-2">Credenza<br />Email: <a href="mailto:info@usecredenza.com" className="text-teal-mid">info@usecredenza.com</a><br />Website: usecredenza.com</p>
+      <p className="mt-2">Credenza Labs, Inc.<br />Email: <a href="mailto:info@usecredenza.com" className="text-teal-mid">info@usecredenza.com</a><br />Website: usecredenza.com</p>
     </div>
   );
 }
