@@ -52,9 +52,9 @@ export function CTASection() {
               className="mb-8 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}
             >
-              Credenza is in early access. Join the waitlist and we'll work
-              with you to launch a trade program your clients will actually
-              thank you for.
+              Credenza is in early access. Join the waitlist and we'll
+              streamline your trade program so your clients actually thank
+              you for it.
             </p>
             <div className="flex flex-col gap-3">
               {[

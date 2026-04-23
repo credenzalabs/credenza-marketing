@@ -102,13 +102,6 @@ export function Hero() {
               >
                 Request access
               </a>
-              <a
-                href="#"
-                className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-transparent text-charcoal border border-sage-dark hover:border-forest"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em" }}
-              >
-                See how it works
-              </a>
             </div>
 
             {/* Trust signals—thin rule style */}
