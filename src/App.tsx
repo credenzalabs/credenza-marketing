@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import ForDesigners from "./pages/ForDesigners";
-import NotFound from "./pages/NotFound";
+import ComingSoon from "./pages/ComingSoon";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import CookieBanner from "./components/CookieBanner";
@@ -16,18 +16,27 @@ function PageviewTracker() {
   return null;
 }
 
+function ConditionalCookieBanner() {
+  const { pathname } = useLocation();
+  const isPreview = pathname.startsWith("/preview");
+  return isPreview ? <CookieBanner /> : null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <PageviewTracker />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/for-designers" element={<ForDesigners />} />
+        {/* Hidden preview routes */}
+        <Route path="/preview" element={<Home />} />
+        <Route path="/preview/for-designers" element={<ForDesigners />} />
+        {/* Legal pages — public and crawlable */}
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
-        <Route path="*" element={<NotFound />} />
+        {/* Public routes — splash page */}
+        <Route path="*" element={<ComingSoon />} />
       </Routes>
-      <CookieBanner />
+      <ConditionalCookieBanner />
     </BrowserRouter>
   );
 }
