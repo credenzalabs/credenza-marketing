@@ -13,6 +13,8 @@ export interface NavProps {
   logoHref?: string;
   /** Render the Sign in + CTA block inside the mobile menu. */
   showMobileCta?: boolean;
+  /** Render the desktop Sign in link. */
+  showSignIn?: boolean;
 }
 
 export function Nav({
@@ -21,6 +23,7 @@ export function Nav({
   ctaHref = "#",
   logoHref,
   showMobileCta = true,
+  showSignIn = false,
 }: NavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,20 +98,22 @@ export function Nav({
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <a
-              href={LOGIN_URL}
-              className="no-underline transition-colors duration-200"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.8rem",
-                color: C.charcoalMid,
-                fontWeight: 500,
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalMid)}
-            >
-              Sign in
-            </a>
+            {showSignIn && (
+              <a
+                href={LOGIN_URL}
+                className="no-underline transition-colors duration-200"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: C.charcoalMid,
+                  fontWeight: 500,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = C.forest)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = C.charcoalMid)}
+              >
+                Sign in
+              </a>
+            )}
             <a
               href={ctaHref}
               className="no-underline inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
@@ -181,19 +186,21 @@ export function Nav({
                 className="flex flex-col gap-3 pt-4 border-t"
                 style={{ borderColor: C.sage }}
               >
-                <a
-                  href={LOGIN_URL}
-                  className="no-underline text-center py-2.5 px-4"
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.82rem",
-                    color: C.charcoal,
-                    border: `1px solid ${C.sageDark}`,
-                    borderRadius: "0",
-                  }}
-                >
-                  Sign in
-                </a>
+                {showSignIn && (
+                  <a
+                    href={LOGIN_URL}
+                    className="no-underline text-center py-2.5 px-4"
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.82rem",
+                      color: C.charcoal,
+                      border: `1px solid ${C.sageDark}`,
+                      borderRadius: "0",
+                    }}
+                  >
+                    Sign in
+                  </a>
+                )}
                 <a
                   href={ctaHref}
                   className="no-underline text-center py-2.5 px-4 flex items-center justify-center gap-2"

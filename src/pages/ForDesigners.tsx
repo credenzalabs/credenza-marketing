@@ -115,7 +115,7 @@ function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
               <a href={JOIN_DESIGNER_URL} className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd]"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-              >Get Started—It's Free <ArrowRight size={14} /></a>
+              >Get Early Access</a>
             </div>
 
             <div className="flex flex-col gap-2.5">
@@ -1155,6 +1155,7 @@ function CTASection() {
             />
           </div>
           <div className="lg:col-span-2 bg-white p-10 md:p-12 lg:p-14 flex flex-col justify-center">
+            {/* Post-waitlist copy — swap back when signup is live:
             <Eyebrow>Get started</Eyebrow>
             <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
               Your verified profile
@@ -1165,9 +1166,20 @@ function CTASection() {
               Every trade relationship you rely on, ready when you need it.
               Less paperwork, more design. Free for designers—no credit card.
             </p>
+            */}
+            <Eyebrow>Early access</Eyebrow>
+            <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
+              Your verified profile
+              <br />
+              <span className="italic text-olive-mid">is coming soon.</span>
+            </h2>
+            <p className="mb-8 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}>
+              Every trade relationship you rely on, in one verified profile.
+              Join the waitlist to be among the first—free for designers.
+            </p>
             <a href={JOIN_DESIGNER_URL} className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd] self-start"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-            >Get Started—It's Free <ArrowRight size={14} /></a>
+            >Get Early Access</a>
           </div>
         </div>
       </div>
@@ -1182,7 +1194,7 @@ function CTASection() {
 export default function ForDesigners() {
   return (
     <div className="min-h-screen bg-white">
-      <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
+      <Nav activePage="designers" ctaLabel="Get Early Access" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
       <Hero />
       <AccountManagement />
       <TaxStrategy />
