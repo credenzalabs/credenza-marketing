@@ -107,10 +107,10 @@ function Hero() {
             </div>
 
             <p className="mb-10 text-charcoal-mid max-w-[400px]" style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}>
-              Your vendors, workrooms, installers, and every trade relationship
-              your firm depends on—organized in one dashboard. Generate the right
-              resale certificate for every state, and apply to new vendors
-              instantly—so you spend your time designing, not filing paperwork.
+              Every trade relationship your firm depends on, organized in one
+              dashboard. Generate the right resale certificate for every state,
+              and apply to new vendors instantly—so you spend your time
+              designing, not filing paperwork.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
@@ -346,9 +346,8 @@ function AccountManagement() {
               <img src="/trade-accounts-screenshot-crop.png" alt="Trade accounts dashboard" loading="lazy" className="w-full h-auto block" />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Vendors, workrooms, installers, fabric houses—every trade
-              relationship your firm has, in one place. No more unruly
-              Google Sheets. No more digging through emails for an account
+              Vendors, workrooms, installers, fabric houses. No more unruly
+              Google Sheets, no more digging through emails for an account
               number, discount code, or your rep's phone number.
             </p>
             <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
