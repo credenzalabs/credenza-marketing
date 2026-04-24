@@ -55,37 +55,19 @@ export function CTASection() {
               Credenza is in early access. Join the waitlist and design a
               trade program your clients will thank you for.
             </p>
-            <div className="flex flex-col gap-3">
-              {[
-                { placeholder: "Your name", type: "text" },
-                { placeholder: "Work email", type: "email" },
-                { placeholder: "Company or showroom name", type: "text" },
-              ].map((field) => (
-                <input
-                  key={field.placeholder}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark focus:border-olive bg-page-white text-charcoal rounded-none"
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.875rem",
-                  }}
-                />
-              ))}
-              <a
-                href={JOIN_VENDOR_URL}
-                className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal cursor-pointer bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.1em",
-                  outline: "0.5px solid #99b8bd",
-                  outlineOffset: "2px",
-                }}
-              >
-                Request access
-              </a>
-            </div>
+            <a
+              href={JOIN_VENDOR_URL}
+              className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal cursor-pointer bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "0.72rem",
+                letterSpacing: "0.1em",
+                outline: "0.5px solid #99b8bd",
+                outlineOffset: "2px",
+              }}
+            >
+              Request access
+            </a>
           </div>
         </div>
       </div>
