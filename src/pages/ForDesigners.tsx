@@ -1159,7 +1159,7 @@ function CTASection() {
     <section ref={ref} className="reveal py-12 md:py-16 bg-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden border border-sage-dark">
-          <div className="relative overflow-hidden min-h-[280px]">
+          <div className="relative overflow-hidden aspect-square">
             <img
               src="/marea-clark-entry.jpg"
               alt="Entry by Marea Clark"
