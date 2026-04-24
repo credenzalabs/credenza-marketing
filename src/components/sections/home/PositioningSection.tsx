@@ -11,7 +11,7 @@ export function PositioningSection() {
       {/* Full-bleed image with text overlay */}
       <div className="relative overflow-hidden min-h-[70vh]">
         <img
-          src="/sarah-bartholomew-living-room.webp"
+          src="/sarah-bartholomew-living-room.jpg"
           alt="Living room by Sarah Bartholomew"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
