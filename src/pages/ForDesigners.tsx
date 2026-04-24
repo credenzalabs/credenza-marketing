@@ -167,9 +167,9 @@ function TaxStrategy() {
           <div className="lg:col-span-5 flex items-end">
             <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
               Work on a project in another state? Use a workroom across state lines?
-              Multi-state tax gets confusing fast—every state has different rules,
-              different forms, different expirations, and it's easy to leave money
-              on the table or check the wrong box.
+              Multi-state tax gets confusing fast—every state has different
+              rules, forms, and expirations, and it's easy to leave money on
+              the table or check the wrong box.
             </p>
           </div>
         </div>
@@ -658,7 +658,7 @@ function AccountManagement() {
             { title: "Certs attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
             { title: "Vendor logins, securely stored", body: "Account numbers and portal passwords encrypted in transit and at rest. Copy user name and password with one click. Share access with your team; revoke when someone leaves." },
             { title: "Bring your whole book in one import", body: "Upload a CSV of your existing trade accounts—we match against our directory of 2,000+ brands and auto-fill categories, contact info, and portal links. Migrate decades of vendors in minutes." },
-            { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor in the network sees the update." },
+            { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor you're connected with sees the update." },
           ].map((item, i) => (
             <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
               <h3 className="font-freight mb-2 text-charcoal" style={{ fontSize: "1.15rem", letterSpacing: "-0.015em", lineHeight: 1.2 }}>{item.title}</h3>
@@ -704,7 +704,7 @@ function VerifiedProfile() {
               </h2>
               <p className="max-w-[460px]" style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "rgba(255,255,255,0.8)" }}>
                 Your EIN confirmed against IRS records. Your license validated with the
-                state board. Your memberships checked against ASID and NCIDQ directories.
+                state board. Your memberships checked against ASID, NCIDQ, NKBA, and ICAA directories.
                 Everything that makes your certificates and applications credible—verified
                 once and stored in one place.
               </p>
@@ -725,7 +725,7 @@ function VerifiedProfile() {
             { label: "EIN number", detail: "Verified against IRS records—building the credibility that gets you approved faster.", badge: "Verified" },
             { label: "Professional licenses", detail: "Interior design licenses checked against state boards in NY, FL, GA, IL, LA, NV, TX, and DC. Architecture licenses validated against NCARB.", badge: "Verified" },
             { label: "Sales tax registrations", detail: "Verified directly with 28 states. Stored so your certificates are always pre-filled correctly.", badge: "Verified" },
-            { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA—if you're a member, we'll make sure it counts.", badge: "Verified" },
+            { label: "Professional memberships", detail: "ASID, NCIDQ, NKBA, ICAA—if you're a member, we'll make sure it counts.", badge: "Verified" },
             { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice.", badge: "Verified" },
             { label: "Press recognition & showhouse participation", detail: "Matched against thousands of showhouse participants and press coverage across major design publications.", badge: "Enriched" },
           ].map((item) => (
@@ -782,17 +782,16 @@ function FirmTeam() {
               <img src="/team-members-screenshot.png" alt="Team members panel" loading="lazy" className="w-full h-auto block" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)" }} />
             </div>
             <p className="mb-4 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Every team member gets their own login with role-based access.
-              Invites and permissions stay in sync across every vendor in the
-              network—add a new hire in one step, revoke access the moment
-              someone leaves.
+              Every team member gets their own login. Add a new hire once
+              and they have access to every vendor account. Revoke access
+              the moment someone leaves.
             </p>
 
             <div className="border-t border-sage-dark">
               {[
-                { icon: <Users size={14} />, title: "Each person, their own login", body: "Every team member gets their own credentials—no shared passwords, no 2FA headaches when someone's traveling." },
-                { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts. Not authorized to sign? Send the pre-filled certificate to the firm owner or another authorized signer to complete." },
-                { icon: <Zap size={14} />, title: "One step to add or remove anyone", body: "New hire? Add them once. Someone leaves? Revoke their access to your business info and trade accounts at once." },
+                { icon: <Users size={14} />, title: "Each person, their own login", body: "No shared passwords to rotate when someone leaves." },
+                { icon: <Shield size={14} />, title: "Everyone can contribute", body: "Any team member can generate certificates, add vendors and sources, and manage trade accounts." },
+                { icon: <Zap size={14} />, title: "Not authorized to sign?", body: "Every resale certificate needs a legally authorized signer. Any team member can draft and pre-fill the cert; route it to the firm owner or another authorized signer to complete in their inbox." },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 py-4 border-b border-sage-dark">
                   <div className="flex items-center justify-center shrink-0 mt-0.5 w-6 h-6 bg-teal-dim border border-teal-border">
@@ -958,10 +957,9 @@ function Network() {
               <OneClickApplyMock />
             </div>
             <p className="mb-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(240,240,236,0.7)" }}>
-              We're onboarding the first vendor partners now. When vendors power
-              their trade programs with Credenza, your verified profile goes with
-              you automatically—no new forms, no document uploads, no repeat
-              applications. One click and you're in.
+              We're onboarding the first vendor partners now. As they power
+              their trade programs with Credenza, your verified profile goes
+              with you—no forms, no uploads, no repeat applications.
             </p>
             <p className="font-freight italic mb-8 text-teal" style={{ fontSize: "1.15rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
               Set up once. Every new vendor is just one click away.
@@ -969,9 +967,9 @@ function Network() {
 
             <div className="flex flex-col gap-5">
               {[
-                { title: "Your profile travels with you", body: "Everything you verify with Credenza is securely stored to reuse with any vendor. Your next vendor application could be one click." },
-                { title: "Just click Apply", body: "When a vendor powers its program with Credenza, your next application is one click. No forms, no uploads." },
-                { title: "Approved faster", body: "Once a vendor is live on Credenza, your verified profile is matched against their criteria automatically—approved in minutes, not days, with no back-and-forth." },
+                { title: "Your profile travels with you", body: "Everything you verify stays with your trade profile, portable across every vendor on Credenza." },
+                { title: "No forms to fill out", body: "Your verified profile is the application. Skip the re-entry, the re-uploads, the re-explaining." },
+                { title: "Approved faster", body: "Vendors on Credenza can automate their approvals—so if your verified profile meets their criteria, you can be approved in under 5 minutes." },
               ].map((item) => (
                 <div key={item.title}>
                   <h3 className="font-freight mb-1 text-ivory" style={{ fontSize: "1.1rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}>{item.title}</h3>
