@@ -30,7 +30,7 @@ export function TiersSection() {
               className="text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
             >
-              Set a flat discount for everyone, define multiple tiers with different discount levels, or let trade pricing vary by product. Credenza assigns designers to the right tier on approval—and you can upgrade them as the relationship grows.
+              Set a flat discount for everyone, define multiple tiers with different discount levels, or let trade pricing vary by product. Assign designers to the right tier on approval—and upgrade them as the relationship grows.
             </p>
             <p
               className="mt-4 text-charcoal-mid"
