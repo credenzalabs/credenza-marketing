@@ -1156,10 +1156,10 @@ function CTASection() {
   }
 
   return (
-    <section ref={ref} className="reveal py-16 md:py-20 bg-white">
+    <section ref={ref} className="reveal py-12 md:py-16 bg-white">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-5 overflow-hidden border border-sage-dark">
-          <div className="lg:col-span-3 relative overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden border border-sage-dark">
+          <div className="relative overflow-hidden min-h-[280px]">
             <img
               src="/marea-clark-entry.jpg"
               alt="Entry by Marea Clark"
@@ -1178,16 +1178,16 @@ function CTASection() {
               ]}
             />
           </div>
-          <div className="lg:col-span-2 bg-white p-10 md:p-12 lg:p-14 flex flex-col justify-center">
+          <div className="bg-white p-10 md:p-12 lg:p-14 flex flex-col justify-center">
             <Eyebrow>Early access</Eyebrow>
             <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
-              One dashboard.
+              Your verified profile
               <br />
-              <span className="italic text-olive-mid">One verified profile.</span>
+              <span className="italic text-olive-mid">is coming soon.</span>
             </h2>
             <p className="mb-8 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}>
-              Every trade relationship you rely on in one considered place, and a verified profile that unlocks faster trade access.
-              Join the waitlist to be among the first—free for designers.
+              Every trade relationship you rely on in one considered place.
+              Join the waitlist to be among the first.
             </p>
 
             {status === "sent" ? (
