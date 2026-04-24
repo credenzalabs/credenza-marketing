@@ -208,8 +208,8 @@ function TaxStrategy() {
         <div className="relative">
           <div className="overflow-hidden border border-sage-dark relative" style={{ maxWidth: "900px" }}>
             <img
-              src="/cert-generator-engine.png?v=2"
-              alt="Credenza cert generator — complete view of a Multistate Tax Commission (MTC) certificate for Melton Antiques covering Arizona, Missouri, and New Jersey, pre-filled for H20 Interiors"
+              src="/cert-generator-engine.png?v=4"
+              alt="Credenza cert generator — preview of a Multistate Tax Commission (MTC) certificate for Melton Antiques covering Arizona, Missouri, and New Jersey, pre-filled for H20 Interiors"
               loading="lazy"
               className="w-full h-auto block"
             />
