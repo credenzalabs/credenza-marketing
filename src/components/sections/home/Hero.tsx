@@ -12,6 +12,7 @@ const HERO_IMAGES = [
     src: IMAGES.studioDorionBrownstone,
     alt: "Studio Dorion brownstone",
     position: "left center",
+    dwellMs: 6000,
     credits: [
       { text: "© " },
       { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
@@ -24,6 +25,7 @@ const HERO_IMAGES = [
     src: "/caitlin-kah-credenza.jpg",
     alt: "Interior by Caitlin Kah",
     position: "center center",
+    dwellMs: 12000,
     credits: [
       { text: "© " },
       { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
@@ -37,9 +39,12 @@ const HERO_IMAGES = [
 export function Hero() {
   const [heroIndex, setHeroIndex] = useState(0);
   useEffect(() => {
-    const timer = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 6000);
-    return () => clearInterval(timer);
-  }, []);
+    const timer = setTimeout(
+      () => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length),
+      HERO_IMAGES[heroIndex].dwellMs,
+    );
+    return () => clearTimeout(timer);
+  }, [heroIndex]);
   const hero = HERO_IMAGES[heroIndex];
   const visible = true;
 
