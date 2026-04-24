@@ -55,7 +55,11 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (readChoice()) return;
+    const saved = readChoice();
+    if (saved) {
+      updateConsent(saved);
+      return;
+    }
     if (!isRegulatedRegion()) return;
     setVisible(true);
   }, []);
