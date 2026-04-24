@@ -63,8 +63,8 @@ export function ForVendors() {
             >
               Every vendor's trade program is different. A high-volume fabric
               house and a luxury furniture atelier have very different bars.
-              Credenza lets you configure exactly what's required to apply—
-              and what earns a qualified designer faster approval.
+              Credenza lets you configure exactly what's required to
+              apply—and what earns a qualified designer faster approval.
             </p>
             <div className="border-t border-sage-dark">
               {[
