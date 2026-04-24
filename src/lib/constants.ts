@@ -41,9 +41,5 @@ export const APP_URL =
   (import.meta.env.VITE_APP_URL as string | undefined) ?? "https://usecredenza.com";
 const appBase = APP_URL.replace(/\/$/, "");
 export const LOGIN_URL = `${appBase}/login`;
-export const JOIN_VENDOR_URL = `${appBase}/join/vendor`;
-// Points at the lightweight waitlist form while designer early access is
-// closed. Marketing's vercel.json rewrites /waitlist to the cert-tool
-// project so the URL stays on usecredenza.com. Flip to `/join/designer`
-// when we open full early access.
-export const JOIN_DESIGNER_URL = `${appBase}/waitlist`;
+export const JOIN_VENDOR_URL = `${appBase}/waitlist/vendor`;
+export const JOIN_DESIGNER_URL = `${appBase}/waitlist/designer`;

@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/waitlist", "destination": "https://credenza-cert-tool.vercel.app/waitlist" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
