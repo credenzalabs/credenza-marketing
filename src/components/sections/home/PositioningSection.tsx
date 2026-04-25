@@ -2,7 +2,6 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { IMAGES } from "./images";
-import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── What Credenza Is ────────────────────────────────────────────────────────────
 export function PositioningSection() {
@@ -12,8 +11,8 @@ export function PositioningSection() {
       {/* Full-bleed image with text overlay */}
       <div className="relative overflow-hidden min-h-[70vh]">
         <img
-          src={IMAGES.studioDorionBrownstone}
-          alt="Park Slope brownstone interior by Studio Dorion"
+          src={IMAGES.sarahBartholomewLivingRoom}
+          alt="Living room by Sarah Bartholomew"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "left center" }}
@@ -26,9 +25,9 @@ export function PositioningSection() {
           separator=""
           credits={[
             { text: "© " },
-            { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "positioning") },
+            { text: "Melanie Acevedo" },
             { text: " (design by " },
-            { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "positioning") },
+            { text: "Sarah Bartholomew" },
             { text: ")" },
           ]}
         />

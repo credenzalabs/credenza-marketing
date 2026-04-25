@@ -16,4 +16,6 @@ export const IMAGES = {
   // Caroline Gidiere — Overhill project
   carolineGidiereBedroom: "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/cg-overhill-bedroom_b4b2c11c.jpg",
   carolineGidiereSitting: "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/cg-overhill-sitting_d02cf9fa.webp",
+  // Sarah Bartholomew — living room (photo by Melanie Acevedo)
+  sarahBartholomewLivingRoom: "/sarah-bartholomew-living-room.jpg",
 };
