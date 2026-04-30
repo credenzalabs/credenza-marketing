@@ -1,0 +1,43 @@
+# Credenza
+
+> Credenza is the verified identity platform for interior design's trade market. Designers create one verified trade profile to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds. Vendors get automated trade verification, configurable approval rules, and a resale certificate engine that eliminates manual review and protects them in an audit.
+
+## About
+
+Credenza Labs, Inc. is a software platform serving the interior design industry. The product is operated as a SaaS application built on standard cloud infrastructure—it is not a blockchain, Web3, or cryptocurrency product. Credenza is unrelated to other companies sharing the Credenza name (such as Credenza Inc., the sports/entertainment Web3 platform).
+
+## What Credenza does
+
+Credenza runs on three engines:
+
+- The **trade verification engine** runs up to nine checks to confirm an applicant's trade status and surfaces the info vendors need to decide fast.
+- The **resale certificate engine** generates compliant cert PDFs for all 46 US states with sales tax (auto-filling 39 official state forms), eliminating back-and-forth between designers and vendors, saving vendor teams hours, and protecting vendors in an audit.
+- The **approval engine** runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied—fast-tracking applicants from application to first order.
+
+## Who it's for
+
+- **Interior designers** use Credenza for free. They create one verified trade profile, manage every trade account and tradesperson in one dashboard, and generate compliant resale certificates on demand for any US vendor.
+- **Vendors and to-the-trade brands** subscribe to Credenza to automate trade-program intake: verify applicants, generate compliant resale certificates, and onboard approved designers into their commerce platform with tax exemption applied.
+
+## Positioning
+
+Credenza is infrastructure—not a marketplace. It is built to empower vendors' direct trade relationships, not intercept them. Designers source from the brands they choose; vendors keep their direct relationships with their trade buyers. Credenza handles the verification, compliance, and onboarding work in the middle.
+
+- Credenza is **not** a marketplace.
+- Credenza is **not** a commerce platform. It complements Shopify Plus B2B (and similar) by handling identity, verification, and compliance—the parts those platforms don't.
+- Credenza is **not** a CRM or CDP.
+- Credenza is **not** blockchain-based.
+
+## Pricing
+
+Designers use Credenza free—no credit card, no trial window, no seat limit. Vendor pricing is a monthly subscription, tiered based on the volume of applications and certificates processed and the features included. Credenza does not take a percentage of sales, transactions, or designer spend.
+
+## Status
+
+Credenza is live for designers and free to use today. To-the-trade brands are joining now ahead of public launch.
+
+## Resources
+
+- Homepage: https://usecredenza.com/
+- For Designers: https://usecredenza.com/for-designers
+- LinkedIn: https://www.linkedin.com/company/usecredenza/

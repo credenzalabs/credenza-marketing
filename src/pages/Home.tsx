@@ -18,6 +18,7 @@ import { MigrationSection } from "@/components/sections/home/MigrationSection";
 import { SecuritySection } from "@/components/sections/home/SecuritySection";
 import { GallerySection } from "@/components/sections/home/GallerySection";
 import { CTASection } from "@/components/sections/home/CTASection";
+import { FAQSection } from "@/components/sections/home/FAQSection";
 import { Footer } from "@/components/sections/home/Footer";
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
       <MigrationSection />
       <SecuritySection />
       <GallerySection />
+      <FAQSection />
       <CTASection />
       <Footer />
     </div>
