@@ -1,7 +1,7 @@
 import { geolocation, next } from "@vercel/functions";
 
 export const config = {
-  matcher: ["/((?!assets|.*\\..*).*)"],
+  matcher: ["/((?!api|assets|.*\\..*).*)"],
 };
 
 export default function middleware(request: Request) {
