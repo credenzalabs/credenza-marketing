@@ -29,7 +29,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <Nav ctaHref={JOIN_VENDOR_URL} />
+      <Nav ctaHref={JOIN_VENDOR_URL} forceSolid />
 
       {/* Full-bleed hero image — Nav overlays the top */}
       <section className="relative overflow-hidden" style={{ minHeight: "60vh", maxHeight: "75vh" }}>

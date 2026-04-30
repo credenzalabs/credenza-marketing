@@ -15,6 +15,8 @@ export interface NavProps {
   showMobileCta?: boolean;
   /** Render the desktop Sign in link. */
   showSignIn?: boolean;
+  /** Force the Nav background to be solid even at the top of the page (for pages without a hero designed to sit behind a transparent nav). */
+  forceSolid?: boolean;
 }
 
 export function Nav({
@@ -24,6 +26,7 @@ export function Nav({
   logoHref,
   showMobileCta = true,
   showSignIn = false,
+  forceSolid = false,
 }: NavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,6 +36,8 @@ export function Nav({
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  const isSolid = forceSolid || scrolled;
 
   const isPreview = window.location.pathname.startsWith("/preview");
   const prefix = isPreview ? "/preview" : "";
@@ -46,9 +51,9 @@ export function Nav({
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-400"
       style={{
-        backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? `0.5px solid ${C.sageDark}` : "0.5px solid transparent",
+        backgroundColor: isSolid ? "rgba(255,255,255,0.95)" : "transparent",
+        backdropFilter: isSolid ? "blur(20px)" : "none",
+        borderBottom: isSolid ? `0.5px solid ${C.sageDark}` : "0.5px solid transparent",
       }}
     >
       <div className="container">
