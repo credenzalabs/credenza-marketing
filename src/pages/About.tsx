@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { IMAGES } from "@/components/sections/home/images";
 import { JOIN_VENDOR_URL, JOIN_DESIGNER_URL } from "@/lib/constants";
 
 export default function About() {
@@ -28,12 +30,37 @@ export default function About() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
       <Nav ctaHref={JOIN_VENDOR_URL} />
+
+      {/* Full-bleed hero image */}
+      <div className="pt-16">
+        <section className="relative overflow-hidden" style={{ minHeight: "55vh", maxHeight: "70vh" }}>
+          <img
+            src={IMAGES.sarahBartholomewLivingRoom}
+            alt="Living room by Sarah Bartholomew"
+            loading="eager"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center center" }}
+          />
+          <div className="relative" style={{ minHeight: "55vh" }} />
+          <PhotoCredit
+            separator=""
+            credits={[
+              { text: "© " },
+              { text: "Melanie Acevedo" },
+              { text: " (design by " },
+              { text: "Sarah Bartholomew" },
+              { text: ")" },
+            ]}
+          />
+        </section>
+      </div>
+
       <main
-        className="container pt-32 pb-24 max-w-3xl"
+        className="container pt-16 md:pt-20 pb-24 max-w-3xl"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
         <h1
-          className="font-freight text-charcoal mb-12"
+          className="font-freight text-charcoal mb-10"
           style={{ fontSize: "clamp(2.25rem, 4vw, 3rem)", letterSpacing: "-0.025em", lineHeight: 1.05 }}
         >
           About Credenza
@@ -129,8 +156,8 @@ export default function About() {
 function Prose({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="text-charcoal-mid space-y-5 mb-12"
-      style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75 }}
+      className="text-charcoal-mid space-y-4 mb-10"
+      style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7 }}
     >
       {children}
     </div>
