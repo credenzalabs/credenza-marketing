@@ -1,5 +1,5 @@
-const SUPABASE_URL = process.env.VITE_SUPABASE_URL!;
-const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY!;
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 
 const CORS = {
   'access-control-allow-origin': '*',
@@ -8,7 +8,7 @@ const CORS = {
   'access-control-max-age': '86400',
 };
 
-export default async function handler(request: Request): Promise<Response> {
+export default async function handler(request) {
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS });
   }
