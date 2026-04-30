@@ -98,7 +98,7 @@ export default function About() {
             The <strong>resale certificate engine</strong> generates compliant resale certificate PDFs for designers—eliminating back-and-forth, saving vendor teams hours, and protecting the business in an audit.
           </p>
           <p>
-            The <strong>onboarding engine</strong> runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied at the state level—fast-tracking applicants from application to first order. Certificates are monitored for expiration, renewal reminders sent, and exemption revoked if not renewed.
+            The <strong>onboarding engine</strong> runs configurable auto-approval rules and onboards approved designers into the vendor's e-commerce system with tax exemption applied at the state level—fast-tracking applicants from application to first order. Certificates are monitored for expiration, renewal reminders sent, and exemption revoked if not renewed.
           </p>
         </Prose>
 
