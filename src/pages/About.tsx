@@ -76,7 +76,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Real designers shouldn't have to keep proving themselves.</SectionHeading>
+        <SectionHeading>Real Designers Shouldn't Have to Keep Proving Themselves.</SectionHeading>
 
         <Prose>
           <p>
@@ -87,7 +87,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>How it works</SectionHeading>
+        <SectionHeading>How It Works</SectionHeading>
 
         <Prose>
           <p>Credenza runs on three engines:</p>
@@ -102,7 +102,18 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Infrastructure, not a marketplace</SectionHeading>
+        <SectionHeading>For Designers</SectionHeading>
+
+        <Prose>
+          <p>
+            Designers create one verified trade profile to apply across every participating brand, manage every trade account and tradesperson in one dashboard, and generate compliant resale certificates in seconds—for any US vendor.
+          </p>
+          <p>
+            Credenza is free for designers—no credit card, no trial window, no seat limit.
+          </p>
+        </Prose>
+
+        <SectionHeading>Infrastructure, Not a Marketplace</SectionHeading>
 
         <Prose>
           <p>
@@ -126,7 +137,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Get in touch</SectionHeading>
+        <SectionHeading>Get in Touch</SectionHeading>
 
         <Prose>
           <p>
