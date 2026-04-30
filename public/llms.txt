@@ -12,7 +12,7 @@ Credenza runs on three engines:
 
 - The **trade verification engine** runs up to nine checks to confirm an applicant's trade status and surfaces the info vendors need to decide fast.
 - The **resale certificate engine** generates compliant cert PDFs for all 46 US states with sales tax (auto-filling 39 official state forms), eliminating back-and-forth between designers and vendors, saving vendor teams hours, and protecting vendors in an audit.
-- The **onboarding engine** runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied—fast-tracking applicants from application to first order.
+- The **onboarding engine** runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied at the state level—fast-tracking applicants from application to first order. Certificates are monitored for expiration, renewal reminders sent, and exemption revoked if not renewed.
 
 ## Who it's for
 

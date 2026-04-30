@@ -97,10 +97,10 @@ export default function About() {
             The <strong>trade verification engine</strong> runs up to nine checks to confirm an applicant's trade status and surfaces the information vendors need to decide fast.
           </p>
           <p>
-            The <strong>resale certificate engine</strong> generates compliant resale certificate PDFs—eliminating back-and-forth, saving vendor teams hours, and protecting the business in an audit.
+            The <strong>resale certificate engine</strong> generates compliant resale certificate PDFs for designers—eliminating back-and-forth, saving vendor teams hours, and protecting the business in an audit.
           </p>
           <p>
-            The <strong>onboarding engine</strong> runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied—fast-tracking applicants from application to first order.
+            The <strong>onboarding engine</strong> runs configurable auto-approval rules and onboards approved designers into the vendor's commerce system with tax exemption applied at the state level—fast-tracking applicants from application to first order. Certificates are monitored for expiration, renewal reminders sent, and exemption revoked if not renewed.
           </p>
         </Prose>
 
@@ -124,7 +124,7 @@ export default function About() {
 
         <Prose>
           <p>
-            Julia Atwater founded Credenza after 20 years in the design trade. She first ran into the verification problem as a designer herself—working on projects alongside her mother, an interior designer, and on her own small jobs. Years later, leading sales marketing at Schumacher and advising small and mid-size trade vendors, she watched the other side of the same paperwork pile up. She started Credenza to solve it once.
+            Julia Atwater founded Credenza after 20 years in the design trade. She first ran into the verification problem as a designer herself—working on projects alongside her mother, an interior designer, and on her own small jobs. Years later, leading sales marketing at Schumacher and advising small and mid-size trade vendors, she watched the other side of the same paperwork pile up for vendors of all shapes and sizes. She started Credenza to solve it once.
           </p>
         </Prose>
 
