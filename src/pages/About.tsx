@@ -66,7 +66,7 @@ export default function About() {
 
         <Prose>
           <p>
-            A design firm opening a new account with a to-the-trade brand fills in the same EIN, the same sales tax ID, and the same proofs of business they've submitted 40 times before. A vendor's trade onboarding team opens the application, eyeballs the same websites and details they checked yesterday on someone else, files the certificate in a folder no one else can find where it will quietly expire without anyone noticing, and moves to the next one in the queue.
+            A design firm opening a new account with a to-the-trade brand fills in the same EIN, the same sales tax ID, and the same proofs of business they've submitted 40 times before. A vendor's trade onboarding team opens the application, eyeballs the same websites and details they checked yesterday on someone else, emails the designer for a missing credential, files the resale certificate in a folder no one else can find where it will quietly expire without anyone noticing, and moves to the next one in the queue.
           </p>
           <p>
             The interior design industry still runs on paperwork. Designers re-prove who they are at every brand. Vendors burn 5–20+ hours a week reviewing the same applicants their competitors already approved, then store the results in disconnected systems that can't be reused—or surfaced in an audit, when missing or expired certificates become tax liability.
