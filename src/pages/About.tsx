@@ -31,29 +31,27 @@ export default function About() {
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
       <Nav ctaHref={JOIN_VENDOR_URL} />
 
-      {/* Full-bleed hero image */}
-      <div className="pt-16">
-        <section className="relative overflow-hidden" style={{ minHeight: "55vh", maxHeight: "70vh" }}>
-          <img
-            src={IMAGES.sarahBartholomewLivingRoom}
-            alt="Living room by Sarah Bartholomew"
-            loading="eager"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: "center center" }}
-          />
-          <div className="relative" style={{ minHeight: "55vh" }} />
-          <PhotoCredit
-            separator=""
-            credits={[
-              { text: "© " },
-              { text: "Melanie Acevedo" },
-              { text: " (design by " },
-              { text: "Sarah Bartholomew" },
-              { text: ")" },
-            ]}
-          />
-        </section>
-      </div>
+      {/* Full-bleed hero image — Nav overlays the top */}
+      <section className="relative overflow-hidden" style={{ minHeight: "60vh", maxHeight: "75vh" }}>
+        <img
+          src={IMAGES.sarahBartholomewLivingRoom}
+          alt="Living room by Sarah Bartholomew"
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center center" }}
+        />
+        <div className="relative" style={{ minHeight: "60vh" }} />
+        <PhotoCredit
+          separator=""
+          credits={[
+            { text: "© " },
+            { text: "Melanie Acevedo" },
+            { text: " (design by " },
+            { text: "Sarah Bartholomew" },
+            { text: ")" },
+          ]}
+        />
+      </section>
 
       <main
         className="container pt-16 md:pt-20 pb-24 max-w-3xl"
