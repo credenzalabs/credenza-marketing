@@ -76,7 +76,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Real Designers Shouldn't Have to Keep Proving Themselves.</SectionHeading>
+        <SectionHeading>Real designers shouldn't have to keep proving themselves.</SectionHeading>
 
         <Prose>
           <p>
@@ -87,7 +87,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>How It Works</SectionHeading>
+        <SectionHeading>How it works</SectionHeading>
 
         <Prose>
           <p>Credenza runs on three engines:</p>
@@ -102,7 +102,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>For Designers</SectionHeading>
+        <SectionHeading>For designers</SectionHeading>
 
         <Prose>
           <p>
@@ -113,7 +113,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Infrastructure, Not a Marketplace</SectionHeading>
+        <SectionHeading>Infrastructure, not a marketplace</SectionHeading>
 
         <Prose>
           <p>
@@ -137,7 +137,7 @@ export default function About() {
           </p>
         </Prose>
 
-        <SectionHeading>Get in Touch</SectionHeading>
+        <SectionHeading>Get in touch</SectionHeading>
 
         <Prose>
           <p>
