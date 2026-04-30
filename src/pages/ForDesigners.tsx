@@ -1099,6 +1099,23 @@ function FAQ() {
       a: "Yes. Your trade profile and account details are visible only to you and the team members you authorize. No other designer sees who you work with or what you pay. Your trade profile only reaches a vendor when your firm chooses to apply. Your accounts, discounts, and relationships stay yours.",
     },
   ];
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: questions.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   return (
     <section id="faq" ref={ref} className="reveal py-16 md:py-24 bg-white">
       <div className="container">
