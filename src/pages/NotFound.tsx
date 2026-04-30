@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 
 const C = {
@@ -12,6 +13,16 @@ const C = {
 };
 
 export default function NotFound() {
+  useEffect(() => {
+    const tag = document.createElement("meta");
+    tag.name = "robots";
+    tag.content = "noindex";
+    document.head.appendChild(tag);
+    return () => {
+      document.head.removeChild(tag);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: C.linen }}>
       <div className="text-center max-w-md mx-auto px-6">
