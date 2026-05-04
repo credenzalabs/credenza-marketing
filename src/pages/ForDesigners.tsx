@@ -159,17 +159,17 @@ function TaxStrategy() {
           <div className="lg:col-span-7">
             <Eyebrow>Tax strategy & resale certificates</Eyebrow>
             <h2 className="font-freight leading-none text-charcoal" style={{ fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)", letterSpacing: "-0.03em" }}>
-              The broadest exemption coverage
+              Resale certificates
               <br />
-              <span className="italic text-olive-mid">you're legally entitled to.</span>
+              <span className="italic text-olive-mid">generated instantly.</span>
             </h2>
           </div>
           <div className="lg:col-span-5 flex items-end">
             <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Work on a project in another state? Use a workroom across state lines?
-              Multi-state tax gets confusing fast—every state has different
-              rules, forms, and expirations, and it's easy to leave money on
-              the table or check the wrong box.
+              Pick the vendor, pick the state, hit generate. Credenza picks
+              the right form and fills every field—firm info, vendor
+              details, tangible goods sold. Every expiration tracked. No
+              wondering what form to use or what box to check.
             </p>
           </div>
         </div>
@@ -178,8 +178,8 @@ function TaxStrategy() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-20 border-t border-sage-dark">
           {[
             {
-              title: "One registration, many states",
-              body: "Did you know a single registration can earn you tax exemption in dozens of states? Whether you're on a sourcing trip to Round Top or shipping out of state, Credenza finds you the broadest tax exemption possible with the fewest possible forms, every time—so you don't pay tax if you don't need to.",
+              title: "The broadest exemption you're legally entitled to",
+              body: "Did you know a single registration can earn you tax exemption in dozens of states? Whether you're on a sourcing trip to Round Top or shipping out of state, Credenza finds you the broadest exemption with the fewest possible forms—so you don't pay tax if you don't need to.",
             },
             {
               title: "Filled in, not guessed at",
