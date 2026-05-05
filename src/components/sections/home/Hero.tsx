@@ -112,7 +112,7 @@ export function Hero() {
                 Request access
               </a>
               <a
-                href="/for-designers"
+                href="https://usecredenza.com/for-designers"
                 className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
                 style={{
                   fontFamily: "Inter, sans-serif",
