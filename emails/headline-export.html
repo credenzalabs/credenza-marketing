@@ -57,30 +57,37 @@
       }
 
       /* Headline — "Our doors are open." */
-      /* Email display: 44px → export at 88px (2x) */
+      /* Reduced from 88px → 72px (smaller display in email).
+         padding-bottom gives descenders (p in "open") room within the
+         capture box — Chrome's Capture Node Screenshot clips anything
+         outside the element's content+padding box. */
       #headline-primary {
         font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-style: normal;
-        font-size: 88px;
+        font-size: 72px;
         line-height: 1.0;
         letter-spacing: -0.03em;
         color: var(--ink);
         margin: 0;
+        padding: 16px 4px 28px 4px;
         white-space: nowrap;
       }
 
       /* Italic accent — "You're in—and among the first." */
-      /* Email display: 34px → export at 68px (2x) */
+      /* Reduced from 68px → 56px. Italic Freight has dramatic descenders
+         on g/y — padding-bottom 36px ensures the full swash on "g" in
+         "among" is captured. */
       #headline-italic {
         font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
         font-weight: 400;
         font-style: italic;
-        font-size: 68px;
+        font-size: 56px;
         line-height: 1.15;
         letter-spacing: -0.02em;
         color: var(--olive);
         margin: 0;
+        padding: 14px 4px 36px 4px;
         white-space: nowrap;
       }
 
