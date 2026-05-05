@@ -99,12 +99,10 @@ export function Hero() {
               vendors who take their program seriously, and the designers they serve.
             </p>
 
-            {/* Primary CTA (both breakpoints) + mobile-only ghost "For
-                Designers" button so phone visitors can reach the designers
-                page without discovering the hamburger. Both stretch
+            {/* Primary CTA + ghost "For Designers" button so designers can
+                reach their page without hunting the nav. Both stretch
                 full-width while stacked (<md) so they match length; at md+
-                the ghost is hidden and the primary returns to intrinsic
-                width. Ghost mirrors Nav's /preview prefix handling. */}
+                they sit side-by-side at intrinsic width. */}
             <div className="flex flex-col md:flex-row gap-3 mb-12">
               <a
                 href={JOIN_VENDOR_URL}
@@ -114,8 +112,8 @@ export function Hero() {
                 Request access
               </a>
               <a
-                href={`${typeof window !== "undefined" && window.location.pathname.startsWith("/preview") ? "/preview" : ""}/for-designers`}
-                className="md:hidden no-underline inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 transition-colors duration-200"
+                href="/for-designers"
+                className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "0.72rem",
