@@ -7,9 +7,13 @@
     <meta name="color-scheme" content="light" />
     <meta name="supported-color-schemes" content="light" />
     <title>You're in—Credenza</title>
-    <!-- Adobe Fonts kit — same Freight Display Pro the site uses.
-         Renders in Apple Mail / iOS Mail. Falls back to Georgia elsewhere. -->
-    <link rel="stylesheet" href="https://use.typekit.net/vqm2hhx.css" />
+    <!-- Cormorant Garamond — close-in-spirit substitute for Freight Display Pro.
+         Renders in Apple Mail (desktop + iOS). Falls back to Georgia elsewhere
+         (Gmail, Outlook, Yahoo all strip web fonts). -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    />
     <style>
       @media only screen and (max-width: 640px) {
         .card { width: 100% !important; }
@@ -62,6 +66,7 @@
           <table
             role="presentation"
             class="card"
+            align="center"
             width="600"
             cellpadding="0"
             cellspacing="0"
@@ -69,6 +74,7 @@
             style="
               width: 600px;
               max-width: 600px;
+              margin: 0 auto;
               background-color: #fdfcf9;
               border: 1px solid #d8d4ca;
             "
@@ -172,13 +178,14 @@
               </td>
             </tr>
 
-            <!-- Headline: Freight, multi-line with italic olive accent — matches site hero pattern -->
+            <!-- Headline: Freight Display Pro as image (transparent PNG @ 2x for retina).
+                 ALT text falls back to styled type if images are blocked. -->
             <tr>
               <td
                 class="pad h1"
                 style="
                   padding: 28px 56px 0 56px;
-                  font-family: 'freight-display-pro', Georgia,
+                  font-family: 'Cormorant Garamond', Georgia,
                     'Times New Roman', serif;
                   font-size: 44px;
                   line-height: 1.0;
@@ -187,17 +194,31 @@
                   font-weight: 400;
                 "
               >
-                Our doors are open.
+                <img
+                  src="https://usecredenza.com/welcome-headline-primary.png"
+                  alt="Our doors are open."
+                  width="488"
+                  height="62"
+                  style="
+                    display: block;
+                    border: 0;
+                    outline: none;
+                    text-decoration: none;
+                    width: 488px;
+                    max-width: 100%;
+                    height: auto;
+                  "
+                />
               </td>
             </tr>
 
-            <!-- Italic accent line in olive — exact hero treatment -->
+            <!-- Italic accent line in olive — Freight Display Pro Italic as image -->
             <tr>
               <td
                 class="pad h1-italic"
                 style="
                   padding: 6px 56px 0 56px;
-                  font-family: 'freight-display-pro', Georgia,
+                  font-family: 'Cormorant Garamond', Georgia,
                     'Times New Roman', serif;
                   font-style: italic;
                   font-size: 34px;
@@ -207,7 +228,21 @@
                   font-weight: 400;
                 "
               >
-                You&rsquo;re in&mdash;and among the first.
+                <img
+                  src="https://usecredenza.com/welcome-headline-italic.png"
+                  alt="You're in — and among the first."
+                  width="488"
+                  height="45"
+                  style="
+                    display: block;
+                    border: 0;
+                    outline: none;
+                    text-decoration: none;
+                    width: 488px;
+                    max-width: 100%;
+                    height: auto;
+                  "
+                />
               </td>
             </tr>
 
@@ -278,7 +313,7 @@
                             width="48"
                             valign="top"
                             style="
-                              font-family: 'freight-display-pro', Georgia,
+                              font-family: 'Cormorant Garamond', Georgia,
                                 'Times New Roman', serif;
                               font-style: italic;
                               font-size: 18px;
@@ -353,7 +388,7 @@
                             width="48"
                             valign="top"
                             style="
-                              font-family: 'freight-display-pro', Georgia,
+                              font-family: 'Cormorant Garamond', Georgia,
                                 'Times New Roman', serif;
                               font-style: italic;
                               font-size: 18px;
@@ -426,7 +461,7 @@
                             width="48"
                             valign="top"
                             style="
-                              font-family: 'freight-display-pro', Georgia,
+                              font-family: 'Cormorant Garamond', Georgia,
                                 'Times New Roman', serif;
                               font-style: italic;
                               font-size: 18px;
@@ -498,7 +533,7 @@
                             width="48"
                             valign="top"
                             style="
-                              font-family: 'freight-display-pro', Georgia,
+                              font-family: 'Cormorant Garamond', Georgia,
                                 'Times New Roman', serif;
                               font-style: italic;
                               font-size: 18px;
@@ -550,16 +585,18 @@
 
             <!-- CTA: exact site button — teal fill with offset 0.5px outline ring -->
             <tr>
-              <td class="pad" style="padding: 48px 56px 0 56px;">
+              <td class="pad" align="center" style="padding: 48px 56px 0 56px;">
                 <!-- Outer table = the offset outline ring (1px line, 2px gap) -->
                 <table
                   role="presentation"
+                  align="center"
                   cellpadding="0"
                   cellspacing="0"
                   border="0"
                   style="
                     border: 1px solid #99b8bd;
                     background-color: #fdfcf9;
+                    margin: 0 auto;
                   "
                 >
                   <tr>
@@ -621,26 +658,13 @@
               </td>
             </tr>
 
-            <!-- Bottom spacer -->
-            <tr>
-              <td style="height: 56px; line-height: 0; font-size: 0;">&nbsp;</td>
-            </tr>
-          </table>
-
-          <!-- FOOTER: outside the card, on the ivory page bg -->
-          <table
-            role="presentation"
-            width="600"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="width: 600px; max-width: 600px;"
-          >
+            <!-- Legal footer — inside the card, centered, gray on white -->
             <tr>
               <td
                 class="pad"
+                align="center"
                 style="
-                  padding: 24px 16px 16px 16px;
+                  padding: 40px 56px 56px 56px;
                   font-family: 'Inter', -apple-system, BlinkMacSystemFont,
                     Helvetica, Arial, sans-serif;
                   font-size: 11px;
@@ -659,6 +683,8 @@
               </td>
             </tr>
           </table>
+
+          <!-- Resend auto-injects unsubscribe + audience footer below this point on broadcasts -->
         </td>
       </tr>
     </table>

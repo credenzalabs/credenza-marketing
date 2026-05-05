@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Credenza headline export — Freight Display Pro</title>
+    <link rel="stylesheet" href="https://use.typekit.net/vqm2hhx.css" />
+    <style>
+      :root {
+        --ink: #1c1c19;
+        --olive: #8a8a5e;
+        --paper: #ffffff;
+        --hairline: #e5e1d6;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        color: #3a3a34;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 32px 96px;
+      }
+
+      .meta {
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #6a6a62;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .caption {
+        font-size: 13px;
+        color: #6a6a62;
+        line-height: 1.6;
+        margin: 0 0 24px;
+      }
+
+      /*
+        EXPORT TARGETS — each renders at 2x its email display size
+        so screenshots are retina-sharp when constrained back down via width="..." in HTML.
+      */
+
+      .export {
+        background: #ffffff;
+        border: 1px dashed var(--hairline);
+        padding: 64px 48px;
+        margin: 12px 0 48px;
+        display: inline-block;
+        min-width: 600px;
+      }
+
+      /* Headline — "Our doors are open." */
+      /* Email display: 44px → export at 88px (2x) */
+      #headline-primary {
+        font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 88px;
+        line-height: 1.0;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      /* Italic accent — "You're in—and among the first." */
+      /* Email display: 34px → export at 68px (2x) */
+      #headline-italic {
+        font-family: 'freight-display-pro', Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 68px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--olive);
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .instructions {
+        max-width: 700px;
+        margin: 64px 0 0;
+        padding: 32px;
+        background: #faf8f2;
+        border: 1px solid var(--hairline);
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #3a3a34;
+      }
+
+      .instructions h2 {
+        margin: 0 0 16px;
+        font-family: 'freight-display-pro', Georgia, serif;
+        font-weight: 400;
+        font-size: 24px;
+        color: var(--ink);
+      }
+
+      .instructions ol {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .instructions li {
+        margin-bottom: 10px;
+      }
+
+      .instructions code {
+        background: #ffffff;
+        border: 1px solid var(--hairline);
+        padding: 1px 6px;
+        font-family: 'SF Mono', Menlo, Consolas, monospace;
+        font-size: 12px;
+        border-radius: 2px;
+      }
+
+      /* Print: hide chrome, show only export blocks, transparent backgrounds */
+      @media print {
+        .meta, .caption, .instructions, h1.page-title { display: none !important; }
+        .export {
+          border: none !important;
+          padding: 0 !important;
+          margin: 48px 0 !important;
+          background: transparent !important;
+        }
+        body, html, .page { background: transparent !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="page-title" style="font-family: 'freight-display-pro', Georgia, serif; font-weight: 400; font-size: 32px; margin: 0 0 8px; color: var(--ink);">
+        Credenza email headlines — export sheet
+      </h1>
+      <p class="caption">
+        Both lines render in Freight Display Pro Book (regular + italic) at 2× their final email display size.
+        Capture each <code>.export</code> block as a transparent PNG via Chrome DevTools (instructions below),
+        or print this page to PDF and crop.
+      </p>
+
+      <!-- Export 1: primary headline -->
+      <div class="meta">Export 1 — primary headline · 88px · #1c1c19 · regular</div>
+      <div class="export" id="export-primary">
+        <div id="headline-primary">Our doors are open.</div>
+      </div>
+
+      <!-- Export 2: italic accent -->
+      <div class="meta">Export 2 — italic accent · 68px · #8a8a5e · italic</div>
+      <div class="export" id="export-italic">
+        <div id="headline-italic">You&rsquo;re in&mdash;and among the first.</div>
+      </div>
+
+      <div class="instructions">
+        <h2>How to export each as a transparent PNG</h2>
+        <p style="margin-top: 0;"><strong>Best method (transparent background, exact pixel dimensions):</strong></p>
+        <ol>
+          <li>Open this file in Chrome (or any Chromium browser).</li>
+          <li>Right-click the headline you want to capture → <strong>Inspect</strong>.</li>
+          <li>In DevTools, find and right-click the <code>&lt;div id="headline-primary"&gt;</code> (or <code>headline-italic</code>) element.</li>
+          <li>Choose <strong>Capture node screenshot</strong>. A transparent PNG downloads automatically.</li>
+          <li>Repeat for the second headline.</li>
+        </ol>
+        <p><strong>Quick method (white background, then alpha-out in Preview/Photoshop):</strong></p>
+        <ol>
+          <li><code>Cmd+Shift+4</code> → drag a tight selection around each headline → screenshot saves to Desktop.</li>
+          <li>Open in Preview → <strong>Tools → Instant Alpha</strong> → drag across the white background to remove it → File → Export as PNG.</li>
+        </ol>
+        <p><strong>PDF method (single document, both headlines):</strong></p>
+        <ol>
+          <li><code>Cmd+P</code> → <strong>Save as PDF</strong>. Print stylesheet hides chrome and renders both blocks on transparent backgrounds.</li>
+        </ol>
+        <p style="margin-bottom: 0; color: #6a6a62; font-size: 13px;">
+          The fonts load from the same Adobe Fonts kit your site uses (<code>use.typekit.net/vqm2hhx.css</code>).
+          If they appear as Georgia, the kit isn't authorized for this domain — open the file from a Vercel preview
+          or a domain on your Adobe Fonts kit's allowlist.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
