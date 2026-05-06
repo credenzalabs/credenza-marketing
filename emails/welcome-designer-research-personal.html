@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>A note from Julia—Credenza</title>
+    <!-- Cormorant Garamond — close-in-spirit substitute for Freight Display Pro.
+         Renders in Apple Mail (desktop + iOS). Falls back to Georgia elsewhere
+         (Gmail, Outlook, Yahoo all strip web fonts). -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    />
+    <style>
+      @media only screen and (max-width: 640px) {
+        .card { width: 100% !important; }
+        .pad { padding-left: 28px !important; padding-right: 28px !important; }
+        .pad-top { padding-top: 40px !important; }
+        .h1 { font-size: 32px !important; }
+        .h1-italic { font-size: 26px !important; }
+        .page { padding: 16px !important; }
+      }
+      a { color: #21353f; }
+    </style>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0ec;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    "
+  >
+    <!-- Preheader — shown as inbox preview text in Gmail/Apple Mail.
+         This overrides whatever you set in Resend's UI, so keep them in sync. -->
+    <div
+      style="
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        mso-hide: all;
+        font-size: 1px;
+        line-height: 1px;
+        color: #f0f0ec;
+      "
+    >
+      The platform our conversations helped shape is open to you.
+    </div>
+
+    <!-- <center> is legacy HTML but still the most bulletproof email
+         centering primitive — Gmail, Outlook, and Yahoo all respect it
+         even when CSS centering fails. -->
+    <center style="width: 100%; background-color: #f0f0ec;">
+    <!-- PAGE: ivory background, matches site's --linen #f0f0ec.
+         Padding moved from the table style to the inner td — table
+         padding is unreliable in email clients. -->
+    <table
+      role="presentation"
+      class="page"
+      align="center"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      style="background-color: #f0f0ec;"
+    >
+      <tr>
+        <td align="center" style="padding: 32px 16px;">
+          <!-- CARD: white surface with sage-dark hairline border, matches site cards -->
+          <table
+            role="presentation"
+            class="card"
+            align="center"
+            width="600"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="
+              width: 600px;
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: #fdfcf9;
+              border: 1px solid #d8d4ca;
+            "
+          >
+            <!-- Image slice — horizontal band, ~200px tall, mid-section of Kavanaugh -->
+            <tr>
+              <td
+                style="
+                  padding: 0;
+                  height: 200px;
+                  line-height: 0;
+                  font-size: 0;
+                  overflow: hidden;
+                  mso-line-height-rule: exactly;
+                "
+              >
+                <div style="height: 200px; overflow: hidden; line-height: 0;">
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp"
+                    alt="Interior by Ellen Kavanaugh Interiors"
+                    width="600"
+                    style="
+                      display: block;
+                      border: 0;
+                      outline: none;
+                      text-decoration: none;
+                      width: 100%;
+                      max-width: 600px;
+                      height: 200px;
+                      object-fit: cover;
+                      object-position: center 70%;
+                    "
+                  />
+                </div>
+              </td>
+            </tr>
+
+            <!-- Wordmark -->
+            <tr>
+              <td
+                class="pad pad-top"
+                align="left"
+                style="padding: 48px 56px 0 56px;"
+              >
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png"
+                  alt="Credenza"
+                  width="180"
+                  style="
+                    display: block;
+                    border: 0;
+                    outline: none;
+                    text-decoration: none;
+                    height: auto;
+                    width: 180px;
+                  "
+                />
+              </td>
+            </tr>
+
+            <!-- Eyebrow: 2rem hairline + uppercase Inter, exact match to <Eyebrow /> -->
+            <tr>
+              <td class="pad" style="padding: 56px 56px 0 56px;">
+                <table
+                  role="presentation"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                >
+                  <tr>
+                    <td width="32" valign="middle" style="vertical-align: middle; width: 32px;">
+                      <div
+                        style="
+                          width: 32px;
+                          height: 1px;
+                          background-color: #d8d4ca;
+                          font-size: 0;
+                          line-height: 0;
+                          mso-line-height-rule: exactly;
+                        "
+                      >&nbsp;</div>
+                    </td>
+                    <td width="12" valign="middle" style="width: 12px;">&nbsp;</td>
+                    <td
+                      valign="middle"
+                      style="
+                        vertical-align: middle;
+                        font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                          Helvetica, Arial, sans-serif;
+                        font-size: 11px;
+                        letter-spacing: 0.14em;
+                        text-transform: uppercase;
+                        color: #6a6a62;
+                        font-weight: 600;
+                      "
+                    >
+                      A note from Julia
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Headline: text (Cormorant Garamond → Georgia fallback). Used in
+                 place of the marketing PNG to keep the letter-from-Julia
+                 tone — flexible copy, less "published," more "written." -->
+            <tr>
+              <td
+                class="pad h1"
+                style="
+                  padding: 28px 56px 0 56px;
+                  font-family: 'Cormorant Garamond', Georgia,
+                    'Times New Roman', serif;
+                  font-size: 44px;
+                  line-height: 1.0;
+                  letter-spacing: -0.03em;
+                  color: #1c1c19;
+                  font-weight: 400;
+                "
+              >
+                Thank you for the conversation.
+              </td>
+            </tr>
+
+            <!-- Italic accent line in olive -->
+            <tr>
+              <td
+                class="pad h1-italic"
+                style="
+                  padding: 12px 56px 0 56px;
+                  font-family: 'Cormorant Garamond', Georgia,
+                    'Times New Roman', serif;
+                  font-style: italic;
+                  font-size: 34px;
+                  line-height: 1.15;
+                  letter-spacing: -0.02em;
+                  color: #8a8a5e;
+                  font-weight: 400;
+                "
+              >
+                The platform you helped shape is open.
+              </td>
+            </tr>
+
+            <!-- Personal note from Julia — replaces the generic explainer -->
+            <tr>
+              <td
+                class="pad"
+                style="
+                  padding: 32px 56px 0 56px;
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                    Helvetica, Arial, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.75;
+                  color: #3a3a34;
+                "
+              >
+                When I was building Credenza, I spent months talking
+                with designers about how trade accounts, resale
+                certificates, and the rest of the back-of-house
+                actually work today. Your honesty about what&rsquo;s
+                broken&mdash;and what&rsquo;s worth keeping&mdash;shaped
+                what we built. I wanted you to be among the first
+                inside.
+              </td>
+            </tr>
+
+            <!-- Sign-off -->
+            <tr>
+              <td
+                class="pad"
+                style="
+                  padding: 20px 56px 0 56px;
+                  font-family: 'Cormorant Garamond', Georgia,
+                    'Times New Roman', serif;
+                  font-style: italic;
+                  font-size: 18px;
+                  line-height: 1.4;
+                  color: #3a3a34;
+                "
+              >
+                &mdash; Julia
+              </td>
+            </tr>
+
+            <!-- "What's inside" — editorial 4-row feature list, mirrors site value props -->
+            <tr>
+              <td class="pad" style="padding: 48px 56px 0 56px;">
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                >
+                  <!-- Section eyebrow -->
+                  <tr>
+                    <td
+                      style="
+                        padding-bottom: 28px;
+                        font-family: 'Inter', -apple-system,
+                          BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+                        font-size: 11px;
+                        letter-spacing: 0.14em;
+                        text-transform: uppercase;
+                        color: #6a6a62;
+                        font-weight: 600;
+                      "
+                    >
+                      What we built
+                    </td>
+                  </tr>
+
+                  <!-- Row 01 -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            01
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              Trade accounts
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              One dashboard for all of your trade
+                              partners, shared across your team.
+                              Pre-filled with categories, portal links,
+                              addresses, and brand details for 1,500+
+                              vendors. CSV import for your existing
+                              accounts.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px; line-height: 0; font-size: 0;">
+                      &nbsp;
+                    </td>
+                  </tr>
+
+                  <!-- Row 02 -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            02
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              Resale certificates
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              Generated instantly. Maximum tax
+                              exemption in every state—single and
+                              multi-state certificates, tracked through
+                              expiration. 46 jurisdictions.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px; line-height: 0; font-size: 0;">
+                      &nbsp;
+                    </td>
+                  </tr>
+
+                  <!-- Row 03 — Reps & credentials -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            03
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              Reps &amp; credentials
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              Save rep contacts, account numbers, and
+                              login info. Encrypted storage, accessible
+                              only to your firm.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px; line-height: 0; font-size: 0;">
+                      &nbsp;
+                    </td>
+                  </tr>
+
+                  <!-- Row 04 — Verified firm profile -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            04
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              Verified firm profile
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              Your firm&rsquo;s credentials, verified
+                              once. Re-use them across every account,
+                              certificate, and application&mdash;no more
+                              uploading the same documents.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- "Coming soon" — editorial 2-row roadmap, parallel to "What we built" -->
+            <tr>
+              <td class="pad" style="padding: 48px 56px 0 56px;">
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                >
+                  <!-- Section eyebrow -->
+                  <tr>
+                    <td
+                      style="
+                        padding-bottom: 28px;
+                        font-family: 'Inter', -apple-system,
+                          BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+                        font-size: 11px;
+                        letter-spacing: 0.14em;
+                        text-transform: uppercase;
+                        color: #6a6a62;
+                        font-weight: 600;
+                      "
+                    >
+                      Coming soon
+                    </td>
+                  </tr>
+
+                  <!-- Row 01 — One-click trade applications -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            01
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              One-click trade applications
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              Apply to any vendor in our network with a
+                              single click. Your verified firm profile
+                              fills the application&mdash;no more
+                              retyping the same information for every
+                              brand.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 18px; line-height: 0; font-size: 0;">
+                      &nbsp;
+                    </td>
+                  </tr>
+
+                  <!-- Row 02 — Always-in-sync data -->
+                  <tr>
+                    <td
+                      style="
+                        border-top: 1px solid #d8d4ca;
+                        padding: 18px 0 0 0;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="48"
+                            valign="top"
+                            style="
+                              font-family: 'Cormorant Garamond', Georgia,
+                                'Times New Roman', serif;
+                              font-style: italic;
+                              font-size: 18px;
+                              color: #8a8a5e;
+                              line-height: 1.4;
+                              padding-right: 12px;
+                            "
+                          >
+                            02
+                          </td>
+                          <td valign="top">
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11px;
+                                letter-spacing: 0.14em;
+                                text-transform: uppercase;
+                                color: #1c1c19;
+                                font-weight: 600;
+                                padding-bottom: 6px;
+                              "
+                            >
+                              Always-in-sync data
+                            </div>
+                            <div
+                              style="
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 14px;
+                                line-height: 1.65;
+                                color: #3a3a34;
+                              "
+                            >
+                              Vendors claim their listing on Credenza
+                              and keep it current&mdash;price lists,
+                              catalogs, sales reps, terms. The latest
+                              details land in your account
+                              automatically.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Closing line before CTA — invitation, not announcement -->
+            <tr>
+              <td
+                class="pad"
+                style="
+                  padding: 48px 56px 0 56px;
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                    Helvetica, Arial, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.75;
+                  color: #3a3a34;
+                "
+              >
+                If you have a few minutes, sign in and tell me what you
+                think. I&rsquo;d love to hear what we got right&mdash;and
+                what we missed.
+              </td>
+            </tr>
+
+            <!-- CTA: exact site button — teal fill with offset 0.5px outline ring -->
+            <tr>
+              <td class="pad" align="center" style="padding: 32px 56px 0 56px;">
+                <!-- Outer table = the offset outline ring (1px line, 2px gap) -->
+                <table
+                  role="presentation"
+                  align="center"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="
+                    border: 1px solid #99b8bd;
+                    background-color: #fdfcf9;
+                    margin: 0 auto;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 2px;">
+                      <!-- Inner table = the teal button itself -->
+                      <table
+                        role="presentation"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            bgcolor="#b8ccd2"
+                            style="background-color: #b8ccd2; padding: 0;"
+                          >
+                            <a
+                              href="https://trade.usecredenza.com/login?utm_source=resend&amp;utm_medium=email&amp;utm_campaign=welcome-designer-research&amp;utm_content=cta-primary&amp;ref={{{EMAIL}}}"
+                              target="_blank"
+                              style="
+                                display: block;
+                                padding: 16px 24px;
+                                font-family: 'Inter', -apple-system,
+                                  BlinkMacSystemFont, Helvetica, Arial,
+                                  sans-serif;
+                                font-size: 11.5px;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                color: #21353f;
+                                text-decoration: none;
+                                font-weight: 400;
+                              "
+                              >See what you helped build</a
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Photo credit for the slice at top — now primary footer treatment, centered -->
+            <tr>
+              <td
+                class="pad"
+                align="center"
+                style="
+                  padding: 56px 56px 0 56px;
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                    Helvetica, Arial, sans-serif;
+                  font-size: 11px;
+                  letter-spacing: 0.04em;
+                  line-height: 1.7;
+                  color: #6a6a62;
+                  text-align: center;
+                "
+              >
+                Photograph © Carmel Brantley · Design by Ellen Kavanaugh
+                Interiors
+              </td>
+            </tr>
+
+            <!-- Legal footer — inside the card, smallest gray, centered -->
+            <tr>
+              <td
+                class="pad"
+                align="center"
+                style="
+                  padding: 40px 56px 56px 56px;
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                    Helvetica, Arial, sans-serif;
+                  font-size: 9px;
+                  letter-spacing: 0;
+                  color: #9e9e96;
+                  text-align: center;
+                "
+              >
+                Credenza Labs, Inc. &nbsp;·&nbsp;
+                <a
+                  href="https://usecredenza.com?utm_source=resend&amp;utm_medium=email&amp;utm_campaign=welcome-designer-research&amp;utm_content=footer-link&amp;ref={{{EMAIL}}}"
+                  style="color: #9e9e96; text-decoration: none;"
+                  >usecredenza.com</a
+                >
+                &nbsp;·&nbsp;
+                <a
+                  href="{{{RESEND_UNSUBSCRIBE_URL}}}"
+                  style="color: #9e9e96; text-decoration: underline;"
+                  >Unsubscribe</a
+                >
+              </td>
+            </tr>
+          </table>
+
+          <!-- Resend auto-injects unsubscribe + audience footer below this point on broadcasts -->
+        </td>
+      </tr>
+    </table>
+    </center>
+  </body>
+</html>
