@@ -31,6 +31,7 @@
       margin: 0;
       padding: 0;
       background-color: #f0f0ec;
+      text-align: center;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     "
@@ -50,18 +51,25 @@
       Your Credenza access is open.
     </div>
 
-    <!-- PAGE: ivory background, matches site's --linen #f0f0ec -->
+    <!-- <center> is legacy HTML but still the most bulletproof email
+         centering primitive — Gmail, Outlook, and Yahoo all respect it
+         even when CSS centering fails. -->
+    <center style="width: 100%; background-color: #f0f0ec;">
+    <!-- PAGE: ivory background, matches site's --linen #f0f0ec.
+         Padding moved from the table style to the inner td — table
+         padding is unreliable in email clients. -->
     <table
       role="presentation"
       class="page"
+      align="center"
       width="100%"
       cellpadding="0"
       cellspacing="0"
       border="0"
-      style="background-color: #f0f0ec; padding: 32px 16px;"
+      style="background-color: #f0f0ec;"
     >
       <tr>
-        <td align="center">
+        <td align="center" style="padding: 32px 16px;">
           <!-- CARD: white surface with sage-dark hairline border, matches site cards -->
           <table
             role="presentation"
@@ -688,5 +696,6 @@
         </td>
       </tr>
     </table>
+    </center>
   </body>
 </html>
