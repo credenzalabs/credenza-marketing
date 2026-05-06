@@ -23,7 +23,7 @@ you to be among the first inside.
 What we built:
   01  Trade accounts — one dashboard for all of your trade partners,
       shared across your team. Pre-filled with categories, portal
-      links, addresses, and brand details for 1,500+ vendors.
+      links, addresses, and brand details for 1,700+ vendors.
   02  Resale certificates — generated instantly. Maximum tax exemption
       in every state, tracked through expiration. 46 jurisdictions.
   03  Reps & credentials — save rep contacts, account numbers, and
@@ -33,7 +33,7 @@ What we built:
 
 Coming soon:
   01  One-click trade applications — apply to any vendor in our
-      network with a single click. Your verified firm profile fills
+      network with a single click. Your verified firm profile is
       the application.
   02  Always-in-sync data — vendors claim their listing on Credenza
       and keep it current: price lists, catalogs, sales reps, terms.

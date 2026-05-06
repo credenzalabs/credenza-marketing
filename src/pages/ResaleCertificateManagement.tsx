@@ -501,7 +501,7 @@ function Close() {
             className="text-charcoal-mid mb-10"
             style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75 }}
           >
-            1,500+ to-the-trade brands. An active designer network maintaining verified profiles. The more
+            1,700+ to-the-trade brands. An active designer network maintaining verified profiles. The more
             vendors join, the more designer profiles arrive verified, the cleaner your trade book gets.
           </p>
           <a
