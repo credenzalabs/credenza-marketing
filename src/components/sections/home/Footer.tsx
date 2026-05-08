@@ -16,26 +16,6 @@ export function Footer() {
             >
               Trade access, simplified.
             </p>
-            <div className="flex gap-4 mt-4">
-              <a
-                href="https://www.instagram.com/usecredenza"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/usecredenza/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </div>
           {[
             { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }] },
@@ -60,6 +40,28 @@ export function Footer() {
                     {link.label}
                   </a>
                 ))}
+                {col.heading === "Contact" && (
+                  <div className="flex gap-3 mt-1">
+                    <a
+                      href="https://www.instagram.com/usecredenza"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
+                    >
+                      <Instagram className="h-4 w-4" strokeWidth={1} />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/usecredenza/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
+                    >
+                      <Linkedin className="h-4 w-4" strokeWidth={1} />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
