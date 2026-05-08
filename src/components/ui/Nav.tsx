@@ -25,7 +25,7 @@ export function Nav({
   ctaHref = "#",
   logoHref,
   showMobileCta = true,
-  showSignIn = false,
+  showSignIn = true,
   forceSolid = false,
 }: NavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
