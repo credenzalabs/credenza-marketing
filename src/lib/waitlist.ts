@@ -1,11 +1,21 @@
 /**
- * Waitlist submissions — posts directly to Supabase PostgREST anon
- * endpoints for `designer_requests` and `vendor_access_requests`.
+ * Waitlist submissions.
  *
- * RLS on both tables must permit anon INSERT only; the anon key in
- * VITE_SUPABASE_ANON_KEY is safe to ship to the browser. No SDK —
- * plain fetch() keeps the marketing bundle small.
+ * Designer waitlist still posts directly to the `designer_requests` PostgREST
+ * anon endpoint — designer attribution + GA stitching happen later, on first
+ * authenticated trade-app session via signup_attribution.
+ *
+ * Vendor waitlist goes through the `vendor-request-access` Edge Function so it
+ * can run the qualification pipeline (catalog match + AI domain review) and
+ * forward the GA4 client_id for cross-domain Measurement Protocol stitching.
+ * Direct PostgREST insert on vendor_access_requests would bypass all of that.
+ *
+ * The anon key in VITE_SUPABASE_ANON_KEY is safe to ship to the browser; RLS
+ * on designer_requests permits anon INSERT only.
  */
+
+import { getGaClientId } from "./ga";
+import { ACCESS_REQUEST_URL } from "./constants";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -20,6 +30,8 @@ export interface VendorWaitlistInput {
   name: string;
   company: string;
   email: string;
+  /** Where the form lives — surfaced as event property for funnel slicing. */
+  source?: string;
 }
 
 async function postAnon(table: string, row: Record<string, string>): Promise<void> {
@@ -51,9 +63,27 @@ export async function submitDesignerWaitlist(input: DesignerWaitlistInput): Prom
 }
 
 export async function submitVendorWaitlist(input: VendorWaitlistInput): Promise<void> {
-  await postAnon("vendor_access_requests", {
-    name: input.name.trim(),
-    company: input.company.trim(),
-    email: input.email.trim().toLowerCase(),
+  if (!ACCESS_REQUEST_URL) {
+    throw new Error("ACCESS_REQUEST_URL env var is not set.");
+  }
+  const res = await fetch(ACCESS_REQUEST_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // The Edge Function is deployed --no-verify-jwt; an apikey header is
+      // still required by Supabase's API gateway, even for public endpoints.
+      apikey: SUPABASE_ANON_KEY ?? "",
+    },
+    body: JSON.stringify({
+      name: input.name.trim(),
+      company: input.company.trim(),
+      email: input.email.trim().toLowerCase(),
+      source: input.source ?? "marketing_site",
+      ga_client_id: getGaClientId(),
+    }),
   });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Waitlist submission failed (${res.status}): ${text}`);
+  }
 }

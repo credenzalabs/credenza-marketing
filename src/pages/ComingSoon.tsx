@@ -2,6 +2,9 @@ import { useState } from "react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { C, LOGO_BLACK, ACCESS_REQUEST_URL } from "@/lib/constants";
 import { withCredenzaUtm } from "@/utils/utm";
+import { getGaClientId } from "@/lib/ga";
+
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const STUDIO_DORION_CREDIT = [
   { text: "© " },
@@ -23,8 +26,15 @@ export default function ComingSoon() {
     try {
       const res = await fetch(ACCESS_REQUEST_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "coming-soon" }),
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_ANON_KEY ?? "",
+        },
+        body: JSON.stringify({
+          ...form,
+          source: "coming-soon",
+          ga_client_id: getGaClientId(),
+        }),
       });
       setStatus(res.ok ? "sent" : "error");
     } catch {
