@@ -1,3 +1,4 @@
+import { Instagram, Linkedin } from "lucide-react";
 import { LOGO_BLACK } from "@/lib/constants";
 
 // ─── Footer ──────────────────────────────────────────────────────────────────────
@@ -15,6 +16,26 @@ export function Footer() {
             >
               Trade access, simplified.
             </p>
+            <div className="flex gap-4 mt-4">
+              <a
+                href="https://www.instagram.com/usecredenza"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/usecredenza/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </div>
           {[
             { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }] },
