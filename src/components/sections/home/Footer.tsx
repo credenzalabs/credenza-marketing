@@ -1,4 +1,4 @@
-import { Instagram, Linkedin } from "lucide-react";
+import { InstagramLogo, LinkedinLogo } from "@phosphor-icons/react";
 import { LOGO_BLACK } from "@/lib/constants";
 
 // ─── Footer ──────────────────────────────────────────────────────────────────────
@@ -49,7 +49,7 @@ export function Footer() {
                       aria-label="Instagram"
                       className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
                     >
-                      <Instagram className="h-4 w-4" strokeWidth={1} />
+                      <InstagramLogo size={16} weight="thin" />
                     </a>
                     <a
                       href="https://www.linkedin.com/company/usecredenza/"
@@ -58,7 +58,7 @@ export function Footer() {
                       aria-label="LinkedIn"
                       className="text-charcoal-soft hover:text-charcoal transition-colors duration-150"
                     >
-                      <Linkedin className="h-4 w-4" strokeWidth={1} />
+                      <LinkedinLogo size={16} weight="thin" />
                     </a>
                   </div>
                 )}
