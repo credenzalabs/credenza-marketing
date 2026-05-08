@@ -42,4 +42,7 @@ export const APP_URL =
 const appBase = APP_URL.replace(/\/$/, "");
 export const LOGIN_URL = `${appBase}/login`;
 export const JOIN_VENDOR_URL = `${appBase}/waitlist/vendor`;
-export const JOIN_DESIGNER_URL = `${appBase}/waitlist/designer`;
+// Designer signup is live — point at /join/designer (the active signup
+// flow). The cert-tool also redirects /waitlist + /waitlist/designer here
+// so any stale links carry through.
+export const JOIN_DESIGNER_URL = `${appBase}/join/designer`;

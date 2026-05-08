@@ -24,7 +24,6 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
 import { C, JOIN_DESIGNER_URL } from "@/lib/constants";
-import { submitDesignerWaitlist } from "@/lib/waitlist";
 import { Footer } from "@/components/sections/home/Footer";
 
 const IMAGES = {
@@ -112,7 +111,7 @@ function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 mb-12">
               <a href={JOIN_DESIGNER_URL} className="no-underline inline-flex items-center gap-2 px-6 py-3.5 transition-all duration-200 font-normal uppercase bg-teal text-forest rounded-none hover:bg-[#99b8bd]"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-              >Get Early Access</a>
+              >Get Started—It&rsquo;s Free</a>
             </div>
 
             <div className="flex flex-col gap-2.5">
@@ -1142,28 +1141,6 @@ function FAQ() {
    ========================================================================= */
 function CTASection() {
   const ref = useReveal();
-  const [name, setName] = useState("");
-  const [firm, setFirm] = useState("");
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const submitDisabled =
-    status === "sending" || !name.trim() || !firm.trim() || !email.trim();
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (submitDisabled) return;
-    setStatus("sending");
-    setErrorMsg("");
-    try {
-      await submitDesignerWaitlist({ name, firm, email });
-      setStatus("sent");
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
-    }
-  }
 
   return (
     <section ref={ref} className="reveal py-12 md:py-16 bg-white">
@@ -1189,58 +1166,22 @@ function CTASection() {
             />
           </div>
           <div className="bg-white p-10 md:p-12 lg:p-14 flex flex-col justify-center">
-            <Eyebrow>Early access</Eyebrow>
+            <Eyebrow>Now live</Eyebrow>
             <h2 className="font-freight mb-3 text-charcoal" style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
               Your verified profile
               <br />
-              <span className="italic text-olive-mid">is coming soon.</span>
+              <span className="italic text-olive-mid">is here.</span>
             </h2>
             <p className="mb-8 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}>
               Every trade relationship you rely on in one considered place.
-              Join the waitlist to be among the first.
             </p>
-
-            {status === "sent" ? (
-              <div className="flex flex-col gap-2">
-                <p className="font-freight italic text-charcoal" style={{ fontSize: "1.25rem", lineHeight: 1.2 }}>
-                  You&rsquo;re on the list.
-                </p>
-                <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.55 }}>
-                  We&rsquo;ll be in touch as soon as we open early access.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                {[
-                  { key: "name", value: name, setter: setName, placeholder: "Your name", type: "text", autoComplete: "name" },
-                  { key: "firm", value: firm, setter: setFirm, placeholder: "Firm or studio name", type: "text", autoComplete: "organization" },
-                  { key: "email", value: email, setter: setEmail, placeholder: "Work email", type: "email", autoComplete: "email" },
-                ].map(f => (
-                  <input
-                    key={f.key}
-                    type={f.type}
-                    value={f.value}
-                    onChange={e => f.setter(e.target.value)}
-                    placeholder={f.placeholder}
-                    autoComplete={f.autoComplete}
-                    required
-                    className="w-full px-4 py-3 outline-none transition-all duration-150 border border-sage-dark focus:border-olive bg-page-white text-charcoal rounded-none"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }}
-                  />
-                ))}
-                {errorMsg && (
-                  <p className="text-[#6B2D2D]" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}>{errorMsg}</p>
-                )}
-                <button
-                  type="submit"
-                  disabled={submitDisabled}
-                  className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal bg-teal hover:bg-[#99b8bd] text-forest rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
-                >
-                  {status === "sending" ? "Sending..." : "Join the waitlist"}
-                </button>
-              </form>
-            )}
+            <a
+              href={JOIN_DESIGNER_URL}
+              className="no-underline inline-flex items-center justify-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+            >
+              Get Started—It&rsquo;s Free
+            </a>
           </div>
         </div>
       </div>
@@ -1255,7 +1196,7 @@ function CTASection() {
 export default function ForDesigners() {
   return (
     <div className="min-h-screen bg-white">
-      <Nav activePage="designers" ctaLabel="Get Early Access" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
+      <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
       <Hero />
       <AccountManagement />
       <TaxStrategy />
