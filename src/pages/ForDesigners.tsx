@@ -1196,7 +1196,7 @@ function CTASection() {
 export default function ForDesigners() {
   return (
     <div className="min-h-screen bg-white">
-      <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} showMobileCta={false} />
+      <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} />
       <Hero />
       <AccountManagement />
       <TaxStrategy />

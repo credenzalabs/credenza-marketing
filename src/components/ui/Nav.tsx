@@ -186,7 +186,7 @@ export function Nav({
                 </a>
               );
             })}
-            {showMobileCta && (
+            {(showSignIn || showMobileCta) && (
               <div
                 className="flex flex-col gap-3 pt-4 border-t"
                 style={{ borderColor: C.sage }}
@@ -206,24 +206,26 @@ export function Nav({
                     Sign in
                   </a>
                 )}
-                <a
-                  href={ctaHref}
-                  className="no-underline text-center py-2.5 px-4 flex items-center justify-center gap-2"
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.72rem",
-                    fontWeight: 400,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase" as const,
-                    backgroundColor: C.teal,
-                    color: C.forest,
-                    outline: "0.5px solid #99b8bd",
-                    outlineOffset: "2px",
-                    borderRadius: "0",
-                  }}
-                >
-                  {ctaLabel}
-                </a>
+                {showMobileCta && (
+                  <a
+                    href={ctaHref}
+                    className="no-underline text-center py-2.5 px-4 flex items-center justify-center gap-2"
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.72rem",
+                      fontWeight: 400,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase" as const,
+                      backgroundColor: C.teal,
+                      color: C.forest,
+                      outline: "0.5px solid #99b8bd",
+                      outlineOffset: "2px",
+                      borderRadius: "0",
+                    }}
+                  >
+                    {ctaLabel}
+                  </a>
+                )}
               </div>
             )}
           </div>
