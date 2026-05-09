@@ -7,6 +7,7 @@ import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { IMAGES } from "@/components/sections/home/images";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { withCredenzaUtm } from "@/utils/utm";
+import { useCatalogCount } from "@/hooks/useCatalogCount";
 
 const PAGE_TITLE = "The Interior Designer's Guide to Resale Certificates";
 const PAGE_DESCRIPTION =
@@ -84,6 +85,7 @@ const FAQ_ITEMS = [
 ];
 
 export default function ResaleCertificateGuide() {
+  const catalogCount = useCatalogCount();
   useEffect(() => {
     const prevTitle = document.title;
     const descMeta = document.querySelector('meta[name="description"]');
@@ -389,7 +391,7 @@ export default function ResaleCertificateGuide() {
             The certificate engine follows the same priority logic an experienced tax attorney would apply: for states that accept multi-state forms, it generates an MTC or SST certificate where appropriate. For states requiring their own official forms, it generates those. For states that issue certificates to you directly, it tells you exactly where to retrieve yours and what to expect. And beyond the standard form logic, it's built around the edge cases—the state-specific rules, the per-vendor exceptions, the nuances that most designers never encounter until a cert gets rejected. You're never guessing which form to use, and you're covered for the scenarios most compliance tools miss.
           </p>
           <p>
-            Need to generate a certificate for a vendor you've worked with for years, outside of Credenza entirely? You can do that too. If it's one of the 1,700+ vendors in our to-the-trade directory, your certificate generates instantly with the vendor's information pre-filled alongside yours. For any vendor not in the directory, just fill in their info and generate a clean, compliant cert in seconds and submit it yourself.
+            Need to generate a certificate for a vendor you've worked with for years, outside of Credenza entirely? You can do that too. If it's one of the {catalogCount} vendors in our to-the-trade directory, your certificate generates instantly with the vendor's information pre-filled alongside yours. For any vendor not in the directory, just fill in their info and generate a clean, compliant cert in seconds and submit it yourself.
           </p>
           <p>
             When vendors join the Credenza network, your certificates will arrive pre-attached to every application. No emailing them under separate cover. No clunky tax tool wizards. The application arrives complete. Once approved, tax exemption gets applied in the vendor's system automatically, so you can shop tax-free at trade pricing fast.

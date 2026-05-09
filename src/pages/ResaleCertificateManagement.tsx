@@ -21,6 +21,7 @@ import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useCatalogCount } from "@/hooks/useCatalogCount";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 
 const PAGE_TITLE = "Resale certificate management for the to-the-trade channel";
@@ -484,6 +485,7 @@ function Integrations() {
    ========================================================================= */
 function Close() {
   const ref = useReveal();
+  const catalogCount = useCatalogCount();
   return (
     <section ref={ref} className="reveal py-24 md:py-32 bg-white border-t border-sage-dark">
       <div className="container">
@@ -501,7 +503,7 @@ function Close() {
             className="text-charcoal-mid mb-10"
             style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75 }}
           >
-            1,700+ to-the-trade brands. An active designer network maintaining verified profiles. The more
+            {catalogCount} to-the-trade brands. An active designer network maintaining verified profiles. The more
             vendors join, the more designer profiles arrive verified, the cleaner your trade book gets.
           </p>
           <a

@@ -23,6 +23,7 @@ import { withCredenzaUtm } from "@/utils/utm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
+import { useCatalogCount } from "@/hooks/useCatalogCount";
 import { C, JOIN_DESIGNER_URL } from "@/lib/constants";
 import { Footer } from "@/components/sections/home/Footer";
 
@@ -145,6 +146,7 @@ function Hero() {
    ========================================================================= */
 function TaxStrategy() {
   const ref = useReveal();
+  const catalogCount = useCatalogCount();
 
   return (
     <section id="tax-strategy" ref={ref} className="reveal py-24 md:py-36 bg-white">
@@ -178,7 +180,7 @@ function TaxStrategy() {
             },
             {
               title: "Filled in, not guessed at",
-              body: "We auto-fill legal business name, address, and comprehensive product categories from our to-the-trade vendor directory of 1,700+ brands to build you a compliant blanket certificate in seconds.",
+              body: `We auto-fill legal business name, address, and comprehensive product categories from our to-the-trade vendor directory of ${catalogCount} brands to build you a compliant blanket certificate in seconds.`,
             },
             {
               title: "Always current, never lapsed",
@@ -325,6 +327,7 @@ function TaxStrategy() {
    ========================================================================= */
 function AccountManagement() {
   const ref = useReveal();
+  const catalogCount = useCatalogCount();
   return (
     <section id="accounts" ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
@@ -346,7 +349,7 @@ function AccountManagement() {
               number, discount code, or your rep's phone number.
             </p>
             <p className="mb-6 text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              Info from 1,700+ to-the-trade vendors is already in Credenza—just
+              Info from {catalogCount} to-the-trade vendors is already in Credenza—just
               start typing and add them to your dashboard in one click.
             </p>
             <p className="font-freight italic text-charcoal" style={{ fontSize: "1.1rem", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
@@ -558,7 +561,7 @@ function AccountManagement() {
                   className="text-charcoal-soft mb-2.5"
                   style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", lineHeight: 1.5 }}
                 >
-                  1,700+ to-the-trade vendors. Start typing to find and add.
+                  {catalogCount} to-the-trade vendors. Start typing to find and add.
                 </p>
                 <div
                   className="px-3 py-2 bg-white mb-1"
@@ -652,7 +655,7 @@ function AccountManagement() {
           {[
             { title: "Certs attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
             { title: "Vendor logins, securely stored", body: "Account numbers and portal passwords encrypted in transit and at rest. Copy user name and password with one click. Share access with your team; revoke when someone leaves." },
-            { title: "Bring your whole book in one import", body: "Upload a CSV of your existing trade accounts—we match against our directory of 1,700+ brands and auto-fill categories, contact info, and portal links. Migrate decades of vendors in minutes." },
+            { title: "Bring your whole book in one import", body: `Upload a CSV of your existing trade accounts—we match against our directory of ${catalogCount} brands and auto-fill categories, contact info, and portal links. Migrate decades of vendors in minutes.` },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor you're connected with sees the update." },
           ].map((item, i) => (
             <div key={item.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
@@ -1068,6 +1071,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 function FAQ() {
   const ref = useReveal();
+  const catalogCount = useCatalogCount();
   const questions = [
     {
       q: "Is Credenza really free for designers?",
@@ -1079,11 +1083,11 @@ function FAQ() {
     },
     {
       q: "How do I move my existing account/source list into Credenza?",
-      a: "If you're already tracking them in a Google Sheet or spreadsheet, export to CSV and drop it in. We match against our directory of 1,700+ to-the-trade brands and auto-fill categories for easy sourcing, corporate addresses and legal business names for resale certificate generation, and trade portal login links for quick access—your whole book migrated in minutes.",
+      a: `If you're already tracking them in a Google Sheet or spreadsheet, export to CSV and drop it in. We match against our directory of ${catalogCount} to-the-trade brands and auto-fill categories for easy sourcing, corporate addresses and legal business names for resale certificate generation, and trade portal login links for quick access—your whole book migrated in minutes.`,
     },
     {
       q: "Can I add my own vendors?",
-      a: "Yes. Any vendor you shop with or tradesperson you work with can be added to your dashboard. If they're in our directory of 1,700+ brands, categories and business info are pre-filled. If not, paste a URL and we'll pull the details, or add them manually in a few fields.",
+      a: `Yes. Any vendor you shop with or tradesperson you work with can be added to your dashboard. If they're in our directory of ${catalogCount} brands, categories and business info are pre-filled. If not, paste a URL and we'll pull the details, or add them manually in a few fields.`,
     },
     {
       q: "Is my trade profile secure?",
