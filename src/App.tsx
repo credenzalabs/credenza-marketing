@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Resources from "./pages/Resources";
 import ResaleCertificateGuide from "./pages/ResaleCertificateGuide";
 import ResaleCertificateManagement from "./pages/ResaleCertificateManagement";
+import AutomatedDesignerVerification from "./pages/AutomatedDesignerVerification";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/interior-designer-resale-certificate-guide" element={<ResaleCertificateGuide />} />
         <Route path="/resale-certificate-management" element={<ResaleCertificateManagement />} />
+        <Route path="/automated-designer-verification" element={<AutomatedDesignerVerification />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
         <Route path="*" element={<NotFound />} />
