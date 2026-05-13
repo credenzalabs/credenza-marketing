@@ -104,27 +104,27 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
 
 const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   {
-    title: "Verified trade accounts, on your rules",
+    title: "Verified Trade Accounts, on Your Rules",
     body: "Every applicant runs through Credenza's nine-check verification engine—business registration, sales tax ID, professional memberships, state license, website and Instagram, press coverage, resale certificate validity, and trade references. You set the gating: auto-approve when the evidence is strong, route to manual review when it's borderline, reject what doesn't meet your bar. Credenza runs the checks and applies your rules consistently on every application.",
   },
   {
-    title: "Auto-tagged customers",
+    title: "Auto-Tagged Customers",
     body: "Approved designers receive your configured trade-customer tag (default trade-verified) on their Shopify customer record. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers automatically.",
   },
   {
-    title: "State-scoped tax exemptions",
+    title: "State-Scoped Tax Exemptions",
     body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions refresh automatically when a certificate expires or is replaced, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
   },
   {
-    title: "Compliance-ready audit trail",
+    title: "Compliance-Ready Audit Trail",
     body: "Verification evidence, signed certificates, and tax-exempt orders link end-to-end in Credenza's append-only ledger. The signed cert PDF lives in Credenza's secure, audit-ready vault; the Shopify customer record carries verification status, exemption fields, and certificate metadata.",
   },
   {
-    title: "Drift detection",
+    title: "Drift Detection",
     body: "Credenza watches the customer metafields it manages and alerts you when one is edited outside the integration. No silent overwrites; no exemption decisions made without a paper trail.",
   },
   {
-    title: "B2B company sync",
+    title: "B2B Company Sync",
     body: "For Shopify B2B merchants, verification metafields mirror to the corresponding company record so company-scoped pricing rules and tax-exempt checkout work the same way they do for DTC.",
   },
 ];
@@ -379,7 +379,7 @@ function ShopifyCustomerMock() {
     ["firm_name", "Hayes & Howe Design"],
     ["firm_role", "principal"],
     ["approval_date", "2026-04-12"],
-    ["primary_state_certificate_expiration", "2027-04-15"],
+    ["primary_state_certificate_expiration", "2029-04-12"],
     ["discount_percent", "30"],
   ];
   return (
