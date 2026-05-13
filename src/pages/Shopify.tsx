@@ -36,7 +36,7 @@ import { JOIN_VENDOR_URL, LOGIN_URL, C } from "@/lib/constants";
 import { withCredenzaUtm } from "@/utils/utm";
 
 const HERO_IMAGE = {
-  src: "/caitlin-kah-living.jpg",
+  src: "/caitlin-kah-credenza.jpg",
   alt: "Interior by Caitlin Kah",
   position: "center center",
   credits: [
