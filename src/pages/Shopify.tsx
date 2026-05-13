@@ -25,12 +25,28 @@
  * SEO: Page-scoped FAQPage + TechArticle JSON-LD via useEffect.
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { Check, ChevronDown } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { JOIN_VENDOR_URL, LOGIN_URL, C } from "@/lib/constants";
+import { withCredenzaUtm } from "@/utils/utm";
+
+const HERO_IMAGE = {
+  src: "/caitlin-kah-living.jpg",
+  alt: "Interior by Caitlin Kah",
+  position: "center center",
+  credits: [
+    { text: "© " },
+    { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "shopify-hero") },
+    { text: " (design by " },
+    { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "shopify-hero") },
+    { text: ")" },
+  ],
+};
 
 const PAGE_TITLE =
   "Shopify trade onboarding: verified designers, auto-tagged, tax-exempt";
@@ -216,7 +232,7 @@ export default function ShopifyPage() {
    ========================================================================= */
 function Hero() {
   return (
-    <section className="relative overflow-hidden flex items-center bg-white min-h-[80vh] pt-16">
+    <section className="relative overflow-hidden flex items-center bg-white min-h-screen pt-16">
       <div
         className="absolute inset-0 pointer-events-none opacity-35"
         style={{
@@ -225,74 +241,96 @@ function Hero() {
         }}
       />
       <div className="container relative z-10 py-12 md:py-16">
-        <div className="max-w-3xl">
-          <Eyebrow>The Shopify integration</Eyebrow>
-          <h1
-            className="font-freight mb-8 leading-none text-charcoal"
-            style={{ fontSize: "clamp(2.4rem, 4vw, 4rem)", letterSpacing: "-0.03em" }}
-          >
-            Verified trade buyers,
-            <br />
-            <span className="italic text-olive-mid">auto-onboarded</span> to
-            <br />
-            your Shopify store.
-          </h1>
-          <p
-            className="mb-8 text-charcoal-mid max-w-[560px]"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
-          >
-            Credenza verifies interior designers, architects, and other trade buyers
-            through nine evidence checks—then writes verification status, exemption
-            details, and your trade-customer tag directly to each Shopify customer
-            record so existing pricing rules and tax-exempt checkout work automatically.
-          </p>
-          <p
-            className="mb-10 text-charcoal-soft"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.78rem",
-              letterSpacing: "0.04em",
-              lineHeight: 1.6,
-              maxWidth: 560,
-            }}
-          >
-            One-click install from your Credenza dashboard · OAuth + metafields +
-            webhooks configured automatically · Works on every Shopify plan,
-            including Plus B2B.
-          </p>
-          <div className="flex flex-col md:flex-row gap-3">
-            <a
-              href={JOIN_VENDOR_URL}
-              className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+          {/* Copy — 5 cols */}
+          <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
+            <Eyebrow>The Shopify integration</Eyebrow>
+            <h1
+              className="font-freight mb-8 leading-none text-charcoal"
+              style={{ fontSize: "clamp(2.4rem, 3.8vw, 4rem)", letterSpacing: "-0.03em" }}
+            >
+              Verified trade buyers,
+              <br />
+              <span className="italic text-olive-mid">auto-onboarded</span> to
+              <br />
+              your Shopify store.
+            </h1>
+            {/* Mobile-only hero image after headline */}
+            <div className="lg:hidden mb-8 overflow-hidden aspect-[4/3]">
+              <img
+                src={HERO_IMAGE.src}
+                alt={HERO_IMAGE.alt}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: HERO_IMAGE.position }}
+              />
+            </div>
+            <p
+              className="mb-8 text-charcoal-mid max-w-[420px]"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
+            >
+              Credenza verifies interior designers, architects, and other trade buyers
+              through nine evidence checks—then writes verification status, exemption
+              details, and your trade-customer tag directly to each Shopify customer
+              record so existing pricing rules and tax-exempt checkout work automatically.
+            </p>
+            <p
+              className="mb-10 text-charcoal-soft"
               style={{
                 fontFamily: "Inter, sans-serif",
-                fontSize: "0.72rem",
-                letterSpacing: "0.1em",
-                backgroundColor: C.teal,
-                color: C.forest,
-                outline: "0.5px solid #99b8bd",
-                outlineOffset: "2px",
+                fontSize: "0.78rem",
+                letterSpacing: "0.04em",
+                lineHeight: 1.6,
+                maxWidth: 420,
               }}
             >
-              Request access
-            </a>
-            <a
-              href={LOGIN_URL}
-              className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 400,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                backgroundColor: "transparent",
-                color: C.charcoalMid,
-                border: `0.5px solid ${C.sageDark}`,
-                borderRadius: "0",
-              }}
-            >
-              Sign in →
-            </a>
+              One-click install from your Credenza dashboard · OAuth + metafields +
+              webhooks configured automatically · Works on every Shopify plan,
+              including Plus B2B.
+            </p>
+            <div className="flex flex-col md:flex-row gap-3">
+              <a
+                href={JOIN_VENDOR_URL}
+                className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.1em",
+                  backgroundColor: C.teal,
+                  color: C.forest,
+                  outline: "0.5px solid #99b8bd",
+                  outlineOffset: "2px",
+                }}
+              >
+                Request access
+              </a>
+              <a
+                href={LOGIN_URL}
+                className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  backgroundColor: "transparent",
+                  color: C.charcoalMid,
+                  border: `0.5px solid ${C.sageDark}`,
+                  borderRadius: "0",
+                }}
+              >
+                Sign in →
+              </a>
+            </div>
+          </div>
+          {/* Image — 7 cols, desktop only */}
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
+            <img
+              src={HERO_IMAGE.src}
+              alt={HERO_IMAGE.alt}
+              className="w-full h-full object-cover block"
+              style={{ objectPosition: HERO_IMAGE.position }}
+            />
+            <PhotoCredit credits={HERO_IMAGE.credits} separator="" />
           </div>
         </div>
       </div>
@@ -307,21 +345,217 @@ function Definition() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="max-w-3xl">
-          <Eyebrow>Definition</Eyebrow>
-          <p
-            className="font-freight text-charcoal"
-            style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", lineHeight: 1.35, letterSpacing: "-0.015em" }}
-          >
-            Credenza is the verification layer behind every trade account in Shopify.
-            Designers are verified through nine evidence checks before they reach your
-            store; verification status, exemption fields, and a trade-customer tag are
-            written directly to each Shopify customer record. The signed resale
-            certificate lives in Credenza's secure, audit-ready vault—not in Shopify.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
+            <Eyebrow>Definition</Eyebrow>
+            <p
+              className="font-freight text-charcoal"
+              style={{ fontSize: "clamp(1.5rem, 2.2vw, 1.9rem)", lineHeight: 1.35, letterSpacing: "-0.015em" }}
+            >
+              Credenza is the verification layer behind every trade account in Shopify.
+              Designers are verified through nine evidence checks before they reach
+              your store; verification status, exemption fields, and a trade-customer
+              tag are written directly to each Shopify customer record. The signed
+              resale certificate lives in Credenza's secure, audit-ready vault—not in
+              Shopify.
+            </p>
+          </div>
+          <div className="lg:col-span-7">
+            <ShopifyCustomerMock />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ShopifyCustomerMock() {
+  const metafields: Array<[string, string]> = [
+    ["verification_status", "approved"],
+    ["approval_date", "2026-04-12"],
+    ["exempt_states", "NY · NJ · CT · FL"],
+    ["certificate_expiration", "2027-04-15"],
+    ["firm_name", "Atelier Sands"],
+    ["discount_tier", "Trade · 30%"],
+  ];
+  return (
+    <div
+      className="bg-white"
+      style={{ border: `0.5px solid ${C.sageDark}`, boxShadow: "0 2px 24px rgba(33,53,63,0.06)" }}
+    >
+      {/* Header bar */}
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `0.5px solid ${C.sageDark}`, backgroundColor: "#fbfaf6" }}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#95BF47" }} />
+          <span
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.charcoalSoft,
+            }}
+          >
+            Shopify admin · Customers
+          </span>
+        </div>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: C.charcoalSoft }}>
+          /admin/customers/8231
+        </span>
+      </div>
+      <div className="px-7 py-7">
+        {/* Customer header */}
+        <div className="mb-6">
+          <div
+            className="font-freight text-charcoal"
+            style={{ fontSize: 22, letterSpacing: "-0.015em", lineHeight: 1.1 }}
+          >
+            Lauren Cole
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 13,
+              color: C.charcoalMid,
+              marginTop: 4,
+            }}
+          >
+            lcole@ateliersands.com · Atelier Sands
+          </div>
+        </div>
+
+        {/* Tags + tax row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-7">
+          <div>
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: 10,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: C.oliveMid,
+                marginBottom: 8,
+              }}
+            >
+              Tags
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              <MockTag>trade-verified</MockTag>
+              <MockTag>credenza-managed</MockTag>
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: 10,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: C.oliveMid,
+                marginBottom: 8,
+              }}
+            >
+              Tax status
+            </div>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5"
+              style={{
+                backgroundColor: C.tealDim,
+                border: `0.5px solid ${C.tealBorder}`,
+              }}
+            >
+              <Check size={11} style={{ color: C.tealMid }} />
+              <span
+                style={{
+                  fontFamily: "ui-monospace, monospace",
+                  fontSize: 11,
+                  color: C.charcoal,
+                }}
+              >
+                tax_exempt: true
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Metafields */}
+        <div>
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.oliveMid,
+              marginBottom: 12,
+            }}
+          >
+            Metafields · credenza.*
+          </div>
+          <div>
+            {metafields.map(([key, value], i) => (
+              <div
+                key={key}
+                className="flex items-baseline justify-between gap-4 py-2"
+                style={{
+                  borderTop: i === 0 ? `0.5px solid ${C.sageDark}` : undefined,
+                  borderBottom: `0.5px solid ${C.sageDark}`,
+                }}
+              >
+                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11.5, color: C.charcoalMid }}>
+                  credenza.{key}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 12,
+                    color: C.charcoal,
+                    fontWeight: 500,
+                  }}
+                >
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer note */}
+        <p
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: 11,
+            color: C.charcoalSoft,
+            marginTop: 18,
+            lineHeight: 1.6,
+          }}
+        >
+          Written by Credenza · last synced 2 minutes ago
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function MockTag({ children }: { children: ReactNode }) {
+  return (
+    <span
+      style={{
+        fontFamily: "Inter, sans-serif",
+        fontSize: 11,
+        padding: "3px 9px",
+        backgroundColor: "#E8F0EA",
+        color: "#3D5A47",
+        border: "0.5px solid #B5C7BC",
+        borderRadius: 2,
+        whiteSpace: "nowrap",
+      }}
+    >
+      {children}
+    </span>
   );
 }
 
@@ -370,6 +604,7 @@ function Capabilities() {
    4. LIFECYCLE
    ========================================================================= */
 function Lifecycle() {
+  const [install, ...afterwards] = LIFECYCLE;
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
@@ -380,32 +615,77 @@ function Lifecycle() {
             style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
           >
             Install once.{" "}
-            <span className="italic text-olive-mid">Verified buyers</span> show up tagged.
+            <span className="italic text-olive-mid">Everything after</span> runs
+            automatically.
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {LIFECYCLE.map((stage) => (
-            <div key={stage.step}>
+
+        {/* Featured: one-click install */}
+        <div
+          className="bg-white px-8 md:px-12 py-10 md:py-12 mb-12"
+          style={{ border: `0.5px solid ${C.sageDark}` }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-3 flex items-center gap-4">
               <div
                 style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: 12,
+                  fontSize: 11,
                   letterSpacing: "0.18em",
                   color: C.oliveMid,
-                  marginBottom: 12,
                 }}
               >
-                {stage.step}
+                {install.step}
               </div>
+              <div
+                className="font-freight text-charcoal"
+                style={{ fontSize: 56, lineHeight: 1, letterSpacing: "-0.03em" }}
+              >
+                1<span style={{ color: C.oliveMid }}>·</span>
+              </div>
+            </div>
+            <div className="md:col-span-9">
               <h3
                 className="font-freight text-charcoal mb-3"
-                style={{ fontSize: 22, lineHeight: 1.2, letterSpacing: "-0.015em" }}
+                style={{ fontSize: "clamp(1.5rem, 2.2vw, 1.9rem)", lineHeight: 1.15, letterSpacing: "-0.02em" }}
               >
-                {stage.title}
+                {install.title}
               </h3>
               <p
                 className="text-charcoal-mid"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: 14, lineHeight: 1.7 }}
+                style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+              >
+                {install.body}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Supporting: what happens next */}
+        <div
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: 11,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: C.oliveMid,
+            marginBottom: 16,
+          }}
+        >
+          Then, on every approved applicant
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
+          {afterwards.map((stage) => (
+            <div key={stage.step} style={{ borderTop: `0.5px solid ${C.sageDark}`, paddingTop: 16 }}>
+              <h4
+                className="font-freight text-charcoal mb-2"
+                style={{ fontSize: 17, lineHeight: 1.2, letterSpacing: "-0.01em" }}
+              >
+                {stage.title}
+              </h4>
+              <p
+                className="text-charcoal-mid"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: 13.5, lineHeight: 1.7 }}
               >
                 {stage.body}
               </p>
@@ -489,6 +769,7 @@ function DataFlow() {
    6. FAQ
    ========================================================================= */
 function FAQ() {
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
@@ -500,23 +781,45 @@ function FAQ() {
           >
             Common questions
           </h2>
-          <div className="space-y-10">
-            {FAQ_ITEMS.map((item) => (
-              <div key={item.q}>
-                <h3
-                  className="font-freight text-charcoal mb-3"
-                  style={{ fontSize: 20, lineHeight: 1.25, letterSpacing: "-0.01em" }}
+          <div className="bg-white" style={{ border: `0.5px solid ${C.sageDark}` }}>
+            {FAQ_ITEMS.map((item, i) => {
+              const isOpen = openIdx === i;
+              return (
+                <div
+                  key={item.q}
+                  className={i < FAQ_ITEMS.length - 1 ? "border-b" : ""}
+                  style={i < FAQ_ITEMS.length - 1 ? { borderColor: C.sageDark } : undefined}
                 >
-                  {item.q}
-                </h3>
-                <p
-                  className="text-charcoal-mid"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
-                >
-                  {item.a}
-                </p>
-              </div>
-            ))}
+                  <button
+                    type="button"
+                    onClick={() => setOpenIdx(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-detail-${i}`}
+                    className="w-full flex items-start gap-4 text-left bg-transparent border-none cursor-pointer px-5 md:px-7 py-5"
+                  >
+                    <h3
+                      className="font-freight text-charcoal flex-1 m-0"
+                      style={{ fontSize: 18, lineHeight: 1.3, letterSpacing: "-0.01em" }}
+                    >
+                      {item.q}
+                    </h3>
+                    <ChevronDown
+                      size={16}
+                      className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div
+                      id={`faq-detail-${i}`}
+                      className="px-5 md:px-7 pb-6 text-charcoal-mid"
+                      style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+                    >
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
