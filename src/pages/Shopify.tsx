@@ -73,6 +73,10 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
     a: "Manual tagging trusts whoever applies for a trade account to be a trade buyer. That works at small volume; at scale, it leaks tax-exempt status to non-eligible buyers and creates exposure during state sales-tax audits. Credenza verifies each applicant against authoritative sources—IRS, state tax registries, professional directories, state license boards, the designer's actual portfolio and press footprint—before any tag is applied. Approval decisions are evidenced and logged.",
   },
   {
+    q: "Can I customize the approval rules?",
+    a: "Yes. Each vendor sets their own gating: which of the nine checks are required, which combinations auto-approve, which route to manual review, and which auto-reject. Require state license verification in regions with practice acts; demand active ASID membership for premium tiers; gate on resale certificate quality; build any rule that maps to the nine checks. Credenza's engine runs the checks on every applicant; your rules decide what to do with the result. Rule changes are versioned and don't retroactively re-decide prior approvals.",
+  },
+  {
     q: "Does Credenza replace TaxJar, Avalara, or other tax tools?",
     a: "Different layer. Tax tools compute the tax you owe and collect resale certificates. Credenza verifies the buyer and writes per-state tax exemptions into Shopify so tax-exempt checkout fires correctly in exactly the states the buyer is registered in—and only those. For trade-channel sales specifically, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certs from verified data, and write state-scoped exemption directly to the Shopify customer profile. Storefront tax engines continue computing the underlying tax math.",
   },
@@ -100,8 +104,8 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
 
 const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   {
-    title: "Verified trade accounts",
-    body: "Every applicant runs through Credenza's nine-check verification engine before they reach your store—business registration, sales tax ID, professional memberships, state license, website and Instagram, press coverage, resale certificate validity, and trade references. Vendors set their own gating rules; the engine applies them.",
+    title: "Verified trade accounts, on your rules",
+    body: "Every applicant runs through Credenza's nine-check verification engine—business registration, sales tax ID, professional memberships, state license, website and Instagram, press coverage, resale certificate validity, and trade references. You set the gating: auto-approve when the evidence is strong, route to manual review when it's borderline, reject what doesn't meet your bar. Credenza runs the checks and applies your rules consistently on every application.",
   },
   {
     title: "Auto-tagged customers",
