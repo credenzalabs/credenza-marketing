@@ -28,7 +28,7 @@
 
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { Check, ChevronDown, ChevronRight, Search, User } from "lucide-react";
+import { Check, ChevronDown, Pencil, X } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -357,105 +357,47 @@ function Definition() {
   );
 }
 
+// Shopify customer admin sidebar — three stacked panels showing what
+// Credenza writes to each customer record.
 function ShopifyCustomerMock() {
-  // Mirrors the actual /admin/customers/{id}/metafields view in Shopify.
-  // 16 fields, sourced from shopifyFieldMapper.ts METAFIELD_DEFINITIONS;
-  // labels are de-underscored to match how Shopify renders metafield keys.
-  const fields: Array<[string, string]> = [
-    ["trade status", "approved"],
-    ["exemption status", "active"],
-    ["exempt states index", "CT,FL,NJ,NY"],
-    ["firm name", "Hayes & Howe Design"],
-    ["firm role", "principal"],
-    ["firm id", "a3f8e9b2-7c4d-4e6f-a1b8-c2d3e4f5d6e7"],
-    ["parent firm id", ""],
-    ["firm address", "184 Franklin St, New York, NY 10013"],
-    ["firm phone", "+1 (212) 555-0147"],
-    ["approval date", "Apr 12, 2026"],
-    ["exemption date", "Apr 12, 2026"],
-    ["primary state certificate expiration", "Apr 12, 2029"],
-    ["primary state certificate source", "generated"],
-    ["primary state resale certificate file", "https://vault.usecredenza.com/cert/hh-design-ny-st120-2026.pdf"],
-    ["mtc resale certificate file", "https://vault.usecredenza.com/cert/hh-design-mtc-2026.pdf"],
-    ["sst resale certificate file", ""],
-  ];
-
   return (
-    <div
-      style={{
-        backgroundColor: "#f6f6f7",
-        padding: 20,
-        borderRadius: 12,
-        border: "0.5px solid #e1e3e5",
-      }}
-    >
-      {/* Breadcrumb row */}
+    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+      <MetafieldsCard />
+      <TagsCard />
+      <TaxDetailsCard />
+    </div>
+  );
+}
+
+const SHOPIFY_CARD_STYLE: React.CSSProperties = {
+  backgroundColor: "white",
+  border: "1px solid #e1e3e5",
+  borderRadius: 12,
+  padding: 20,
+};
+
+function MetafieldsCard() {
+  // The three most marketing-relevant metafields: state of the trade
+  // verification, whether tax exemptions are active, and the specific
+  // states they apply in.
+  const fields: Array<[string, string]> = [
+    ["exempt states index", "CT,FL,NJ,NY"],
+    ["exemption status", "active"],
+    ["trade status", "approved"],
+  ];
+  return (
+    <div style={SHOPIFY_CARD_STYLE}>
       <div className="flex items-center justify-between mb-4">
-        <div
-          className="flex items-center gap-1.5"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#1c1c1c" }}
-        >
-          <User size={14} style={{ color: "#6d7175" }} />
-          <span style={{ color: "#005bd3", fontWeight: 500 }}>Lauren Cole</span>
-          <ChevronRight size={12} style={{ color: "#8a8a8a", margin: "0 2px" }} />
-          <span style={{ fontWeight: 600 }}>Customer metafields</span>
-        </div>
-        <button
-          type="button"
+        <span
           style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: 12,
-            padding: "5px 10px",
-            backgroundColor: "white",
-            border: "1px solid #c5c5c5",
-            borderRadius: 6,
+            fontSize: 15,
+            fontWeight: 600,
             color: "#1c1c1c",
-            cursor: "default",
           }}
         >
-          View definitions
-        </button>
-      </div>
-
-      {/* White card */}
-      <div
-        style={{
-          backgroundColor: "white",
-          border: "1px solid #e1e3e5",
-          borderRadius: 12,
-          overflow: "hidden",
-        }}
-      >
-        {/* Search bar */}
-        <div style={{ padding: "12px 16px", borderBottom: "1px solid #ebebeb" }}>
-          <div
-            className="flex items-center gap-2"
-            style={{
-              padding: "7px 12px",
-              backgroundColor: "white",
-              border: "1px solid #c5c5c5",
-              borderRadius: 8,
-            }}
-          >
-            <Search size={13} style={{ color: "#6d7175" }} />
-            <span
-              style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6d7175" }}
-            >
-              Search in Customers
-            </span>
-          </div>
-        </div>
-
-        {/* Metafield rows */}
-        <div style={{ padding: "8px 16px 16px 16px" }}>
-          {fields.map(([label, value]) => (
-            <MetafieldRow key={label} label={label} value={value} />
-          ))}
-        </div>
-      </div>
-
-      {/* Footer link */}
-      <div className="text-center" style={{ marginTop: 14 }}>
+          Metafields
+        </span>
         <span
           style={{
             fontFamily: "Inter, sans-serif",
@@ -464,8 +406,13 @@ function ShopifyCustomerMock() {
             fontWeight: 500,
           }}
         >
-          Learn more about metafields
+          View all
         </span>
+      </div>
+      <div>
+        {fields.map(([label, value]) => (
+          <MetafieldRow key={label} label={label} value={value} />
+        ))}
       </div>
     </div>
   );
@@ -474,7 +421,7 @@ function ShopifyCustomerMock() {
 function MetafieldRow({ label, value }: { label: string; value: string }) {
   return (
     <div
-      className="grid items-center gap-3 py-2.5"
+      className="grid items-center gap-4 py-2"
       style={{ gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.8fr)" }}
     >
       <div
@@ -489,14 +436,14 @@ function MetafieldRow({ label, value }: { label: string; value: string }) {
       </div>
       <div
         style={{
-          padding: "7px 12px",
+          padding: "8px 12px",
           backgroundColor: "white",
           border: "1px solid #c5c5c5",
           borderRadius: 8,
           fontFamily: "Inter, sans-serif",
           fontSize: 13,
           color: "#1c1c1c",
-          minHeight: 32,
+          minHeight: 34,
           overflow: "hidden",
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
@@ -504,6 +451,124 @@ function MetafieldRow({ label, value }: { label: string; value: string }) {
         }}
       >
         {value}
+      </div>
+    </div>
+  );
+}
+
+function TagsCard() {
+  // Real tags produced by generateShopifyTags for an approved principal
+  // with active exemption, state+MTC coverage, 30% discount, plus the
+  // vendor-configured trade-customer tag.
+  const tags = [
+    "credenza",
+    "cr-firm-a3f8e9b2",
+    "cr-role-owner",
+    "cr-trade-approved",
+    "cr-exemption-active",
+    "cr-state+mtc",
+    "cr-discount-30-off",
+    "trade-verified",
+  ];
+  return (
+    <div style={SHOPIFY_CARD_STYLE}>
+      <div className="flex items-center justify-between mb-3">
+        <span
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: 15,
+            fontWeight: 600,
+            color: "#1c1c1c",
+          }}
+        >
+          Tags
+        </span>
+        <Pencil size={14} style={{ color: "#6d7175" }} />
+      </div>
+      <div
+        style={{
+          padding: "8px 12px",
+          backgroundColor: "white",
+          border: "1px solid #c5c5c5",
+          borderRadius: 8,
+          minHeight: 34,
+          marginBottom: 10,
+        }}
+      />
+      <div className="flex flex-wrap gap-1.5">
+        {tags.map((t) => (
+          <span
+            key={t}
+            className="inline-flex items-center gap-1.5"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 12.5,
+              padding: "3px 8px",
+              backgroundColor: "#f1f1f1",
+              color: "#1c1c1c",
+              border: "1px solid #e1e3e5",
+              borderRadius: 999,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {t}
+            <X size={11} style={{ color: "#6d7175" }} />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TaxDetailsCard() {
+  const states = [
+    "New York reseller",
+    "New Jersey reseller",
+    "Connecticut reseller",
+    "Florida reseller",
+  ];
+  return (
+    <div style={SHOPIFY_CARD_STYLE}>
+      <div
+        className="mb-3"
+        style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: 15,
+          fontWeight: 600,
+          color: "#1c1c1c",
+        }}
+      >
+        Tax details
+      </div>
+      <div
+        className="mb-3"
+        style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: 13,
+          color: "#1c1c1c",
+          lineHeight: 1.5,
+        }}
+      >
+        Collect tax unless exemptions apply
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {states.map((s) => (
+          <span
+            key={s}
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 12.5,
+              padding: "3px 10px",
+              backgroundColor: "#f1f1f1",
+              color: "#1c1c1c",
+              border: "1px solid #e1e3e5",
+              borderRadius: 999,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {s}
+          </span>
+        ))}
       </div>
     </div>
   );
