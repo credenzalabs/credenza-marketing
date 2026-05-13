@@ -360,13 +360,15 @@ function Definition() {
 // Shopify customer admin sidebar — three stacked panels showing what
 // Credenza writes to each customer record.
 // Shopify customer admin sidebar — three stacked panels showing what
-// Credenza writes to each customer record.
+// Credenza writes to each customer record (contact + address +
+// marketing consent + tax details in the Customer card, plus
+// Metafields and Tags).
 function ShopifyCustomerMock() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <CustomerCard />
       <MetafieldsCard />
       <TagsCard />
-      <TaxDetailsCard />
     </div>
   );
 }
@@ -509,35 +511,84 @@ function TagsCard() {
   );
 }
 
-function TaxDetailsCard() {
+function CustomerCard() {
   const states = [
     "New York reseller",
     "New Jersey reseller",
     "Connecticut reseller",
     "Florida reseller",
   ];
+  const subheadingStyle: React.CSSProperties = {
+    fontFamily: "Inter, sans-serif",
+    fontSize: 11.5,
+    fontWeight: 600,
+    color: "#1c1c1c",
+    marginBottom: 6,
+  };
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: "Inter, sans-serif",
+    fontSize: 11.5,
+    color: "#1c1c1c",
+    lineHeight: 1.5,
+  };
   return (
     <div style={SHOPIFY_CARD_STYLE}>
-      <div className="mb-2" style={SHOPIFY_HEADER_STYLE}>
-        Tax details
+      <div className="flex items-center justify-between mb-3">
+        <span style={SHOPIFY_HEADER_STYLE}>Customer</span>
+        <span style={{ color: "#6d7175", fontSize: 14, lineHeight: 1, letterSpacing: "0.05em" }}>···</span>
       </div>
-      <div
-        className="mb-2"
-        style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: 11.5,
-          color: "#1c1c1c",
-          lineHeight: 1.5,
-        }}
-      >
-        Collect tax unless exemptions apply
+
+      {/* Contact information */}
+      <div className="mb-3">
+        <div style={subheadingStyle}>Contact information</div>
+        <div style={{ ...bodyStyle, color: "#005bd3" }}>lauren@hayeshowedesign.com</div>
+        <div style={bodyStyle}>+1 (212) 555-0147</div>
+        <div style={{ ...bodyStyle, color: "#6d7175" }}>Will receive notifications in English</div>
       </div>
-      <div className="flex flex-wrap gap-1">
-        {states.map((s) => (
-          <span key={s} style={SHOPIFY_PILL_STYLE}>
-            {s}
+
+      {/* Default address */}
+      <div className="mb-3">
+        <div style={subheadingStyle}>Default address</div>
+        <div style={bodyStyle}>Lauren Cole</div>
+        <div style={bodyStyle}>Hayes &amp; Howe Design</div>
+        <div style={bodyStyle}>184 Franklin Street</div>
+        <div style={bodyStyle}>New York NY 10013</div>
+        <div style={bodyStyle}>United States</div>
+        <div style={bodyStyle}>+1 (212) 555-0147</div>
+      </div>
+
+      {/* Marketing */}
+      <div className="mb-3">
+        <div style={subheadingStyle}>Marketing</div>
+        <div className="flex flex-wrap gap-1.5">
+          <span
+            className="inline-flex items-center gap-1.5"
+            style={{ ...SHOPIFY_PILL_STYLE, padding: "3px 10px" }}
+          >
+            <span style={{ width: 7, height: 7, borderRadius: 999, backgroundColor: "#1e7d4e", display: "inline-block" }} />
+            Email
           </span>
-        ))}
+          <span
+            className="inline-flex items-center gap-1.5"
+            style={{ ...SHOPIFY_PILL_STYLE, padding: "3px 10px" }}
+          >
+            <span style={{ width: 7, height: 7, borderRadius: 999, border: "1px solid #c5c5c5", display: "inline-block" }} />
+            SMS
+          </span>
+        </div>
+      </div>
+
+      {/* Tax details */}
+      <div>
+        <div style={subheadingStyle}>Tax details</div>
+        <div style={{ ...bodyStyle, marginBottom: 6 }}>Collect tax unless exemptions apply</div>
+        <div className="flex flex-wrap gap-1">
+          {states.map((s) => (
+            <span key={s} style={SHOPIFY_PILL_STYLE}>
+              {s}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
