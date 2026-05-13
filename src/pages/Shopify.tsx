@@ -9,18 +9,19 @@
  * buyer-into-Shopify flow end-to-end.
  *
  * Source-of-truth alignment: the integration described here matches what
- * the trade app's shopifyFieldMapper.ts writes — text/date metafields
- * plus tax_exempt and a trade-customer tag. The cert PDF stays in
- * Credenza's vault; we do NOT push files to Shopify Files (deferred).
+ * the trade app's shopifyFieldMapper.ts writes — text/date/URL metafields
+ * in the credenza.* namespace, state-scoped tax exemption identifiers
+ * (US_{STATE}_RESELLER_EXEMPTION), and a vendor-configured trade-customer
+ * tag plus Credenza-managed prefixed tags. The cert PDF stays in
+ * Credenza's vault; we write a URL pointer back to it, not the file.
  *
  * SECTION ORDER:
  *   1. Hero
- *   2. Definition (LLM citation magnet)
+ *   2. Definition (LLM citation magnet) + ShopifyCustomerMock
  *   3. What the integration does (capability cards)
- *   4. Data flow (what gets written; what stays in Credenza)
- *   5. Lifecycle (install → verify → tag → audit)
- *   6. FAQ (FAQPage schema fuel)
- *   7. Close / CTA
+ *   4. Install (one-click install story) + InstallMock
+ *   5. Data flow (what gets written; what stays in Credenza)
+ *   6. FAQ (FAQPage schema fuel) — full-width accordion
  *
  * SEO: Page-scoped FAQPage + TechArticle JSON-LD via useEffect.
  */
@@ -57,11 +58,11 @@ const CANONICAL_URL = "https://usecredenza.com/shopify";
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: "What does the Credenza Shopify integration do?",
-    a: "Credenza verifies trade-customer applicants—interior designers, architects, and other commercial buyers—through nine evidence checks against authoritative sources, then writes the result directly to the matching customer record in your Shopify store. Approved customers get a configurable trade-customer tag, tax_exempt set to true, and a set of Credenza-namespaced metafields that capture verification status, exemption status, exempt states, certificate expiration, firm details, and discount tier. Your existing storefront pricing rules and tax-exempt checkout work automatically against those fields.",
+    a: "Credenza verifies trade-customer applicants—interior designers, architects, and other commercial buyers—through nine evidence checks against authoritative sources, then writes the result directly to the matching customer record in your Shopify store. Approved customers get a configurable trade-customer tag, state-scoped tax exemptions (one per nexus state, e.g. US_NY_RESELLER_EXEMPTION), and a set of Credenza-namespaced metafields that capture trade status, exemption status, exempt-states index, certificate expiration, firm details, and discount percent. Your existing storefront pricing rules and tax-exempt checkout work automatically against those fields.",
   },
   {
     q: "What customer data does Credenza access in my Shopify store?",
-    a: "Credenza reads customer email, name, phone, and shipping address to match a verified designer profile to the matching Shopify customer record—and writes verification status, tax_exempt, the trade-customer tag, and Credenza-namespaced metafields back to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption. Credenza does not push files into Shopify Files; the signed resale certificate stays in Credenza's secure, audit-ready vault.",
+    a: "Credenza reads customer email, name, phone, and shipping address to match a verified designer profile to the matching Shopify customer record—and writes trade status, state-scoped tax exemptions, the trade-customer tag, and Credenza-namespaced metafields back to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption. Credenza does not push files into Shopify Files; the signed resale certificate stays in Credenza's secure, audit-ready vault.",
   },
   {
     q: "Does the integration require Shopify Plus?",
@@ -73,11 +74,11 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Does Credenza replace TaxJar, Avalara, or other tax tools?",
-    a: "Different layer. Tax tools compute the tax you owe and collect resale certificates. Credenza verifies the buyer and writes verified-buyer status into Shopify so tax-exempt checkout fires correctly. For trade-channel sales specifically, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certs from verified data, and write state-scoped exemption directly to the Shopify customer profile. Storefront tax engines continue computing the underlying tax math.",
+    a: "Different layer. Tax tools compute the tax you owe and collect resale certificates. Credenza verifies the buyer and writes per-state tax exemptions into Shopify so tax-exempt checkout fires correctly in exactly the states the buyer is registered in—and only those. For trade-channel sales specifically, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certs from verified data, and write state-scoped exemption directly to the Shopify customer profile. Storefront tax engines continue computing the underlying tax math.",
   },
   {
     q: "How does the resale certificate flow work?",
-    a: "After verification, Credenza generates or accepts state-specific resale certificates per the customer's nexus footprint—including MTC multi-state and SST member-state certificates where applicable—signs them, and stores them in Credenza's vault. tax_exempt on the Shopify customer record reflects the live state of those certificates. When a certificate expires or is replaced, the exemption status updates automatically. The certificate PDFs themselves live in Credenza, not in Shopify.",
+    a: "After verification, Credenza generates or accepts state-specific resale certificates per the customer's nexus footprint—including MTC multi-state and SST member-state certificates where applicable—signs them, and stores them in Credenza's vault. The state-scoped tax exemptions written to the Shopify customer record reflect the live state of those certificates. When a certificate expires or is replaced, the exemption set updates automatically. The certificate PDFs themselves live in Credenza, not in Shopify—the Shopify customer record carries a URL pointer back to the vault.",
   },
   {
     q: "What's the audit trail for tax-exempt orders?",
@@ -85,7 +86,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "What happens if someone manually edits a Credenza-managed field in Shopify?",
-    a: "Credenza watches the customer metafields it manages and alerts you when one is edited outside the integration. No silent overwrites, no exemption decisions made without a paper trail—if a tax_exempt flag flips by hand, you'll know.",
+    a: "Credenza watches the customer metafields and tax exemptions it manages and alerts you when one is edited outside the integration. No silent overwrites, no exemption decisions made without a paper trail—if a state exemption is removed by hand, you'll know.",
   },
   {
     q: "How long does it take to install?",
@@ -107,8 +108,8 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
     body: "Approved designers receive your configured trade-customer tag (default trade-verified) on their Shopify customer record. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers automatically.",
   },
   {
-    title: "Automatic tax exemptions",
-    body: "tax_exempt is set on the Shopify customer record based on the designer's nexus-state registrations. Exemptions update automatically when certificates expire or are replaced—no quarterly cleanup, no expired certs sitting in your records.",
+    title: "State-scoped tax exemptions",
+    body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions refresh automatically when a certificate expires or is replaced, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
   },
   {
     title: "Compliance-ready audit trail",
@@ -124,27 +125,11 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
 ];
 
-const LIFECYCLE: Array<{ step: string; title: string; body: string }> = [
-  {
-    step: "01",
-    title: "One-click install",
-    body: "Connect your Shopify store from the Credenza vendor dashboard. A single OAuth click; metafield definitions and customer/order webhooks are configured automatically. No manual app setup, no JSON to paste.",
-  },
-  {
-    step: "02",
-    title: "Verify",
-    body: "An applicant submits a trade application through your branded Credenza intake. Nine checks run in parallel against authoritative sources. Vendor gating rules decide auto-approve, manual-review, or reject.",
-  },
-  {
-    step: "03",
-    title: "Write",
-    body: "On approval, the trade-customer tag, tax_exempt, and Credenza metafields are written to the matching Shopify customer record (matched on email). For B2B stores, the same metafields write to the company record.",
-  },
-  {
-    step: "04",
-    title: "Audit",
-    body: "Tax-exempt orders that come through Shopify are mirrored to Credenza and linked to the resale certificate that justified the exemption. Pull a tax-auditor-ready CSV from your dashboard at any time.",
-  },
+const INSTALL_AUTO_SETUP: Array<{ label: string; detail: string }> = [
+  { label: "Credenza-managed customer fields", detail: "Created with the right types and definitions" },
+  { label: "Live sync of customer + order changes", detail: "Approvals, exemptions, and orders kept in step" },
+  { label: "Your trade-customer tag, ready to use", detail: "Storefront pricing rules see verified buyers instantly" },
+  { label: "Audit-ready order ↔ certificate ledger", detail: "Every exempt sale linked to the certificate behind it" },
 ];
 
 export default function ShopifyPage() {
@@ -221,7 +206,6 @@ export default function ShopifyPage() {
       <Lifecycle />
       <DataFlow />
       <FAQ />
-      <Close />
       <Footer />
     </div>
   );
@@ -370,13 +354,29 @@ function Definition() {
 }
 
 function ShopifyCustomerMock() {
+  const exemptions = [
+    "US_NY_RESELLER_EXEMPTION",
+    "US_NJ_RESELLER_EXEMPTION",
+    "US_CT_RESELLER_EXEMPTION",
+    "US_FL_RESELLER_EXEMPTION",
+  ];
+  const tags = [
+    "trade-verified",
+    "credenza",
+    "cr-trade-approved",
+    "cr-exemption-active",
+    "cr-role-owner",
+    "cr-state+mtc",
+    "cr-discount-30-off",
+  ];
   const metafields: Array<[string, string]> = [
-    ["verification_status", "approved"],
+    ["trade_status", "approved"],
+    ["exemption_status", "active"],
+    ["firm_name", "Hayes & Howe Design"],
+    ["firm_role", "principal"],
     ["approval_date", "2026-04-12"],
-    ["exempt_states", "NY · NJ · CT · FL"],
-    ["certificate_expiration", "2027-04-15"],
-    ["firm_name", "Atelier Sands"],
-    ["discount_tier", "Trade · 30%"],
+    ["primary_state_certificate_expiration", "2027-04-15"],
+    ["discount_percent", "30"],
   ];
   return (
     <div
@@ -423,61 +423,94 @@ function ShopifyCustomerMock() {
               marginTop: 4,
             }}
           >
-            lcole@ateliersands.com · Atelier Sands
+            lcole@hayeshowedesign.com · Hayes &amp; Howe Design
           </div>
         </div>
 
-        {/* Tags + tax row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-7">
-          <div>
-            <div
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: 10,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: C.oliveMid,
-                marginBottom: 8,
-              }}
-            >
-              Tags
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              <MockTag>trade-verified</MockTag>
-              <MockTag>credenza-managed</MockTag>
-            </div>
+        {/* Tags */}
+        <div className="mb-6">
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.oliveMid,
+              marginBottom: 8,
+            }}
+          >
+            Tags
           </div>
-          <div>
-            <div
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map((t) => (
+              <MockTag key={t}>{t}</MockTag>
+            ))}
+          </div>
+        </div>
+
+        {/* Tax: blanket false + state-scoped exemptions */}
+        <div className="mb-7">
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.oliveMid,
+              marginBottom: 8,
+            }}
+          >
+            Tax exemptions
+          </div>
+          <div className="flex items-center gap-2 mb-2.5">
+            <span
+              className="inline-flex items-center gap-2 px-2.5 py-1"
+              style={{
+                backgroundColor: "#f3f3ef",
+                border: `0.5px solid ${C.sageDark}`,
+                fontFamily: "ui-monospace, monospace",
+                fontSize: 11,
+                color: C.charcoalMid,
+              }}
+            >
+              taxExempt: false
+            </span>
+            <span
               style={{
                 fontFamily: "Inter, sans-serif",
-                fontSize: 10,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: C.oliveMid,
-                marginBottom: 8,
+                fontSize: 11,
+                color: C.charcoalSoft,
               }}
             >
-              Tax status
-            </div>
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5"
-              style={{
-                backgroundColor: C.tealDim,
-                border: `0.5px solid ${C.tealBorder}`,
-              }}
-            >
-              <Check size={11} style={{ color: C.tealMid }} />
-              <span
+              Blanket off—per-state exemptions below
+            </span>
+          </div>
+          <div
+            style={{
+              border: `0.5px solid ${C.tealBorder}`,
+              backgroundColor: C.tealDim,
+            }}
+          >
+            {exemptions.map((id, i) => (
+              <div
+                key={id}
+                className="flex items-center gap-2 px-3 py-1.5"
                 style={{
-                  fontFamily: "ui-monospace, monospace",
-                  fontSize: 11,
-                  color: C.charcoal,
+                  borderTop: i > 0 ? `0.5px solid ${C.tealBorder}` : undefined,
                 }}
               >
-                tax_exempt: true
-              </span>
-            </div>
+                <Check size={11} style={{ color: C.tealMid }} />
+                <span
+                  style={{
+                    fontFamily: "ui-monospace, monospace",
+                    fontSize: 11.5,
+                    color: C.charcoal,
+                  }}
+                >
+                  {id}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -601,99 +634,196 @@ function Capabilities() {
 }
 
 /* =========================================================================
-   4. LIFECYCLE
+   4. INSTALL — one-click install story + InstallMock
    ========================================================================= */
 function Lifecycle() {
-  const [install, ...afterwards] = LIFECYCLE;
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="max-w-3xl mb-16">
-          <Eyebrow>How it works</Eyebrow>
-          <h2
-            className="font-freight text-charcoal"
-            style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
-          >
-            Install once.{" "}
-            <span className="italic text-olive-mid">Everything after</span> runs
-            automatically.
-          </h2>
-        </div>
-
-        {/* Featured: one-click install */}
-        <div
-          className="bg-white px-8 md:px-12 py-10 md:py-12 mb-12"
-          style={{ border: `0.5px solid ${C.sageDark}` }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
-            <div className="md:col-span-3 flex items-center gap-4">
-              <div
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: 11,
-                  letterSpacing: "0.18em",
-                  color: C.oliveMid,
-                }}
-              >
-                {install.step}
-              </div>
-              <div
-                className="font-freight text-charcoal"
-                style={{ fontSize: 56, lineHeight: 1, letterSpacing: "-0.03em" }}
-              >
-                1<span style={{ color: C.oliveMid }}>·</span>
-              </div>
-            </div>
-            <div className="md:col-span-9">
-              <h3
-                className="font-freight text-charcoal mb-3"
-                style={{ fontSize: "clamp(1.5rem, 2.2vw, 1.9rem)", lineHeight: 1.15, letterSpacing: "-0.02em" }}
-              >
-                {install.title}
-              </h3>
-              <p
-                className="text-charcoal-mid"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
-              >
-                {install.body}
-              </p>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
+            <Eyebrow>Install</Eyebrow>
+            <h2
+              className="font-freight mb-6 text-charcoal"
+              style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
+            >
+              One OAuth click.
+              <br />
+              <span className="italic text-olive-mid">Zero JSON.</span>
+            </h2>
+            <p
+              className="mb-5 text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
+            >
+              Open Credenza, click <em>Connect Shopify</em>, authorize. That's the install.
+              Credenza handles everything else behind the scenes—the customer fields it writes
+              to, the live sync of approvals back to your store, the tags your storefront rules
+              read, and the audit trail that links every tax-exempt order to the certificate
+              that justified it.
+            </p>
+            <p
+              className="text-charcoal-soft"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "0.85rem",
+                lineHeight: 1.7,
+              }}
+            >
+              No app to download. No theme code to edit. Works on every Shopify plan, including Plus B2B.
+            </p>
           </div>
-        </div>
-
-        {/* Supporting: what happens next */}
-        <div
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 11,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: C.oliveMid,
-            marginBottom: 16,
-          }}
-        >
-          Then, on every approved applicant
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
-          {afterwards.map((stage) => (
-            <div key={stage.step} style={{ borderTop: `0.5px solid ${C.sageDark}`, paddingTop: 16 }}>
-              <h4
-                className="font-freight text-charcoal mb-2"
-                style={{ fontSize: 17, lineHeight: 1.2, letterSpacing: "-0.01em" }}
-              >
-                {stage.title}
-              </h4>
-              <p
-                className="text-charcoal-mid"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: 13.5, lineHeight: 1.7 }}
-              >
-                {stage.body}
-              </p>
-            </div>
-          ))}
+          <div className="lg:col-span-7">
+            <InstallMock />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function InstallMock() {
+  return (
+    <div
+      className="bg-white"
+      style={{ border: `0.5px solid ${C.sageDark}`, boxShadow: "0 2px 24px rgba(33,53,63,0.06)" }}
+    >
+      {/* Header bar */}
+      <div
+        className="flex items-center justify-between px-5 py-3"
+        style={{ borderBottom: `0.5px solid ${C.sageDark}`, backgroundColor: "#fbfaf6" }}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: C.tealMid }} />
+          <span
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.charcoalSoft,
+            }}
+          >
+            Credenza · Vendor dashboard · Integrations
+          </span>
+        </div>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: C.charcoalSoft }}>
+          /vendor/integrations/shopify
+        </span>
+      </div>
+
+      <div className="px-7 py-8">
+        <div className="mb-7">
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.oliveMid,
+              marginBottom: 8,
+            }}
+          >
+            Shopify
+          </div>
+          <div
+            className="font-freight text-charcoal mb-1"
+            style={{ fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.015em" }}
+          >
+            Connect your Shopify store
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 13,
+              color: C.charcoalMid,
+              lineHeight: 1.6,
+            }}
+          >
+            Credenza will authorize via OAuth, configure metafields and webhooks,
+            and start mirroring verified buyers to your store.
+          </div>
+        </div>
+
+        {/* Big connect button mock */}
+        <div className="mb-7">
+          <div
+            className="inline-flex items-center justify-center gap-2 px-5 py-3"
+            style={{
+              backgroundColor: "#95BF47",
+              color: "white",
+              border: "0.5px solid #6c8c34",
+              fontFamily: "Inter, sans-serif",
+              fontSize: "0.78rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontWeight: 500,
+            }}
+          >
+            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: 999, backgroundColor: "white" }} />
+            Connect Shopify
+          </div>
+        </div>
+
+        {/* Auto-setup list */}
+        <div>
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: C.oliveMid,
+              marginBottom: 12,
+            }}
+          >
+            Configured automatically on connect
+          </div>
+          <div style={{ border: `0.5px solid ${C.sageDark}` }}>
+            {INSTALL_AUTO_SETUP.map((row, i) => (
+              <div
+                key={row.label}
+                className="flex items-start gap-3 px-4 py-3"
+                style={{
+                  borderTop: i > 0 ? `0.5px solid ${C.sageDark}` : undefined,
+                }}
+              >
+                <div
+                  className="shrink-0 flex items-center justify-center"
+                  style={{
+                    width: 16,
+                    height: 16,
+                    backgroundColor: C.tealDim,
+                    border: `0.5px solid ${C.tealBorder}`,
+                    marginTop: 2,
+                  }}
+                >
+                  <Check size={9} style={{ color: C.tealMid }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="text-charcoal"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 500, lineHeight: 1.4 }}
+                  >
+                    {row.label}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: 11.5,
+                      color: C.charcoalSoft,
+                      marginTop: 2,
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {row.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -729,11 +859,12 @@ function DataFlow() {
               On your Shopify customer record
             </p>
             <ul className="space-y-3" style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.7, color: C.charcoalMid }}>
-              <li>tax_exempt flag</li>
-              <li>Trade-customer tag (default trade-verified)</li>
-              <li>Verification status and approval date</li>
-              <li>Exemption status, exempt states, certificate expiration</li>
+              <li>Tax-exempt checkout, scoped to the designer's registered states</li>
+              <li>Your trade-customer tag, plus Credenza-managed tags for segmentation</li>
+              <li>Trade status (approved / pending / revoked) and approval date</li>
+              <li>Exemption status, registered states, certificate expiration</li>
               <li>Firm name, role, address, phone</li>
+              <li>Link back to the signed resale certificate in Credenza's vault</li>
               <li>Trade discount percent (if configured)</li>
             </ul>
           </div>
@@ -752,7 +883,7 @@ function DataFlow() {
             </p>
             <ul className="space-y-3" style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.7, color: C.charcoalMid }}>
               <li>Signed resale certificate PDFs</li>
-              <li>Full verification evidence — all nine checks per applicant</li>
+              <li>Full verification evidence—all nine checks per applicant</li>
               <li>Tax-exempt order ledger linked to certificates</li>
               <li>Append-only audit trail for state sales-tax audits</li>
               <li>State registration history per firm</li>
@@ -773,119 +904,57 @@ function FAQ() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="max-w-3xl">
-          <Eyebrow>FAQ</Eyebrow>
+        <div className="max-w-3xl mb-16">
+          <Eyebrow>Reference</Eyebrow>
           <h2
-            className="font-freight text-charcoal mb-16"
+            className="font-freight text-charcoal"
             style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
           >
-            Common questions
+            Frequently asked questions
           </h2>
-          <div className="bg-white" style={{ border: `0.5px solid ${C.sageDark}` }}>
-            {FAQ_ITEMS.map((item, i) => {
-              const isOpen = openIdx === i;
-              return (
-                <div
-                  key={item.q}
-                  className={i < FAQ_ITEMS.length - 1 ? "border-b" : ""}
-                  style={i < FAQ_ITEMS.length - 1 ? { borderColor: C.sageDark } : undefined}
+        </div>
+        <div className="bg-white" style={{ border: `0.5px solid ${C.sageDark}` }}>
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIdx === i;
+            return (
+              <div
+                key={item.q}
+                className={i < FAQ_ITEMS.length - 1 ? "border-b" : ""}
+                style={i < FAQ_ITEMS.length - 1 ? { borderColor: C.sageDark } : undefined}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIdx(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-detail-${i}`}
+                  className="w-full flex items-start gap-4 text-left bg-transparent border-none cursor-pointer px-5 md:px-8 py-5"
                 >
-                  <button
-                    type="button"
-                    onClick={() => setOpenIdx(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-detail-${i}`}
-                    className="w-full flex items-start gap-4 text-left bg-transparent border-none cursor-pointer px-5 md:px-7 py-5"
+                  <h3
+                    className="font-freight text-charcoal flex-1 m-0"
+                    style={{ fontSize: 18, lineHeight: 1.3, letterSpacing: "-0.01em" }}
                   >
-                    <h3
-                      className="font-freight text-charcoal flex-1 m-0"
-                      style={{ fontSize: 18, lineHeight: 1.3, letterSpacing: "-0.01em" }}
-                    >
-                      {item.q}
-                    </h3>
-                    <ChevronDown
-                      size={16}
-                      className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <div
-                      id={`faq-detail-${i}`}
-                      className="px-5 md:px-7 pb-6 text-charcoal-mid"
-                      style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
-                    >
-                      {item.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                    {item.q}
+                  </h3>
+                  <ChevronDown
+                    size={16}
+                    className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {isOpen && (
+                  <div
+                    id={`faq-detail-${i}`}
+                    className="px-5 md:px-8 pb-6 text-charcoal-mid max-w-4xl"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+                  >
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-/* =========================================================================
-   7. CLOSE
-   ========================================================================= */
-function Close() {
-  return (
-    <section className="py-24 md:py-32 bg-white">
-      <div className="container">
-        <div className="max-w-2xl mx-auto text-center">
-          <Eyebrow>Ready to connect</Eyebrow>
-          <h2
-            className="font-freight text-charcoal mb-6"
-            style={{ fontSize: "clamp(2rem, 3.2vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
-          >
-            Already a Credenza{" "}
-            <span className="italic text-olive-mid">vendor</span>?
-          </h2>
-          <p
-            className="mb-10 text-charcoal-mid mx-auto"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, maxWidth: 520 }}
-          >
-            Sign in to connect your Shopify store and start auto-onboarding verified
-            trade buyers. New here? Request access and we'll be in touch.
-          </p>
-          <div className="flex flex-col md:flex-row gap-3 justify-center">
-            <a
-              href={LOGIN_URL}
-              className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.72rem",
-                letterSpacing: "0.1em",
-                backgroundColor: C.teal,
-                color: C.forest,
-                outline: "0.5px solid #99b8bd",
-                outlineOffset: "2px",
-              }}
-            >
-              Sign in to Credenza
-            </a>
-            <a
-              href={JOIN_VENDOR_URL}
-              className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 400,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                backgroundColor: "transparent",
-                color: C.charcoalMid,
-                border: `0.5px solid ${C.sageDark}`,
-                borderRadius: "0",
-              }}
-            >
-              Request access →
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
