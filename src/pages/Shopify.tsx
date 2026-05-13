@@ -359,9 +359,11 @@ function Definition() {
 
 // Shopify customer admin sidebar — three stacked panels showing what
 // Credenza writes to each customer record.
+// Shopify customer admin sidebar — three stacked panels showing what
+// Credenza writes to each customer record.
 function ShopifyCustomerMock() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
       <MetafieldsCard />
       <TagsCard />
       <TaxDetailsCard />
@@ -372,8 +374,26 @@ function ShopifyCustomerMock() {
 const SHOPIFY_CARD_STYLE: React.CSSProperties = {
   backgroundColor: "white",
   border: "1px solid #e1e3e5",
-  borderRadius: 12,
-  padding: 20,
+  borderRadius: 10,
+  padding: 14,
+};
+
+const SHOPIFY_HEADER_STYLE: React.CSSProperties = {
+  fontFamily: "Inter, sans-serif",
+  fontSize: 13,
+  fontWeight: 600,
+  color: "#1c1c1c",
+};
+
+const SHOPIFY_PILL_STYLE: React.CSSProperties = {
+  fontFamily: "Inter, sans-serif",
+  fontSize: 11,
+  padding: "2px 8px",
+  backgroundColor: "#f1f1f1",
+  color: "#1c1c1c",
+  border: "1px solid #e1e3e5",
+  borderRadius: 999,
+  whiteSpace: "nowrap",
 };
 
 function MetafieldsCard() {
@@ -387,21 +407,12 @@ function MetafieldsCard() {
   ];
   return (
     <div style={SHOPIFY_CARD_STYLE}>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2.5">
+        <span style={SHOPIFY_HEADER_STYLE}>Metafields</span>
         <span
           style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: 15,
-            fontWeight: 600,
-            color: "#1c1c1c",
-          }}
-        >
-          Metafields
-        </span>
-        <span
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 13,
+            fontSize: 11.5,
             color: "#1c1c1c",
             fontWeight: 500,
           }}
@@ -421,13 +432,13 @@ function MetafieldsCard() {
 function MetafieldRow({ label, value }: { label: string; value: string }) {
   return (
     <div
-      className="grid items-center gap-4 py-2"
+      className="grid items-center gap-3 py-1"
       style={{ gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.8fr)" }}
     >
       <div
         style={{
           fontFamily: "Inter, sans-serif",
-          fontSize: 13,
+          fontSize: 11.5,
           color: "#1c1c1c",
           lineHeight: 1.4,
         }}
@@ -436,14 +447,14 @@ function MetafieldRow({ label, value }: { label: string; value: string }) {
       </div>
       <div
         style={{
-          padding: "8px 12px",
+          padding: "5px 10px",
           backgroundColor: "white",
           border: "1px solid #c5c5c5",
-          borderRadius: 8,
+          borderRadius: 6,
           fontFamily: "Inter, sans-serif",
-          fontSize: 13,
+          fontSize: 11.5,
           color: "#1c1c1c",
-          minHeight: 34,
+          minHeight: 26,
           overflow: "hidden",
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
@@ -472,47 +483,25 @@ function TagsCard() {
   ];
   return (
     <div style={SHOPIFY_CARD_STYLE}>
-      <div className="flex items-center justify-between mb-3">
-        <span
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 15,
-            fontWeight: 600,
-            color: "#1c1c1c",
-          }}
-        >
-          Tags
-        </span>
-        <Pencil size={14} style={{ color: "#6d7175" }} />
+      <div className="flex items-center justify-between mb-2">
+        <span style={SHOPIFY_HEADER_STYLE}>Tags</span>
+        <Pencil size={12} style={{ color: "#6d7175" }} />
       </div>
       <div
         style={{
-          padding: "8px 12px",
+          padding: "5px 10px",
           backgroundColor: "white",
           border: "1px solid #c5c5c5",
-          borderRadius: 8,
-          minHeight: 34,
-          marginBottom: 10,
+          borderRadius: 6,
+          minHeight: 26,
+          marginBottom: 7,
         }}
       />
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1">
         {tags.map((t) => (
-          <span
-            key={t}
-            className="inline-flex items-center gap-1.5"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 12.5,
-              padding: "3px 8px",
-              backgroundColor: "#f1f1f1",
-              color: "#1c1c1c",
-              border: "1px solid #e1e3e5",
-              borderRadius: 999,
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span key={t} className="inline-flex items-center gap-1" style={SHOPIFY_PILL_STYLE}>
             {t}
-            <X size={11} style={{ color: "#6d7175" }} />
+            <X size={9} style={{ color: "#6d7175" }} />
           </span>
         ))}
       </div>
@@ -529,43 +518,23 @@ function TaxDetailsCard() {
   ];
   return (
     <div style={SHOPIFY_CARD_STYLE}>
-      <div
-        className="mb-3"
-        style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: 15,
-          fontWeight: 600,
-          color: "#1c1c1c",
-        }}
-      >
+      <div className="mb-2" style={SHOPIFY_HEADER_STYLE}>
         Tax details
       </div>
       <div
-        className="mb-3"
+        className="mb-2"
         style={{
           fontFamily: "Inter, sans-serif",
-          fontSize: 13,
+          fontSize: 11.5,
           color: "#1c1c1c",
           lineHeight: 1.5,
         }}
       >
         Collect tax unless exemptions apply
       </div>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1">
         {states.map((s) => (
-          <span
-            key={s}
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 12.5,
-              padding: "3px 10px",
-              backgroundColor: "#f1f1f1",
-              color: "#1c1c1c",
-              border: "1px solid #e1e3e5",
-              borderRadius: 999,
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span key={s} style={SHOPIFY_PILL_STYLE}>
             {s}
           </span>
         ))}
