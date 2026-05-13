@@ -4,7 +4,7 @@ export function PrivacyPolicyContent() {
       className="text-charcoal-mid"
       style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.8 }}
     >
-      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: April 23, 2026</p>
+      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: May 13, 2026</p>
       <p className="mb-4">Credenza Labs, Inc. ("Credenza," "we," "our," or "us") provides this Privacy Policy to explain how we collect, use, and protect information when you visit usecredenza.com or use our related services (collectively, the "Platform").</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>1. Information We Collect</h2>
@@ -38,7 +38,27 @@ export function PrivacyPolicyContent() {
       </ul>
       <p className="mb-4">When you add or enrich a vendor bookmark, the page's domain and publicly available vendor information may be sent to our AI service provider to extract basic details such as the vendor's name and category. This uses the same provider and safeguards described elsewhere in this policy.</p>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>5. Sharing of Information</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>5. Shopify Integration</h2>
+      <p className="mb-4">When a vendor installs the Credenza app on their Shopify store, Credenza accesses and processes data from that store solely to verify trade customers, automate tax-exempt onboarding, and maintain the audit chain linking tax-exempt orders to the resale certificates that justify them.</p>
+      <p className="mb-2">We access:</p>
+      <ul className="mb-4 pl-5 list-disc">
+        <li className="mb-2">Customer personal data (name, email, phone, shipping address) to match Shopify customers to verified Credenza designer profiles.</li>
+        <li className="mb-2">Customer tags and tax-exemption fields, which we write to mark verified trade buyers and to enable tax-exempt checkout in the appropriate jurisdictions.</li>
+        <li className="mb-2">Order data (order number, line items, shipping address, tax status) used to link tax-exempt trade orders to the resale certificate that justifies the exemption.</li>
+        <li className="mb-2">Company records (for Shopify B2B merchants), used to mirror verification status and tax-exemption metafields onto the company entity.</li>
+        <li className="mb-2">Store configuration to detect Shopify Plus and B2B capabilities so the app behaves correctly for each store type.</li>
+      </ul>
+      <p className="mb-4">We send transactional emails related to verification, approvals, certificate management, and orders linked to verified accounts.</p>
+      <p className="mb-4">We do not sell or rent Shopify customer data. We do not use Shopify customer data for advertising, profiling, or any purpose outside the verification and tax-compliance use cases described above.</p>
+      <p className="mb-2">In compliance with Shopify's Protected Customer Data requirements, Credenza responds to the three mandatory data-protection webhooks:</p>
+      <ul className="mb-4 pl-5 list-disc">
+        <li className="mb-2"><span className="font-medium">customers/data_request</span>—when a customer asks the merchant for their data, we collect every record we hold for that customer and make it available to the merchant for fulfillment within 30 days.</li>
+        <li className="mb-2"><span className="font-medium">customers/redact</span>—when a customer asks the merchant to delete their data, we anonymize the corresponding Credenza records (the audit trail of verification events is preserved with the customer identifier removed, as required for tax-compliance recordkeeping).</li>
+        <li className="mb-2"><span className="font-medium">shop/redact</span>—48 hours after a merchant uninstalls the Credenza app, we erase all Shopify-sourced data for that store.</li>
+      </ul>
+      <p className="mb-4">All webhook deliveries are authenticated using Shopify's HMAC-SHA256 signature. The merchant remains the data controller for their Shopify customer data; Credenza acts as a data processor on the merchant's behalf.</p>
+
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>6. Sharing of Information</h2>
       <p className="mb-2">We do not sell or rent personal data. We may share information only with:</p>
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2">Service providers who help us host, process, or analyze data under confidentiality agreements.</li>
@@ -46,7 +66,7 @@ export function PrivacyPolicyContent() {
         <li className="mb-2">Legal authorities if required to comply with law or protect against misuse of the Platform.</li>
       </ul>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>6. Data Retention</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>7. Data Retention</h2>
       <p className="mb-2">We retain information as long as your account is active or as needed to provide our services, comply with legal obligations, or resolve disputes. You may request deletion of your data by contacting us. We may retain your data for certain permissible reasons, including:</p>
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2">To complete a transaction or service requested by you.</li>
@@ -56,16 +76,16 @@ export function PrivacyPolicyContent() {
         <li className="mb-2">For internal, lawful use compatible with the context in which you provided the information.</li>
       </ul>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>7. Security</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>8. Security</h2>
       <p className="mb-4">We employ reasonable technical and administrative safeguards to protect your data. However, no online system is completely secure, and we cannot guarantee absolute protection.</p>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>8. Your Rights</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>9. Your Rights</h2>
       <p className="mb-4">You may request access, correction, or deletion of your personal data by contacting us. Depending on your location, you may also have additional rights under local privacy laws.</p>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>9. Updates to This Policy</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>10. Updates to This Policy</h2>
       <p className="mb-4">We may revise this Privacy Policy periodically. The most current version will always be posted on this page with the updated date.</p>
 
-      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>10. Contact Us</h2>
+      <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>11. Contact Us</h2>
       <p>If you have questions about this Privacy Policy or our data practices, please contact:</p>
       <p className="mt-2">Credenza Labs, Inc.<br />Email: <a href="mailto:info@usecredenza.com" className="text-teal-mid">info@usecredenza.com</a><br />Website: usecredenza.com</p>
     </div>
