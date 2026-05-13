@@ -28,7 +28,7 @@
 
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, ChevronRight, Search, User } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -333,7 +333,7 @@ function Definition() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
             <Eyebrow>Definition</Eyebrow>
             <p
@@ -358,241 +358,154 @@ function Definition() {
 }
 
 function ShopifyCustomerMock() {
-  const exemptions = [
-    "US_NY_RESELLER_EXEMPTION",
-    "US_NJ_RESELLER_EXEMPTION",
-    "US_CT_RESELLER_EXEMPTION",
-    "US_FL_RESELLER_EXEMPTION",
+  // Mirrors the actual /admin/customers/{id}/metafields view in Shopify.
+  // 16 fields, sourced from shopifyFieldMapper.ts METAFIELD_DEFINITIONS;
+  // labels are de-underscored to match how Shopify renders metafield keys.
+  const fields: Array<[string, string]> = [
+    ["trade status", "approved"],
+    ["exemption status", "active"],
+    ["exempt states index", "CT,FL,NJ,NY"],
+    ["firm name", "Hayes & Howe Design"],
+    ["firm role", "principal"],
+    ["firm id", "a3f8e9b2-7c4d-4e6f-a1b8-c2d3e4f5d6e7"],
+    ["parent firm id", ""],
+    ["firm address", "184 Franklin St, New York, NY 10013"],
+    ["firm phone", "+1 (212) 555-0147"],
+    ["approval date", "Apr 12, 2026"],
+    ["exemption date", "Apr 12, 2026"],
+    ["primary state certificate expiration", "Apr 12, 2029"],
+    ["primary state certificate source", "generated"],
+    ["primary state resale certificate file", "https://vault.usecredenza.com/cert/hh-design-ny-st120-2026.pdf"],
+    ["mtc resale certificate file", "https://vault.usecredenza.com/cert/hh-design-mtc-2026.pdf"],
+    ["sst resale certificate file", ""],
   ];
-  const tags = [
-    "trade-verified",
-    "credenza",
-    "cr-trade-approved",
-    "cr-exemption-active",
-    "cr-role-owner",
-    "cr-state+mtc",
-    "cr-discount-30-off",
-  ];
-  const metafields: Array<[string, string]> = [
-    ["trade_status", "approved"],
-    ["exemption_status", "active"],
-    ["firm_name", "Hayes & Howe Design"],
-    ["firm_role", "principal"],
-    ["approval_date", "2026-04-12"],
-    ["primary_state_certificate_expiration", "2029-04-12"],
-    ["discount_percent", "30"],
-  ];
+
   return (
     <div
-      className="bg-white"
-      style={{ border: `0.5px solid ${C.sageDark}`, boxShadow: "0 2px 24px rgba(33,53,63,0.06)" }}
+      style={{
+        backgroundColor: "#f6f6f7",
+        padding: 20,
+        borderRadius: 12,
+        border: "0.5px solid #e1e3e5",
+      }}
     >
-      {/* Header bar */}
-      <div
-        className="flex items-center justify-between px-5 py-3"
-        style={{ borderBottom: `0.5px solid ${C.sageDark}`, backgroundColor: "#fbfaf6" }}
-      >
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#95BF47" }} />
-          <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.charcoalSoft,
-            }}
-          >
-            Shopify admin · Customers
-          </span>
+      {/* Breadcrumb row */}
+      <div className="flex items-center justify-between mb-4">
+        <div
+          className="flex items-center gap-1.5"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#1c1c1c" }}
+        >
+          <User size={14} style={{ color: "#6d7175" }} />
+          <span style={{ color: "#005bd3", fontWeight: 500 }}>Lauren Cole</span>
+          <ChevronRight size={12} style={{ color: "#8a8a8a", margin: "0 2px" }} />
+          <span style={{ fontWeight: 600 }}>Customer metafields</span>
         </div>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: C.charcoalSoft }}>
-          /admin/customers/8231
-        </span>
-      </div>
-      <div className="px-7 py-7">
-        {/* Customer header */}
-        <div className="mb-6">
-          <div
-            className="font-freight text-charcoal"
-            style={{ fontSize: 22, letterSpacing: "-0.015em", lineHeight: 1.1 }}
-          >
-            Lauren Cole
-          </div>
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 13,
-              color: C.charcoalMid,
-              marginTop: 4,
-            }}
-          >
-            lcole@hayeshowedesign.com · Hayes &amp; Howe Design
-          </div>
-        </div>
-
-        {/* Tags */}
-        <div className="mb-6">
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.oliveMid,
-              marginBottom: 8,
-            }}
-          >
-            Tags
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((t) => (
-              <MockTag key={t}>{t}</MockTag>
-            ))}
-          </div>
-        </div>
-
-        {/* Tax: blanket false + state-scoped exemptions */}
-        <div className="mb-7">
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.oliveMid,
-              marginBottom: 8,
-            }}
-          >
-            Tax exemptions
-          </div>
-          <div className="flex items-center gap-2 mb-2.5">
-            <span
-              className="inline-flex items-center gap-2 px-2.5 py-1"
-              style={{
-                backgroundColor: "#f3f3ef",
-                border: `0.5px solid ${C.sageDark}`,
-                fontFamily: "ui-monospace, monospace",
-                fontSize: 11,
-                color: C.charcoalMid,
-              }}
-            >
-              taxExempt: false
-            </span>
-            <span
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: 11,
-                color: C.charcoalSoft,
-              }}
-            >
-              Blanket off—per-state exemptions below
-            </span>
-          </div>
-          <div
-            style={{
-              border: `0.5px solid ${C.tealBorder}`,
-              backgroundColor: C.tealDim,
-            }}
-          >
-            {exemptions.map((id, i) => (
-              <div
-                key={id}
-                className="flex items-center gap-2 px-3 py-1.5"
-                style={{
-                  borderTop: i > 0 ? `0.5px solid ${C.tealBorder}` : undefined,
-                }}
-              >
-                <Check size={11} style={{ color: C.tealMid }} />
-                <span
-                  style={{
-                    fontFamily: "ui-monospace, monospace",
-                    fontSize: 11.5,
-                    color: C.charcoal,
-                  }}
-                >
-                  {id}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Metafields */}
-        <div>
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.oliveMid,
-              marginBottom: 12,
-            }}
-          >
-            Metafields · credenza.*
-          </div>
-          <div>
-            {metafields.map(([key, value], i) => (
-              <div
-                key={key}
-                className="flex items-baseline justify-between gap-4 py-2"
-                style={{
-                  borderTop: i === 0 ? `0.5px solid ${C.sageDark}` : undefined,
-                  borderBottom: `0.5px solid ${C.sageDark}`,
-                }}
-              >
-                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11.5, color: C.charcoalMid }}>
-                  credenza.{key}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: 12,
-                    color: C.charcoal,
-                    fontWeight: 500,
-                  }}
-                >
-                  {value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Footer note */}
-        <p
+        <button
+          type="button"
           style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: 11,
-            color: C.charcoalSoft,
-            marginTop: 18,
-            lineHeight: 1.6,
+            fontSize: 12,
+            padding: "5px 10px",
+            backgroundColor: "white",
+            border: "1px solid #c5c5c5",
+            borderRadius: 6,
+            color: "#1c1c1c",
+            cursor: "default",
           }}
         >
-          Written by Credenza · last synced 2 minutes ago
-        </p>
+          View definitions
+        </button>
+      </div>
+
+      {/* White card */}
+      <div
+        style={{
+          backgroundColor: "white",
+          border: "1px solid #e1e3e5",
+          borderRadius: 12,
+          overflow: "hidden",
+        }}
+      >
+        {/* Search bar */}
+        <div style={{ padding: "12px 16px", borderBottom: "1px solid #ebebeb" }}>
+          <div
+            className="flex items-center gap-2"
+            style={{
+              padding: "7px 12px",
+              backgroundColor: "white",
+              border: "1px solid #c5c5c5",
+              borderRadius: 8,
+            }}
+          >
+            <Search size={13} style={{ color: "#6d7175" }} />
+            <span
+              style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6d7175" }}
+            >
+              Search in Customers
+            </span>
+          </div>
+        </div>
+
+        {/* Metafield rows */}
+        <div style={{ padding: "8px 16px 16px 16px" }}>
+          {fields.map(([label, value]) => (
+            <MetafieldRow key={label} label={label} value={value} />
+          ))}
+        </div>
+      </div>
+
+      {/* Footer link */}
+      <div className="text-center" style={{ marginTop: 14 }}>
+        <span
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: 13,
+            color: "#1c1c1c",
+            fontWeight: 500,
+          }}
+        >
+          Learn more about metafields
+        </span>
       </div>
     </div>
   );
 }
 
-function MockTag({ children }: { children: ReactNode }) {
+function MetafieldRow({ label, value }: { label: string; value: string }) {
   return (
-    <span
-      style={{
-        fontFamily: "Inter, sans-serif",
-        fontSize: 11,
-        padding: "3px 9px",
-        backgroundColor: "#E8F0EA",
-        color: "#3D5A47",
-        border: "0.5px solid #B5C7BC",
-        borderRadius: 2,
-        whiteSpace: "nowrap",
-      }}
+    <div
+      className="grid items-center gap-3 py-2.5"
+      style={{ gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.8fr)" }}
     >
-      {children}
-    </span>
+      <div
+        style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: 13,
+          color: "#1c1c1c",
+          lineHeight: 1.4,
+        }}
+      >
+        {label}
+      </div>
+      <div
+        style={{
+          padding: "7px 12px",
+          backgroundColor: "white",
+          border: "1px solid #c5c5c5",
+          borderRadius: 8,
+          fontFamily: "Inter, sans-serif",
+          fontSize: 13,
+          color: "#1c1c1c",
+          minHeight: 32,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          lineHeight: 1.4,
+        }}
+      >
+        {value}
+      </div>
+    </div>
   );
 }
 
@@ -644,7 +557,7 @@ function Lifecycle() {
   return (
     <section className="py-24 md:py-32" style={{ backgroundColor: C.ivory }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">
             <Eyebrow>Install</Eyebrow>
             <h2
