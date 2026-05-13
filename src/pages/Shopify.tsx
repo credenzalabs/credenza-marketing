@@ -104,27 +104,27 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
 
 const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   {
-    title: "Verified Trade Accounts, on Your Rules",
-    body: "Every applicant runs through Credenza's nine-check verification engine—business registration, sales tax ID, professional memberships, state license, website and Instagram, press coverage, resale certificate validity, and trade references. You set the gating: auto-approve when the evidence is strong, route to manual review when it's borderline, reject what doesn't meet your bar. Credenza runs the checks and applies your rules consistently on every application.",
+    title: "Verified trade accounts, on your rules",
+    body: "Every applicant runs through Credenza's nine-check verification engine. You set the gating—auto-approve, manual review, or reject—and Credenza applies your rules consistently on every application.",
   },
   {
-    title: "Auto-Tagged Customers",
+    title: "Auto-tagged customers",
     body: "Approved designers receive your configured trade-customer tag (default trade-verified) on their Shopify customer record. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers automatically.",
   },
   {
-    title: "State-Scoped Tax Exemptions",
+    title: "State-scoped tax exemptions",
     body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions refresh automatically when a certificate expires or is replaced, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
   },
   {
-    title: "Compliance-Ready Audit Trail",
+    title: "Compliance-ready audit trail",
     body: "Verification evidence, signed certificates, and tax-exempt orders link end-to-end in Credenza's append-only ledger. The signed cert PDF lives in Credenza's secure, audit-ready vault; the Shopify customer record carries verification status, exemption fields, and certificate metadata.",
   },
   {
-    title: "Drift Detection",
+    title: "Drift detection",
     body: "Credenza watches the customer metafields it manages and alerts you when one is edited outside the integration. No silent overwrites; no exemption decisions made without a paper trail.",
   },
   {
-    title: "B2B Company Sync",
+    title: "B2B company sync",
     body: "For Shopify B2B merchants, verification metafields mirror to the corresponding company record so company-scoped pricing rules and tax-exempt checkout work the same way they do for DTC.",
   },
 ];
@@ -273,7 +273,7 @@ function Hero() {
             >
               One-click install from your Credenza dashboard · OAuth + metafields +
               webhooks configured automatically · Works on every Shopify plan,
-              including Plus B2B.
+              including Shopify Plus B2B.
             </p>
             <div className="flex flex-col md:flex-row gap-3">
               <a
@@ -344,8 +344,7 @@ function Definition() {
               Designers are verified through nine evidence checks before they reach
               your store; verification status, exemption fields, and a trade-customer
               tag are written directly to each Shopify customer record. The signed
-              resale certificate lives in Credenza's secure, audit-ready vault—not in
-              Shopify.
+              resale certificate lives in Credenza's secure, audit-ready vault.
             </p>
           </div>
           <div className="lg:col-span-7">
@@ -365,10 +364,19 @@ function Definition() {
 // Metafields and Tags).
 function ShopifyCustomerMock() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 5fr) minmax(0, 7fr)",
+        gap: 10,
+        alignItems: "start",
+      }}
+    >
       <CustomerCard />
-      <MetafieldsCard />
-      <TagsCard />
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <MetafieldsCard />
+        <TagsCard />
+      </div>
     </div>
   );
 }
@@ -671,7 +679,7 @@ function Lifecycle() {
                 lineHeight: 1.7,
               }}
             >
-              No app to download. No theme code to edit. Works on every Shopify plan, including Plus B2B.
+              No app to download. No theme code to edit. Works on every Shopify plan, including Shopify Plus B2B.
             </p>
           </div>
           <div className="lg:col-span-7">
@@ -714,46 +722,43 @@ function InstallMock() {
       </div>
 
       <div className="px-7 py-8">
-        <div className="mb-7">
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.oliveMid,
-              marginBottom: 8,
-            }}
-          >
-            Shopify
-          </div>
-          <div
-            className="font-freight text-charcoal mb-1"
-            style={{ fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.015em" }}
-          >
-            Connect your Shopify store
-          </div>
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 13,
-              color: C.charcoalMid,
-              lineHeight: 1.6,
-            }}
-          >
-            Credenza will authorize via OAuth, configure metafields and webhooks,
-            and start mirroring verified buyers to your store.
-          </div>
+        <div
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: C.oliveMid,
+            marginBottom: 8,
+          }}
+        >
+          Shopify
         </div>
-
-        {/* Big connect button mock */}
-        <div className="mb-7">
+        <div className="flex items-start gap-6 mb-7">
+          <div className="flex-1">
+            <div
+              className="font-freight text-charcoal mb-1"
+              style={{ fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.015em" }}
+            >
+              Connect your Shopify store
+            </div>
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: 13,
+                color: C.charcoalMid,
+                lineHeight: 1.6,
+              }}
+            >
+              Credenza will authorize via OAuth, configure metafields and webhooks,
+              and start mirroring verified buyers to your store.
+            </div>
+          </div>
           <div
-            className="inline-flex items-center justify-center gap-2 px-5 py-3"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 shrink-0"
             style={{
-              backgroundColor: "#95BF47",
+              backgroundColor: C.charcoal,
               color: "white",
-              border: "0.5px solid #6c8c34",
               fontFamily: "Inter, sans-serif",
               fontSize: "0.78rem",
               letterSpacing: "0.08em",
@@ -884,6 +889,7 @@ function DataFlow() {
               In Credenza's vault
             </p>
             <ul className="space-y-3" style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.7, color: C.charcoalMid }}>
+              <li>EIN and sales tax IDs, stored encrypted</li>
               <li>Signed resale certificate PDFs</li>
               <li>Full verification evidence—all nine checks per applicant</li>
               <li>Tax-exempt order ledger linked to certificates</li>
@@ -945,7 +951,7 @@ function FAQ() {
                 {isOpen && (
                   <div
                     id={`faq-detail-${i}`}
-                    className="px-5 md:px-8 pb-6 text-charcoal-mid max-w-4xl"
+                    className="px-5 md:px-8 pb-6 text-charcoal-mid"
                     style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
                   >
                     {item.a}
