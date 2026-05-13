@@ -1,0 +1,266 @@
+<mjml>
+  <mj-head>
+    <mj-title>A new tool for designers—Credenza</mj-title>
+    <mj-preview>The Regina Andrew panel recording, plus&hellip;</mj-preview>
+    <mj-font name="Cormorant Garamond" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" />
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" />
+      <mj-text color="#3a3a34" line-height="1.75" font-size="16px" />
+      <mj-section background-color="#ffffff" padding="0" />
+    </mj-attributes>
+    <mj-style>
+      a { color: #21353f; }
+      @media only screen and (max-width:640px) {
+        .pad-x > table > tbody > tr > td { padding-left: 28px !important; padding-right: 28px !important; }
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f0f0ec" width="600px">
+
+    <!-- Top spacer -->
+    <mj-section background-color="#f0f0ec" padding="48px 0 0 0">
+      <mj-column>
+        <mj-spacer height="1px" />
+      </mj-column>
+    </mj-section>
+
+    <!-- CARD wrapper -->
+    <mj-wrapper background-color="#ffffff" border="1px solid #d8d4ca" padding="0">
+
+      <!-- Hero image slice -->
+      <mj-section padding="0">
+        <mj-column padding="0">
+          <mj-image
+            src="https://usecredenza.com/kavanaugh-lakeside-hero-crop.png"
+            alt="Interior by Ellen Kavanaugh Interiors"
+            href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=hero-image&amp;ref={email}"
+            width="600px"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Wordmark -->
+      <mj-section padding="48px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/credenza-wordmark.png"
+            alt="Credenza"
+            href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=wordmark&amp;ref={email}"
+            width="180px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Eyebrow: 32px hairline + uppercase Inter -->
+      <mj-section padding="56px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-raw>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="32" valign="middle" style="vertical-align: middle; width: 32px;">
+                  <div style="width: 32px; height: 1px; background-color: #d8d4ca; font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</div>
+                </td>
+                <td width="12" valign="middle" style="width: 12px;">&nbsp;</td>
+                <td valign="middle" style="vertical-align: middle; font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6a6a62; font-weight: 600;">
+                  Following up from High Point
+                </td>
+              </tr>
+            </table>
+          </mj-raw>
+        </mj-column>
+      </mj-section>
+
+      <!-- Headline image (Freight Display Pro PNG) -->
+      <mj-section padding="28px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/headline-new-tool-for-designers.png"
+            alt="A new tool for designers."
+            width="440px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Greeting -->
+      <mj-section padding="36px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="11px" font-weight="600" letter-spacing="0.14em" line-height="1.4" color="#6a6a62" padding="0" text-transform="uppercase">
+            Hi {firstName},
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Body 1: thank you -->
+      <mj-section padding="20px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            Thank you for RSVPing to our <strong style="color:#1c1c19;font-weight:600;">Fireside Chat at Regina Andrew during High Point Market</strong>. Whether we got to meet or missed each other in the crowd, I appreciate your interest in signing up.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Body 3: formal intro -->
+      <mj-section padding="24px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            I also wanted to formally introduce you to <a href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=body-link&amp;ref={email}" style="color: #21353f; text-decoration: underline; text-underline-offset: 3px; font-weight: 600;"><strong style="color:#1c1c19;font-weight:600;">Credenza</strong></a>, the company I founded and was there to talk about.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Body 4: Credenza is one place + Resale Certificate Engine -->
+      <mj-section padding="24px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            Credenza is one place for every trade account, every resale certificate, and every relationship your firm depends on&mdash;in a single dashboard&mdash;<a href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=free-for-designers&amp;ref={email}" style="font-style: italic; color: #3a3a34; text-decoration: underline; text-decoration-color: #acc4c5; text-decoration-thickness: 2px; text-underline-offset: 4px;">and it&rsquo;s free for designers.</a> With our Resale Certificate Engine, you can also generate the right resale certificate for any state instantly&mdash;and track them for expiration in our certificate vault.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Product shot -->
+      <mj-section padding="32px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/trade-accounts-dashboard-full.png"
+            alt="Credenza trade accounts dashboard showing lighting vendors with sales reps, discounts, account numbers, and active resale certificates"
+            href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=product-shot&amp;ref={email}"
+            width="488px"
+            align="center"
+            padding="0"
+            border="1px solid #d8d4ca"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Body 5: and soon -->
+      <mj-section padding="24px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            And soon, your verified trade profile will unlock one-click trade applications and account approvals in minutes as vendors join Credenza.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- CTA: teal fill with 1px outline ring + 2px gap -->
+      <mj-section padding="40px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-raw>
+            <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #99b8bd; background-color: #ffffff; margin: 0 auto;">
+              <tr>
+                <td style="padding: 2px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td bgcolor="#b8ccd2" style="background-color: #b8ccd2; padding: 0;">
+                        <a href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=cta-primary&amp;ref={email}"
+                           target="_blank"
+                           style="display: block; padding: 16px 24px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #21353f; text-decoration: none; font-weight: 400;">
+                          Create your account&mdash;it&rsquo;s free
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </mj-raw>
+        </mj-column>
+      </mj-section>
+
+      <!-- P.S. Fireside Chat recording — ivory bg breakout below CTA -->
+      <mj-section padding="40px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-raw>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f0f0ec; border: 1px solid #d8d4ca;">
+              <tr>
+                <td style="padding: 22px 26px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.65; color: #3a3a34;">
+                  <strong style="color: #1c1c19; font-weight: 600; letter-spacing: 0.02em;">P.S.</strong>
+                  If you didn&rsquo;t get to catch it (or want to revisit it),
+                  <a href="https://www.youtube.com/watch?v=ICs6FUQ63VM" target="_blank" style="color: #21353f; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">watch the Fireside Chat on YouTube &rarr;</a>
+                </td>
+              </tr>
+            </table>
+          </mj-raw>
+        </mj-column>
+      </mj-section>
+
+      <!-- Sign-off lead-in -->
+      <mj-section padding="32px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            Have questions or feedback? I&rsquo;d love to connect&mdash;reply to me directly.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Signature image (Freight Display Pro PNG) -->
+      <mj-section padding="28px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/julia-atwater-signature.png"
+            alt="Julia Atwater"
+            width="160px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Founder caption -->
+      <mj-section padding="6px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="11px" letter-spacing="0.08em" color="#9a9490" line-height="1.4" padding="0" text-transform="uppercase">
+            Founder, Credenza
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- usecredenza.com signature link -->
+      <mj-section padding="8px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="13px" line-height="1.5" color="#6a6a62" padding="0">
+            <a href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=signature-link&amp;ref={email}" target="_blank" style="color: #6a6a62; text-decoration: underline; text-underline-offset: 2px;">usecredenza.com</a>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Photo credit -->
+      <mj-section padding="48px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="11px" line-height="1.7" color="#6a6a62" align="center" letter-spacing="0.04em" padding="0">
+            Photograph © Carmel Brantley · Design by Ellen Kavanaugh Interiors
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Legal footer with Loops unsubscribe -->
+      <mj-section padding="40px 56px 56px 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="9px" color="#9e9e96" align="center" padding="0">
+            Credenza Labs, Inc. &nbsp;·&nbsp;
+            <a href="https://usecredenza.com?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=highpoint-panel-followup&amp;utm_content=footer-link&amp;ref={email}" style="color: #9e9e96; text-decoration: none;">usecredenza.com</a>
+            &nbsp;·&nbsp;
+            <a href="{unsubscribe_link}" style="color: #9e9e96; text-decoration: underline;">Unsubscribe</a>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+    </mj-wrapper>
+
+    <!-- Bottom spacer -->
+    <mj-section background-color="#f0f0ec" padding="48px 0 0 0">
+      <mj-column>
+        <mj-spacer height="1px" />
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

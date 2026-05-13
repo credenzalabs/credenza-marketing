@@ -1,0 +1,173 @@
+<mjml>
+  <mj-head>
+    <mj-title>You're in—Credenza</mj-title>
+    <mj-preview>One place for every trade account, resale certificate, and relationship your firm depends on.</mj-preview>
+    <mj-font name="Cormorant Garamond" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" />
+    <mj-attributes>
+      <mj-all font-family="'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" />
+      <mj-text color="#3a3a34" line-height="1.75" font-size="16px" />
+      <mj-section background-color="#ffffff" padding="0" />
+    </mj-attributes>
+    <mj-style>
+      a { color: #21353f; }
+      @media only screen and (max-width:640px) {
+        .pad-x > table > tbody > tr > td { padding-left: 28px !important; padding-right: 28px !important; }
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f0f0ec" width="600px">
+
+    <!-- Spacer: ivory background, breathing room above the card -->
+    <mj-section background-color="#f0f0ec" padding="48px 0 0 0">
+      <mj-column>
+        <mj-spacer height="1px" />
+      </mj-column>
+    </mj-section>
+
+    <!-- CARD wrapper: white background, sage-dark hairline border -->
+    <mj-wrapper background-color="#ffffff" border="1px solid #d8d4ca" padding="0">
+
+      <!-- Hero image slice — pre-cropped, renders consistently in all clients -->
+      <mj-section padding="0">
+        <mj-column padding="0">
+          <mj-image
+            src="https://usecredenza.com/kavanaugh-lakeside-hero-crop.png"
+            alt="Interior by Ellen Kavanaugh Interiors"
+            href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=hero-image&amp;ref={email}"
+            width="600px"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Wordmark -->
+      <mj-section padding="48px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/credenza-wordmark.png"
+            alt="Credenza"
+            href="https://usecredenza.com/for-designers?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=wordmark&amp;ref={email}"
+            width="180px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Eyebrow: 32px hairline + uppercase Inter -->
+      <mj-section padding="56px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-raw>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="32" valign="middle" style="vertical-align: middle; width: 32px;">
+                  <div style="width: 32px; height: 1px; background-color: #d8d4ca; font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</div>
+                </td>
+                <td width="12" valign="middle" style="width: 12px;">&nbsp;</td>
+                <td valign="middle" style="vertical-align: middle; font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6a6a62; font-weight: 600;">
+                  Early access
+                </td>
+              </tr>
+            </table>
+          </mj-raw>
+        </mj-column>
+      </mj-section>
+
+      <!-- Headline (image) -->
+      <mj-section padding="28px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/welcome-headline-primary.png"
+            alt="Our doors are open."
+            href="https://trade.usecredenza.com/join/designer?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=headline-primary&amp;ref={email}"
+            width="420px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Italic headline (image) -->
+      <mj-section padding="6px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-image
+            src="https://usecredenza.com/welcome-headline-italic.png"
+            alt="You're in — and among the first."
+            href="https://trade.usecredenza.com/join/designer?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=headline-italic&amp;ref={email}"
+            width="420px"
+            align="left"
+            padding="0"
+            border="0"
+          />
+        </mj-column>
+      </mj-section>
+
+      <!-- Explainer -->
+      <mj-section padding="32px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="16px" line-height="1.75" color="#3a3a34" padding="0">
+            Credenza is one place for every trade account, every resale certificate, and every relationship your firm depends on.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- CTA: teal fill with 1px outline ring + 2px gap (raw HTML to preserve fidelity) -->
+      <mj-section padding="48px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-raw>
+            <table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #99b8bd; background-color: #ffffff; margin: 0 auto;">
+              <tr>
+                <td style="padding: 2px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td bgcolor="#b8ccd2" style="background-color: #b8ccd2; padding: 0;">
+                        <a href="https://trade.usecredenza.com/join/designer?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=cta-primary&amp;ref={email}"
+                           target="_blank"
+                           style="display: block; padding: 16px 24px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #21353f; text-decoration: none; font-weight: 400;">
+                          Join Credenza&mdash;it&rsquo;s free
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </mj-raw>
+        </mj-column>
+      </mj-section>
+
+      <!-- Photo credit -->
+      <mj-section padding="56px 56px 0 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="11px" line-height="1.7" color="#6a6a62" align="center" letter-spacing="0.04em" padding="0">
+            Photograph © Carmel Brantley · Design by Ellen Kavanaugh Interiors
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Legal footer with required Loops unsubscribe link -->
+      <mj-section padding="40px 56px 56px 56px" css-class="pad-x">
+        <mj-column>
+          <mj-text font-size="9px" color="#9e9e96" align="center" padding="0">
+            Credenza Labs, Inc. &nbsp;·&nbsp;
+            <a href="https://usecredenza.com?utm_source=loops&amp;utm_medium=email&amp;utm_campaign=welcome-designer-access-v2&amp;utm_content=footer-link&amp;ref={email}" style="color: #9e9e96; text-decoration: none;">usecredenza.com</a>
+            &nbsp;·&nbsp;
+            <a href="{unsubscribe_link}" style="color: #9e9e96; text-decoration: underline;">Unsubscribe</a>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+    </mj-wrapper>
+
+    <!-- Spacer: ivory background, breathing room below the card -->
+    <mj-section background-color="#f0f0ec" padding="48px 0 0 0">
+      <mj-column>
+        <mj-spacer height="1px" />
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
