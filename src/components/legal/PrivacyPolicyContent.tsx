@@ -52,8 +52,8 @@ export function PrivacyPolicyContent() {
       <p className="mb-4">We do not sell or rent Shopify customer data. We do not use Shopify customer data for advertising, profiling, or any purpose outside the verification and tax-compliance use cases described above.</p>
       <p className="mb-2">In compliance with Shopify's Protected Customer Data requirements, Credenza responds to the three mandatory data-protection webhooks:</p>
       <ul className="mb-4 pl-5 list-disc">
-        <li className="mb-2"><span className="font-medium">customers/data_request</span>—when a customer asks the merchant for their data, we collect every record we hold for that customer and make it available to the merchant for fulfillment within 30 days.</li>
-        <li className="mb-2"><span className="font-medium">customers/redact</span>—when a customer asks the merchant to delete their data, we anonymize the corresponding Credenza records (the audit trail of verification events is preserved with the customer identifier removed, as required for tax-compliance recordkeeping).</li>
+        <li className="mb-2"><span className="font-medium">customers/data_request</span>—When a customer asks the merchant for their data, we collect every record we hold for that customer and make it available to the merchant for fulfillment within 30 days.</li>
+        <li className="mb-2"><span className="font-medium">customers/redact</span>—When a customer asks the merchant to delete their data, we anonymize the corresponding Credenza records (the audit trail of verification events is preserved with the customer identifier removed, as required for tax-compliance recordkeeping).</li>
         <li className="mb-2"><span className="font-medium">shop/redact</span>—48 hours after a merchant uninstalls the Credenza app, we erase all Shopify-sourced data for that store.</li>
       </ul>
       <p className="mb-4">All webhook deliveries are authenticated using Shopify's HMAC-SHA256 signature. The merchant remains the data controller for their Shopify customer data; Credenza acts as a data processor on the merchant's behalf.</p>
