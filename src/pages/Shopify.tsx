@@ -90,7 +90,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "What happens if someone manually edits a Credenza-managed field in Shopify?",
-    a: "Credenza watches the customer metafields and tax exemptions it manages and alerts you when one is edited outside the integration. No silent overwrites, no exemption decisions made without a paper trail—if a state exemption is removed by hand, you'll know.",
+    a: "Credenza watches every field it manages—tags, state tax exemptions, and metafields—and alerts you when one is edited outside the integration. No silent overwrites, no exemption decisions made without a paper trail—if a state exemption is removed by hand, you'll know.",
   },
   {
     q: "How long does it take to install?",
@@ -121,7 +121,7 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "Drift detection",
-    body: "Credenza watches the customer metafields it manages and alerts you when one is edited outside the integration. No silent overwrites; no exemption decisions made without a paper trail.",
+    body: "Credenza watches every field it manages—tags, state tax exemptions, and metafields—and alerts you when one is edited outside the integration. No silent overwrites; no exemption decisions made without a paper trail.",
   },
   {
     title: "B2B company sync",
