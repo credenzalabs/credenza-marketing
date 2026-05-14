@@ -70,7 +70,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How is this different from manual customer tagging in Shopify?",
-    a: "Manual tagging trusts whoever applies for a trade account to be a trade buyer. That works at small volume; at scale, it leaks tax-exempt status to non-eligible buyers and creates exposure during state sales-tax audits. Credenza verifies each applicant against authoritative sources—IRS, state tax registries, professional directories, state license boards, the designer's actual portfolio and press footprint—before any tag is applied. Approval decisions are evidenced and logged.",
+    a: "Manual tagging trusts whoever applies for a trade account to be a trade buyer. That works at small volume; at scale, it leaks tax-exempt status to non-eligible buyers and creates exposure during state sales-tax audits. Credenza verifies each applicant against authoritative sources—IRS, state tax registries, professional directories, state license boards—and corroborates an active design practice through portfolio and press evidence, before any tag is applied. Approval decisions are evidenced and logged.",
   },
   {
     q: "Can I customize the approval rules?",
