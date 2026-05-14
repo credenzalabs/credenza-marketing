@@ -62,7 +62,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "What customer data does Credenza access in my Shopify store?",
-    a: "Credenza reads customer email, name, phone, and shipping address to match a verified designer profile to the matching Shopify customer record—and writes trade status, state-scoped tax exemptions, the trade-customer tag, and Credenza-namespaced metafields back to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption. Credenza does not push files into Shopify Files; the signed resale certificate stays in Credenza's secure, audit-ready vault.",
+    a: "Credenza reads customer email, name, phone, and shipping address to match a verified designer profile to the matching Shopify customer record—and writes trade status, state-scoped tax exemptions, the trade-customer tag, and Credenza-namespaced metafields back to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption.",
   },
   {
     q: "Does the integration require Shopify Plus?",
