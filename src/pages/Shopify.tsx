@@ -82,11 +82,11 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How does the resale certificate flow work?",
-    a: "After verification, Credenza generates or accepts state-specific resale certificates per the customer's nexus footprint—including MTC multi-state and SST member-state certificates where applicable—signs them, and stores them in Credenza's vault. The state-scoped tax exemptions written to the Shopify customer record reflect the live state of those certificates. When a certificate expires or is replaced, the exemption set updates automatically. The certificate PDFs themselves live in Credenza, not in Shopify—the Shopify customer record carries a URL pointer back to the vault.",
+    a: "After verification, Credenza generates or accepts state-specific resale certificates per the customer's nexus footprint—covering 46 jurisdictions, every state's own form, and the MTC multistate and SST member-state forms where applicable. Each jurisdiction's expiration logic is built in: some certificates never expire, some run on fixed calendar windows (Florida's DR-13 expires every December 31, not twelve months from issuance), and Credenza tracks renewal prompts and reminder schedules per state so nothing lapses silently. Credenza signs the certificates and stores them in its vault; the state-scoped tax exemptions written to the Shopify customer record reflect their live status, updating automatically when a certificate expires or is renewed. The certificate PDFs live in Credenza, not in Shopify—the customer record carries a URL pointer back to the vault.",
   },
   {
     q: "What's the audit trail for tax-exempt orders?",
-    a: "Credenza maintains an append-only ledger linking every tax-exempt Shopify order to the resale certificate that justified the exemption, alongside the verification evidence behind that certificate. You pull the whole thing as a tax-auditor-ready CSV—filtered by state or date range—directly from your vendor dashboard. When an auditor asks why an exemption was granted, you hand them the export.",
+    a: "Credenza maintains an append-only ledger linking every tax-exempt Shopify order to the resale certificate that justified the exemption, alongside the verification evidence behind that certificate. When an auditor asks why an exemption was granted, you can pull the whole thing as a tax-auditor-ready CSV—filtered by state or date range—directly from your vendor dashboard, and hand them the export.",
   },
   {
     q: "What happens if someone manually edits a Credenza-managed field in Shopify?",
@@ -112,8 +112,8 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
     body: "Approved designers receive your configured trade-customer tag (default trade-verified) on their Shopify customer record. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers automatically.",
   },
   {
-    title: "State-scoped tax exemptions",
-    body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions are revoked automatically when a certificate expires and reinstated when it's renewed, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
+    title: "Resale certificates and state-scoped exemptions",
+    body: "Credenza manages resale certificates across 46 jurisdictions—every state form plus the MTC multistate forms—with each state's own expiration logic baked in, from Florida's calendar-year DR-13 to states that never expire. The exemptions written to Shopify fire only in the states where the designer is actually registered, and they're revoked automatically when a certificate lapses and reinstated when it's renewed.",
   },
   {
     title: "Compliance-ready audit trail",
