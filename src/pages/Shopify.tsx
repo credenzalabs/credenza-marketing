@@ -109,7 +109,7 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "Auto-tagged customers",
-    body: "Approved designers receive your configured trade-customer tag (default trade-verified) on their Shopify customer record. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers automatically.",
+    body: "Approved designers receive your configured trade-customer tag (default trade-verified), plus Credenza-managed tags for trade status, role, and discount tier. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers—at the right discount tier—automatically.",
   },
   {
     title: "Resale certificates and state-scoped exemptions",
