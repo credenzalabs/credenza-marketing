@@ -70,7 +70,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How is this different from manual customer tagging in Shopify?",
-    a: "Manual tagging trusts whoever applies for a trade account to be a trade buyer. That works at small volume; at scale, it leaks tax-exempt status to non-eligible buyers and creates exposure during state sales-tax audits. Credenza verifies each applicant against authoritative sources—IRS, state tax registries, professional directories, state license boards—and corroborates an active design practice through portfolio and press evidence, before any tag is applied. Approval decisions are evidenced and logged.",
+    a: "Manual tagging asks a sales or ops person to be a verification expert. They have to judge whether a resale certificate is valid for the state it's claimed in, whether a business registration is real and active, whether the applicant is genuinely in the trade or just hunting for a discount—and do it on every application, consistently, without a paper trail. At low volume it mostly holds. At scale it doesn't: standards drift between reviewers, ineligible and fraudulent applicants slip through, certificates quietly expire while the tag stays on, and every wrongly granted exemption becomes exposure in a state sales-tax audit—where \"someone on the team approved it\" is not a defense. Credenza verifies each applicant against authoritative sources—IRS, state tax registries, professional directories, state license boards—and corroborates an active design practice through portfolio and press evidence, before any tag is applied. Approval decisions are evidenced and logged.",
   },
   {
     q: "Can I customize the approval rules?",
