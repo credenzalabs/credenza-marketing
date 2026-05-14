@@ -113,7 +113,7 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "State-scoped tax exemptions",
-    body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions refresh automatically when a certificate expires or is replaced, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
+    body: "Tax-exempt checkout fires only in the states where the designer is registered—never as a blanket override. Exemptions are revoked automatically when a certificate expires and reinstated when it's renewed, so quarterly cert cleanup and expired exemptions sitting in your customer records become someone else's problem.",
   },
   {
     title: "Compliance-ready audit trail",
