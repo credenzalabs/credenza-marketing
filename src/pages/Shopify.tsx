@@ -98,7 +98,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "How are merchants distributed the app?",
-    a: "Credenza uses Shopify Custom Distribution rather than the App Store. Merchants reach Credenza through our own marketing and onboard through Credenza first; once they're set up, they install the Shopify integration via a direct link from their Credenza vendor dashboard. The app is approved under Shopify's Protected Customer Data review.",
+    a: "Credenza uses Shopify Custom Distribution rather than the App Store. Merchants reach Credenza through our own marketing and onboard through Credenza first; once they're set up, they install the Shopify integration via a direct link from their Credenza vendor dashboard. The app is built to Shopify's Protected Customer Data requirements.",
   },
 ];
 
