@@ -755,18 +755,18 @@ function InstallMock() {
             </div>
           </div>
           <div
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 shrink-0"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 shrink-0"
             style={{
               backgroundColor: C.charcoal,
               color: "white",
               fontFamily: "Inter, sans-serif",
-              fontSize: "0.78rem",
+              fontSize: "0.65rem",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               fontWeight: 500,
             }}
           >
-            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: 999, backgroundColor: "white" }} />
+            <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: 999, backgroundColor: "white" }} />
             Connect Shopify
           </div>
         </div>
