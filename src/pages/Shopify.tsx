@@ -78,7 +78,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Does Credenza replace TaxJar, Avalara, or other tax tools?",
-    a: "Different layer. Tax tools compute the tax you owe and collect resale certificates. Credenza verifies the buyer and writes per-state tax exemptions into Shopify so tax-exempt checkout fires correctly in exactly the states the buyer is registered in—and only those. For trade-channel sales specifically, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certs from verified data, and write state-scoped exemption directly to the Shopify customer profile. Storefront tax engines continue computing the underlying tax math.",
+    a: "Different layer. Tax tools compute the tax you owe and collect resale certificates. Credenza verifies the buyer and writes per-state tax exemptions into Shopify so tax-exempt checkout fires correctly in exactly the states the buyer is registered in—and only those. For trade-channel sales specifically, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certificates from verified data, and write state-scoped exemption directly to the Shopify customer profile. Storefront tax engines continue computing the underlying tax math.",
   },
   {
     q: "How does the resale certificate flow work?",
@@ -113,7 +113,7 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "Resale certificates and state-scoped exemptions",
-    body: "Credenza manages resale certificates across 46 jurisdictions—every state form plus the MTC multistate forms—with each state's own expiration logic baked in, from Florida's calendar-year DR-13 to states that never expire. The exemptions written to Shopify fire only in the states where the designer is actually registered, and they're revoked automatically when a certificate lapses and reinstated when it's renewed.",
+    body: "Credenza manages resale certificates across 46 jurisdictions—every state form plus the MTC & SST multistate forms—with each state's own expiration logic baked in, from Florida's calendar-year DR-13 to states that never expire. The exemptions written to Shopify fire only in the states where the designer is actually registered, and they're revoked automatically when a certificate lapses and reinstated when renewed.",
   },
   {
     title: "Compliance-ready audit trail",
@@ -125,7 +125,7 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "B2B company sync",
-    body: "For Shopify B2B merchants, verification metafields mirror to the corresponding company record so company-scoped pricing rules and tax-exempt checkout work the same way they do for DTC.",
+    body: "For Shopify B2B merchants, verification metafields mirror to the corresponding company record so company-scoped pricing rules and tax-exempt checkout fire correctly.",
   },
 ];
 

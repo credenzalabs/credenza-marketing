@@ -2,9 +2,9 @@
  * CREDENZA — FOR DESIGNERS PAGE
  *
  * SECTION ORDER (by current value):
- *   1. Hero — certs + accounts, what you get today
+ *   1. Hero — certificates + accounts, what you get today
  *   2. Account Management — core feature, works today
- *   3. Tax Strategy & Certs — the killer feature
+ *   3. Tax Strategy & Certificates — the killer feature
  *   4. Firm & Team — supporting feature, works today
  *   5. Verified Profile — the foundation for one-click apply
  *   6. The Credenza Network — where it's going (vendors onboarding now)
@@ -653,7 +653,7 @@ function AccountManagement() {
         {/* Supporting points */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 mt-16 border-t border-sage-dark">
           {[
-            { title: "Certs attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
+            { title: "Certificates attached to accounts", body: "Every certificate attaches to its vendor automatically. When one expires, the affected accounts surface on your dashboard—so you know when it's time to submit a new one." },
             { title: "Vendor logins, securely stored", body: "Account numbers and portal passwords encrypted in transit and at rest. Copy user name and password with one click. Share access with your team; revoke when someone leaves." },
             { title: "Bring your whole book in one import", body: `Upload a CSV of your existing trade accounts—we match against our directory of ${catalogCount} brands and auto-fill categories, contact info, and portal links. Migrate decades of vendors in minutes.` },
             { title: "Update once, update everywhere", body: "New address, new business name, new team member—change it in your profile and every vendor you're connected with sees the update." },
@@ -1014,7 +1014,7 @@ function Pricing() {
           </div>
           <div className="lg:col-span-5 flex items-end">
             <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}>
-              No credit card. No trial window. No seat limit. Generate certs,
+              No credit card. No trial window. No seat limit. Generate certificates,
               manage trade accounts, verify your profile, and invite your whole
               team at no cost to designers.
             </p>
@@ -1075,7 +1075,7 @@ function FAQ() {
   const questions = [
     {
       q: "Is Credenza really free for designers?",
-      a: "Yes—no credit card, no trial window, no seat limit. Build a profile, generate certs, apply for trade programs, manage trade accounts, and invite your team at no cost to designers. Vendors pay for the platform.",
+      a: "Yes—no credit card, no trial window, no seat limit. Build a profile, generate certificates, apply for trade programs, manage trade accounts, and invite your team at no cost to designers. Vendors pay for the platform.",
     },
     {
       q: "Which states do you support?",

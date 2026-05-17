@@ -63,7 +63,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "Does this replace tools like Avalara, TaxWisp, or SparkLayer?",
-    a: "Different parts of the stack. For the trade-channel use case, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certs from verified data, and write state-scoped exemption directly to the Shopify customer profile. B2B commerce layers (SparkLayer, Shopify Plus B2B) handle a different layer—trade pricing and tax-exempt checkout once a buyer is approved—and Credenza runs alongside them.",
+    a: "Different parts of the stack. For the trade-channel use case, Credenza replaces certificate-management tools like TaxWisp, CertCapture, and Avalara's ECM module—we validate the buyer and the certificate, generate compliant resale certificates from verified data, and write state-scoped exemption directly to the Shopify customer profile. B2B commerce layers (SparkLayer, Shopify Plus B2B) handle a different layer—trade pricing and tax-exempt checkout once a buyer is approved—and Credenza runs alongside them.",
   },
   {
     q: "How does verification connect to Shopify tax exemption?",

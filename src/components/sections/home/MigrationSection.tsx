@@ -71,7 +71,7 @@ export function MigrationSection() {
                 {
                   step: "03",
                   title: "Close compliance gaps",
-                  body: "Credenza identifies designers without current resale certs and prompts them to generate and sign—so you\u2019re compliant from day one. Want to start fresh? Invite existing clients to connect and submit new certificates with compliant, verified data.",
+                  body: "Credenza identifies designers without current resale certificates and prompts them to generate and sign—so you\u2019re compliant from day one. Want to start fresh? Invite existing clients to connect and submit new certificates with compliant, verified data.",
                 },
               ].map((item) => (
                 <div key={item.step} className="py-7 border-b border-sage-dark">

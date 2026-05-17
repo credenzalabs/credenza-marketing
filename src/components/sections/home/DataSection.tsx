@@ -237,7 +237,7 @@ function AnimatedChart({ index, colors }: { index: number; colors: { teal: strin
           <div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="font-freight text-[20px] leading-none text-charcoal">96%</span>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certs current</span>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#a8a49c" }}>certificates current</span>
             </div>
             <div className="flex h-3 w-full overflow-hidden mb-3 rounded-[1px]">
               {certSegments.map(s => (

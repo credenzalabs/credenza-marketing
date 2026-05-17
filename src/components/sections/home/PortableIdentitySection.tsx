@@ -33,7 +33,7 @@ export function PortableIdentitySection() {
               className="text-charcoal-mid max-w-[460px] mb-8"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.8 }}
             >
-              A designer fills out one profile, gets verified once, and that profile works across every vendor on the platform. No re-entering business information, tax IDs, references, or uploading certs again.
+              A designer fills out one profile, gets verified once, and that profile works across every vendor on the platform. No re-entering business information, tax IDs, references, or uploading certificates again.
             </p>
             <p
               className="text-charcoal-mid max-w-[460px] mb-10"

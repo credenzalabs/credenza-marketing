@@ -420,7 +420,7 @@ export default function ResaleCertificateGuide() {
           <p>Resale certificates aren't glamorous, but they're load-bearing infrastructure for a professional design practice. The short version:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Register in your home state</strong> to get your sales tax ID—the prerequisite for everything else</li>
-            <li><strong>Know which states require certs</strong> based on where goods are shipping or being picked up, and where your vendors have nexus</li>
+            <li><strong>Know which states require certificates</strong> based on where goods are shipping or being picked up, and where your vendors have nexus</li>
             <li><strong>Use the right form</strong> for each state: MTC or SST where accepted, state-specific forms where required, state-issued certificates where mandated</li>
             <li><strong>Keep certificates current</strong> and track renewal dates—lapsed certificates create exposure for you and your vendor partners</li>
             <li><strong>Monitor your nexus</strong> as your practice grows across state lines, and register before you need to generate certificates</li>
