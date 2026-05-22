@@ -201,7 +201,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What if I'm not on Shopify?",
-    a: "Native Shopify integration is live today. We're rolling out support for additional commerce platforms—tell us what you use and we'll share timelines. Credenza can also be used independently of your ERP, as a system to collect, monitor, and auto-renew your certificates.",
+    a: "Native Shopify integration is live today. We're rolling out support for additional commerce platforms—tell us what you use and we'll share timelines. Credenza can also be used independently of your store—a system to collect, monitor, and renew your certificates, prompting the designer to renew with a simple signature before it lapses.",
   },
   {
     q: "Is the certificate generation actually compliant for all 46 states?",
@@ -209,11 +209,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "What does the audit trail look like?",
-    a: "Every certificate, every renewal, every state—searchable, exportable, tied to the Shopify customer profile. When an auditor calls, the records live where the customer lives. No separate document vault to reconcile.",
+    a: "Every certificate, every renewal, every state—searchable and exportable from your Credenza dashboard, with each tax-exempt order linked back to the certificate that justified it. Exemption status, the certificate file, and key dates are mirrored onto the Shopify customer profile, so the record stays in sync where you sell. When an auditor calls, you pull one tax-auditor-ready CSV—no spreadsheets to assemble, no two systems to reconcile.",
   },
   {
     q: "What's the implementation lift?",
-    a: "Native Shopify integration is a one-time install. Most vendors are live within a few days. No engineering work required on your side beyond the install.",
+    a: "Native Shopify integration is a one-time install with no engineering work on your side.",
   },
 ];
 
@@ -299,7 +299,7 @@ const CAPABILITIES = [
   },
   {
     title: "Audit-ready records",
-    body: "Every certificate, every renewal, every state—searchable, exportable, tied to the customer profile in Shopify. When the auditor calls, the records are where they're supposed to be.",
+    body: "Every certificate, every renewal, every state—searchable and exportable from your Credenza dashboard, with each tax-exempt order linked back to the certificate that justified it. Exemption status, the certificate file, and key dates are mirrored onto the Shopify customer profile, so the record stays in sync where you sell. When an auditor calls, you pull one tax-auditor-ready CSV—no spreadsheets to assemble, no two systems to reconcile.",
   },
 ];
 
@@ -452,7 +452,7 @@ function Integrations() {
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="text-olive-mid shrink-0">&rarr;</span>
-                <span>Certificate stored on the same customer record</span>
+                <span>Certificate linked on the same customer record</span>
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="text-olive-mid shrink-0">&rarr;</span>
@@ -460,7 +460,7 @@ function Integrations() {
               </li>
               <li className="flex items-baseline gap-3">
                 <span className="text-olive-mid shrink-0">&rarr;</span>
-                <span>Audit trail tied to the customer, not a separate vault</span>
+                <span>One audit trail, linked to every customer and order—nothing to reconcile by hand</span>
               </li>
             </ul>
             <p className="text-charcoal-soft pt-2" style={{ fontSize: "0.92rem" }}>
