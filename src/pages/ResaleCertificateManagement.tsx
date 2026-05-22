@@ -20,6 +20,8 @@ import { Plus } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
+import { withCredenzaUtm } from "@/utils/utm";
 import { useReveal } from "@/hooks/useReveal";
 import { useCatalogCount } from "@/hooks/useCatalogCount";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
@@ -43,7 +45,7 @@ export default function ResaleCertificateManagement() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
+      <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} forceSolid />
       <Hero />
       <Capabilities />
       <Integrations />
@@ -61,50 +63,60 @@ export default function ResaleCertificateManagement() {
    ========================================================================= */
 function Hero() {
   return (
-    <section className="relative overflow-hidden flex items-center bg-white min-h-[80vh] pt-16">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${C.sageDark} 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-          opacity: 0.35,
-        }}
+    <section className="relative overflow-hidden flex items-center min-h-screen pt-16">
+      {/* Full-bleed photography — starts below the nav (top-16) so it never enters the nav bar */}
+      <div className="absolute top-16 left-0 right-0 bottom-0 overflow-hidden">
+        <img
+          src="/emily-jones-bedroom-nightstand.jpg"
+          alt="Bedroom by Emily Jones Interiors"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "center center" }}
+        />
+        {/* Dark gradient for legibility — dark left, clearer right */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, rgba(33,53,63,0.92) 0%, rgba(33,53,63,0.7) 50%, rgba(33,53,63,0.2) 100%)" }}
+        />
+      </div>
+      <PhotoCredit
+        separator=""
+        credits={[
+          { text: "© " },
+          { text: "Lindsay Salazar", href: withCredenzaUtm("https://www.lindsaysalazar.com/", "photo-credit", "resale-cert-management-hero") },
+          { text: " (design by " },
+          { text: "Emily Jones Interiors", href: withCredenzaUtm("https://emilyjonesinteriors.com/", "designer-credit", "resale-cert-management-hero") },
+          { text: ")" },
+        ]}
       />
-      <div className="container relative z-10 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
-          <div className="lg:col-span-8">
-            <Eyebrow>For to-the-trade brands</Eyebrow>
-            <h1
-              className="font-freight mb-8 leading-none text-charcoal"
-              style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.03em" }}
-            >
-              Resale certificate management
-              <br />
-              <span className="italic text-olive-mid">built for interior design.</span>
-            </h1>
-          </div>
-          <div className="lg:col-span-4">
-            <p
-              className="text-charcoal-mid mb-8"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
-            >
-              Verified designer profiles. Compliant certificates pre-attached at trade-account application.
-              State-scoped exemption written directly to the Shopify customer profile.
-            </p>
-            <a
-              href={JOIN_VENDOR_URL}
-              className="no-underline inline-flex items-center justify-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "0.72rem",
-                letterSpacing: "0.1em",
-                outline: "0.5px solid #99b8bd",
-                outlineOffset: "2px",
-              }}
-            >
-              Talk to us
-            </a>
-          </div>
+
+      <div className="container relative z-10 py-24 md:py-32">
+        <div className="max-w-2xl">
+          <Eyebrow light>For to-the-trade brands</Eyebrow>
+
+          <h1
+            className="font-freight mb-8 leading-none text-ivory"
+            style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)", letterSpacing: "-0.03em" }}
+          >
+            Resale certificate management
+            <br />
+            <span className="italic text-teal">built for interior design.</span>
+          </h1>
+
+          <p
+            className="mb-10 max-w-[460px]"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75, color: "rgba(255,255,255,0.8)" }}
+          >
+            Verified designer profiles. Compliant certificates pre-attached at trade-account application.
+            State-scoped exemption written directly to the Shopify customer profile.
+          </p>
+
+          <a
+            href={JOIN_VENDOR_URL}
+            className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+          >
+            Talk to us
+          </a>
         </div>
       </div>
     </section>
@@ -117,7 +129,7 @@ function Hero() {
 const PROBLEM_POINTS = [
   {
     title: "The buyer is self-taught.",
-    body: "Most designers run small practices without an in-house accountant. Resale-certificate compliance was built for enterprise tax teams, not one-person studios — the mistakes aren't carelessness, they're a system mismatch.",
+    body: "Many designers run small practices without an in-house accountant. Resale-certificate compliance was built for enterprise tax teams, not one-person studios—the mistakes aren't carelessness, they're a system mismatch.",
   },
   {
     title: "User error compounds it.",
@@ -125,18 +137,18 @@ const PROBLEM_POINTS = [
   },
   {
     title: "Existing tools can't fix it.",
-    body: "CertCapture, Avalara ECM, Shopify's exemption module, TaxJar — they store documents and validate fields. They don't know who the designer is, what they sell, or where they ship.",
+    body: "CertCapture, Avalara ECM, Shopify's exemption module, TaxJar—they store documents and validate fields. They don't know who the designer is, what they sell, or where they ship.",
   },
   {
     title: "The exposure is real.",
-    body: "Under good-faith rules, an invalid certificate shifts liability — vendor first, designer second. A trade book of quietly lapsed certificates is compounding tax risk you can't always see.",
+    body: "Under good-faith rules, an invalid certificate shifts liability—vendor first, designer second. A trade book of quietly lapsed certificates is compounding tax risk you can't always see.",
   },
 ];
 
 function Problem() {
   const ref = useReveal();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-white border-t border-sage-dark">
+    <section ref={ref} className="reveal py-24 md:py-32 border-t border-sage-dark" style={{ backgroundColor: "#fafaf6" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16">
           <div className="lg:col-span-7">
@@ -189,7 +201,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What if I'm not on Shopify?",
-    a: "Native Shopify integration is live today. We're rolling out support for additional commerce platforms—tell us what you use and we'll share timelines.",
+    a: "Native Shopify integration is live today. We're rolling out support for additional commerce platforms—tell us what you use and we'll share timelines. Credenza can also be used independently of your ERP, as a system to collect, monitor, and auto-renew your certificates.",
   },
   {
     q: "Is the certificate generation actually compliant for all 46 states?",
@@ -280,7 +292,6 @@ const CAPABILITIES = [
   {
     title: "State-scoped exemption on the Shopify customer profile",
     body: "When a designer is approved, Credenza applies exemption on the customer record for each state they're certified in—and the certificate is stored on the same profile, so the audit trail lives where the customer lives. No manual tagging, no all-or-nothing flag, no ops person flipping settings after every approval.",
-    highlight: true,
   },
   {
     title: "Renewal lifecycle managed for you",
@@ -320,26 +331,8 @@ function Capabilities() {
             return (
               <div
                 key={card.title}
-                className={`py-10 px-6 md:px-8 border-b border-sage-dark ${mdRightBorder} ${lgRightBorder} ${
-                  card.highlight ? "bg-teal-dim" : ""
-                }`}
+                className={`py-10 px-6 md:px-8 border-b border-sage-dark ${mdRightBorder} ${lgRightBorder}`}
               >
-                {card.highlight && (
-                  <div className="mb-3">
-                    <span
-                      className="text-teal-mid"
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "0.65rem",
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Only on Credenza
-                    </span>
-                  </div>
-                )}
                 <h3
                   className="font-freight mb-3 text-charcoal"
                   style={{ fontSize: "1.25rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}
@@ -487,7 +480,7 @@ function Close() {
   const ref = useReveal();
   const catalogCount = useCatalogCount();
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-white border-t border-sage-dark">
+    <section ref={ref} className="reveal py-24 md:py-32 border-t border-sage-dark" style={{ backgroundColor: "#fafaf6" }}>
       <div className="container">
         <div className="max-w-3xl">
           <Eyebrow>The network</Eyebrow>
