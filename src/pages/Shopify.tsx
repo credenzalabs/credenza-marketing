@@ -18,10 +18,12 @@
  * SECTION ORDER:
  *   1. Hero
  *   2. Definition (LLM citation magnet) + ShopifyCustomerMock
- *   3. What the integration does (capability cards)
- *   4. Install (one-click install story) + InstallMock
- *   5. Data flow (what gets written; what stays in Credenza)
- *   6. FAQ (FAQPage schema fuel) — full-width accordion
+ *   3. Why it matters (pain-first: nexus exposure + manual-tracking cost)
+ *   4. What the integration does (capability cards)
+ *   5. Install (one-click install story) + InstallMock
+ *   6. Data flow (what gets written; what stays in Credenza)
+ *   7. FAQ (FAQPage schema fuel) — full-width accordion
+ *   8. Close (conversion CTA)
  *
  * SEO: Page-scoped FAQPage + TechArticle JSON-LD via useEffect.
  */
@@ -33,7 +35,7 @@ import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
-import { JOIN_VENDOR_URL, LOGIN_URL, C } from "@/lib/constants";
+import { JOIN_VENDOR_URL, C } from "@/lib/constants";
 import { withCredenzaUtm } from "@/utils/utm";
 
 const HERO_IMAGE = {
@@ -52,17 +54,17 @@ const HERO_IMAGE = {
 const PAGE_TITLE =
   "Shopify trade onboarding: verified designers, auto-tagged, tax-exempt";
 const PAGE_DESCRIPTION =
-  "Credenza is the verification layer behind every trade account in Shopify. Designers are verified through nine evidence checks before they reach your store; verification status, exemption details, and a trade-customer tag are written directly to each Shopify customer record so existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
+  "Credenza is the verification layer behind every trade account in Shopify. Designers are verified through nine evidence checks before they reach your store; Credenza then creates the customer profile in Shopify (or updates it if the customer already exists), with verification status, exemption details, and a trade-customer tag, so your existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
 const CANONICAL_URL = "https://usecredenza.com/shopify";
 
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: "What does the Credenza Shopify integration do?",
-    a: "Credenza verifies trade-customer applicants—interior designers, architects, and other commercial buyers—through nine evidence checks against authoritative sources, then writes the result directly to the matching customer record in your Shopify store. Approved customers get a configurable trade-customer tag, state-scoped tax exemptions (one per nexus state, e.g. US_NY_RESELLER_EXEMPTION), and a set of Credenza-namespaced metafields that capture trade status, exemption status, exempt-states index, certificate expiration, firm details, and discount percent. Your existing storefront pricing rules and tax-exempt checkout work automatically against those fields.",
+    a: "Credenza verifies trade-customer applicants—interior designers, architects, and other commercial buyers—through nine evidence checks against authoritative sources, then creates the customer record in your Shopify store (or updates the matching one if it already exists) with the result. Approved customers get a configurable trade-customer tag, state-scoped tax exemptions (one per nexus state, e.g. US_NY_RESELLER_EXEMPTION), and a set of Credenza-namespaced metafields that capture trade status, exemption status, exempt-states index, certificate expiration, firm details, and discount percent. Your existing storefront pricing rules and tax-exempt checkout work automatically against those fields.",
   },
   {
     q: "What customer data does Credenza access in my Shopify store?",
-    a: "Credenza reads customer email, name, phone, and shipping address to match a verified designer profile to the matching Shopify customer record—and writes trade status, state-scoped tax exemptions, the trade-customer tag, and Credenza-namespaced metafields back to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption.",
+    a: "Credenza reads customer email, name, phone, and shipping address to find or create the matching Shopify customer record—then writes trade status, state-scoped tax exemptions, the trade-customer tag, and Credenza-namespaced metafields to that record. Credenza reads orders on verified customers so tax-exempt sales can be linked to the resale certificate that justifies the exemption.",
   },
   {
     q: "Does the integration require Shopify Plus?",
@@ -108,8 +110,8 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
     body: "Every applicant runs through Credenza's nine-check verification engine. You set the gating—auto-approve, manual review, or reject—and Credenza applies your rules consistently on every application.",
   },
   {
-    title: "Auto-tagged customers",
-    body: "Approved designers receive your configured trade-customer tag (default trade-verified), plus Credenza-managed tags for trade status, role, and discount tier. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers—at the right discount tier—automatically.",
+    title: "Customer profiles, created and tagged",
+    body: "Credenza creates each verified designer's customer profile in your Shopify store—or updates it if they already exist—then applies your configured trade-customer tag (default trade-verified), plus Credenza-managed tags for trade status, role, and discount tier. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers—at the right discount tier—automatically.",
   },
   {
     title: "Resale certificates and state-scoped exemptions",
@@ -134,6 +136,25 @@ const INSTALL_AUTO_SETUP: Array<{ label: string; detail: string }> = [
   { label: "Live sync of customer + order changes", detail: "Approvals, exemptions, and orders kept in step" },
   { label: "Your trade-customer tag, ready to use", detail: "Storefront pricing rules see verified buyers instantly" },
   { label: "Audit-ready order ↔ certificate ledger", detail: "Every exempt sale linked to the certificate behind it" },
+];
+
+const WHY_IT_MATTERS: Array<{ title: string; body: string }> = [
+  {
+    title: "You're on the hook wherever you have nexus.",
+    body: "Sell into enough states and you owe sales tax in each one. Every tax-exempt order you accept on an invalid or expired resale certificate is exposure—and it stacks up quietly across every state you ship to.",
+  },
+  {
+    title: "The rules don't hold still.",
+    body: "Certificate formats, renewal cadences, and expiration logic vary by state—some never expire, some reset every calendar year. Staying current by hand, per customer, per state, is nearly impossible.",
+  },
+  {
+    title: "Tagging and chasing certificates is a standing tax on your team.",
+    body: "Creating customer tags, tracking expirations, requesting renewed certificates—repeated on every applicant and every renewal. It never ends, and it never gets faster.",
+  },
+  {
+    title: "That time belongs on sales and service.",
+    body: "Your team should be selling and taking care of designers—not acting as part-time tax-compliance reviewers.",
+  },
 ];
 
 export default function ShopifyPage() {
@@ -206,10 +227,12 @@ export default function ShopifyPage() {
       <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       <Definition />
+      <WhyItMatters />
       <Capabilities />
       <Lifecycle />
       <DataFlow />
       <FAQ />
+      <Close />
       <Footer />
     </div>
   );
@@ -257,9 +280,10 @@ function Hero() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
             >
               Credenza verifies interior designers, architects, and other trade buyers
-              through nine evidence checks—then writes verification status, exemption
-              details, and your trade-customer tag directly to each Shopify customer
-              record so existing pricing rules and tax-exempt checkout work automatically.
+              through nine evidence checks—then creates the customer profile in your
+              Shopify store, or updates it if the customer already exists, with
+              verification status, exemption details, and your trade-customer tag, so
+              existing pricing rules and tax-exempt checkout work automatically.
             </p>
             <p
               className="mb-10 text-charcoal-soft"
@@ -290,23 +314,6 @@ function Hero() {
                 }}
               >
                 Request access
-              </a>
-              <a
-                href={LOGIN_URL}
-                className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-colors duration-200"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "0.72rem",
-                  fontWeight: 400,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  backgroundColor: "transparent",
-                  color: C.charcoalMid,
-                  border: `0.5px solid ${C.sageDark}`,
-                  borderRadius: "0",
-                }}
-              >
-                Sign in →
               </a>
             </div>
           </div>
@@ -342,9 +349,10 @@ function Definition() {
             >
               Credenza is the verification layer behind every trade account in Shopify.
               Designers are verified through nine evidence checks before they reach
-              your store; verification status, exemption fields, and a trade-customer
-              tag are written directly to each Shopify customer record. The signed
-              resale certificate lives in Credenza's secure, audit-ready vault.
+              your store; Credenza then creates the customer profile in Shopify—or
+              updates it if the customer already exists—with verification status,
+              exemption fields, and a trade-customer tag. The signed resale certificate
+              lives in Credenza's secure, audit-ready vault.
             </p>
           </div>
           <div className="lg:col-span-7">
@@ -603,7 +611,69 @@ function CustomerCard() {
 }
 
 /* =========================================================================
-   3. CAPABILITIES
+   3. WHY IT MATTERS — pain-first dark band
+   ========================================================================= */
+function WhyItMatters() {
+  const eyebrowStyle: React.CSSProperties = {
+    fontFamily: "Inter, sans-serif",
+    fontSize: 11,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: C.teal,
+    marginBottom: 20,
+  };
+  return (
+    <section className="py-24 md:py-32" style={{ backgroundColor: C.forest }}>
+      <div className="container">
+        <div className="max-w-3xl mb-16">
+          <div style={eyebrowStyle}>Why it matters</div>
+          <h2
+            className="font-freight"
+            style={{
+              fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.025em",
+              color: "#f0f0ec",
+            }}
+          >
+            Manual trade onboarding doesn't scale—
+            <span className="italic" style={{ color: C.teal }}>
+              and the exposure compounds.
+            </span>
+          </h2>
+        </div>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 pt-12"
+          style={{ borderTop: "0.5px solid rgba(240,240,236,0.22)" }}
+        >
+          {WHY_IT_MATTERS.map((point) => (
+            <div key={point.title}>
+              <h3
+                className="font-freight mb-3"
+                style={{ fontSize: 22, lineHeight: 1.2, letterSpacing: "-0.015em", color: "#f0f0ec" }}
+              >
+                {point.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: 15,
+                  lineHeight: 1.7,
+                  color: "rgba(240,240,236,0.78)",
+                }}
+              >
+                {point.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
+   4. CAPABILITIES
    ========================================================================= */
 function Capabilities() {
   return (
@@ -644,7 +714,7 @@ function Capabilities() {
 }
 
 /* =========================================================================
-   4. INSTALL — one-click install story + InstallMock
+   5. INSTALL — one-click install story + InstallMock
    ========================================================================= */
 function Lifecycle() {
   return (
@@ -835,7 +905,7 @@ function InstallMock() {
 }
 
 /* =========================================================================
-   5. DATA FLOW — what's on Shopify, what's in Credenza
+   6. DATA FLOW — what's on Shopify, what's in Credenza
    ========================================================================= */
 function DataFlow() {
   return (
@@ -905,7 +975,7 @@ function DataFlow() {
 }
 
 /* =========================================================================
-   6. FAQ
+   7. FAQ
    ========================================================================= */
 function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -960,6 +1030,51 @@ function FAQ() {
               </div>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
+   8. CLOSE — conversion CTA
+   ========================================================================= */
+function Close() {
+  return (
+    <section className="py-24 md:py-32 bg-white" style={{ borderTop: `0.5px solid ${C.sageDark}` }}>
+      <div className="container">
+        <div className="max-w-3xl">
+          <Eyebrow>Get started</Eyebrow>
+          <h2
+            className="font-freight mb-8 text-charcoal"
+            style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
+          >
+            Verified buyers in. Compliance handled.{" "}
+            <span className="italic text-olive-mid">Your team back to selling.</span>
+          </h2>
+          <p
+            className="mb-10 text-charcoal-mid"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: 620 }}
+          >
+            Credenza verifies every trade applicant, writes the trade-customer tag and state-scoped
+            exemptions straight to Shopify, and tracks every certificate's expiration so nothing lapses
+            silently. Your team gets the time back.
+          </p>
+          <a
+            href={JOIN_VENDOR_URL}
+            className="no-underline inline-flex items-center justify-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "0.72rem",
+              letterSpacing: "0.1em",
+              backgroundColor: C.teal,
+              color: C.forest,
+              outline: "0.5px solid #99b8bd",
+              outlineOffset: "2px",
+            }}
+          >
+            Request access
+          </a>
         </div>
       </div>
     </section>
