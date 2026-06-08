@@ -29,17 +29,69 @@ import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 const PAGE_TITLE = "Resale certificate management for the to-the-trade channel";
 const PAGE_DESCRIPTION =
   "Resale certificate management built for to-the-trade brands. Verified designer profiles, compliant certificates pre-attached at trade-account application, state-scoped exemption written directly to the Shopify customer profile.";
+const CANONICAL_URL = "https://usecredenza.com/resale-certificate-management";
 
 export default function ResaleCertificateManagement() {
   useEffect(() => {
     const prevTitle = document.title;
     const descMeta = document.querySelector('meta[name="description"]');
     const prevDesc = descMeta?.getAttribute("content");
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    const prevCanonical = canonicalEl?.getAttribute("href");
+
     document.title = `${PAGE_TITLE} | Credenza`;
     descMeta?.setAttribute("content", PAGE_DESCRIPTION);
+    canonicalEl?.setAttribute("href", CANONICAL_URL);
+
+    const faqSchema = document.createElement("script");
+    faqSchema.type = "application/ld+json";
+    faqSchema.dataset.pageSchema = "resale-cert-faq";
+    faqSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+
+    const articleSchema = document.createElement("script");
+    articleSchema.type = "application/ld+json";
+    articleSchema.dataset.pageSchema = "resale-cert-article";
+    articleSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      headline: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      url: CANONICAL_URL,
+      mainEntityOfPage: CANONICAL_URL,
+      author: { "@type": "Organization", name: "Credenza", url: "https://usecredenza.com/" },
+      publisher: {
+        "@type": "Organization",
+        name: "Credenza",
+        logo: { "@type": "ImageObject", url: "https://usecredenza.com/credenza-brandmark.png" },
+      },
+      about: [
+        { "@type": "Thing", name: "Resale certificate management" },
+        { "@type": "Thing", name: "Sales tax exemption" },
+        { "@type": "Thing", name: "To-the-trade commerce" },
+      ],
+      audience: {
+        "@type": "BusinessAudience",
+        audienceType: "To-the-trade brands selling furniture, lighting, rugs, and home decor",
+      },
+    });
+
+    document.head.appendChild(faqSchema);
+    document.head.appendChild(articleSchema);
+
     return () => {
       document.title = prevTitle;
       if (prevDesc) descMeta?.setAttribute("content", prevDesc);
+      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
+      faqSchema.remove();
+      articleSchema.remove();
     };
   }, []);
 

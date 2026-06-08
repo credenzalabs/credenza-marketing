@@ -1197,7 +1197,31 @@ function CTASection() {
 /* =========================================================================
    PAGE
    ========================================================================= */
+const PAGE_TITLE =
+  "For interior designers: one verified trade profile, every resale certificate";
+const PAGE_DESCRIPTION =
+  "Credenza gives interior designers one verified trade profile to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates for any US state in seconds. Free for designers—no credit card, no seat limits.";
+const CANONICAL_URL = "https://usecredenza.com/for-designers";
+
 export default function ForDesigners() {
+  useEffect(() => {
+    const prevTitle = document.title;
+    const descMeta = document.querySelector('meta[name="description"]');
+    const prevDesc = descMeta?.getAttribute("content");
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    const prevCanonical = canonicalEl?.getAttribute("href");
+
+    document.title = `${PAGE_TITLE} | Credenza`;
+    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
+    canonicalEl?.setAttribute("href", CANONICAL_URL);
+
+    return () => {
+      document.title = prevTitle;
+      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
+      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <Nav activePage="designers" ctaLabel="Get Started" ctaHref={JOIN_DESIGNER_URL} />
