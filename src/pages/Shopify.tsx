@@ -111,11 +111,11 @@ const CAPABILITIES: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "Customer profiles, created and tagged",
-    body: "Credenza creates each verified designer's customer profile in your Shopify store—or updates it if they already exist—then applies your configured trade-customer tag (default trade-verified), plus Credenza-managed tags for trade status, role, and discount tier. Your existing storefront pricing rules, theme logic, and segmentation queries see them as trade buyers—at the right discount tier—automatically.",
+    body: "Credenza creates each verified designer's Shopify customer profile—or updates it if they already exist—and applies your trade-customer tag plus tags for role and discount tier. Your existing pricing rules and segmentation treat them as trade buyers automatically.",
   },
   {
     title: "Resale certificates and state-scoped exemptions",
-    body: "Credenza manages resale certificates across 46 jurisdictions—every state form plus the MTC & SST multistate forms—with each state's own expiration logic baked in, from Florida's calendar-year DR-13 to states that never expire. The exemptions written to Shopify fire only in the states where the designer is actually registered, and they're revoked automatically when a certificate lapses and reinstated when renewed.",
+    body: "Credenza manages resale certificates across 46 jurisdictions—every state form plus the MTC and SST multistate forms—with each state's expiration logic built in. Exemptions written to Shopify fire only where the designer is registered, and revoke and reinstate themselves as certificates lapse and renew.",
   },
   {
     title: "Compliance-ready audit trail",
@@ -1043,38 +1043,64 @@ function Close() {
   return (
     <section className="py-24 md:py-32 bg-white" style={{ borderTop: `0.5px solid ${C.sageDark}` }}>
       <div className="container">
-        <div className="max-w-3xl">
-          <Eyebrow>Get started</Eyebrow>
-          <h2
-            className="font-freight mb-8 text-charcoal"
-            style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
-          >
-            Verified buyers in. Compliance handled.{" "}
-            <span className="italic text-olive-mid">Your team back to selling.</span>
-          </h2>
-          <p
-            className="mb-10 text-charcoal-mid"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: 620 }}
-          >
-            Credenza verifies every trade applicant, writes the trade-customer tag and state-scoped
-            exemptions straight to Shopify, and tracks every certificate's expiration so nothing lapses
-            silently. Your team gets the time back.
-          </p>
-          <a
-            href={JOIN_VENDOR_URL}
-            className="no-underline inline-flex items-center justify-center gap-2 px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "0.72rem",
-              letterSpacing: "0.1em",
-              backgroundColor: C.teal,
-              color: C.forest,
-              outline: "0.5px solid #99b8bd",
-              outlineOffset: "2px",
-            }}
-          >
-            Request access
-          </a>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden"
+          style={{ border: `0.5px solid ${C.sageDark}` }}
+        >
+          {/* Image */}
+          <div className="relative overflow-hidden aspect-[4/3] lg:aspect-auto min-h-[280px]">
+            <img
+              src="/marea-clark-living-room.webp"
+              alt="Living room by Marea Clark Interiors"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectPosition: "center center" }}
+            />
+            <PhotoCredit
+              separator=""
+              credits={[
+                { text: "© " },
+                { text: "Tim Lenz", href: withCredenzaUtm("https://www.timlenzphoto.com/", "photo-credit", "shopify-close") },
+                { text: "/OTTO (design by " },
+                { text: "Marea Clark Interiors", href: withCredenzaUtm("https://www.mareaclarkinteriors.com/", "designer-credit", "shopify-close") },
+                { text: ")" },
+              ]}
+            />
+          </div>
+          {/* Copy */}
+          <div className="bg-white p-10 md:p-12 lg:p-16 flex flex-col justify-center">
+            <Eyebrow>Get started</Eyebrow>
+            <h2
+              className="font-freight mb-6 text-charcoal"
+              style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
+            >
+              Verified buyers in. Compliance handled.{" "}
+              <span className="italic text-olive-mid">Your team back to selling.</span>
+            </h2>
+            <p
+              className="mb-9 text-charcoal-mid"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
+            >
+              Credenza verifies every trade applicant, writes the trade-customer tag and state-scoped
+              exemptions straight to Shopify, and tracks every certificate's expiration so nothing lapses
+              silently. Your team gets the time back.
+            </p>
+            <a
+              href={JOIN_VENDOR_URL}
+              className="no-underline inline-flex items-center justify-center gap-2 self-start px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "0.72rem",
+                letterSpacing: "0.1em",
+                backgroundColor: C.teal,
+                color: C.forest,
+                outline: "0.5px solid #99b8bd",
+                outlineOffset: "2px",
+              }}
+            >
+              Request access
+            </a>
+          </div>
         </div>
       </div>
     </section>
