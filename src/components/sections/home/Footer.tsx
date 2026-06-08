@@ -18,7 +18,7 @@ export function Footer() {
             </p>
           </div>
           {[
-            { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }, { label: "Resale Certificate Management", href: `${prefix}/resale-certificate-management` }] },
+            { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }, { label: "Resale Certificate Management", href: `${prefix}/resale-certificate-management` }, { label: "Shopify Integration", href: `${prefix}/shopify` }] },
             { heading: "Company", links: [{ label: "About", href: `${prefix}/about` }, { label: "Resources", href: `${prefix}/resources` }] },
             { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (

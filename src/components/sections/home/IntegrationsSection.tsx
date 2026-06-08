@@ -8,6 +8,7 @@ import { withCredenzaUtm } from "@/utils/utm";
 // ─── Integrations ────────────────────────────────────────────────────────────────
 export function IntegrationsSection() {
   const ref = useReveal();
+  const prefix = window.location.pathname.startsWith("/preview") ? "/preview" : "";
   return (
     <section ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
@@ -58,12 +59,14 @@ export function IntegrationsSection() {
                   title: "Shopify",
                   badge: "Available now",
                   body: "Approved designers become Shopify customers instantly—tagged with your trade pricing and state-level tax exemptions applied. No manual entry. No misapplied exemptions.",
+                  href: `${prefix}/shopify`,
                 },
                 {
                   icon: <Settings size={18} />,
                   title: "Custom stacks & ERPs",
                   badge: "Coming soon",
                   body: "Direct integrations for custom e-commerce stacks and ERP systems are on the roadmap. If you’re running something bespoke, let’s talk—we’re building this with early partners.",
+                  href: undefined,
                 },
               ].map((item) => {
                 const available = item.badge === "Available now";
@@ -94,6 +97,21 @@ export function IntegrationsSection() {
                     >
                       {item.body}
                     </p>
+                    {item.href && (
+                      <a
+                        href={item.href}
+                        className="no-underline inline-flex items-center gap-1 mt-3 text-teal-mid transition-colors duration-150 hover:text-charcoal"
+                        style={{
+                          fontFamily: "Inter, sans-serif",
+                          fontSize: "0.7rem",
+                          fontWeight: 600,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        Explore the integration →
+                      </a>
+                    )}
                   </div>
                 );
               })}
