@@ -1050,8 +1050,8 @@ function Close() {
           {/* Image */}
           <div className="relative overflow-hidden aspect-[4/3] lg:aspect-auto min-h-[280px]">
             <img
-              src="/marea-clark-living-room.webp"
-              alt="Living room by Marea Clark Interiors"
+              src="/marea-clark-entry.webp"
+              alt="Entry by Marea Clark Interiors"
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
               style={{ objectPosition: "center center" }}
