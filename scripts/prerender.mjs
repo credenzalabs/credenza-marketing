@@ -104,24 +104,35 @@ function outPathFor(route) {
   return join(DIST, route.replace(/^\//, ""), "index.html");
 }
 
-async function main() {
-  let puppeteer;
-  try {
-    puppeteer = (await import("puppeteer")).default;
-  } catch (err) {
-    console.warn("[prerender] puppeteer not available, skipping prerender (SPA shell will ship):", err?.message);
-    return; // exit 0 — never block a deploy
+// Launch headless Chrome. On Vercel/Lambda build containers the bundled
+// puppeteer Chrome can't launch (missing system libs), so use the
+// @sparticuz/chromium binary + puppeteer-core there. Locally (macOS/dev),
+// use the full puppeteer package, which ships its own working Chrome.
+async function launchBrowser() {
+  const onVercel = !!process.env.VERCEL || !!process.env.AWS_REGION || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+  if (onVercel) {
+    const chromium = (await import("@sparticuz/chromium")).default;
+    const puppeteer = (await import("puppeteer-core")).default;
+    return puppeteer.launch({
+      args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless ?? true,
+    });
   }
+  const puppeteer = (await import("puppeteer")).default;
+  return puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+  });
+}
 
+async function main() {
   const { server, port } = await startServer();
   const base = `http://127.0.0.1:${port}`;
 
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-    });
+    browser = await launchBrowser();
   } catch (err) {
     console.warn("[prerender] could not launch Chrome, skipping prerender (SPA shell will ship):", err?.message);
     server.close();
