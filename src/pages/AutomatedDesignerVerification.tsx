@@ -51,7 +51,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "What checks does the verification engine actually run?",
-    a: "Nine checks run in parallel against authoritative sources: (1) EIN and business entity validated against IRS records, (2) sales tax ID format and active registration across 28 states, (3) professional memberships in ASID, AIA, NCIDQ, NKBA, and ICAA, (4) website and online presence consistent with an active design practice, (5) Instagram and portfolio evidence of a client-facing practice, (6) state interior-design license in the 8 states with practice acts and NCARB cross-reference for architecture, (7) resale certificate validity and signature, (8) trade references emailed directly to confirm an account in good standing, and (9) press and showhouse recognition. Each check returns structured evidence.",
+    a: "Nine checks run in parallel against authoritative sources: (1) EIN and business entity validated against IRS records, (2) sales tax ID format and active registration across 28 states, (3) professional memberships in ASID, AIA, NCIDQ, NKBA, and ICAA, (4) website and online presence consistent with an active design practice, (5) Instagram and portfolio evidence of a client-facing practice, (6) state interior-design license in the 8 states with practice acts and NCARB cross-reference for architecture, (7) resale certificate validity and signature, (8) trade references collected and checked for valid contacts and account numbers, and (9) press and showhouse recognition. Each check returns structured evidence.",
   },
   {
     q: "How accurate is automated verification compared to manual review?",
@@ -106,7 +106,7 @@ const CHECKS: Array<{ title: string; body: ReactNode }> = [
   },
   {
     title: "Trade references",
-    body: "References emailed directly to confirm the designer holds an account in good standing. Distinguishes a designer with active wholesale relationships from a first-time applicant claiming history they don't have.",
+    body: "Trade references collected and checked for valid contacts and account numbers. Distinguishes a designer with active wholesale relationships from a first-time applicant claiming history they don't have.",
   },
   {
     title: "Press & showhouse recognition",

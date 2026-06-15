@@ -15,7 +15,7 @@ export function VerificationSection() {
     { label: "Instagram / portfolio", detail: "Evidence of an active, client-facing design practice" },
     { label: "License verification (where required)", detail: "Interior design license verified in the 8 states with practice acts; architecture licenses cross-referenced with NCARB records." },
     { label: "Resale certificates", detail: "State-specific or multi-state form, signed by authorized firm representative" },
-    { label: "Trade references", detail: "Trade references emailed directly to confirm account in good standing." },
+    { label: "Trade references", detail: "Trade references collected and checked for valid contacts and account numbers." },
     { label: "Press & showhouse recognition", detail: <><i>AD</i>, <i>Veranda</i>, <i>Elle Decor</i>, <i>House Beautiful</i>, <i>Southern Living</i>, <i>Luxe</i>, Kips Bay, and more</> },
   ];
 
