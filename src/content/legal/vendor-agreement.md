@@ -208,7 +208,7 @@ Continued use of the Platform following an update constitutes acceptance of the 
 **19\. Governing Law and Venue**
 
 This Agreement shall be governed by the laws of the State of Florida, without regard to conflict of law principles.  
-Any dispute arising out of or relating to this Agreement shall be brought exclusively in the state or federal courts located in Delaware, and each party consents to the jurisdiction of such courts.
+Any dispute arising out of or relating to this Agreement shall be brought exclusively in the state or federal courts located in Florida, and each party consents to the jurisdiction of such courts.
 
 **20\. Miscellaneous**
 

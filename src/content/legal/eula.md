@@ -96,7 +96,7 @@ You represent that you are not located in, and will not use or export the Softwa
 
 16\. Governing Law and Dispute Resolution
 
-This Agreement is governed by the laws of the State of Delaware, without regard to its conflict-of-laws rules, and excluding the United Nations Convention on Contracts for the International Sale of Goods. Subject to any binding arbitration or dispute-resolution provision in the Terms of Use (which, where applicable, controls the manner of resolving disputes), you and Credenza submit to the exclusive jurisdiction of the state and federal courts located in Delaware for any dispute arising out of or relating to this Agreement or the Software, and you waive any objection to venue or forum non conveniens in those courts.
+This Agreement is governed by the laws of the State of Florida, without regard to its conflict-of-laws rules, and excluding the United Nations Convention on Contracts for the International Sale of Goods. Subject to any binding arbitration or dispute-resolution provision in the Terms of Use (which, where applicable, controls the manner of resolving disputes), you and Credenza submit to the exclusive jurisdiction of the state and federal courts located in Florida for any dispute arising out of or relating to this Agreement or the Software, and you waive any objection to venue or forum non conveniens in those courts.
 
 17\. Changes to This Agreement
 
