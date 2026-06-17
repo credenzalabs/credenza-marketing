@@ -88,6 +88,27 @@ export function Footer() {
             >
               Terms
             </a>
+            <a
+              href="/vendor-agreement"
+              className="no-underline text-charcoal-soft hover:text-charcoal"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}
+            >
+              Vendor Agreement
+            </a>
+            <a
+              href="/dpa"
+              className="no-underline text-charcoal-soft hover:text-charcoal"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}
+            >
+              DPA
+            </a>
+            <a
+              href="/eula"
+              className="no-underline text-charcoal-soft hover:text-charcoal"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem" }}
+            >
+              EULA
+            </a>
           </div>
 
         </div>

@@ -37,6 +37,9 @@ const ROUTES = [
   "/social-cards",
   "/privacy-policy",
   "/terms-of-use",
+  "/vendor-agreement",
+  "/dpa",
+  "/eula",
 ];
 
 const MIME = {
