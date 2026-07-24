@@ -68,7 +68,7 @@ const DETAILS = [
 
 const CERTIFICATES = [
   { state: "NY", ref: "CZ-20260722-hK4nRw" },
-  { state: "CA", ref: "CZ-20260722-Qdwxnu" },
+  { state: "NJ", ref: "CZ-20260722-Qdwxnu" },
 ];
 
 function Divider() {
@@ -178,7 +178,7 @@ export function HeroReviewPanel() {
         </div>
         <div>
           <p className="text-[8.5px] uppercase tracking-[0.07em] text-[#6a6a62] mb-0.5">Tax Exempt States</p>
-          <p className="text-[11px] text-[#1c1c19]">NY, CT, NJ, CA</p>
+          <p className="text-[11px] text-[#1c1c19]">NY, NJ</p>
         </div>
 
         <Divider />
