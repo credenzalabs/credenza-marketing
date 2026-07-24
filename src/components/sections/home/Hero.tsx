@@ -3,7 +3,6 @@ import { HeroReviewPanel } from "./HeroReviewPanel";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
-import { IMAGES } from "./images";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
@@ -11,14 +10,14 @@ import { withCredenzaUtm } from "@/utils/utm";
 // but with the review drawer overlaid on top the page had two things moving at
 // once and read as busy — the drawer is the thing worth watching.
 const HERO_IMAGE = {
-  src: IMAGES.studioDorionBrownstone,
-  alt: "Studio Dorion brownstone",
-  position: "left center",
+  src: "/caitlin-kah-credenza.jpg",
+  alt: "Interior by Caitlin Kah",
+  position: "center center",
   credits: [
     { text: "© " },
-    { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
+    { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
     { text: " (design by " },
-    { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
+    { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "home-hero") },
     { text: ")" },
   ],
 };

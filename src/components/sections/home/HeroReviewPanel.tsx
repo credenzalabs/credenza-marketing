@@ -62,8 +62,21 @@ function ScoreBadge({
 
 /** Signal icons + labels as the drawer defines them. */
 const SIGNALS = [
-  { icon: <CreditCard size={14} />, label: "EIN", badge: "Verified", detail: null },
-  { icon: <FileText size={14} />, label: "Sales Tax ID Verification", badge: "Verified", detail: null },
+  {
+    icon: <CreditCard size={14} />,
+    label: "EIN",
+    badge: "Verified",
+    detail: "IRS Match found. TIN and Name combination matches IRS EIN records.",
+  },
+  {
+    // The row label is per-state — the field is named differently everywhere.
+    // This applicant is a New York firm, so the app labels it "Certificate of
+    // Authority Number" (STATE_TAX_ID_NAMES.NY.primaryLabel).
+    icon: <FileText size={14} />,
+    label: "Certificate of Authority Number",
+    badge: "Verified",
+    detail: "Ellery Vance Interiors—confirmed by Credenza manual review",
+  },
   {
     icon: <Globe size={14} />,
     label: "Website",
