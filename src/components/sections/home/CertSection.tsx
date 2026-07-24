@@ -39,7 +39,13 @@ export function CertSection() {
               className="text-charcoal-mid mt-6"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Filled by hand, resale certificates come back with fields left blank, signatures missing, exemption boxes unchecked or checked wrong, an EIN dropped in the sales-tax-ID field—dozens of ways to end up non-compliant—not to mention no way for your team to keep up with 50 state rules and forms. Credenza generates the correct form for every designer-vendor-state combination, pre-fills every field from verified data, and presents a completed document to sign. No room for error.
+              Filled by hand, resale certificates come back wrong—blank fields, missing signatures, exemption boxes unchecked or checked incorrectly, an EIN in the sales-tax-ID line. Dozens of ways to be non-compliant—and no team can keep up with 50 states' rules and forms.
+            </p>
+            <p
+              className="text-charcoal-mid mt-4"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
+              Credenza generates the right form for every designer, vendor, and state, pre-fills it from verified data, and presents a finished document to sign. No room for error.
             </p>
             <a
               href="/resale-certificate-management"
