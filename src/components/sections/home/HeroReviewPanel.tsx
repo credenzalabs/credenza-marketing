@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  BookOpen, CreditCard, ExternalLink, Eye, FileText, Globe, Instagram, Maximize2,
+  BookOpen, Check, CreditCard, ExternalLink, Eye, FileText, Globe, Instagram, Maximize2,
   MapPin, MessageSquareText, Phone, Shield, X, Zap,
 } from "lucide-react";
 
@@ -32,6 +32,17 @@ function ScoreBadge({
     >
       {dot && <span className="inline-block w-[5px] h-[5px] rounded-full shrink-0" style={{ backgroundColor: "currentColor" }} />}
       {children}
+    </span>
+  );
+}
+
+/** Lightweight positive status — a teal check + muted text, no filled pill.
+ *  Keeps the row's result readable without stacking dark badges down the card. */
+function Status({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1 shrink-0 text-[10px]" style={{ color: "#7aa0a8" }}>
+      <Check size={11} className="shrink-0" />
+      <span style={{ color: "#8a897f" }}>{children}</span>
     </span>
   );
 }
@@ -187,8 +198,8 @@ export function HeroReviewPanel() {
                   <p className="text-[9px] text-[#6a6a62]">{cert.ref}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <ScoreBadge dot>Signed</ScoreBadge>
+              <div className="flex items-center gap-2 shrink-0">
+                <Status>Signed</Status>
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] border border-[#e0dcd4] bg-white text-[#1c1c19] rounded-[1px]">
                   <Eye size={9} />View
                 </span>
@@ -221,7 +232,7 @@ export function HeroReviewPanel() {
                     <span className="text-[#6a6a62] shrink-0">{sig.icon}</span>
                     <span className="text-[12px] text-[#1c1c19] truncate">{sig.label}</span>
                   </div>
-                  <ScoreBadge dot>{sig.badge}</ScoreBadge>
+                  <Status>{sig.badge}</Status>
                 </div>
               );
             })}
