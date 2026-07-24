@@ -9,7 +9,7 @@ export function VerificationSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const checks = [
     { label: "EIN / Business entity", detail: "Verified against IRS records—with business name match." },
-    { label: "Sales tax ID", detail: "State-specific format validation in all states and active registration check in 28 states" },
+    { label: "Sales tax ID", detail: "State-specific format validation and active registration check in 28 states" },
     { label: "Professional memberships", detail: "ASID, AIA, NCIDQ, NKBA, ICAA directories—verified against member records" },
     { label: "Website & online presence", detail: "Active, credible web presence consistent with a working design practice" },
     { label: "Instagram / portfolio", detail: "Evidence of an active, client-facing design practice" },
@@ -38,7 +38,7 @@ export function VerificationSection() {
               className="mb-6 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team has everything they need to make a decision, instantly.
+              Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team spends their time on the business—not vetting applications.
             </p>
             <p
               className="text-charcoal-mid"
@@ -46,51 +46,34 @@ export function VerificationSection() {
             >
               The result: a trade program with real standards—because every member is actually in the trade.
             </p>
-            {/* Callout: Credenza closes the gap */}
-            <div className="mt-6 p-5 border-l-[3px] border-olive bg-olive-light">
-              <h4
-                className="font-freight mb-2 text-charcoal"
-                style={{ fontSize: "1.1rem", letterSpacing: "-0.015em" }}
+            {/* Stat callout */}
+            <div className="mt-8 flex items-center gap-5 px-5 py-4 bg-teal-dim border border-teal-border">
+              <div
+                className="text-teal-mid font-bold leading-none shrink-0"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", letterSpacing: "-0.03em" }}
               >
-                Credenza closes the gap, not just the application.
-              </h4>
-              <p
-                className="text-charcoal-mid"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }}
-              >
-                Whether a correction is needed or a designer is one signal short of approval,
-                Credenza reaches out to the applicant on your behalf. No back-and-forth for
-                your team.
-              </p>
+                9
+              </div>
+              <div>
+                <div
+                  className="text-charcoal font-semibold"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem" }}
+                >
+                  Automated verification checks
+                </div>
+                <div
+                  className="text-charcoal-soft mt-0.5"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
+                >
+                  Run in parallel on every profile. Expand each check to see what we verify.
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
             <div className="border border-sage-dark bg-page-white p-6">
-              {/* Header — nine automated checks */}
-              <div className="flex items-center gap-5 pb-5 mb-4 border-b border-sage-dark">
-                <div
-                  className="text-teal-mid font-bold leading-none shrink-0"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "2.5rem", letterSpacing: "-0.03em" }}
-                >
-                  9
-                </div>
-                <div>
-                  <div
-                    className="text-charcoal font-semibold"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem" }}
-                  >
-                    Automated verification checks
-                  </div>
-                  <div
-                    className="text-charcoal-soft mt-0.5"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
-                  >
-                    Run in parallel on every profile. Expand each check to see what we verify.
-                  </div>
-                </div>
-              </div>
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (

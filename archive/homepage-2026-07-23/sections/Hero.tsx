@@ -65,7 +65,7 @@ export function Hero() {
 
           {/* Left: Copy—5 columns */}
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
-            <Eyebrow>Trade Program Software for Interior Design Vendors & Showrooms</Eyebrow>
+            <Eyebrow>The Standard for Trade Programs</Eyebrow>
 
             <h1
               className="font-freight mb-8 leading-none text-charcoal"
@@ -94,10 +94,9 @@ export function Hero() {
                 lineHeight: 1.75,
               }}
             >
-              Credenza is trade program software for interior design vendors. It handles
-              trade verification, designer onboarding, resale certificate management, and
-              tax compliance—so your team approves the right designers instantly and
-              stays compliant without the manual work.
+              Every designer pre-vetted. Every certificate compliant. Every customer
+              onboarded. Trade verification, tax compliance, and onboarding—built for
+              vendors who take their program seriously, and the designers they serve.
             </p>
 
             {/* Primary CTA + ghost "For Designers" button so designers can
@@ -134,9 +133,9 @@ export function Hero() {
             {/* Trust signals—thin rule style */}
             <div className="flex flex-col gap-2.5">
               {[
-                { icon: <FileText size={12} />, text: "Trade verification · 9 automated checks against IRS, state tax, and professional records" },
-                { icon: <Shield size={12} />, text: "Resale certificate management · 46 jurisdictions, generated & monitored" },
-                { icon: <Store size={12} />, text: "Automated designer onboarding · Shopify-native, tax exemptions applied instantly" },
+                { icon: <FileText size={12} />, text: "Compliant resale certificates · Single & multi-state · 46 jurisdictions" },
+                { icon: <Shield size={12} />, text: "Verified trade profile · Powered by Credenza" },
+                { icon: <Store size={12} />, text: "Shopify integration · Auto-creates & -exempts trade accounts" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2.5">
                   <span className="shrink-0 text-charcoal-soft">{item.icon}</span>

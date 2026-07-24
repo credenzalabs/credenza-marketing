@@ -6,9 +6,6 @@
 import { Nav } from "@/components/ui/Nav";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Hero } from "@/components/sections/home/Hero";
-import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection";
-import { InterludeBand } from "@/components/sections/home/InterludeBand";
-import { MidPageCTA } from "@/components/sections/home/MidPageCTA";
 import { PositioningSection } from "@/components/sections/home/PositioningSection";
 import { PortableIdentitySection } from "@/components/sections/home/PortableIdentitySection";
 import { IntegrationsSection } from "@/components/sections/home/IntegrationsSection";
@@ -30,17 +27,14 @@ export default function Home() {
       <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
-      <HowItWorksSection />
+      <PortableIdentitySection />
       <VerificationSection />
       <ForVendors />
-      <InterludeBand />
       <IntegrationsSection />
       <CertSection />
-      <DataSection />
-      <PortableIdentitySection />
       <PositioningSection />
       <TiersSection />
-      <MidPageCTA />
+      <DataSection />
       <MigrationSection />
       <SecuritySection />
       <GallerySection />
