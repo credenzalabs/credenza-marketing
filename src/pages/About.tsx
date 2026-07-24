@@ -125,7 +125,7 @@ export default function About() {
 
         <Prose>
           <p>
-            Credenza Labs, Inc. was founded in 2025 and is headquartered in West Palm Beach, Florida. The platform is live for designers today and accepting to-the-trade brands for early access ahead of public launch.
+            Credenza Labs, Inc. was founded in 2025 and is headquartered in West Palm Beach, Florida. The platform is live today for designers and to-the-trade brands.
           </p>
         </Prose>
 
