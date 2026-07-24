@@ -38,7 +38,7 @@ export function CertSection() {
               className="text-charcoal-mid mt-6"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Other tools pre-fill a vendor name and hand the rest back to the designer. Credenza generates the correct form for every designer-vendor-state combination, pre-fills every field from verified data, and presents a completed document to sign.
+              Done by hand, a certificate means a blank state form emailed to the designer to fill in—with no one checking it's the right document or the right data. Credenza generates the correct form for every designer-vendor-state combination, pre-fills every field from verified data, and presents a completed document to sign.
             </p>
             <a
               href="/resale-certificate-management"
@@ -194,17 +194,17 @@ export function CertSection() {
               className="uppercase font-semibold mb-4"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", color: "#6f6e4b" }}
             >
-              Other tools
+              By hand today
             </div>
             <div className="flex flex-col gap-2.5">
               {[
-                "Pre-fill vendor name and address only—if at all",
+                "A blank or partly filled state form, emailed to the designer",
                 "Designer downloads and fills in the rest",
-                "No validation—bad data goes straight into the cert",
+                "No validation—whatever's typed goes straight onto the cert",
                 "Wrong document risk: designer can submit a seller's permit, W-9, or any other form",
                 "Exemption scope left to the designer to figure out—often under-claimed",
-                "State-issued forms: designer re-uploads to every new vendor",
-                "Renewal: same manual process, repeated every 1–3 years",
+                "State-issued forms: designer re-sends to every new vendor",
+                "Renewal: the same manual round-trip, repeated every 1–3 years",
                 "When something's wrong, it's your problem—vendors chase designers for corrections",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-2.5">
