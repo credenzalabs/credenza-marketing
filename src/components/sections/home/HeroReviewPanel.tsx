@@ -75,7 +75,7 @@ const SIGNALS = [
     icon: <FileText size={14} />,
     label: "Certificate of Authority Number",
     badge: "Verified",
-    detail: "Ellery Vance Interiors—confirmed by Credenza manual review",
+    detail: "Ellery Vance Interiors—automatically verified against state records",
   },
   {
     icon: <Globe size={14} />,
