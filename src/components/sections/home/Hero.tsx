@@ -27,26 +27,23 @@ export function Hero() {
   const hero = HERO_IMAGE;
 
   return (
-    <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-page-white">
-      {/* Hard-edged split: the copy sits on a solid light panel at left, the
-          photograph fills a defined panel at right with a crisp vertical edge —
-          no gradient blend between them. The review drawer overlays the photo.
-          Below lg the photo drops away and the copy takes the full width. */}
-      <div className="absolute inset-y-0 right-0 hidden lg:block w-[50%] xl:w-[52%]">
-        <img
-          src={hero.src}
-          alt={hero.alt}
-          className="w-full h-full object-cover"
-          style={{ objectPosition: hero.position }}
-        />
-        <PhotoCredit credits={hero.credits} separator="" />
-      </div>
+    <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-white">
+      {/* Subtle dot texture behind the copy */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-35"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${C.sageDark} 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
+        }}
+      />
 
       <div className="container relative z-10 py-12 md:py-16">
+        {/* Editorial layout: copy left, contained photograph right. The review
+            card flies in over the photo. */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
 
-          {/* Left: Copy—6 columns */}
-          <div className="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
+          {/* Left: Copy—5 columns */}
+          <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
             <Eyebrow>
               Trade Program Software for Interior Design{" "}
               <span className="whitespace-nowrap">Vendors &amp; Showrooms</span>
@@ -65,6 +62,11 @@ export function Hero() {
               <br />
               trade program.
             </h1>
+
+            {/* Mobile-only hero image after headline */}
+            <div className="lg:hidden mb-8 overflow-hidden aspect-[4/3]">
+              <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ objectPosition: hero.position }} />
+            </div>
 
             <p
               className="mb-10 text-charcoal-mid max-w-[420px]"
@@ -111,8 +113,16 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: the review drawer, over the open part of the photograph */}
-          <div className="lg:col-span-6 relative hidden lg:block min-h-[620px]">
+          {/* Right: contained photograph — desktop only. The review card flies
+              in over it. 4:3 keeps the whole card above the fold. */}
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-[4/3]">
+            <img
+              src={hero.src}
+              alt={hero.alt}
+              className="w-full h-full object-cover block"
+              style={{ objectPosition: hero.position }}
+            />
+            <PhotoCredit credits={hero.credits} separator="" />
             <HeroReviewPanel />
           </div>
         </div>
