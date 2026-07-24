@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
 import { HeroReviewPanel } from "./HeroReviewPanel";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
@@ -8,65 +7,66 @@ import { IMAGES } from "./images";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
-const HERO_IMAGES = [
-  {
-    src: IMAGES.studioDorionBrownstone,
-    alt: "Studio Dorion brownstone",
-    position: "left center",
-    dwellMs: 6000,
-    credits: [
-      { text: "© " },
-      { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
-      { text: " (design by " },
-      { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
-      { text: ")" },
-    ],
-  },
-  {
-    src: "/caitlin-kah-credenza.jpg",
-    alt: "Interior by Caitlin Kah",
-    position: "center center",
-    dwellMs: 12000,
-    credits: [
-      { text: "© " },
-      { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
-      { text: " (design by " },
-      { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "home-hero") },
-      { text: ")" },
-    ],
-  },
-];
+// A single still photograph. The hero used to cross-fade between two images,
+// but with the review drawer overlaid on top the page had two things moving at
+// once and read as busy — the drawer is the thing worth watching.
+const HERO_IMAGE = {
+  src: IMAGES.studioDorionBrownstone,
+  alt: "Studio Dorion brownstone",
+  position: "left center",
+  credits: [
+    { text: "© " },
+    { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
+    { text: " (design by " },
+    { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
+    { text: ")" },
+  ],
+};
 
 export function Hero() {
-  const [heroIndex, setHeroIndex] = useState(0);
-  useEffect(() => {
-    const timer = setTimeout(
-      () => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length),
-      HERO_IMAGES[heroIndex].dwellMs,
-    );
-    return () => clearTimeout(timer);
-  }, [heroIndex]);
-  const hero = HERO_IMAGES[heroIndex];
-  const visible = true;
+  const hero = HERO_IMAGE;
 
   return (
     <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-white">
-      {/* Subtle dot texture */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-35"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${C.sageDark} 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+      {/* The photograph is the hero's whole ground. A scrim holds the left side
+          near-white so the copy stays dark-on-light in the brand's register,
+          then clears by two-thirds across to leave the image and the review
+          drawer in the open. Below lg the scrim covers everything, because the
+          copy stacks over the full width. */}
+      <div className="absolute inset-0">
+        <img
+          src={hero.src}
+          alt={hero.alt}
+          className="w-full h-full object-cover"
+          style={{ objectPosition: hero.position }}
+        />
+        <div
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(100deg, rgba(253,252,249,0.98) 0%, rgba(253,252,249,0.97) 32%, rgba(253,252,249,0.80) 45%, rgba(253,252,249,0.28) 60%, rgba(253,252,249,0.04) 72%, rgba(253,252,249,0) 82%)",
+          }}
+        />
+        <div className="absolute inset-0 lg:hidden" style={{ backgroundColor: "rgba(253,252,249,0.90)" }} />
+        <div
+          className="absolute inset-x-0 top-0 h-32"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(253,252,249,0.97) 0%, rgba(253,252,249,0.88) 40%, rgba(253,252,249,0.45) 72%, rgba(253,252,249,0) 100%)",
+          }}
+        />
+      </div>
+      <PhotoCredit credits={hero.credits} separator="" />
 
       <div className="container relative z-10 py-12 md:py-16">
-        {/* Editorial layout: text-heavy left, full-bleed image right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
 
-          {/* Left: Copy—5 columns */}
-          <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
-            <Eyebrow>Trade Program Software for Interior Design Vendors & Showrooms</Eyebrow>
+          {/* Left: Copy—6 columns */}
+          <div className="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
+            <Eyebrow>
+              Trade Program Software for Interior Design{" "}
+              <span className="whitespace-nowrap">Vendors &amp; Showrooms</span>
+            </Eyebrow>
 
             <h1
               className="font-freight mb-8 leading-none text-charcoal"
@@ -81,11 +81,6 @@ export function Hero() {
               <br />
               trade program.
             </h1>
-
-            {/* Mobile-only hero image after headline */}
-            <div className="lg:hidden mb-8 overflow-hidden aspect-[4/3]">
-              <img src={hero.src} alt={hero.alt} className="w-full h-full object-cover" style={{ objectPosition: hero.position }} />
-            </div>
 
             <p
               className="mb-10 text-charcoal-mid max-w-[400px]"
@@ -153,15 +148,8 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Photography — desktop only */}
-          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
-            <img
-              src={hero.src}
-              alt={hero.alt}
-              className="w-full h-full object-cover block"
-              style={{ objectPosition: hero.position }}
-            />
-            <PhotoCredit credits={hero.credits} separator="" />
+          {/* Right: the review drawer, over the open part of the photograph */}
+          <div className="lg:col-span-6 relative hidden lg:block min-h-[620px]">
             <HeroReviewPanel />
           </div>
         </div>

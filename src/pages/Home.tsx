@@ -31,7 +31,6 @@ export default function Home() {
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
       <HowItWorksSection />
-      <PortableIdentitySection />
       <VerificationSection />
       <ForVendors />
       <InterludeBand />
@@ -44,6 +43,9 @@ export default function Home() {
       <MigrationSection />
       <SecuritySection />
       <GallerySection />
+      {/* Portable identity closes the page: the designer-side story lands after
+          the vendor case is made, not before it. */}
+      <PortableIdentitySection />
       <FAQSection />
       <CTASection />
       <Footer />

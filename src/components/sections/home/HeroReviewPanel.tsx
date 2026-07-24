@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  BookOpen, CreditCard, ExternalLink, FileText, Globe, Instagram, Maximize2,
+  BookOpen, CreditCard, ExternalLink, Eye, FileText, Globe, Instagram, Maximize2,
   MapPin, MessageSquareText, Phone, RefreshCw, Shield, X,
 } from "lucide-react";
 
@@ -13,8 +13,12 @@ import {
  * stays a faithful screenshot rather than a marketing approximation: the real
  * ivory drawer ground (#f8f6f1), the real sticky "Application Review" header,
  * the app's own ScoreBadge, the real business-detail grid, and the Verification
- * Signals list with the app's own signal labels and icons. Cropped like a
- * screenshot — the Certificates block and portfolio sit below the visible edge.
+ * Signals list with the app's own signal labels and icons.
+ *
+ * Shows the full applicant record the real drawer shows — contact, links, the
+ * business-detail grid including tax-exempt states, the signed resale
+ * certificates on file, then the signals. Cropped like a screenshot at the
+ * bottom edge, where Portfolio would follow.
  *
  * Because this application was already decided, the drawer renders no
  * Decline/Approve buttons, no A/D keyboard hints, and no rep or discount-tier
@@ -23,7 +27,7 @@ import {
  * The applicant is invented; real designer data stays out of marketing.
  */
 
-const PANEL_W = 440; // rendered width over the hero photograph
+const PANEL_W = 350; // rendered width over the hero photograph
 const TRUE_W = 522; // the drawer's own width
 const SCALE = PANEL_W / TRUE_W;
 
@@ -85,6 +89,11 @@ const DETAILS_ROW_2 = [
   ["Projects/Year", "6–15"],
 ];
 
+const CERTIFICATES = [
+  { state: "NY", issued: "7/22/2026", ref: "CZ-20260722-hK4nRw" },
+  { state: "CA", issued: "7/22/2026", ref: "CZ-20260722-Qdwxnu" },
+];
+
 export function HeroReviewPanel() {
   const [shown, setShown] = useState(false);
   const [revealed, setRevealed] = useState(0); // signal badges settled so far
@@ -108,10 +117,10 @@ export function HeroReviewPanel() {
   return (
     <div
       aria-hidden="true"
-      className="absolute right-6 top-[6%] pointer-events-none select-none overflow-hidden"
+      className="absolute right-0 top-0 pointer-events-none select-none overflow-hidden"
       style={{
         width: `${PANEL_W}px`,
-        height: "560px",
+        height: "620px",
         backgroundColor: "#f8f6f1",
         boxShadow: "-8px 0 30px rgba(0,0,0,0.12), 0 16px 48px rgba(0,0,0,0.22)",
         opacity: shown ? 1 : 0,
@@ -226,6 +235,45 @@ export function HeroReviewPanel() {
                 </p>
                 <p className="text-[13px] text-[#1c1c19]">Residential</p>
               </div>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.08em] text-[#6a6a62] mb-0.5">
+                Tax Exempt States
+              </p>
+              <p className="text-[13px] text-[#1c1c19]">NY, CT, NJ, CA</p>
+            </div>
+          </div>
+
+          {/* Certificates */}
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.08em] font-medium mb-3" style={{ color: "#6a6a62" }}>
+              Certificates
+            </h3>
+            <div className="space-y-2">
+              {CERTIFICATES.map((cert) => (
+                <div
+                  key={cert.state}
+                  className="flex items-center justify-between gap-3 px-4 py-2.5 bg-white border border-[#e0dcd4] rounded-[2px]"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <FileText size={14} className="text-[#6a6a62] shrink-0" />
+                    <div className="min-w-0">
+                      <p className="text-[13px] text-[#1c1c19]">{cert.state} Certificate</p>
+                      <p className="text-[11px] text-[#6a6a62]">
+                        Issued {cert.issued} &middot; {cert.ref}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <ScoreBadge variant="verified" dot>Signed</ScoreBadge>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] border border-[#e0dcd4] bg-white text-[#1c1c19] rounded-[1px]">
+                      <Eye size={10} />
+                      View
+                    </span>
+                    <ExternalLink size={11} className="text-[#6a6a62]" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
