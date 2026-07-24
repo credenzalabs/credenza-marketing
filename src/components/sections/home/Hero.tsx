@@ -1,8 +1,9 @@
-import { ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { HeroReviewPanel } from "./HeroReviewPanel";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
+import { IMAGES } from "./images";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
@@ -10,14 +11,14 @@ import { withCredenzaUtm } from "@/utils/utm";
 // but with the review drawer overlaid on top the page had two things moving at
 // once and read as busy — the drawer is the thing worth watching.
 const HERO_IMAGE = {
-  src: "/caitlin-kah-credenza.jpg",
-  alt: "Interior by Caitlin Kah",
-  position: "center center",
+  src: IMAGES.studioDorionBrownstone,
+  alt: "Studio Dorion brownstone",
+  position: "left center",
   credits: [
     { text: "© " },
-    { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
+    { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
     { text: " (design by " },
-    { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "home-hero") },
+    { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
     { text: ")" },
   ],
 };
@@ -26,29 +27,20 @@ export function Hero() {
   const hero = HERO_IMAGE;
 
   return (
-    <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-white">
-      {/* The photograph is the hero's whole ground. A scrim holds the left side
-          near-white so the copy stays dark-on-light in the brand's register,
-          then clears by two-thirds across to leave the image and the review
-          drawer in the open. Below lg the scrim covers everything, because the
-          copy stacks over the full width. */}
-      <div className="absolute inset-0">
+    <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-page-white">
+      {/* Hard-edged split: the copy sits on a solid light panel at left, the
+          photograph fills a defined panel at right with a crisp vertical edge —
+          no gradient blend between them. The review drawer overlays the photo.
+          Below lg the photo drops away and the copy takes the full width. */}
+      <div className="absolute inset-y-0 right-0 hidden lg:block w-[50%] xl:w-[52%]">
         <img
           src={hero.src}
           alt={hero.alt}
           className="w-full h-full object-cover"
           style={{ objectPosition: hero.position }}
         />
-        <div
-          className="absolute inset-0 hidden lg:block"
-          style={{
-            background:
-              "linear-gradient(100deg, rgba(253,252,249,0.98) 0%, rgba(253,252,249,0.97) 32%, rgba(253,252,249,0.80) 45%, rgba(253,252,249,0.28) 60%, rgba(253,252,249,0.04) 72%, rgba(253,252,249,0) 82%)",
-          }}
-        />
-        <div className="absolute inset-0 lg:hidden" style={{ backgroundColor: "rgba(253,252,249,0.90)" }} />
+        <PhotoCredit credits={hero.credits} separator="" />
       </div>
-      <PhotoCredit credits={hero.credits} separator="" />
 
       <div className="container relative z-10 py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
@@ -75,24 +67,23 @@ export function Hero() {
             </h1>
 
             <p
-              className="mb-10 text-charcoal-mid max-w-[400px]"
+              className="mb-10 text-charcoal-mid max-w-[420px]"
               style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "1rem",
                 lineHeight: 1.75,
               }}
             >
-              Credenza is trade program software for interior design vendors. It handles
-              trade verification, designer onboarding, resale certificate management, and
-              tax compliance—so your team approves the right designers instantly and
-              stays compliant without the manual work.
+              Trade verification, designer onboarding, resale certificate management,
+              and tax compliance—so your team approves the right designers instantly
+              and stays compliant without the manual work.
             </p>
 
             {/* Primary CTA + ghost "For Designers" button so designers can
                 reach their page without hunting the nav. Both stretch
                 full-width while stacked (<md) so they match length; at md+
                 they sit side-by-side at intrinsic width. */}
-            <div className="flex flex-col md:flex-row gap-3 mb-12">
+            <div className="flex flex-col md:flex-row gap-3">
               <a
                 href={JOIN_VENDOR_URL}
                 className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
@@ -117,26 +108,6 @@ export function Hero() {
               >
                 Are you a designer? →
               </a>
-            </div>
-
-            {/* Trust signals—thin rule style */}
-            <div className="flex flex-col gap-2.5">
-              {[
-                { icon: <FileText size={12} />, text: "Trade verification · 9 automated checks against IRS, state tax, and professional records" },
-                { icon: <Shield size={12} />, text: "Resale certificate management · 46 jurisdictions, generated & monitored" },
-                { icon: <Store size={12} />, text: "Automated designer onboarding · Shopify-native, tax exemptions applied instantly" },
-                { icon: <TrendingUp size={12} />, text: "Program intelligence · Revenue drivers, member health, and exportable segments" },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-2.5">
-                  <span className="shrink-0 text-charcoal-soft">{item.icon}</span>
-                  <span
-                    className="text-charcoal-soft"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.02em" }}
-                  >
-                    {item.text}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
 
