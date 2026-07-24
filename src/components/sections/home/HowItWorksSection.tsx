@@ -37,22 +37,8 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section ref={ref} className="reveal relative overflow-hidden border-t border-sage-dark">
-      {/* Caitlin Kah interior as the section ground. A light page-white wash
-          keeps the dark header and the white step cards legible over it. */}
-      <div className="absolute inset-0">
-        <img
-          src="/caitlin-kah-credenza.jpg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="w-full h-full object-cover"
-          style={{ objectPosition: "center center" }}
-        />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(253,252,249,0.80)" }} />
-      </div>
-
-      <div className="container relative z-10 py-20 md:py-28">
+    <section ref={ref} className="reveal bg-page-white border-t border-sage-dark">
+      <div className="container py-20 md:py-28">
         {/* Section header */}
         <div className="max-w-3xl mb-14">
           <Eyebrow>How it works</Eyebrow>
