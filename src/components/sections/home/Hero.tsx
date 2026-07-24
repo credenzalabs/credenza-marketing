@@ -113,9 +113,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: contained photograph — desktop only. The review card flies
-              in over it. 4:3 keeps the whole card above the fold. */}
-          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-[4/3]">
+          {/* Right: contained square photograph — desktop only. The review card
+              flies in over it. */}
+          <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
             <img
               src={hero.src}
               alt={hero.alt}

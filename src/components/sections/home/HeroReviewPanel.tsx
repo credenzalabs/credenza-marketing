@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import {
-  BookOpen, CreditCard, FileText, Globe, Instagram, Maximize2,
-  MessageSquareText, Shield, X, Zap,
+  BookOpen, CreditCard, ExternalLink, Eye, FileText, Globe, Instagram, Maximize2,
+  MapPin, MessageSquareText, Phone, Shield, X, Zap,
 } from "lucide-react";
 
 /**
- * A compact Application Review card that flies in over the hero photograph.
+ * The Application Review card, flown in over the hero photograph.
  *
- * The chrome is the product's own (the "Application Review" drawer from the
- * trade app): ivory ground, the app's ScoreBadge, the real signal icons and
- * labels. Trimmed to the moment that matters in a hero — the applicant, the
- * verification signals, and the automatic approval. Each signal row flies in
- * from the right in sequence; once they've all landed the Auto-approved badge
- * drops in. Plays once, then holds.
+ * Chrome and content are the product's own (the "Application Review" drawer in
+ * the trade app): ivory ground, the app's ScoreBadge, the real business-detail
+ * grid, the signed resale certificates, and the verification signals with the
+ * app's own icons and labels. Carries the full applicant record.
  *
+ * The verification rows fly in from the right in sequence; once they've all
+ * landed the Auto-approved badge drops into the header. Plays once, then holds.
  * The applicant is invented — real designer data stays out of marketing.
  */
 
@@ -46,6 +46,32 @@ const SIGNALS = [
   { icon: <MessageSquareText size={13} />, label: "Press Coverage", badge: "Featured (4)" },
 ];
 
+const DETAILS = [
+  ["Profession", "Interior Designer"],
+  ["Revenue", "$1M–$5M"],
+  ["Firm Size", "11"],
+  ["EIN", "XX-XXX4821"],
+  ["Years in Business", "11"],
+  ["Projects/Year", "6–15"],
+];
+
+const CERTIFICATES = [
+  { state: "NY", ref: "CZ-20260722-hK4nRw" },
+  { state: "CA", ref: "CZ-20260722-Qdwxnu" },
+];
+
+function Divider() {
+  return <div style={{ borderTop: "1px solid #e0dcd4" }} />;
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="text-[9px] uppercase tracking-[0.09em] font-medium" style={{ color: "#6a6a62" }}>
+      {children}
+    </div>
+  );
+}
+
 export function HeroReviewPanel() {
   const [shown, setShown] = useState(false);
   const [flown, setFlown] = useState(0); // signal rows that have flown in
@@ -58,33 +84,35 @@ export function HeroReviewPanel() {
       setApproved(true);
       return;
     }
-    const timers = [setTimeout(() => setShown(true), 350)];
+    // Hold on the bare room for a beat, then let the card and its rows arrive
+    // slowly — the photograph should register before the product does.
+    const timers = [setTimeout(() => setShown(true), 1400)];
     SIGNALS.forEach((_, i) => {
-      timers.push(setTimeout(() => setFlown(i + 1), 800 + i * 150));
+      timers.push(setTimeout(() => setFlown(i + 1), 2200 + i * 300));
     });
-    timers.push(setTimeout(() => setApproved(true), 800 + SIGNALS.length * 150 + 250));
+    timers.push(setTimeout(() => setApproved(true), 2200 + SIGNALS.length * 300 + 350));
     return () => timers.forEach(clearTimeout);
   }, []);
 
   return (
     <div
       aria-hidden="true"
-      className="absolute right-5 bottom-5 pointer-events-none select-none"
+      className="absolute right-5 top-6 pointer-events-none select-none"
       style={{
-        width: "330px",
+        width: "340px",
         backgroundColor: "#f8f6f1",
         border: "1px solid #e0dcd4",
         boxShadow: "0 18px 50px rgba(0,0,0,0.24), 0 3px 10px rgba(0,0,0,0.10)",
         fontFamily: "Inter, system-ui, sans-serif",
         opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : "translateY(14px)",
-        transition: "opacity 500ms ease-out, transform 500ms ease-out",
+        transform: shown ? "translateX(0)" : "translateX(16px)",
+        transition: "opacity 700ms ease-out, transform 700ms ease-out",
       }}
     >
       {/* Header */}
       <div
         className="flex items-center justify-between px-4 py-2.5"
-        style={{ borderBottom: "1px solid #e0dcd4" }}
+        style={{ borderBottom: "1px solid #e0dcd4", backgroundColor: "#f8f6f1" }}
       >
         <span className="text-[10px] uppercase tracking-[0.09em] font-medium" style={{ color: "#6a6a62" }}>
           Application Review
@@ -95,55 +123,109 @@ export function HeroReviewPanel() {
         </div>
       </div>
 
-      <div className="px-4 py-3.5">
+      <div className="px-4 py-3 space-y-2.5">
         {/* Applicant + decision */}
-        <div className="flex items-start justify-between gap-2 mb-3">
-          <div className="min-w-0">
-            <div className="font-freight text-[15px] font-semibold text-[#1c1c19] leading-tight">
-              Ellery Vance Interiors
+        <div>
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
+              <div className="font-freight text-[15px] font-semibold text-[#1c1c19] leading-tight">
+                Ellery Vance Interiors
+              </div>
+              <div className="text-[11px] text-[#6a6a62] mt-0.5">
+                Ellery Vance, Principal · ellery@elleryvance.com
+              </div>
             </div>
-            <div className="text-[11px] text-[#6a6a62] mt-0.5">Ellery Vance, Principal</div>
+            <ScoreBadge
+              dot
+              style={{
+                opacity: approved ? 1 : 0,
+                transform: approved ? "scale(1)" : "scale(0.9)",
+                transformOrigin: "right center",
+                transition: "opacity 320ms ease-out, transform 320ms ease-out",
+              }}
+            >
+              <Zap size={9} />
+              Auto-approved
+            </ScoreBadge>
           </div>
-          <ScoreBadge
-            dot
-            style={{
-              opacity: approved ? 1 : 0,
-              transform: approved ? "scale(1)" : "scale(0.9)",
-              transformOrigin: "right center",
-              transition: "opacity 320ms ease-out, transform 320ms ease-out",
-            }}
-          >
-            <Zap size={9} />
-            Auto-approved
-          </ScoreBadge>
+          <div className="flex items-center gap-3 mt-2 text-[10px] text-[#6a6a62]">
+            <span className="inline-flex items-center gap-1"><MapPin size={10} />New York, NY</span>
+            <span className="inline-flex items-center gap-1"><Phone size={10} />(212) 555-0142</span>
+          </div>
         </div>
 
-        {/* Verification signals — each flies in from the right */}
-        <div className="text-[9px] uppercase tracking-[0.09em] font-medium mb-2" style={{ color: "#6a6a62" }}>
-          Verification Signals
+        <Divider />
+
+        {/* Business details */}
+        <div className="grid grid-cols-3 gap-x-3 gap-y-1.5">
+          {DETAILS.map(([label, value]) => (
+            <div key={label}>
+              <p className="text-[8.5px] uppercase tracking-[0.07em] text-[#6a6a62] mb-0.5">{label}</p>
+              <p className="text-[11px] text-[#1c1c19] leading-tight">{value}</p>
+            </div>
+          ))}
         </div>
-        <div className="rounded-[2px] overflow-hidden border border-[#e0dcd4] bg-white">
-          {SIGNALS.map((sig, i) => {
-            const inView = i < flown;
-            return (
-              <div
-                key={sig.label}
-                className="flex items-center justify-between gap-2 px-3 py-[0.45rem]"
-                style={{
-                  borderBottom: i < SIGNALS.length - 1 ? "1px solid #efeae2" : "none",
-                  opacity: inView ? 1 : 0,
-                  transform: inView ? "translateX(0)" : "translateX(22px)",
-                  transition: "opacity 300ms ease-out, transform 300ms ease-out",
-                }}
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-[#6a6a62] shrink-0">{sig.icon}</span>
-                  <span className="text-[12px] text-[#1c1c19] truncate">{sig.label}</span>
+        <div>
+          <p className="text-[8.5px] uppercase tracking-[0.07em] text-[#6a6a62] mb-0.5">Tax Exempt States</p>
+          <p className="text-[11px] text-[#1c1c19]">NY, CT, NJ, CA</p>
+        </div>
+
+        <Divider />
+
+        {/* Certificates */}
+        <div className="space-y-1.5">
+          <SectionLabel>Certificates</SectionLabel>
+          {CERTIFICATES.map((cert) => (
+            <div
+              key={cert.state}
+              className="flex items-center justify-between gap-2 px-2.5 py-1 bg-white border border-[#e0dcd4] rounded-[2px]"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <FileText size={12} className="text-[#6a6a62] shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-[11px] text-[#1c1c19] leading-tight">{cert.state} Certificate</p>
+                  <p className="text-[9px] text-[#6a6a62]">{cert.ref}</p>
                 </div>
-                <ScoreBadge dot>{sig.badge}</ScoreBadge>
               </div>
-            );
-          })}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <ScoreBadge dot>Signed</ScoreBadge>
+                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] border border-[#e0dcd4] bg-white text-[#1c1c19] rounded-[1px]">
+                  <Eye size={9} />View
+                </span>
+                <ExternalLink size={10} className="text-[#6a6a62]" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <Divider />
+
+        {/* Verification signals — each flies in from the right */}
+        <div className="space-y-1.5">
+          <SectionLabel>Verification Signals</SectionLabel>
+          <div className="rounded-[2px] overflow-hidden border border-[#e0dcd4] bg-white">
+            {SIGNALS.map((sig, i) => {
+              const inView = i < flown;
+              return (
+                <div
+                  key={sig.label}
+                  className="flex items-center justify-between gap-2 px-3 py-[0.35rem]"
+                  style={{
+                    borderBottom: i < SIGNALS.length - 1 ? "1px solid #efeae2" : "none",
+                    opacity: inView ? 1 : 0,
+                    transform: inView ? "translateX(0)" : "translateX(22px)",
+                    transition: "opacity 450ms ease-out, transform 450ms ease-out",
+                  }}
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-[#6a6a62] shrink-0">{sig.icon}</span>
+                    <span className="text-[12px] text-[#1c1c19] truncate">{sig.label}</span>
+                  </div>
+                  <ScoreBadge dot>{sig.badge}</ScoreBadge>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
