@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Check, ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
+import { ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
+import { HeroReviewPanel } from "./HeroReviewPanel";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
@@ -35,175 +36,6 @@ const HERO_IMAGES = [
     ],
   },
 ];
-
-/** An application clearing itself, above the fold.
- *
- *  The hero promises instant approval, so the card shows the decision rather
- *  than the checklist: an application arrives, four signals resolve in sequence,
- *  and it settles on an automatic approval with the elapsed time. The firm is
- *  invented. Plays once, then holds on the approved state — no looping.
- */
-type RowState = "pending" | "checking" | "done";
-
-const HERO_CHECKS = [
-  { label: "EIN / business entity", result: "Matched" },
-  { label: "Sales tax ID", result: "Active · NY" },
-  { label: "Professional memberships", result: "ASID" },
-  { label: "Portfolio & press", result: "Verified" },
-];
-
-function HeroApplicationCard() {
-  const [shown, setShown] = useState(false);
-  const [states, setStates] = useState<RowState[]>(() => HERO_CHECKS.map(() => "pending"));
-  const [approved, setApproved] = useState(false);
-
-  useEffect(() => {
-    const setAt = (i: number, s: RowState) =>
-      setStates((prev) => prev.map((v, j) => (j === i ? s : v)));
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
-      setStates(HERO_CHECKS.map(() => "done"));
-      setApproved(true);
-      return;
-    }
-
-    const timers = [setTimeout(() => setShown(true), 400)];
-    HERO_CHECKS.forEach((_, i) => {
-      const start = 900 + i * 520;
-      timers.push(setTimeout(() => setAt(i, "checking"), start));
-      timers.push(setTimeout(() => setAt(i, "done"), start + 420));
-    });
-    timers.push(setTimeout(() => setApproved(true), 900 + HERO_CHECKS.length * 520 + 300));
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute left-6 top-[40%] bg-white pointer-events-none select-none"
-      style={{
-        width: "320px",
-        border: "1px solid #d8d4ca",
-        boxShadow: "0 12px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08)",
-        opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : "translateY(10px)",
-        transition: "opacity 450ms ease-out, transform 450ms ease-out",
-      }}
-    >
-      {/* Applicant */}
-      <div className="flex items-center gap-3 px-4 py-3.5" style={{ borderBottom: "1px solid #ece9e3" }}>
-        <div
-          className="flex items-center justify-center shrink-0 w-8 h-8 bg-teal-dim border border-teal-border text-teal-mid font-semibold"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.04em" }}
-        >
-          EV
-        </div>
-        <div className="min-w-0 flex-1">
-          <div
-            className="text-charcoal font-semibold truncate"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.78rem", letterSpacing: "-0.01em" }}
-          >
-            Ellery Vance Interiors
-          </div>
-          <div
-            className="uppercase mt-0.5"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.55rem", letterSpacing: "0.1em", color: "#a8a49c" }}
-          >
-            New trade application
-          </div>
-        </div>
-      </div>
-
-      {/* Signals resolving */}
-      <div className="px-4 py-1">
-        {HERO_CHECKS.map((item, i) => {
-          const state = states[i];
-          return (
-            <div
-              key={item.label}
-              className="flex items-center gap-2.5 py-[0.55rem]"
-              style={{ borderBottom: i < HERO_CHECKS.length - 1 ? "1px solid #f0ede8" : "none" }}
-            >
-              <span className="flex items-center justify-center shrink-0 w-[15px] h-[15px]">
-                {state === "done" ? (
-                  <span className="flex items-center justify-center w-full h-full bg-teal-dim border border-teal-border">
-                    <Check size={8} className="text-teal-mid" />
-                  </span>
-                ) : state === "checking" ? (
-                  <span
-                    className="block w-[11px] h-[11px] rounded-full animate-spin"
-                    style={{ border: "1.5px solid #dfe7e9", borderTopColor: "#7aa0a8" }}
-                  />
-                ) : (
-                  <span className="block w-[11px] h-[11px] rounded-full" style={{ border: "1.5px solid #ece9e3" }} />
-                )}
-              </span>
-              <span
-                className="flex-1 truncate"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "0.7rem",
-                  color: state === "pending" ? "#b8b4ac" : "#2f3336",
-                  transition: "color 300ms ease-out",
-                }}
-              >
-                {item.label}
-              </span>
-              <span
-                className="shrink-0 text-teal-mid font-medium"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "0.64rem",
-                  opacity: state === "done" ? 1 : 0,
-                  transition: "opacity 300ms ease-out",
-                }}
-              >
-                {item.result}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Decision */}
-      <div
-        style={{
-          backgroundColor: "#b8ccd2",
-          borderTop: "1px solid #a8bfc6",
-          maxHeight: approved ? "76px" : "0px",
-          opacity: approved ? 1 : 0,
-          overflow: "hidden",
-          transition: "max-height 420ms ease-out, opacity 320ms ease-out 100ms",
-        }}
-      >
-        <div className="px-4 py-3">
-          <div className="flex items-center gap-2">
-            <Check size={13} className="text-forest shrink-0" />
-            <span
-              className="text-forest font-semibold flex-1"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.75rem", letterSpacing: "-0.01em" }}
-            >
-              Approved automatically
-            </span>
-            <span
-              className="text-forest shrink-0"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", opacity: 0.7 }}
-            >
-              1m 12s
-            </span>
-          </div>
-          <div
-            className="mt-1 pl-[21px] text-forest"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "0.63rem", opacity: 0.75 }}
-          >
-            Trade pricing active &middot; Tax exemption applied
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function Hero() {
   const [heroIndex, setHeroIndex] = useState(0);
@@ -330,7 +162,7 @@ export function Hero() {
               style={{ objectPosition: hero.position }}
             />
             <PhotoCredit credits={hero.credits} separator="" />
-            <HeroApplicationCard />
+            <HeroReviewPanel />
           </div>
         </div>
       </div>
