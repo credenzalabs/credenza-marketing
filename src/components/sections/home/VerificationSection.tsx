@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { useReveal } from "@/hooks/useReveal";
 import { useStagger } from "@/hooks/useStagger";
+import { IMAGES } from "./images";
+import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Verification ────────────────────────────────────────────────────────────────
 export function VerificationSection() {
@@ -64,6 +67,28 @@ export function VerificationSection() {
                 Credenza reaches out to the applicant on your behalf. No back-and-forth for
                 your team.
               </p>
+            </div>
+
+            {/* Photograph fills the whitespace under the copy so the shorter
+                left column balances the tall checklist on the right. */}
+            <div className="hidden lg:block relative mt-8 overflow-hidden aspect-[4/3]">
+              <img
+                src={IMAGES.studioDorionBrownstone}
+                alt="Studio Dorion brownstone"
+                loading="lazy"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "left center" }}
+              />
+              <PhotoCredit
+                separator=""
+                credits={[
+                  { text: "© " },
+                  { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-verification") },
+                  { text: " (design by " },
+                  { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-verification") },
+                  { text: ")" },
+                ]}
+              />
             </div>
           </div>
 
