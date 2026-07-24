@@ -47,13 +47,6 @@ export function Hero() {
           }}
         />
         <div className="absolute inset-0 lg:hidden" style={{ backgroundColor: "rgba(253,252,249,0.90)" }} />
-        <div
-          className="absolute inset-x-0 top-0 h-32"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(253,252,249,0.97) 0%, rgba(253,252,249,0.88) 40%, rgba(253,252,249,0.45) 72%, rgba(253,252,249,0) 100%)",
-          }}
-        />
       </div>
       <PhotoCredit credits={hero.credits} separator="" />
 
