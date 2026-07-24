@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, FileText, Shield, Store } from "lucide-react";
+import { ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
@@ -137,6 +137,7 @@ export function Hero() {
                 { icon: <FileText size={12} />, text: "Trade verification · 9 automated checks against IRS, state tax, and professional records" },
                 { icon: <Shield size={12} />, text: "Resale certificate management · 46 jurisdictions, generated & monitored" },
                 { icon: <Store size={12} />, text: "Automated designer onboarding · Shopify-native, tax exemptions applied instantly" },
+                { icon: <TrendingUp size={12} />, text: "Program intelligence · Revenue drivers, member health, and exportable segments" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2.5">
                   <span className="shrink-0 text-charcoal-soft">{item.icon}</span>
