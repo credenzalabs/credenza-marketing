@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 import { RotateCcw, TrendingUp, UserMinus, UserPlus } from "lucide-react";
 
 // ─── Program Intelligence ─────────────────────────────────────────────────────
@@ -195,6 +196,7 @@ function InsightsDashboard() {
 
 export function DataSection() {
   const ref = useReveal();
+  const dashRef = useStagger();
   const capabilities = [
     {
       label: "Program performance",
@@ -235,30 +237,26 @@ export function DataSection() {
           </p>
         </div>
 
-        {/* Dashboard + capabilities */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-7">
-            <InsightsDashboard />
-          </div>
-          <div className="lg:col-span-5 flex flex-col">
-            {capabilities.map((c, i) => (
+        {/* Capabilities — copy first */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8 mb-14">
+          {capabilities.map((c) => (
+            <div key={c.label} style={{ borderTop: "1px solid rgba(240,240,236,0.12)" }} className="pt-5">
               <div
-                key={c.label}
-                className="py-5"
-                style={{ borderTop: i === 0 ? "none" : "1px solid rgba(240,240,236,0.12)" }}
+                className="uppercase mb-2"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", color: "#A9CFD3" }}
               >
-                <div
-                  className="uppercase mb-2"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", color: "#A9CFD3" }}
-                >
-                  {c.label}
-                </div>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(240,240,236,0.72)" }}>
-                  {c.desc}
-                </p>
+                {c.label}
               </div>
-            ))}
-          </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(240,240,236,0.72)" }}>
+                {c.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Full-width dashboard — the proof moment */}
+        <div ref={dashRef} className="stagger-item" data-stagger>
+          <InsightsDashboard />
         </div>
       </div>
     </section>

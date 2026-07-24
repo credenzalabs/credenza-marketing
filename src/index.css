@@ -316,6 +316,26 @@
     transform: translateY(0);
   }
 
+  /* Staggered item reveal — unified entrance for grouped content.
+     Items start hidden and are revealed by useStagger(), which sets a
+     per-item transition-delay and adds .is-visible once, on intersect. */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 480ms ease-out, transform 480ms ease-out;
+  }
+  .stagger-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stagger-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   /* Image hover zoom */
   .img-zoom {
     overflow: hidden;

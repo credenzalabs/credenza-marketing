@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
+import { Check, ChevronDown, FileText, Shield, Store, TrendingUp } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
@@ -35,6 +35,74 @@ const HERO_IMAGES = [
     ],
   },
 ];
+
+/** Cropped verification checklist — a small product moment above the fold.
+ *  Mirrors the first five checks from the Verification Engine section. */
+function HeroVerifiedCard() {
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setShown(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+  const items = [
+    "EIN / Business entity",
+    "Sales tax ID",
+    "Professional memberships",
+    "Website & online presence",
+    "Instagram / portfolio",
+  ];
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute bottom-6 left-6 bg-white pointer-events-none select-none"
+      style={{
+        width: "300px",
+        border: "1px solid #d8d4ca",
+        boxShadow: "0 12px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08)",
+        opacity: shown ? 1 : 0,
+        transform: shown ? "translateY(0)" : "translateY(8px)",
+        transition: "opacity 400ms ease-out 600ms, transform 400ms ease-out 600ms",
+      }}
+    >
+      <div className="px-4 py-3" style={{ borderBottom: "1px solid #ece9e3" }}>
+        <span
+          className="uppercase"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.58rem", letterSpacing: "0.12em", color: "#a8a49c" }}
+        >
+          Trade verification
+        </span>
+      </div>
+      <div className="px-4 py-1">
+        {items.map((label, i) => (
+          <div
+            key={label}
+            className="flex items-center gap-2.5 py-2"
+            style={{ borderBottom: i < items.length - 1 ? "1px solid #f0ede8" : "none" }}
+          >
+            <div className="flex items-center justify-center shrink-0 w-[15px] h-[15px] bg-teal-dim border border-teal-border">
+              <Check size={8} className="text-teal-mid" />
+            </div>
+            <span
+              className="flex-1 text-charcoal truncate"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem" }}
+            >
+              {label}
+            </span>
+            <span className="shrink-0 flex items-center gap-1">
+              <span className="w-1 h-1 rounded-full bg-teal-mid" />
+              <span
+                className="text-teal-mid font-semibold"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.52rem", letterSpacing: "0.06em" }}
+              >
+                VERIFIED
+              </span>
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Hero() {
   const [heroIndex, setHeroIndex] = useState(0);
@@ -161,6 +229,7 @@ export function Hero() {
               style={{ objectPosition: hero.position }}
             />
             <PhotoCredit credits={hero.credits} separator="" />
+            <HeroVerifiedCard />
           </div>
         </div>
       </div>

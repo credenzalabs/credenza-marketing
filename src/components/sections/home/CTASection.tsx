@@ -114,8 +114,8 @@ export function CTASection() {
                 <button
                   type="submit"
                   disabled={submitDisabled}
-                  className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal bg-teal hover:bg-[#99b8bd] text-forest rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+                  className="no-underline w-full flex items-center justify-center gap-2 px-6 py-[18px] mt-1 transition-all duration-200 uppercase font-medium bg-teal hover:bg-[#99b8bd] text-forest rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
                 >
                   {status === "sending" ? "Sending..." : "Request access"}
                 </button>

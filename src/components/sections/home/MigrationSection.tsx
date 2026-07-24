@@ -1,10 +1,12 @@
 import { Zap } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 
 // ─── Migration ───────────────────────────────────────────────────────────────────────
 export function MigrationSection() {
   const ref = useReveal();
+  const stepsRef = useStagger(80);
   return (
     <section ref={ref} className="reveal py-24 md:py-32 bg-page-white">
       <div className="container">
@@ -56,7 +58,7 @@ export function MigrationSection() {
 
           {/* Right: migration steps */}
           <div className="lg:col-span-6">
-            <div className="flex flex-col gap-0 border-t border-sage-dark">
+            <div ref={stepsRef} className="flex flex-col gap-0 border-t border-sage-dark">
               {[
                 {
                   step: "01",
@@ -74,7 +76,7 @@ export function MigrationSection() {
                   body: "Credenza identifies designers without current resale certificates and prompts them to generate and sign—so you\u2019re compliant from day one. Want to start fresh? Invite existing clients to connect and submit new certificates with compliant, verified data.",
                 },
               ].map((item) => (
-                <div key={item.step} className="py-7 border-b border-sage-dark">
+                <div key={item.step} data-stagger className="stagger-item py-7 border-b border-sage-dark">
                   <div className="flex items-start gap-5">
                     <div
                       className="text-olive-mid font-normal shrink-0 min-w-7 pt-0.5"

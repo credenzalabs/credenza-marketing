@@ -2,11 +2,13 @@ import { Check, FileText, Lock, Shield } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Security ────────────────────────────────────────────────────────────────
 export function SecuritySection() {
   const ref = useReveal();
+  const pillarsRef = useStagger(60);
   const pillars = [
     {
       icon: <Lock size={18} className="text-teal" />,
@@ -74,11 +76,12 @@ export function SecuritySection() {
           </div>
 
           <div
+            ref={pillarsRef}
             className="grid grid-cols-1 sm:grid-cols-2 gap-px"
             style={{ backgroundColor: "rgba(255,255,255,0.07)" }}
           >
             {pillars.map((p) => (
-              <div key={p.title} className="p-7 bg-forest">
+              <div key={p.title} data-stagger className="stagger-item p-7 bg-forest">
                 <div className="mb-4">{p.icon}</div>
                 <h3
                   className="font-freight mb-3 text-ivory"

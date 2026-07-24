@@ -32,7 +32,7 @@ export function MidPageCTA() {
             className="font-freight text-ivory"
             style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", lineHeight: 1.2, letterSpacing: "-0.02em" }}
           >
-            See what Credenza can do for your trade program.
+            Your program, running itself.
           </p>
           <a
             href={JOIN_VENDOR_URL}

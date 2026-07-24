@@ -1,11 +1,13 @@
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 import { IMAGES } from "./images";
 
 // ─── What Credenza Is ────────────────────────────────────────────────────────────
 export function PositioningSection() {
   const ref = useReveal();
+  const cardsRef = useStagger(80);
   return (
     <section ref={ref} className="reveal bg-white">
       {/* Full-bleed image with text overlay */}
@@ -55,7 +57,7 @@ export function PositioningSection() {
       {/* Three pillars below the image */}
       <div className="bg-page-white border-t border-sage-dark">
         <div className="container py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
                 num: "01",
@@ -73,7 +75,7 @@ export function PositioningSection() {
                 body: <>Credenza is early, and early vendors shape what we build. Your program's edges, exceptions, and day-to-day friction drive the roadmap. This is just the beginning.</>,
               },
             ].map((item) => (
-              <div key={item.num} className="p-8 border border-sage-dark bg-white">
+              <div key={item.num} data-stagger className="stagger-item p-8 border border-sage-dark bg-white">
                 <div
                   className="text-olive-mid font-normal mb-5"
                   style={{ fontFamily: "Inter, sans-serif", fontSize: "1.1rem", letterSpacing: "0.06em" }}

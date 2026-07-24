@@ -1,28 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 
 // ─── How It Works ────────────────────────────────────────────────────────────────
 export function HowItWorksSection() {
   const ref = useReveal();
-  // Cards stagger in as the row enters view.
-  const stepsRef = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
-  useEffect(() => {
-    const el = stepsRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setStarted(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  const stepsRef = useStagger(80);
   const steps = [
     {
       num: "01",
@@ -80,15 +63,11 @@ export function HowItWorksSection() {
 
         {/* Four numbered steps */}
         <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {steps.map((step, i) => (
+          {steps.map((step) => (
             <div
               key={step.num}
-              className="p-8 border border-sage-dark bg-white"
-              style={{
-                opacity: started ? 1 : 0,
-                transform: started ? "translateY(0)" : "translateY(14px)",
-                transition: `opacity 600ms ease-out ${i * 140}ms, transform 600ms ease-out ${i * 140}ms`,
-              }}
+              data-stagger
+              className="stagger-item p-8 border border-sage-dark bg-white"
             >
               <div
                 className="font-freight text-charcoal leading-none mb-4"

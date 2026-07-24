@@ -31,13 +31,13 @@ export default function Home() {
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
       <HowItWorksSection />
+      <PortableIdentitySection />
       <VerificationSection />
       <ForVendors />
       <InterludeBand />
       <IntegrationsSection />
       <CertSection />
       <DataSection />
-      <PortableIdentitySection />
       <PositioningSection />
       <TiersSection />
       <MidPageCTA />

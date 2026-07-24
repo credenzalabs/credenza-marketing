@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
+import { useStagger } from "@/hooks/useStagger";
 
 // ─── Verification ────────────────────────────────────────────────────────────────
 export function VerificationSection() {
   const ref = useReveal();
+  const checksRef = useStagger(50);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const checks = [
     { label: "EIN / Business entity", detail: "Verified against IRS records—with business name match." },
@@ -67,7 +69,7 @@ export function VerificationSection() {
 
           {/* Verification checklist—collapsible accordion */}
           <div className="lg:col-span-7">
-            <div className="border border-sage-dark bg-page-white p-6">
+            <div ref={checksRef} className="border border-sage-dark bg-page-white p-6">
               {/* Header — nine automated checks */}
               <div className="flex items-center gap-5 pb-5 mb-4 border-b border-sage-dark">
                 <div
@@ -94,7 +96,7 @@ export function VerificationSection() {
               {checks.map((item, i) => {
                 const isOpen = openIdx === i;
                 return (
-                  <div key={item.label} className={`border-sage-dark ${i < checks.length - 1 ? "border-b" : ""}`}>
+                  <div key={item.label} data-stagger className={`stagger-item border-sage-dark ${i < checks.length - 1 ? "border-b" : ""}`}>
                     <button
                       type="button"
                       onClick={() => setOpenIdx(isOpen ? null : i)}
