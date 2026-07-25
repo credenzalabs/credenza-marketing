@@ -91,7 +91,7 @@ export function Hero() {
                 className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
               >
-                Request access
+                Get started
               </a>
               <a
                 href="https://usecredenza.com/for-designers"

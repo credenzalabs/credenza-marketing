@@ -42,10 +42,11 @@ export default function Home() {
       <MidPageCTA />
       <MigrationSection />
       <SecuritySection />
-      <GallerySection />
-      {/* Portable identity closes the page: the designer-side story lands after
-          the vendor case is made, not before it. */}
+      {/* Portable identity: the designer-side story lands after the vendor case
+          is made, not before it. */}
       <PortableIdentitySection />
+      {/* Closing statement + CTA, just before the FAQ. */}
+      <GallerySection />
       <FAQSection />
       <CTASection />
       <Footer />
