@@ -109,6 +109,51 @@ export function GeneratedCertMock() {
           </div>
         </div>
       </div>
+
+      {/* Signing footer — the review-and-sign moment */}
+      <div className="px-6 md:px-8 py-4 flex items-center justify-between gap-4" style={{ borderTop: "1px solid #e0dcd4" }}>
+        <div className="flex items-center gap-3">
+          <svg width="46" height="26" viewBox="0 0 46 26" fill="none" stroke="#1c1c19" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true">
+            <path d="M2 19 C6 5 11 5 10 17 C9.4 23 13 8 16 11 C19 14 17 20 21 17 C25 14 28 8 33 17 C35 20.5 38 9 42 13" />
+            <path d="M5 22 L40 18" strokeWidth="1" />
+          </svg>
+          <div>
+            <div className="uppercase" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.55rem", letterSpacing: "0.1em", color: "#6a6a62" }}>
+              Signing as
+            </div>
+            <div className="font-freight text-charcoal" style={{ fontSize: "0.95rem", letterSpacing: "-0.01em" }}>
+              Marisol Ferrer
+            </div>
+          </div>
+        </div>
+        <span className="uppercase shrink-0" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.6rem", letterSpacing: "0.08em", fontWeight: 600, color: "#7aa0a8" }}>
+          Update signature →
+        </span>
+      </div>
+
+      {/* Consent + actions */}
+      <div className="px-6 md:px-8 pb-6" style={{ fontFamily: "Inter, sans-serif" }}>
+        <div className="flex items-start gap-2.5 mb-4">
+          <span className="inline-block shrink-0 mt-0.5" style={{ width: "14px", height: "14px", border: "1px solid #b8b4ac", borderRadius: "2px" }} />
+          <span style={{ fontSize: "0.78rem", lineHeight: 1.5, color: "#6a6a62" }}>
+            I agree to Credenza's <span style={{ color: "#3a6e70", textDecoration: "underline" }}>Terms of Use</span> and confirm the information on this certificate is accurate.
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[2px]"
+            style={{ border: "1px solid #1c1c19", color: "#1c1c19", fontSize: "0.78rem", fontWeight: 500 }}
+          >
+            Sign &amp; Save
+          </span>
+          <span
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[2px]"
+            style={{ backgroundColor: "#1c1c19", color: "white", fontSize: "0.78rem", fontWeight: 500 }}
+          >
+            Sign &amp; Download
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
