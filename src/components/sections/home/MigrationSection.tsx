@@ -68,7 +68,7 @@ export function MigrationSection() {
                 {
                   step: "02",
                   title: "Recognize your existing clients",
-                  body: "Imported clients are already in your program—no reapplication needed. If a designer joins Credenza on their own or through another vendor, the relationship is already there.",
+                  body: "Imported clients are already in your program—no reapplication needed. If a designer joins Credenza on their own or through another vendor, we link you automatically.",
                 },
                 {
                   step: "03",
