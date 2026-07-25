@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { useStagger } from "@/hooks/useStagger";
@@ -5,16 +6,86 @@ import { RotateCcw, TrendingUp, UserMinus, UserPlus } from "lucide-react";
 
 // ─── Program Intelligence ─────────────────────────────────────────────────────
 // A single, faithful "Program Insights" dashboard mock (fictional data) beside
-// short copy on the four things the product surfaces.
+// short copy on the four things the product surfaces. The dashboard animates to
+// life when it scrolls into view — numbers count up and every bar/ring grows
+// from zero — so it reads like a live report rather than a screenshot.
 
-function Kpi({ value, suffix, label, sub, pct, color }: { value: string; suffix?: string; label: string; sub?: string; pct?: number; color: string }) {
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** Fires once, when the element first scrolls into view. */
+function useInView<T extends HTMLElement>(threshold = 0.25) {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (prefersReducedMotion()) {
+      setInView(true);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { threshold },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView] as const;
+}
+
+/** Eases a value from 0 → target once `run` flips true. */
+function useCountUp(target: number, run: boolean, duration = 1100) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!run) return;
+    if (prefersReducedMotion()) {
+      setN(target);
+      return;
+    }
+    let raf = 0;
+    let start = 0;
+    const tick = (t: number) => {
+      if (!start) start = t;
+      const p = Math.min(1, (t - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      setN(target * eased);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, run, duration]);
+  return n;
+}
+
+const BAR_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+function Kpi({
+  target, format, suffix, label, sub, isPct, color, animate,
+}: {
+  target: number;
+  format: (n: number) => string;
+  suffix?: string;
+  label: string;
+  sub?: string;
+  isPct?: boolean;
+  color: string;
+  animate: boolean;
+}) {
+  const n = useCountUp(target, animate);
   const size = 34;
   const stroke = 3;
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;
+  const pct = isPct ? n : 0;
   return (
     <div className="bg-white px-3 py-2.5 flex items-center gap-2 min-w-0" style={{ border: "1px solid #ece9e3" }}>
-      {pct !== undefined && (
+      {isPct && (
         <svg width={size} height={size} className="shrink-0 -rotate-90">
           <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#e4e1d8" strokeWidth={stroke} />
           <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={circ - (pct / 100) * circ} strokeLinecap="butt" />
@@ -22,7 +93,7 @@ function Kpi({ value, suffix, label, sub, pct, color }: { value: string; suffix?
       )}
       <div className="min-w-0">
         <div className="flex items-baseline gap-0.5">
-          <span className="font-freight leading-none" style={{ fontSize: "17px", color: "#1A1A1A" }}>{value}</span>
+          <span className="font-freight leading-none" style={{ fontSize: "17px", color: "#1A1A1A" }}>{format(n)}</span>
           {suffix && <span style={{ fontSize: "11px", color: "#a8a49c" }}>{suffix}</span>}
         </div>
         <p className="uppercase" style={{ fontFamily: "Inter, sans-serif", fontSize: "8.5px", letterSpacing: "0.06em", color: "#a8a49c", marginTop: "2px" }}>{label}</p>
@@ -32,7 +103,7 @@ function Kpi({ value, suffix, label, sub, pct, color }: { value: string; suffix?
   );
 }
 
-function WhatChangedRows() {
+function WhatChangedRows({ animate }: { animate: boolean }) {
   const rows = [
     { Icon: UserPlus, label: "New buyers", sub: "58 firms · first order", mag: 88, value: "+$88K", positive: true },
     { Icon: RotateCcw, label: "Reactivated", sub: "29 firms · returned", mag: 54, value: "+$54K", positive: true },
@@ -44,7 +115,7 @@ function WhatChangedRows() {
   const maroon = "#8f2d48";
   return (
     <div className="flex flex-col gap-3">
-      {rows.map((r) => {
+      {rows.map((r, i) => {
         const half = (r.mag / maxMag) * 50;
         const color = r.positive ? teal : maroon;
         const Icon = r.Icon;
@@ -66,12 +137,18 @@ function WhatChangedRows() {
                   transform: "translateY(-50%)",
                   height: "11px",
                   backgroundColor: color,
-                  width: `${half}%`,
+                  width: animate ? `${half}%` : "0%",
+                  transition: `width 850ms ${BAR_EASE} ${150 + i * 110}ms`,
                   ...(r.positive ? { left: "50%" } : { right: "50%" }),
                 }}
               />
             </div>
-            <span className="shrink-0 text-right" style={{ width: "64px", fontFamily: "Inter, sans-serif", fontSize: "11px", color, fontWeight: 500 }}>{r.value} →</span>
+            <span
+              className="shrink-0 text-right"
+              style={{ width: "64px", fontFamily: "Inter, sans-serif", fontSize: "11px", color, fontWeight: 500, opacity: animate ? 1 : 0, transition: `opacity 400ms ease-out ${400 + i * 110}ms` }}
+            >
+              {r.value} →
+            </span>
           </div>
         );
       })}
@@ -79,7 +156,7 @@ function WhatChangedRows() {
   );
 }
 
-function StateBars() {
+function StateBars({ animate }: { animate: boolean }) {
   const rows = [
     { label: "New York", pct: 100, value: "214" },
     { label: "Connecticut", pct: 78, value: "168" },
@@ -88,11 +165,11 @@ function StateBars() {
   ];
   return (
     <div className="flex flex-col gap-2">
-      {rows.map((r) => (
+      {rows.map((r, i) => (
         <div key={r.label} className="flex items-center gap-2">
           <span className="shrink-0 text-right" style={{ width: "72px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#6a6a62" }}>{r.label}</span>
           <div className="flex-1 overflow-hidden" style={{ height: "9px", backgroundColor: "#ece9e3" }}>
-            <div style={{ width: `${r.pct}%`, height: "100%", backgroundColor: "#7aa0a8" }} />
+            <div style={{ width: animate ? `${r.pct}%` : "0%", height: "100%", backgroundColor: "#7aa0a8", transition: `width 850ms ${BAR_EASE} ${200 + i * 90}ms` }} />
           </div>
           <span className="shrink-0 text-right" style={{ width: "30px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#1A1A1A" }}>{r.value}</span>
         </div>
@@ -110,6 +187,8 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function InsightsDashboard() {
+  const [ref, animate] = useInView<HTMLDivElement>(0.25);
+  const certHealth = useCountUp(97, animate);
   const certSegments = [
     { pct: 97, color: "#A9CFD3" },
     { pct: 2, color: "#8B8B55" },
@@ -117,6 +196,7 @@ function InsightsDashboard() {
   ];
   return (
     <div
+      ref={ref}
       className="pointer-events-none select-none overflow-hidden"
       style={{ backgroundColor: "#FAF9F7", border: "1px solid #e0dcd4", boxShadow: "0 16px 56px rgba(0,0,0,0.20), 0 2px 8px rgba(0,0,0,0.08)" }}
     >
@@ -152,10 +232,10 @@ function InsightsDashboard() {
 
       {/* KPI row */}
       <div className="px-5 pt-5 pb-5 grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <Kpi value="$198K" label="Trade revenue" sub="+136%" color="#8B8B55" />
-        <Kpi value="312" label="Active firms" sub="+110%" color="#A9CFD3" />
-        <Kpi value="22" suffix="%" label="Repeat rate" pct={22} color="#A9CFD3" />
-        <Kpi value="25" suffix="%" label="Penetration" pct={25} color="#8B8B55" />
+        <Kpi target={198} format={(v) => `$${Math.round(v)}K`} label="Trade revenue" sub="+136%" color="#8B8B55" animate={animate} />
+        <Kpi target={312} format={(v) => `${Math.round(v)}`} label="Active firms" sub="+110%" color="#A9CFD3" animate={animate} />
+        <Kpi target={22} format={(v) => `${Math.round(v)}`} suffix="%" label="Repeat rate" isPct color="#A9CFD3" animate={animate} />
+        <Kpi target={25} format={(v) => `${Math.round(v)}`} suffix="%" label="Penetration" isPct color="#8B8B55" animate={animate} />
       </div>
 
       {/* What changed */}
@@ -168,7 +248,7 @@ function InsightsDashboard() {
             <span style={{ color: "#3a6e70" }}> · +$114K</span>
           </span>
         </div>
-        <WhatChangedRows />
+        <WhatChangedRows animate={animate} />
       </div>
 
       {/* Cert health + geography */}
@@ -176,18 +256,18 @@ function InsightsDashboard() {
         <div>
           <SectionLabel>Certificate health</SectionLabel>
           <div className="flex items-baseline gap-1.5 mb-2">
-            <span className="font-freight leading-none" style={{ fontSize: "18px", color: "#1A1A1A" }}>97%</span>
+            <span className="font-freight leading-none" style={{ fontSize: "18px", color: "#1A1A1A" }}>{Math.round(certHealth)}%</span>
             <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#a8a49c" }}>current</span>
           </div>
-          <div className="flex overflow-hidden" style={{ height: "10px" }}>
+          <div className="flex overflow-hidden" style={{ height: "10px", backgroundColor: "#ece9e3" }}>
             {certSegments.map((s, i) => (
-              <div key={i} style={{ width: `${s.pct}%`, backgroundColor: s.color }} />
+              <div key={i} style={{ width: animate ? `${s.pct}%` : "0%", backgroundColor: s.color, transition: `width 850ms ${BAR_EASE} ${200 + i * 120}ms` }} />
             ))}
           </div>
         </div>
         <div>
           <SectionLabel>Designers by state</SectionLabel>
-          <StateBars />
+          <StateBars animate={animate} />
         </div>
       </div>
     </div>
