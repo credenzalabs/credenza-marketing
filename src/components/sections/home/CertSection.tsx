@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { GenerateCertMock } from "./GenerateCertMock";
+import { GeneratedCertMock } from "./GeneratedCertMock";
 import { useReveal } from "@/hooks/useReveal";
 
 // ─── Resale Certificates ─────────────────────────────────────────────────────────
@@ -194,7 +194,7 @@ export function CertSection() {
           </div>
         </div>
 
-        <GenerateCertMock />
+        <GeneratedCertMock />
       </div>
     </section>
   );
