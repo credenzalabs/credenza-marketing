@@ -6,7 +6,13 @@ import { useStagger } from "@/hooks/useStagger";
 export function HowItWorksSection() {
   const ref = useReveal();
   const stepsRef = useStagger(80);
-  const steps = [
+  const steps: {
+    num: string;
+    label: string;
+    title: string;
+    headline: string;
+    link?: { href: string; label: string };
+  }[] = [
     {
       num: "01",
       label: "Verify",
@@ -26,6 +32,7 @@ export function HowItWorksSection() {
       title: "Automated Onboarding",
       headline:
         "Trade customer profiles are set up in your store with the right tax exemption and trade pricing—automatically.",
+      link: { href: "/shopify", label: "Explore the Shopify integration" },
     },
     {
       num: "04",
@@ -93,6 +100,15 @@ export function HowItWorksSection() {
               >
                 {step.headline}
               </p>
+              {step.link && (
+                <a
+                  href={step.link.href}
+                  className="no-underline inline-flex items-center gap-1 mt-4 text-teal-mid transition-colors duration-150 hover:text-charcoal"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}
+                >
+                  {step.link.label} →
+                </a>
+              )}
             </div>
           ))}
         </div>
