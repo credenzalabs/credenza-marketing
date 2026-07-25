@@ -63,7 +63,7 @@ export function MigrationSection() {
                 {
                   step: "01",
                   title: "Import your existing roster",
-                  body: "Import directly from Shopify or share a list. Credenza groups contacts by firm, deduplicates, matches against existing profiles, and extracts data from your notes, tags, and cert files. Bulk upload your existing certificates—we\u2019ll read each one, match it to the right client, calculate expiration dates, and monitor them from here.",
+                  body: "Import from Shopify or share a list. Credenza dedupes your contacts, groups them by firm, matches them to existing profiles, and pulls details from your notes, tags, and cert files. Bulk-uploaded certificates are read, matched to the right client, and monitored for expiration from there.",
                 },
                 {
                   step: "02",
