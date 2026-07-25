@@ -50,7 +50,7 @@ export function MigrationSection() {
                   className="text-charcoal-soft mt-0.5"
                   style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem" }}
                 >
-                  Import your roster and go live the same day. Existing certificates are read, matched, and dated in the background over the following days.
+                  Import your roster and go live the same day. Existing certificates are read, matched, and analyzed for expiration and validity in the background over the following days.
                 </div>
               </div>
             </div>

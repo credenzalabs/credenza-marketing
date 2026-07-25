@@ -32,7 +32,13 @@ export function CertSection() {
               className="text-charcoal-mid mt-4"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Credenza generates the right form for every designer, vendor, and state, pre-fills it from verified data, and presents a finished document to sign. No room for error.
+              Credenza's Resale Certificate Engine generates the right form for every designer, vendor, and state, pre-fills it from verified data, and presents a finished document to sign. No room for error.
+            </p>
+            <p
+              className="text-charcoal-mid mt-4"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+            >
+              From there, every certificate stays current—Credenza tracks expiration dates, re-verifies tax IDs, requests renewals before they lapse, and revokes exemptions that fall out of compliance.
             </p>
             <a
               href="/resale-certificate-management"
