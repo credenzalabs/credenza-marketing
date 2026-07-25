@@ -3,11 +3,11 @@ import { JOIN_VENDOR_URL } from "@/lib/constants";
 // ─── Gallery — closing statement + CTA before the FAQ ──────────────────────────
 export function GallerySection() {
   return (
-    <section className="visible py-24 md:py-32 bg-white">
+    <section className="visible py-24 md:py-32 bg-forest">
       <div className="container text-center flex flex-col items-center gap-8">
         <p
-          className="font-freight text-charcoal-mid italic max-w-[600px]"
-          style={{ fontSize: "clamp(1.3rem, 2vw, 1.75rem)", lineHeight: 1.4, letterSpacing: "-0.015em" }}
+          className="font-freight text-ivory italic max-w-[600px]"
+          style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.9rem)", lineHeight: 1.4, letterSpacing: "-0.015em" }}
         >
           Your product is considered. Your trade program should be too.
         </p>
