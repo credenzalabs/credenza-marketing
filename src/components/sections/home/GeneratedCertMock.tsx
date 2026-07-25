@@ -6,9 +6,10 @@ import {
 /**
  * A faithful mock of the product's Resale Certificate Engine preview
  * (cert-generator): the "PREVIEW · <vendor>" header with Edit Fields, the plain-
- * language explainer + tax-advice disclaimer, and the PDF viewer rendering a
- * filled-in Uniform Sales & Use Tax Resale Certificate — the finished document a
- * designer reviews and signs.
+ * language explainer, the PDF viewer toolbar, and the genuine MTC Uniform Sales
+ * & Use Tax Resale Certificate rendered from the real form (public/mtc-form.png,
+ * exported from the product's own state-forms/MTC.pdf) with Credenza's filled
+ * values overlaid — the finished document a designer reviews and signs.
  *
  * Non-interactive marketing screenshot. The vendor, firm, and all data are
  * invented; real names stay out.
@@ -16,28 +17,20 @@ import {
 
 const SERIF = "Georgia, 'Times New Roman', serif";
 
-/** An inline field value on the form: text over an underline, like a filled PDF. */
-function Fill({ children, w }: { children: React.ReactNode; w?: string }) {
+// The rendered MTC page is drawn at a fixed width so the overlaid values keep
+// their positions; the aspect ratio matches the source PNG (1700×2200).
+const PAGE_W = 560;
+const PAGE_H = Math.round((PAGE_W * 2200) / 1700);
+
+/** A filled value overlaid on the blank MTC form, positioned as a % of the page. */
+function Val({ left, top, children, size = 9 }: { left: number; top: number; children: React.ReactNode; size?: number }) {
   return (
     <span
-      style={{ borderBottom: "1px solid #1c1c19", paddingBottom: "1px", display: "inline-block", minWidth: w, lineHeight: 1.1 }}
+      className="absolute whitespace-nowrap"
+      style={{ left: `${left}%`, top: `${top}%`, fontFamily: SERIF, fontSize: `${size}px`, color: "#1a1a1a", lineHeight: 1 }}
     >
       {children}
     </span>
-  );
-}
-
-function CheckRow({ label, checked }: { label: string; checked?: boolean }) {
-  return (
-    <div className="flex items-center gap-1.5" style={{ fontSize: "0.6rem", color: "#1c1c19" }}>
-      <span
-        className="inline-flex items-center justify-center shrink-0"
-        style={{ width: "10px", height: "10px", border: "1px solid #1c1c19", fontSize: "0.55rem", lineHeight: 1, fontWeight: 700 }}
-      >
-        {checked ? "X" : ""}
-      </span>
-      {label}
-    </div>
   );
 }
 
@@ -64,9 +57,6 @@ export function GeneratedCertMock() {
         </h3>
         <p className="mt-2" style={{ fontSize: "0.8rem", lineHeight: 1.6, color: "#6a6a62" }}>
           Based on your Arizona registration, we generated a Multistate Tax Commission (MTC) certificate for use in Arizona, Missouri, and New Jersey—states that let out-of-state resellers use the MTC format to claim valid exemptions.
-        </p>
-        <p className="mt-1.5" style={{ fontSize: "0.72rem", lineHeight: 1.55, color: "#9a988f", fontStyle: "italic" }}>
-          Credenza does not provide tax advice. Confirm with your accountant if you're unsure whether a state's acceptance rule applies to your situation.
         </p>
       </div>
 
@@ -102,82 +92,20 @@ export function GeneratedCertMock() {
           </span>
         </div>
 
-        {/* Document — cropped at the bottom like a scrolled PDF page */}
-        <div className="px-6 md:px-10 py-8 overflow-hidden" style={{ backgroundColor: "#e9e9ea", maxHeight: "440px" }}>
-          <div className="mx-auto bg-white" style={{ maxWidth: "620px", padding: "36px 44px", boxShadow: "0 1px 4px rgba(0,0,0,0.18)", fontFamily: SERIF, color: "#1c1c19" }}>
-            <h4 className="text-center" style={{ fontSize: "0.82rem", fontWeight: 700, letterSpacing: "0.01em" }}>
-              UNIFORM SALES &amp; USE TAX RESALE CERTIFICATE — MULTIJURISDICTION
-            </h4>
-            <p className="mt-3" style={{ fontSize: "0.6rem", lineHeight: 1.5, textAlign: "justify" }}>
-              The below-listed states have indicated that this certificate is acceptable as a resale/exemption certificate for sales/use tax, subject to the instructions and notes on pages 2–6. The issuing Buyer and the recipient Seller have the responsibility to determine the proper use of this certificate under applicable laws in each state, as these may change from time to time.
-            </p>
-
-            <p className="mt-3" style={{ fontSize: "0.64rem" }}>
-              Issued to Seller:&nbsp; <Fill w="180px">Corbel &amp; Co.</Fill>
-            </p>
-            <p className="mt-2" style={{ fontSize: "0.64rem" }}>
-              Address:&nbsp; <Fill w="240px">250 Madison Ave., New York, NY 10001</Fill>
-            </p>
-
-            <div className="mt-3 flex gap-6">
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "0.64rem" }}>I certify that:</p>
-                <p className="mt-1" style={{ fontSize: "0.64rem" }}>
-                  Name of Firm (Buyer):&nbsp; <Fill w="120px">Marisol Ferrer Studio</Fill>
-                </p>
-                <p className="mt-1" style={{ fontSize: "0.64rem" }}>
-                  Address:&nbsp; <Fill w="150px">1 S Dixie Hwy.</Fill>
-                </p>
-                <p className="mt-0.5" style={{ fontSize: "0.64rem" }}>
-                  <Fill w="150px">West Palm Beach, FL 33401</Fill>
-                </p>
-              </div>
-              <div style={{ width: "170px" }}>
-                <p style={{ fontSize: "0.6rem" }}>is engaged or is registered as a</p>
-                <div className="mt-1.5 space-y-1">
-                  <CheckRow label="Wholesaler" />
-                  <CheckRow label="Retailer" checked />
-                  <CheckRow label="Manufacturer" />
-                  <CheckRow label="Seller" />
-                  <CheckRow label="Lessor" />
-                  <CheckRow label="Other (Specify)" />
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-3" style={{ fontSize: "0.6rem", lineHeight: 1.5, textAlign: "justify" }}>
-              and is registered for sales/use tax with the below-listed states and cities within which Seller would deliver purchases to Buyer, and that any such purchases are for wholesale, resale, or ingredients of a new product to be resold, leased, or rented in the normal course of business.
-            </p>
-
-            <p className="mt-2.5" style={{ fontSize: "0.64rem" }}>
-              Description of Business:&nbsp; <Fill w="120px">Interior Design</Fill>
-            </p>
-            <p className="mt-2" style={{ fontSize: "0.64rem", lineHeight: 1.5 }}>
-              General description of tangible property or taxable services to be purchased from the Seller:&nbsp;
-              <Fill w="220px">home furnishings, furniture, lighting, decor, and accessories</Fill>
-            </p>
-
-            {/* State registration table — header + first rows */}
-            <table className="w-full mt-3" style={{ borderCollapse: "collapse", fontSize: "0.58rem" }}>
-              <thead>
-                <tr style={{ backgroundColor: "#dfe6cf" }}>
-                  <th style={{ border: "1px solid #1c1c19", padding: "3px 5px", textAlign: "left", width: "48px" }}>State</th>
-                  <th style={{ border: "1px solid #1c1c19", padding: "3px 5px", textAlign: "left" }}>State Registration, Seller's Permit, or ID Number of Purchaser</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["AZ", "20812255-9"],
-                  ["MO", "—"],
-                  ["NJ", "—"],
-                ].map(([st, id]) => (
-                  <tr key={st}>
-                    <td style={{ border: "1px solid #1c1c19", padding: "4px 5px" }}>{st}</td>
-                    <td style={{ border: "1px solid #1c1c19", padding: "4px 5px" }}>{id}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Document — the genuine MTC form, cropped at the bottom like a scrolled PDF */}
+        <div className="flex justify-center overflow-x-auto overflow-y-hidden" style={{ backgroundColor: "#e9e9ea", padding: "20px 16px 0", maxHeight: "470px" }}>
+          <div className="relative shrink-0" style={{ width: `${PAGE_W}px`, height: `${PAGE_H}px`, boxShadow: "0 1px 6px rgba(0,0,0,0.2)" }}>
+            <img src="/mtc-form.png" alt="Uniform Sales & Use Tax Resale Certificate — Multijurisdiction" className="block w-full h-full" />
+            {/* Filled values, positioned over the blank form */}
+            <Val left={16.5} top={15.2}>Corbel &amp; Co.</Val>
+            <Val left={12.5} top={17.9}>250 Madison Ave., New York, NY 10001</Val>
+            <Val left={22} top={22.2}>Marisol Ferrer Studio</Val>
+            <Val left={12.5} top={23.6}>1 S Dixie Hwy.</Val>
+            <Val left={6} top={26.7}>West Palm Beach, FL 33401</Val>
+            <Val left={54.3} top={24.3} size={10}>X</Val>
+            <Val left={20.8} top={37.2}>Interior Design</Val>
+            <Val left={6} top={42.8}>home furnishings, furniture, lighting, decor &amp; accessories</Val>
+            <Val left={22} top={51.9} size={8}>20812255-9</Val>
           </div>
         </div>
       </div>
