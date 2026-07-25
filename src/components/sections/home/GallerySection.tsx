@@ -3,8 +3,8 @@ import { JOIN_VENDOR_URL } from "@/lib/constants";
 // ─── Gallery — closing statement + CTA before the FAQ ──────────────────────────
 export function GallerySection() {
   return (
-    <section className="visible py-24 md:py-32 bg-forest">
-      <div className="container text-center flex flex-col items-center gap-8">
+    <section className="visible py-16 md:py-20 bg-forest">
+      <div className="container text-center flex flex-col items-center gap-6">
         <p
           className="font-freight text-ivory italic md:whitespace-nowrap"
           style={{ fontSize: "clamp(1.25rem, 2.4vw, 1.85rem)", lineHeight: 1.4, letterSpacing: "-0.015em" }}

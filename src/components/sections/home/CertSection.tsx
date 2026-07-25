@@ -32,7 +32,7 @@ export function CertSection() {
               className="text-charcoal-mid mt-4"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Credenza's <span className="font-semibold text-charcoal">Resale Certificate Engine</span> generates the right form for every designer, vendor, and state, pre-fills it from verified data, and presents a finished document to sign. No room for error.
+              Credenza's <span className="font-semibold text-charcoal">Resale Certificate Engine</span> generates the right form for every designer, vendor, and state, pre-fills it from verifiable data, and presents a finished document to sign. No room for error.
             </p>
             <p
               className="text-charcoal-mid mt-4"
