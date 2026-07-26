@@ -36,7 +36,7 @@ export function TiersSection() {
               className="mt-4 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
             >
-              One vendor might run two tiers. Another might run five. Another might price product by product. The structure is yours.
+              One vendor might run two tiers. Another might run five. Another might set net prices product by product. The structure is yours.
             </p>
           </div>
 
