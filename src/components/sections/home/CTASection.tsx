@@ -77,8 +77,7 @@ export function CTASection() {
               className="mb-8 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}
             >
-              Tell us about your program and we&rsquo;ll get you set up—so you can
-              design a trade program your clients will thank you for.
+              Tell us about your program and we&rsquo;ll get you set up.
             </p>
             {status === "sent" ? (
               <div className="flex flex-col gap-2">
