@@ -12,7 +12,7 @@ export function TiersSection() {
     { name: "Principal", discount: "40%",  min: "$50,000 / yr" },
   ];
   return (
-    <section ref={ref} className="reveal py-24 md:py-32 bg-page-white">
+    <section ref={ref} className="reveal py-24 md:py-32 bg-page-white border-t border-sage-dark">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: copy */}
@@ -31,12 +31,6 @@ export function TiersSection() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
             >
               Net pricing, flat discount, or tiered discounts—Credenza applies the tags you need to power your pricing. Assign designers to the right tier on approval and upgrade them as the relationship grows.
-            </p>
-            <p
-              className="mt-4 text-charcoal-mid"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
-            >
-              One vendor might run two tiers. Another might run five. Another might set net prices product by product. The structure is yours.
             </p>
           </div>
 
