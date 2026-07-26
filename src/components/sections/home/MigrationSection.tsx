@@ -73,7 +73,7 @@ export function MigrationSection() {
                 {
                   step: "03",
                   title: "Close compliance gaps",
-                  body: "Request certificates from designers whose certs are missing, invalid, or expired—or start fresh and request new ones from all. They generate and sign in seconds, so you’re compliant from day one.",
+                  body: "Request certificates from designers whose certs are missing, invalid, or expired—or start fresh and request new ones from all. They add a few details and Credenza generates a compliant certificate to review and sign.",
                 },
               ].map((item) => (
                 <div key={item.step} data-stagger className="stagger-item py-7 border-b border-sage-dark">
