@@ -22,15 +22,15 @@ export function TiersSection() {
               className="font-freight mb-6 text-charcoal"
               style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
-              Your tiers.
+              Trade pricing,
               <br />
-              <span className="italic text-teal">Your rules.</span>
+              <span className="italic text-teal">your way.</span>
             </h2>
             <p
               className="text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
             >
-              Set a flat discount for everyone, define multiple tiers with different discount levels, or let trade pricing vary by product. Assign designers to the right tier on approval—and upgrade them as the relationship grows.
+              Net pricing, flat discount, or tiered discounts—Credenza applies the tags you need to power your pricing. Assign designers to the right tier on approval and upgrade them as the relationship grows.
             </p>
             <p
               className="mt-4 text-charcoal-mid"
