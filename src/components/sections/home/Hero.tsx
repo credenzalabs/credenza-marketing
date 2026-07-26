@@ -37,7 +37,7 @@ export function Hero() {
         }}
       />
 
-      <div className="container relative z-10 py-12 md:py-16">
+      <div className="container relative z-10 pt-4 md:pt-6 pb-12 md:pb-16">
         {/* Editorial layout: copy left, contained photograph right. The review
             card flies in over the photo. */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
