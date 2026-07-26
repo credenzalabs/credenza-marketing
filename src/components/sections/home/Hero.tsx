@@ -56,11 +56,9 @@ export function Hero() {
                 letterSpacing: "-0.03em",
               }}
             >
-              The infrastructure
+              Your trade program,
               <br />
-              behind every <span className="italic text-olive-mid">distinguished</span>
-              <br />
-              trade program.
+              <span className="italic text-olive-mid">running itself.</span>
             </h1>
 
             {/* Mobile-only hero image after headline */}
@@ -77,8 +75,8 @@ export function Hero() {
               }}
             >
               Trade verification, designer onboarding, resale certificate management,
-              and tax compliance—so your team approves the right designers instantly
-              and stays compliant without the manual work.
+              and tax compliance—so your team approves the right designers instantly,
+              on your own terms, and stays compliant without the manual work.
             </p>
 
             {/* Primary CTA + ghost "For Designers" button so designers can
