@@ -76,7 +76,7 @@ export function Hero() {
             >
               Trade verification, designer onboarding, resale certificate management,
               and tax compliance—so your team approves the right designers instantly,
-              on your own terms, and stays compliant without the manual work.
+              on your own terms, and stays audit-ready without the manual work.
             </p>
 
             {/* Primary CTA + ghost "For Designers" button so designers can
