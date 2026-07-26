@@ -30,7 +30,7 @@ export function TiersSection() {
               className="text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.75 }}
             >
-              Net pricing, flat discount, or tiered discounts—Credenza applies the tags you need to power your pricing. Assign designers to the right tier on approval and upgrade them as the relationship grows.
+              Net pricing, flat discount, or tiered discounts—Credenza auto-applies the tags you need to power your pricing. Assign designers to the right tier on approval and upgrade them as the relationship grows.
             </p>
           </div>
 
