@@ -147,6 +147,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
+  body {
+    /* Guard against accidental horizontal scroll on mobile (a fixed-width mock
+       overflowing a section). Individual wide mocks scroll inside their own
+       overflow-x-auto boxes; this catches anything else. */
+    overflow-x: hidden;
+    max-width: 100%;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
