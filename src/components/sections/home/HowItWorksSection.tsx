@@ -11,6 +11,7 @@ export function HowItWorksSection() {
     label: string;
     title: string;
     headline: string;
+    note?: string;
     link?: { href: string; label: string };
   }[] = [
     {
@@ -25,6 +26,7 @@ export function HowItWorksSection() {
       label: "Approve",
       title: "Auto-Approval Rules",
       headline: "Hard requirements and flexible approval paths—qualifying designers approved instantly, the rest routed to manual review.",
+      note: "Optional—review every application by hand if you prefer.",
     },
     {
       num: "03",
@@ -93,6 +95,7 @@ export function HowItWorksSection() {
                 style={{ fontSize: "1.35rem", lineHeight: 1.2, letterSpacing: "-0.02em" }}
               >
                 {step.title}
+                {step.note && <sup className="text-olive-mid" style={{ fontSize: "0.6em", marginLeft: "1px" }}>*</sup>}
               </h3>
               <p
                 className="text-charcoal-mid"
@@ -100,6 +103,14 @@ export function HowItWorksSection() {
               >
                 {step.headline}
               </p>
+              {step.note && (
+                <p
+                  className="mt-3 text-charcoal-soft"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", lineHeight: 1.5 }}
+                >
+                  <span className="text-olive-mid">*</span> {step.note}
+                </p>
+              )}
               {step.link && (
                 <a
                   href={step.link.href}
