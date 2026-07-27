@@ -16,9 +16,9 @@ export function CertSection() {
             <Eyebrow>Resale certificates & tax exemption</Eyebrow>
             <h2
               className="font-freight text-charcoal"
-              style={{ fontSize: "clamp(1.9rem, 2.9vw, 2.8rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+              style={{ fontSize: "clamp(1.6rem, 2.35vw, 2.3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
             >
-              Every certificate correct on day one,
+              Every resale certificate correct on day one,
               <br />
               <span className="italic text-olive-mid">and current from then on.</span>
             </h2>
