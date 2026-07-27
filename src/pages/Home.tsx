@@ -25,7 +25,7 @@ import { Footer } from "@/components/sections/home/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>
       <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
