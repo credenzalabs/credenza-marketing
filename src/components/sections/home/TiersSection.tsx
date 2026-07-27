@@ -37,7 +37,7 @@ export function TiersSection() {
           {/* Right: product mockup. The table has fixed-width columns, so on
               narrow screens it scrolls inside this box rather than stretching
               the page (which was causing horizontal overflow on mobile). */}
-          <div className="overflow-x-auto lg:overflow-visible lg:scale-[0.88] lg:origin-top-right">
+          <div className="min-w-0 overflow-x-auto lg:overflow-visible lg:scale-[0.88] lg:origin-top-right">
             <div
               className="bg-white p-6 sm:p-7 pointer-events-none select-none"
               style={{
