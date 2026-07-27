@@ -21,7 +21,7 @@ export interface NavProps {
 
 export function Nav({
   activePage = "vendors",
-  ctaLabel = "Request access",
+  ctaLabel = "Get started",
   ctaHref = "#",
   logoHref,
   showMobileCta = true,

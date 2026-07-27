@@ -68,9 +68,9 @@ export function ForVendors() {
             </p>
             <div className="border-t border-sage-dark">
               {[
-                { title: "Define your requirements", body: "Require any combination of the nine signals Credenza verifies: resale cert, EIN, business license, professional memberships, trade references, etc." },
-                { title: "Approved in minutes, not days", body: <>Designers who meet your criteria are approved in <strong className="font-semibold text-charcoal">under 2 minutes</strong>—nights, weekends, Spring Market. No one waits for a human to come back to the office.</> },
-                { title: "Always in control", body: "Auto-approval is optional—review manually, auto-approve when criteria are met, or mix both. Credenza only approves when your rules are satisfied." },
+                { title: "Define your requirements", body: "Require a resale cert, EIN, business license, ASID membership, or any combination. Credenza's application form adapts to what you need—designers see exactly what to submit." },
+                { title: "Approved in minutes, not days", body: "Designers who meet your criteria can be approved instantly—nights, weekends, Spring Market. No one waits for a human to come back to the office." },
+                { title: "Always in control", body: "Auto-approval is a choice, not a requirement. Review every application manually, auto-approve when your criteria are met, or mix both. Credenza never approves anyone without your explicit rules being satisfied." },
               ].map((item) => (
                 <div key={item.title} className="py-6 border-b border-sage-dark">
                   <h4
@@ -88,7 +88,6 @@ export function ForVendors() {
                 </div>
               ))}
             </div>
-
           </div>
 
           {/* Right: Approval rules mockups */}

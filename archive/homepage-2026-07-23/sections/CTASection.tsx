@@ -64,7 +64,7 @@ export function CTASection() {
 
           {/* Right: Form */}
           <div className="p-10 md:p-14 bg-white flex flex-col justify-center">
-            <Eyebrow>Get started</Eyebrow>
+            <Eyebrow>Early access</Eyebrow>
             <h2
               className="font-freight mb-3 text-charcoal"
               style={{ fontSize: "clamp(1.8rem, 3vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
@@ -77,15 +77,16 @@ export function CTASection() {
               className="mb-8 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}
             >
-              Tell us about your program and we&rsquo;ll get you set up.
+              Credenza is in early access. Join the waitlist and design a
+              trade program your clients will thank you for.
             </p>
             {status === "sent" ? (
               <div className="flex flex-col gap-2">
                 <p className="font-freight italic text-charcoal" style={{ fontSize: "1.25rem", lineHeight: 1.2 }}>
-                  Thanks&mdash;we&rsquo;ve got it.
+                  You&rsquo;re on the list.
                 </p>
                 <p className="text-charcoal-mid" style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.55 }}>
-                  We&rsquo;ll be in touch shortly to get your program set up.
+                  We&rsquo;ll be in touch as soon as we open early access.
                 </p>
               </div>
             ) : (
@@ -113,10 +114,10 @@ export function CTASection() {
                 <button
                   type="submit"
                   disabled={submitDisabled}
-                  className="no-underline w-full flex items-center justify-center gap-2 px-6 py-[18px] mt-1 transition-all duration-200 uppercase font-medium bg-teal hover:bg-[#99b8bd] text-forest rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
+                  className="no-underline w-full flex items-center justify-center gap-2 px-6 py-3.5 mt-1 transition-all duration-200 uppercase font-normal bg-teal hover:bg-[#99b8bd] text-forest rounded-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
                 >
-                  {status === "sending" ? "Sending..." : "Get started"}
+                  {status === "sending" ? "Sending..." : "Request access"}
                 </button>
               </form>
             )}

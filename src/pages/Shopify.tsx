@@ -313,7 +313,7 @@ function Hero() {
                   outlineOffset: "2px",
                 }}
               >
-                Request access
+                Get started
               </a>
             </div>
           </div>
@@ -1098,7 +1098,7 @@ function Close() {
                 outlineOffset: "2px",
               }}
             >
-              Request access
+              Get started
             </a>
           </div>
         </div>

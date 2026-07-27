@@ -1,5 +1,5 @@
-import { ChevronDown } from "lucide-react";
-import { HeroReviewPanel } from "./HeroReviewPanel";
+import { useEffect, useState } from "react";
+import { ChevronDown, FileText, Shield, Store } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
@@ -7,28 +7,50 @@ import { IMAGES } from "./images";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // ─── Hero ────────────────────────────────────────────────────────────────────────
-// A single still photograph. The hero used to cross-fade between two images,
-// but with the review drawer overlaid on top the page had two things moving at
-// once and read as busy — the drawer is the thing worth watching.
-const HERO_IMAGE = {
-  src: IMAGES.studioDorionBrownstone,
-  alt: "Studio Dorion brownstone",
-  position: "left center",
-  credits: [
-    { text: "© " },
-    { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
-    { text: " (design by " },
-    { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
-    { text: ")" },
-  ],
-};
+const HERO_IMAGES = [
+  {
+    src: IMAGES.studioDorionBrownstone,
+    alt: "Studio Dorion brownstone",
+    position: "left center",
+    dwellMs: 6000,
+    credits: [
+      { text: "© " },
+      { text: "Ethan Herrington", href: withCredenzaUtm("https://ethanherrington.com/", "photo-credit", "home-hero") },
+      { text: " (design by " },
+      { text: "Studio Dorion", href: withCredenzaUtm("https://www.studiodorion.com/", "designer-credit", "home-hero") },
+      { text: ")" },
+    ],
+  },
+  {
+    src: "/caitlin-kah-credenza.jpg",
+    alt: "Interior by Caitlin Kah",
+    position: "center center",
+    dwellMs: 12000,
+    credits: [
+      { text: "© " },
+      { text: "Abigail Mair", href: withCredenzaUtm("https://www.abigailmairphotography.com/", "photo-credit", "home-hero") },
+      { text: " (design by " },
+      { text: "Caitlin Kah", href: withCredenzaUtm("https://www.caitlinkah.com/", "designer-credit", "home-hero") },
+      { text: ")" },
+    ],
+  },
+];
 
 export function Hero() {
-  const hero = HERO_IMAGE;
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length),
+      HERO_IMAGES[heroIndex].dwellMs,
+    );
+    return () => clearTimeout(timer);
+  }, [heroIndex]);
+  const hero = HERO_IMAGES[heroIndex];
+  const visible = true;
 
   return (
     <section className="relative overflow-hidden flex items-center min-h-screen pt-16 bg-white">
-      {/* Subtle dot texture behind the copy */}
+      {/* Subtle dot texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-35"
         style={{
@@ -37,17 +59,13 @@ export function Hero() {
         }}
       />
 
-      <div className="container relative z-10 pt-4 md:pt-6 pb-12 md:pb-16">
-        {/* Editorial layout: copy left, contained photograph right. The review
-            card flies in over the photo. */}
+      <div className="container relative z-10 py-12 md:py-16">
+        {/* Editorial layout: text-heavy left, full-bleed image right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
 
           {/* Left: Copy—5 columns */}
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
-            <Eyebrow>
-              Trade Program Software for Interior Design{" "}
-              <span className="whitespace-nowrap">Vendors &amp; Showrooms</span>
-            </Eyebrow>
+            <Eyebrow>The Standard for Trade Programs</Eyebrow>
 
             <h1
               className="font-freight mb-8 leading-none text-charcoal"
@@ -56,9 +74,11 @@ export function Hero() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Your trade program,
+              The infrastructure
               <br />
-              <span className="italic text-olive-mid">running itself.</span>
+              behind every <span className="italic text-olive-mid">distinguished</span>
+              <br />
+              trade program.
             </h1>
 
             {/* Mobile-only hero image after headline */}
@@ -67,29 +87,29 @@ export function Hero() {
             </div>
 
             <p
-              className="mb-10 text-charcoal-mid max-w-[420px]"
+              className="mb-10 text-charcoal-mid max-w-[400px]"
               style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "1rem",
                 lineHeight: 1.75,
               }}
             >
-              Trade verification, designer onboarding, resale certificate management,
-              and tax compliance—so your team approves the right designers instantly,
-              on your own terms, and stays audit-ready without the manual work.
+              Every designer pre-vetted. Every certificate compliant. Every customer
+              onboarded. Trade verification, tax compliance, and onboarding—built for
+              vendors who take their program seriously, and the designers they serve.
             </p>
 
             {/* Primary CTA + ghost "For Designers" button so designers can
                 reach their page without hunting the nav. Both stretch
                 full-width while stacked (<md) so they match length; at md+
                 they sit side-by-side at intrinsic width. */}
-            <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex flex-col md:flex-row gap-3 mb-12">
               <a
                 href={JOIN_VENDOR_URL}
                 className="no-underline inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 transition-all duration-200 uppercase font-normal rounded-none bg-teal hover:bg-[#99b8bd] text-forest"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", outline: "0.5px solid #99b8bd", outlineOffset: "2px" }}
               >
-                Get started
+                Request access
               </a>
               <a
                 href="https://usecredenza.com/for-designers"
@@ -109,10 +129,28 @@ export function Hero() {
                 Are you a designer? →
               </a>
             </div>
+
+            {/* Trust signals—thin rule style */}
+            <div className="flex flex-col gap-2.5">
+              {[
+                { icon: <FileText size={12} />, text: "Compliant resale certificates · Single & multi-state · 46 jurisdictions" },
+                { icon: <Shield size={12} />, text: "Verified trade profile · Powered by Credenza" },
+                { icon: <Store size={12} />, text: "Shopify integration · Auto-creates & -exempts trade accounts" },
+              ].map((item) => (
+                <div key={item.text} className="flex items-center gap-2.5">
+                  <span className="shrink-0 text-charcoal-soft">{item.icon}</span>
+                  <span
+                    className="text-charcoal-soft"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.72rem", letterSpacing: "0.02em" }}
+                  >
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Right: contained square photograph — desktop only. The review card
-              flies in over it. */}
+          {/* Right: Photography — desktop only */}
           <div className="lg:col-span-7 overflow-hidden relative hidden lg:block aspect-square">
             <img
               src={hero.src}
@@ -121,7 +159,6 @@ export function Hero() {
               style={{ objectPosition: hero.position }}
             />
             <PhotoCredit credits={hero.credits} separator="" />
-            <HeroReviewPanel />
           </div>
         </div>
       </div>

@@ -6,10 +6,8 @@
 import { Nav } from "@/components/ui/Nav";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Hero } from "@/components/sections/home/Hero";
-import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection";
-import { InterludeBand } from "@/components/sections/home/InterludeBand";
-import { MidPageCTA } from "@/components/sections/home/MidPageCTA";
 import { PositioningSection } from "@/components/sections/home/PositioningSection";
+import { PortableIdentitySection } from "@/components/sections/home/PortableIdentitySection";
 import { IntegrationsSection } from "@/components/sections/home/IntegrationsSection";
 import { VerificationSection } from "@/components/sections/home/VerificationSection";
 import { CertSection } from "@/components/sections/home/CertSection";
@@ -29,21 +27,16 @@ export default function Home() {
       <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       {/* <LogoBar /> — hidden until we have customers */}
-      <HowItWorksSection />
+      <PortableIdentitySection />
       <VerificationSection />
       <ForVendors />
-      <InterludeBand />
       <IntegrationsSection />
       <CertSection />
-      <DataSection />
       <PositioningSection />
       <TiersSection />
-      <MidPageCTA />
+      <DataSection />
       <MigrationSection />
       <SecuritySection />
-      {/* PortableIdentitySection removed for now — it's a future (designer-side)
-          story; the component still lives in src/components/sections/home/. */}
-      {/* Closing statement + CTA, just before the FAQ. */}
       <GallerySection />
       <FAQSection />
       <CTASection />

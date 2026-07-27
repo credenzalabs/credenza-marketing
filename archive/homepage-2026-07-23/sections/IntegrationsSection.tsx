@@ -38,17 +38,18 @@ export function IntegrationsSection() {
               className="font-freight mb-6 text-charcoal"
               style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
             >
-              Approval is not the finish line—
+              Approved. Active.
               <br />
-              <span className="italic text-olive-mid">it's the starting gun.</span>
+              <span className="italic text-olive-mid">No manual steps.</span>
             </h2>
             <p
               className="mb-8 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              The moment you approve a designer, Credenza creates their trade
-              account and applies the correct state-level tax exemption. No one
-              on your team touches a keyboard.
+              Approval is not the finish line—it’s the starting gun. The moment
+              you approve a designer, Credenza creates their trade account
+              and applies the correct state-level tax exemption. No one on
+              your team touches a keyboard.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
