@@ -56,27 +56,26 @@ export function TiersSection() {
               {/* Column headers */}
               <div
                 className="grid gap-3 items-center px-1 mb-2 uppercase"
-                style={{ gridTemplateColumns: "1fr 100px 110px 60px 28px", fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62", letterSpacing: "0.06em" }}
+                style={{ gridTemplateColumns: "1fr 96px 104px 116px 28px", fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62", letterSpacing: "0.06em" }}
               >
                 <span>Label</span>
                 <span>Discount %</span>
                 <span>Order Min</span>
-                <span>Base</span>
+                <span>Earned at</span>
                 <span />
               </div>
 
               {/* Tier rows */}
               {[
-                { label: "Trade", discount: "20", min: "500", isBase: true },
-                { label: "Preferred", discount: "30", min: "1000", isBase: false },
-                { label: "Elite", discount: "40", min: "1500", isBase: false },
+                { label: "Trade", discount: "20", min: "500", earnedAt: null },
+                { label: "Preferred", discount: "30", min: "1000", earnedAt: "10,000" },
+                { label: "Elite", discount: "40", min: "1500", earnedAt: "50,000" },
               ].map((tier) => (
                 <div
                   key={tier.label}
                   className="grid gap-3 items-center px-1 py-2.5"
                   style={{
-                    gridTemplateColumns: "1fr 100px 110px 60px 28px",
-                    backgroundColor: tier.isBase ? "rgba(169,207,211,0.05)" : undefined,
+                    gridTemplateColumns: "1fr 96px 104px 116px 28px",
                     borderBottom: "1px solid #f0ede8",
                   }}
                 >
@@ -104,17 +103,19 @@ export function TiersSection() {
                       style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", border: "1px solid #e0dcd4", padding: "6px 8px" }}
                     />
                   </div>
-                  <div className="flex justify-center">
-                    <div
-                      className="flex items-center justify-center rounded-full w-5 h-5"
-                      style={{
-                        backgroundColor: tier.isBase ? "#F0F6F7" : "#fff",
-                        border: `1px solid ${tier.isBase ? "#A9CFD3" : "#e0dcd4"}`,
-                      }}
-                    >
-                      {tier.isBase && <div className="rounded-full w-2 h-2" style={{ backgroundColor: "#A9CFD3" }} />}
+                  {tier.earnedAt ? (
+                    <div className="flex items-center gap-1">
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#6a6a62" }}>$</span>
+                      <input
+                        readOnly
+                        value={tier.earnedAt}
+                        className="w-full bg-white"
+                        style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1A1A1A", border: "1px solid #e0dcd4", padding: "6px 8px" }}
+                      />
                     </div>
-                  </div>
+                  ) : (
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#a8a49c", paddingLeft: "2px" }}>On approval</span>
+                  )}
                   <button type="button" aria-hidden="true" tabIndex={-1} style={{ color: "#c4c4c4" }}>
                     <X size={14} aria-hidden="true" />
                   </button>
