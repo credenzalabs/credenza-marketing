@@ -51,12 +51,6 @@ export function TiersSection() {
                 >
                   Discount Tiers
                 </h3>
-                <p
-                  className="mt-1"
-                  style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6a6a62" }}
-                >
-                  Order minimums are informational—displayed to approved designers but not enforced.
-                </p>
               </div>
 
               {/* Column headers */}
