@@ -238,6 +238,29 @@ export default function ShopifyPage() {
   );
 }
 
+// Eyebrow variant that leads with the Shopify wordmark instead of spelling it
+// out, matching the rule + small-caps rhythm of the shared <Eyebrow>.
+function ShopifyEyebrow() {
+  return (
+    <div className="flex items-center gap-3 mb-6">
+      <div style={{ width: "2rem", height: 1, backgroundColor: C.sageDark, flexShrink: 0 }} />
+      <img src="/logo-shopify.png" alt="Shopify" style={{ height: 20 }} className="block w-auto" />
+      <span
+        style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: "0.68rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: C.charcoalSoft,
+          fontWeight: 600,
+        }}
+      >
+        Integration
+      </span>
+    </div>
+  );
+}
+
 /* =========================================================================
    1. HERO
    ========================================================================= */
@@ -255,7 +278,7 @@ function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
           {/* Copy — 5 cols */}
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
-            <Eyebrow>The Shopify integration</Eyebrow>
+            <ShopifyEyebrow />
             <h1
               className="font-freight mb-8 leading-none text-charcoal"
               style={{ fontSize: "clamp(2.4rem, 3.8vw, 4rem)", letterSpacing: "-0.03em" }}
@@ -792,17 +815,8 @@ function InstallMock() {
       </div>
 
       <div className="px-7 py-8">
-        <div
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 10,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: C.oliveMid,
-            marginBottom: 8,
-          }}
-        >
-          Shopify
+        <div style={{ marginBottom: 10 }}>
+          <img src="/logo-shopify.png" alt="Shopify" style={{ height: 18 }} className="block w-auto" />
         </div>
         <div className="flex items-start gap-6 mb-7">
           <div className="flex-1">

@@ -1,4 +1,3 @@
-import { Settings, Store } from "lucide-react";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
@@ -48,92 +47,80 @@ export function IntegrationsSection() {
             >
               The moment you approve a designer, Credenza creates their trade
               account and applies the correct state-level tax exemption. No one
-              on your team touches a keyboard.
+              on your team touches a keyboard. That same verified record then
+              flows into your marketing stack, so the designers you just
+              approved are already segmented and reachable.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               {[
                 {
-                  icon: <Store size={18} />,
                   title: "Shopify",
-                  badge: "Available now",
+                  logo: "/logo-shopify.png",
+                  logoHeight: 22,
                   body: "Approved designers become Shopify customers instantly—tagged with your trade pricing and state-level tax exemptions applied. No manual entry. No misapplied exemptions.",
                   href: `${prefix}/shopify`,
                 },
                 {
-                  icon: <Settings size={18} />,
-                  title: "Custom stacks & ERPs",
-                  badge: "Coming soon",
-                  body: "Direct integrations for custom e-commerce stacks and ERP systems are on the roadmap. If you’re running something bespoke, let’s talk—we’re building this with early partners.",
+                  title: "Klaviyo",
+                  logo: "/logo-klaviyo.png",
+                  logoHeight: 18,
+                  body: "Push any filtered set of trade accounts to a Klaviyo list—dormant, sampling but not buying, new this month—and campaign sends, opens, and clicks come back into each firm's activity feed.",
                   href: undefined,
                 },
-              ].map((item) => {
-                const available = item.badge === "Available now";
-                return (
-                  <div key={item.title} className="p-5 bg-white border border-sage-dark">
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="text-charcoal-soft">{item.icon}</span>
-                      <span
-                        className={`uppercase font-semibold border py-0.5 px-1.5 ${available ? "text-teal-mid border-teal-border" : "text-charcoal-soft border-sage-dark"}`}
-                        style={{
-                          fontFamily: "Inter, sans-serif",
-                          fontSize: "0.58rem",
-                          letterSpacing: "0.08em",
-                        }}
-                      >
-                        {item.badge}
-                      </span>
-                    </div>
-                    <div
-                      className="font-freight mb-2 text-charcoal"
-                      style={{ fontSize: "1.1rem", letterSpacing: "-0.015em" }}
-                    >
-                      {item.title}
-                    </div>
-                    <p
-                      className="text-charcoal-mid"
-                      style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.65 }}
-                    >
-                      {item.body}
-                    </p>
-                    {item.href && (
-                      <a
-                        href={item.href}
-                        className="no-underline inline-flex items-center gap-1 mt-3 text-teal-mid transition-colors duration-150 hover:text-charcoal"
-                        style={{
-                          fontFamily: "Inter, sans-serif",
-                          fontSize: "0.7rem",
-                          fontWeight: 600,
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        Explore the integration →
-                      </a>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex flex-col gap-2.5">
-              {[
-                "Shopify customer account created on approval",
-                "Tax exemption applied automatically at the state level",
-                "Upgrade clients to the next pricing tier with one click as the relationship grows",
-                "Cert expirations monitored—renewals requested, exemptions revoked until current",
               ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="w-1 h-1 shrink-0 bg-teal-mid" />
-                  <span
+                <div key={item.title} className="p-5 bg-white border border-sage-dark">
+                  <div className="flex items-center justify-between gap-3 mb-3 min-h-[24px]">
+                    <img
+                      src={item.logo}
+                      alt={item.title}
+                      loading="lazy"
+                      className="block w-auto max-w-full"
+                      style={{ height: item.logoHeight }}
+                    />
+                    <span
+                      className="shrink-0 uppercase font-semibold border py-0.5 px-1.5 text-teal-mid border-teal-border"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.58rem",
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      Available now
+                    </span>
+                  </div>
+                  <p
                     className="text-charcoal-mid"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }}
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.65 }}
                   >
-                    {item}
-                  </span>
+                    {item.body}
+                  </p>
+                  {item.href && (
+                    <a
+                      href={item.href}
+                      className="no-underline inline-flex items-center gap-1 mt-3 text-teal-mid transition-colors duration-150 hover:text-charcoal"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.7rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Explore the integration →
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
+
+            <p
+              className="text-charcoal-soft"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.82rem", lineHeight: 1.65 }}
+            >
+              Custom e-commerce stacks and ERPs are on the roadmap—if you’re running
+              something bespoke, let’s talk.
+            </p>
           </div>
         </div>
       </div>
