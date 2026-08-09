@@ -1,6 +1,6 @@
 # End-User License Agreement
 
-Last Updated: 2026-06-10
+Last Updated: 2026-08-09
 
 This End-User License Agreement (this "Agreement" or "EULA") is a binding legal agreement between you, either an individual or the entity you represent ("you" or "User"), and Credenza Labs, Inc., a Delaware corporation ("Credenza," "we," "us," or "our"), governing your access to and use of the Credenza Software (defined below).  
 This Agreement supplements, and is in addition to, the Credenza Terms of Use available at usecredenza.com/terms-of-use (the "Terms of Use") and the Credenza Privacy Policy available at usecredenza.com/privacy-policy (the "Privacy Policy"), each of which is incorporated into this Agreement by reference. This EULA governs your license to use the Software; the Terms of Use govern your broader use of the Credenza service. In the event of a direct conflict between this Agreement and the Terms of Use with respect to the licensing of the Software, this Agreement controls.
@@ -59,7 +59,7 @@ The Software helps you prepare resale and exemption documents and assists vendor
 
 8\. Third-Party Services
 
-The Software interoperates with and depends on third-party services, including, without limitation, Shopify, Supabase, Vercel, Stripe, Anthropic, and email and search providers. Your use of those services may be subject to their own terms and privacy policies, and Credenza is not responsible for their acts, omissions, availability, or content. If you connect a third-party account (for example, a Shopify store) to the Software, you authorize Credenza to access and exchange data with that service as needed to provide the Software, and you represent that you have the authority to grant that access. Credenza is not liable for any loss arising from a third-party service's unavailability, change, suspension, termination, or their breach of any data privacy or consumer protection regulations.
+The Software interoperates with and depends on third-party services, including, without limitation, Shopify, Supabase, Vercel, Stripe, Anthropic, QuickBooks, Intuit, Klaviyo, and email and search providers. Your use of those services may be subject to their own terms and privacy policies, and Credenza is not responsible for their acts, omissions, availability, or content. If you connect a third-party account (for example, a Shopify store) to the Software, you authorize Credenza to access and exchange data with that service as needed to provide the Software, and you represent that you have the authority to grant that access. Credenza is not liable for any loss arising from a third-party service's unavailability, change, suspension, termination, or their breach of any data privacy or consumer protection regulations.
 
 9\. Fees and Subscriptions
 
