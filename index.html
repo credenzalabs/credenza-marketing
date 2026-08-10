@@ -78,76 +78,66 @@
         "Program intelligence and analytics",
         "Member health and account segmentation"
       ],
-      "offers": {
-        "@type": "Offer",
-        "description": "Contact for pricing"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "offers": [
         {
-          "@type": "Question",
-          "name": "What is a trade program?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A trade program is a vendor's structured offering for interior designers and other trade professionals—typically including discounted pricing, resale tax exemption, customization, dedicated support, complimentary sampling, and a formal application and approval process. Most vendors run their programs manually, through spreadsheets, email, and disconnected tools. Credenza replaces that with a single platform that handles verification, approvals, onboarding, and ongoing compliance automatically—and adds the sales tools to grow it: account segmentation, exportable outreach lists, and product-level insight."
+          "@type": "Offer",
+          "name": "Designer (Free)",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free for interior designers. Unlimited resale certificates across all 46 US sales-tax jurisdictions, trade account dashboard, and a verified trade profile. No credit card required, no trial window, no seat limit.",
+          "url": "https://usecredenza.com/pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "499",
+          "priceCurrency": "USD",
+          "description": "For to-the-trade vendors: 75 trade applications per month and 3,000 active resale certificates, with priority support. Billed monthly, or annually at twelve times the monthly rate. 14-day trial before the first charge.",
+          "url": "https://usecredenza.com/pricing",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "499",
+            "priceCurrency": "USD",
+            "unitText": "MONTH"
           }
         },
         {
-          "@type": "Question",
-          "name": "What is resale certificate management?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A resale certificate (also called a resale exemption certificate or sales tax exemption certificate) is a document a designer provides to a vendor to purchase goods tax-exempt for resale to their clients. Vendors are required to collect and maintain valid certificates to support their tax-exempt sales. Resale certificate management is the process of generating the correct certificate for each designer-state-vendor combination, tracking expiration dates, requesting renewals, and revoking tax exemptions when certificates lapse. Credenza handles this entire lifecycle automatically."
+          "@type": "Offer",
+          "name": "Scale",
+          "price": "999",
+          "priceCurrency": "USD",
+          "description": "For to-the-trade vendors: 150 trade applications per month and 7,500 active resale certificates, with a 4-hour response SLA.",
+          "url": "https://usecredenza.com/pricing",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "999",
+            "priceCurrency": "USD",
+            "unitText": "MONTH"
           }
         },
         {
-          "@type": "Question",
-          "name": "What is Credenza?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Credenza is trade program software for interior design vendors. It handles trade verification, configurable approval rules, designer onboarding, and resale certificate management—eliminating manual review and protecting vendors in an audit. For designers, it's one verified trade profile they use to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Are you the Credenza that does Web3 or sports?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Credenza Labs, Inc. is a software platform for the interior design industry. We are unrelated to other companies sharing the Credenza name."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is Credenza a marketplace?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. We're infrastructure—not a marketplace. Credenza is built to empower your trade relationships, not intercept them. Designers source from the brands they choose; vendors keep their direct relationships with their trade buyers."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is Credenza different from Shopify Plus B2B?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Credenza complements your commerce stack rather than replacing it. Shopify Plus B2B handles trade pricing and tax-exempt checkout once a buyer is approved—Credenza is the identity, verification, and compliance layer that gets buyers approved in the first place."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is Credenza priced?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Designers use Credenza free—no credit card, no trial window, no seat limit. Vendor pricing is an annual or monthly subscription, tiered based on the volume of applications and certificates processed and the features included. We don't take a percentage of sales, transactions, or designer spend. Reach out and we'll help you find the right plan."
+          "@type": "Offer",
+          "name": "Premier",
+          "price": "1999",
+          "priceCurrency": "USD",
+          "description": "For to-the-trade vendors: 300 trade applications per month and 15,000 active resale certificates, with a shared Slack channel.",
+          "url": "https://usecredenza.com/pricing",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "1999",
+            "priceCurrency": "USD",
+            "unitText": "MONTH"
           }
         }
       ]
     }
     </script>
+    <!--
+      Organization and SoftwareApplication stay site-wide on purpose: they are
+      entity markup that helps AI systems disambiguate Credenza Labs from the
+      unrelated Web3 "Credenza". The homepage FAQPage does NOT belong here —
+      it is emitted by FAQSection.tsx, on the one URL that renders those FAQs.
+    -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

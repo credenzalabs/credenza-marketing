@@ -1,9 +1,19 @@
 import { useReveal } from "@/hooks/useReveal";
 
 // ─── Logo Bar ────────────────────────────────────────────────────────────────────
+//
+// NOT PUBLISHED. Not rendered on any page — see the commented-out <LogoBar />
+// in Home.tsx. Do not uncomment it until there are enough real brands to carry
+// the section.
+//
+// This list previously held eight well-known house names that were never
+// customers, sitting under a "Trusted by" heading. Under `names` goes only a
+// brand that is genuinely a Credenza customer AND has agreed to be named —
+// this is an endorsement claim, so an unpermissioned name is a real problem
+// even if it's accurate.
 export function LogoBar() {
   const ref = useReveal();
-  const names = ["Kravet", "Holly Hunt", "Schumacher", "Kneedler Fauchère", "Donghia", "Cowtan & Tout", "Brunschwig & Fils", "Lee Jofa"];
+  const names = ["Sister Parish"];
   return (
     <section
       ref={ref}

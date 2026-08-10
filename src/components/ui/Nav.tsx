@@ -4,7 +4,7 @@ import { C, LOGO_BLACK, LOGIN_URL } from "@/lib/constants";
 
 export interface NavProps {
   /** Which nav link should render in the accent olive color to indicate the active page. */
-  activePage?: "vendors" | "designers";
+  activePage?: "vendors" | "designers" | "pricing";
   /** Label for the primary CTA button (desktop + mobile). */
   ctaLabel?: string;
   /** Href for the primary CTA button. */
@@ -42,9 +42,11 @@ export function Nav({
   const isPreview = window.location.pathname.startsWith("/preview");
   const prefix = isPreview ? "/preview" : "";
   const resolvedLogoHref = logoHref ?? `${prefix}/`;
-  const navLinks: Array<{ label: string; key: "designers" | "vendors"; href: string }> = [
-    { label: "For Designers", key: "designers", href: `${prefix}/for-designers` },
+  const navLinks: Array<{ label: string; key: NonNullable<NavProps["activePage"]>; href: string }> = [
+    // Vendors first — they are who we sell to, and "/" is the vendor page.
     { label: "For Vendors", key: "vendors", href: `${prefix}/` },
+    { label: "For Designers", key: "designers", href: `${prefix}/for-designers` },
+    { label: "Pricing", key: "pricing", href: `${prefix}/pricing` },
   ];
 
   return (

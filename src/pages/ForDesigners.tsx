@@ -24,6 +24,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Nav } from "@/components/ui/Nav";
 import { useReveal } from "@/hooks/useReveal";
 import { useCatalogCount } from "@/hooks/useCatalogCount";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { C, JOIN_DESIGNER_URL } from "@/lib/constants";
 import { Footer } from "@/components/sections/home/Footer";
 
@@ -1079,7 +1080,7 @@ function FAQ() {
     },
     {
       q: "Which states do you support?",
-      a: "All 46 states with sales tax, plus DC. We auto-fill the official PDF form for 39 states. Six states (AL, FL, LA, NM, TN, WA) require their own state-issued cert—upload yours once and Credenza keeps it ready to send to any vendor on the Credenza network.",
+      a: "All 45 states with sales tax, plus DC—46 jurisdictions in total. We auto-fill the official PDF form for 39 states. Six states (AL, FL, LA, NM, TN, WA) require their own state-issued cert—upload yours once and Credenza keeps it ready to send to any vendor on the Credenza network.",
     },
     {
       q: "How do I move my existing account/source list into Credenza?",
@@ -1201,26 +1202,14 @@ const PAGE_TITLE =
   "For interior designers: one verified trade profile, every resale certificate";
 const PAGE_DESCRIPTION =
   "Credenza gives interior designers one verified trade profile to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates for any US state in seconds. Free for designers—no credit card, no seat limits.";
-const CANONICAL_URL = "https://usecredenza.com/for-designers";
+const PAGE_PATH = "/for-designers";
 
 export default function ForDesigners() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    const canonicalEl = document.querySelector('link[rel="canonical"]');
-    const prevCanonical = canonicalEl?.getAttribute("href");
-
-    document.title = `${PAGE_TITLE} | Credenza`;
-    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
-    canonicalEl?.setAttribute("href", CANONICAL_URL);
-
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
-      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
-    };
-  }, []);
+  usePageMeta({
+    title: `${PAGE_TITLE} | Credenza`,
+    description: PAGE_DESCRIPTION,
+    path: PAGE_PATH,
+  });
 
   return (
     <div className="min-h-screen bg-white">

@@ -34,11 +34,13 @@ import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
+import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 
 const PAGE_TITLE = "Automated designer verification for to-the-trade brands";
 const PAGE_DESCRIPTION =
   "Automated designer verification for furniture, lighting, rug, and home-decor brands selling to the trade. Nine evidence checks—EIN, sales tax ID, memberships, website, Instagram, state license, resale certificate, trade references, press and showhouse recognition—run in parallel against authoritative sources. Vendors set their own gating and auto-approval rules.";
-const CANONICAL_URL = "https://usecredenza.com/automated-designer-verification";
+const PAGE_PATH = "/automated-designer-verification";
+const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
@@ -169,17 +171,13 @@ const PROBLEM_POINTS = [
 ];
 
 export default function AutomatedDesignerVerification() {
+  usePageMeta({
+    title: `${PAGE_TITLE} | Credenza`,
+    description: PAGE_DESCRIPTION,
+    path: PAGE_PATH,
+  });
+
   useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    const canonicalEl = document.querySelector('link[rel="canonical"]');
-    const prevCanonical = canonicalEl?.getAttribute("href");
-
-    document.title = `${PAGE_TITLE} | Credenza`;
-    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
-    canonicalEl?.setAttribute("href", CANONICAL_URL);
-
     const faqSchema = document.createElement("script");
     faqSchema.type = "application/ld+json";
     faqSchema.dataset.pageSchema = "automated-designer-verification-faq";
@@ -221,9 +219,6 @@ export default function AutomatedDesignerVerification() {
     document.head.appendChild(articleSchema);
 
     return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
-      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
       faqSchema.remove();
       articleSchema.remove();
     };

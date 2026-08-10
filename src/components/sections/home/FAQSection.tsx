@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReveal } from "@/hooks/useReveal";
@@ -65,6 +65,30 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function FAQSection() {
   const ref = useReveal();
+
+  // FAQPage markup lives with the questions it describes, not in index.html.
+  // Google requires FAQ markup to match content visible on that URL — when this
+  // block sat in the static <head>, every prerendered route (including
+  // /privacy-policy and /dpa) claimed seven FAQs it never rendered, and
+  // /for-designers and /shopify shipped a second, contradictory FAQPage.
+  // Generating it from HOME_FAQ also keeps the schema and the copy in lockstep.
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.dataset.pageSchema = "home-faq";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: HOME_FAQ.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => script.remove();
+  }, []);
+
   return (
     <section id="faq" ref={ref} className="reveal py-16 md:py-24 bg-white">
       <div className="container">
