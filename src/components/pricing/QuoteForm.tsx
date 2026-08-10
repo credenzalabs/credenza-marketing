@@ -90,11 +90,10 @@ export function QuoteForm() {
   if (status === "sent") {
     return (
       <p
-        className="text-charcoal max-w-[520px]"
+        className="text-charcoal-mid max-w-[520px]"
         style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
       >
-        Thank you&mdash;we have what we need. We&rsquo;ll come back with a number and the
-        tier it puts you in.
+        Thank you. We&rsquo;ll be in touch!
       </p>
     );
   }
