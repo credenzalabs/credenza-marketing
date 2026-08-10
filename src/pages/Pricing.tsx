@@ -124,7 +124,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is this different from CertCapture or Avalara ECM?",
-    a: "Avalara ECM is a capable certificate-management product, but it treats certificates as a standalone step and leaves the error-handling to your team. Credenza is purpose-built for the entire to-the-trade workflow. We generate compliant certificates using the business and tax data already stored in the applicant's Credenza profile, then validate the application. If something is invalid, we handle the outreach to the designer to fix it, so your team doesn't have to be compliance experts. Because that profile is reusable, returning designers can apply to your program without filling out a redundant application. Once approved, Credenza automatically carries the account into Shopify, Klaviyo, and QuickBooks.",
+    a: "Avalara ECM is a capable certificate-management product, but it treats certificates as a standalone step and leaves the error-handling to your team. Credenza is purpose-built for the entire to-the-trade workflow. We generate compliant certificates using the business and tax data already stored in the applicant's Credenza profile, then validate the application. If something is invalid, we handle the outreach to the designer to fix it, so your team doesn't have to be compliance experts. Because that profile is reusable, returning designers can apply to your program without filling out a redundant application. Once approved, Credenza automatically carries the account into Shopify and Klaviyo.",
   },
   {
     q: "What if we need an integration you don't offer out of the box?",
@@ -300,8 +300,8 @@ export default function Pricing() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.98rem", lineHeight: 1.75 }}
             >
               Pro is the entry point for the complete trade-program
-              workflow&mdash;automated verification, resale certificate management, Shopify,
-              Klaviyo and QuickBooks syncing, auto-approval rules, and bulk imports&mdash;for
+              workflow&mdash;automated verification, resale certificate management, Shopify
+              and Klaviyo syncing, auto-approval rules, and bulk imports&mdash;for
               up to 75 trade applications per month and 3,000 active certificates. Billed
               monthly, with discounted annual rates available, and a 14-day trial before
               the first charge.
