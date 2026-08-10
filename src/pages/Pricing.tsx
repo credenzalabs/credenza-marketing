@@ -104,11 +104,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is it billed monthly or annually?",
-    a: "Either. Annual is paid upfront and monthly is month-to-month. Through October 2026, our founding vendor offer saves you 20% on an annual plan. A 14-day trial runs before the first charge.",
+    a: "Either. Annual is paid upfront and monthly is month-to-month. Through October 2026, our founding vendor offer saves you 20% on annual plans. A 14-day trial runs before the first charge.",
   },
   {
     q: "What moves us from one tier to the next?",
-    a: "Sustained volume, and the depth of tooling and support your program needs. Nothing upgrades automatically—if your trade applications or active certificates run past your plan for months at a time, we'll talk to you before anything changes, and a single busy month never triggers it.",
+    a: "Sustained volume. Nothing upgrades automatically—if your trade applications or active certificates run past your plan for months at a time, we'll talk to you before anything changes, and a single busy month never triggers it.",
   },
   {
     q: "Do you take a percentage of sales or designer spend?",
@@ -116,7 +116,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is there a setup or implementation fee?",
-    a: "No—unlike most certificate and tax-compliance tools, which charge an implementation fee before you are up and running. Connecting Credenza to your commerce platform is a single authorization from your vendor dashboard: not an onboarding project, not a scheduled implementation, not a services engagement. Program setup (your nexus states, approval rules, and trade tag) is configuration you do yourself in Credenza. The only thing we would ever quote separately is a custom integration. If you're bringing an existing book of trade accounts across, talk to us about that migration and we'll walk you through it.",
+    a: "No—unlike most certificate and tax-compliance tools, which charge an implementation fee before you are up and running. Connecting Credenza to your commerce platform is a single authorization from your vendor dashboard: not an onboarding project, not a scheduled implementation, not a services engagement. Program setup (your nexus states, approval rules, and trade tag) is configuration you do yourself in Credenza. A custom integration is the only thing we quote separately.",
   },
   {
     q: "What do you need from us to quote a price?",
@@ -124,11 +124,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is this different from CertCapture or Avalara ECM?",
-    a: "Avalara ECM is a capable certificate-management product, but it treats certificates as a standalone step and leaves the error-handling to your team. Credenza is purpose-built for the entire to-the-trade workflow. We generate compliant certificates using the business and tax data already stored in the applicant's Credenza profile, then validate the application. If something is invalid, we handle the outreach to the designer to fix it, so your team doesn't have to be compliance experts. Because that profile is reusable, returning designers can apply to your program without filling out a redundant application. Once approved, Credenza automatically carries the account into Shopify and Klaviyo.",
+    a: "Avalara ECM is a capable certificate-management product, but it treats certificates as a standalone step and leaves the error-handling to your team. Credenza is purpose-built for the entire to-the-trade workflow. We generate compliant certificates using the business and tax data already stored in the applicant's Credenza profile, then validate the application. If something is invalid, we handle the outreach to the designer to fix it, so your team doesn't have to be compliance experts. Because that profile is reusable, returning designers can apply to your program without filling out a redundant application. Once approved, Credenza can carry the account into Shopify and Klaviyo.",
   },
   {
     q: "What if we need an integration you don't offer out of the box?",
-    a: "Ask. Tailored integration and implementation plans are what the Enterprise tier is for, and a custom integration is the one thing we'd ever quote separately.",
+    a: "Ask. We'd be happy to explore a custom integration with you.",
   },
   {
     q: "How does Credenza compare to paying for a tax-compliance add-on?",
@@ -303,8 +303,7 @@ export default function Pricing() {
               workflow&mdash;automated verification, resale certificate management, Shopify
               and Klaviyo syncing, auto-approval rules, and bulk imports&mdash;for
               up to 75 trade applications per month and 3,000 active certificates. Billed
-              monthly, with discounted annual rates available, and a 14-day trial before
-              the first charge.
+              monthly, with a 14-day trial before the first charge.
             </p>
             <a
               href={JOIN_VENDOR_URL}
@@ -320,7 +319,7 @@ export default function Pricing() {
             >
               <span className="text-charcoal" style={{ fontWeight: 600 }}>Founding vendor offer:</span>{" "}
               <span className="text-charcoal-mid">
-                save 20% on an annual plan through October 2026.
+                save 20% on annual plans through October 2026.
               </span>
             </div>
           </div>
@@ -380,8 +379,8 @@ export default function Pricing() {
               Beside the $499 anchor it was competing with the price. */}
           <div className="mt-14 border-t border-sage-dark pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p
-              className="text-charcoal-mid m-0"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7 }}
+              className="text-charcoal m-0"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7, fontWeight: 600 }}
             >
               Need fewer features or a custom integration? We&rsquo;ll tailor a plan and
               implementation for you.

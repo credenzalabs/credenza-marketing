@@ -46,9 +46,9 @@ export function PositioningSection() {
             </h2>
             <p style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "rgba(255,255,255,0.8)", maxWidth: "460px" }}>
               Your relationships. Your margin.
-              Credenza is the trusted identity layer that makes trade programs
-              work—the plumbing your designers
-              and your team never have to worry about.
+              Credenza is purpose-built for the to-the-trade workflow—the trusted
+              identity layer that makes trade programs work, and the plumbing your
+              designers and your team never have to worry about.
             </p>
           </div>
         </div>
