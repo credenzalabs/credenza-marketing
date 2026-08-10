@@ -42,6 +42,26 @@ export function VerificationSection() {
             >
               Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team has everything they need to make a decision, instantly.
             </p>
+            {/* Where AI is and isn't used. "We use AI" reads as a liability to a
+                finance or tax reader unless the boundary is stated, so it's
+                stated before the checks rather than left to be inferred. */}
+            <div className="mb-6 p-5 border-l-[3px] border-olive bg-olive-light">
+              <h4
+                className="font-freight mb-2 text-charcoal"
+                style={{ fontSize: "1.1rem", letterSpacing: "-0.015em" }}
+              >
+                AI for efficiency, deterministic for compliance.
+              </h4>
+              <p
+                className="text-charcoal-mid"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.7 }}
+              >
+                We use AI to instantly read portfolios, extract PDF data, and scan for
+                press mentions. But we rely strictly on deterministic database lookups for
+                state tax permits, licenses, and EINs. You get the speed of an AI-assisted
+                workflow without risking your audit liability.
+              </p>
+            </div>
             <p
               className="text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}

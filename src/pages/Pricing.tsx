@@ -73,7 +73,7 @@ const PLANS_IMAGE = {
 };
 
 const VENDOR_INCLUDES = [
-  { icon: ShieldCheck, title: "Trade verification", body: "Up to nine evidence checks against authoritative sources, surfaced as a decision with the evidence retained behind it." },
+  { icon: ShieldCheck, title: "Trade verification", body: "Up to nine evidence checks, combining AI-powered web research with deterministic database lookups against authoritative tax and state sources." },
   { icon: Zap, title: "Auto-approval rules", body: "Approval criteria you configure and change yourself, so qualifying applicants clear in minutes rather than days." },
   { icon: FileText, title: "Resale certificate engine", body: "Compliant certificates across 46 jurisdictions, auto-filling 39 official state forms, matched to your nexus and the ship-to state." },
   { icon: RefreshCw, title: "Resale certificate management", body: "Expiration monitoring, renewal chasing, and automatic revocation of tax exemption when a certificate lapses." },
@@ -121,6 +121,10 @@ const FAQ_ITEMS = [
   {
     q: "What do you need from us to quote a price?",
     a: "Roughly how many trade applications you receive per month, and how many existing certificates and trade customers you have. That's enough to put you in the right tier.",
+  },
+  {
+    q: "Do you use AI to make tax or compliance decisions?",
+    a: "No. We use AI models to extract text from uploaded PDFs and search the web for proof that a designer is actively practicing—saving your team hours of manual research. However, state tax permit validations, approval routing, and certificate generation are 100% deterministic and rule-based. We never let AI guess your tax liability.",
   },
   {
     q: "How is this different from CertCapture or Avalara ECM?",
