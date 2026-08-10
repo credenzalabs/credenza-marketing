@@ -14,6 +14,7 @@
  */
 
 import { Link } from "react-router-dom";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const HEADLINE_LINE_1 = "Designer verification,";
 const HEADLINE_LINE_2 = "done right.";
@@ -170,6 +171,14 @@ function SocialCard({ width, height, label }: CardProps) {
 }
 
 export default function SocialCards() {
+  // Internal export surface, not a marketing page — keep it out of the index.
+  usePageMeta({
+    title: "Social cards — Credenza",
+    description: "Internal export surface for promoted-post creative.",
+    path: "/social-cards",
+    noindex: true,
+  });
+
   return (
     <div
       className="min-h-screen w-full"

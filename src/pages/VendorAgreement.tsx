@@ -1,25 +1,16 @@
-import { useEffect } from "react";
 import { Nav } from "@/components/ui/Nav";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Footer } from "@/components/sections/home/Footer";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { LegalDoc } from "@/components/legal/LegalDoc";
 
 export default function VendorAgreement() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute("content");
-    document.title = "Vendor Agreement — Credenza";
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute(
-        "content",
-        "The master commercial agreement governing a vendor's paid use of the Credenza platform.",
-      );
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc) document.querySelector('meta[name="description"]')?.setAttribute("content", prevDesc);
-    };
-  }, []);
+  usePageMeta({
+    title: "Vendor Agreement — Credenza",
+    description:
+      "The master commercial agreement governing a vendor's paid use of the Credenza platform.",
+    path: "/vendor-agreement",
+  });
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>

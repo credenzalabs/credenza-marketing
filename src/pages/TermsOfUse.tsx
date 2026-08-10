@@ -1,25 +1,16 @@
-import { useEffect } from "react";
 import { Nav } from "@/components/ui/Nav";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Footer } from "@/components/sections/home/Footer";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { TermsOfUseContent } from "@/components/legal/TermsOfUseContent";
 
 export default function TermsOfUse() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute("content");
-    document.title = "Terms of Use — Credenza";
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute(
-        "content",
-        "The terms governing your access to and use of usecredenza.com and Credenza's related services.",
-      );
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc) document.querySelector('meta[name="description"]')?.setAttribute("content", prevDesc);
-    };
-  }, []);
+  usePageMeta({
+    title: "Terms of Use — Credenza",
+    description:
+      "The terms governing your access to and use of usecredenza.com and Credenza's related services.",
+    path: "/terms-of-use",
+  });
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>

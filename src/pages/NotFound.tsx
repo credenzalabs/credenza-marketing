@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const C = {
   midnight: "#21353f",
@@ -13,15 +14,14 @@ const C = {
 };
 
 export default function NotFound() {
-  useEffect(() => {
-    const tag = document.createElement("meta");
-    tag.name = "robots";
-    tag.content = "noindex";
-    document.head.appendChild(tag);
-    return () => {
-      document.head.removeChild(tag);
-    };
-  }, []);
+  // Self-canonical rather than the homepage's URL, so a crawler that lands on a
+  // dead URL never reads it as another copy of the homepage. noindex keeps it out.
+  usePageMeta({
+    title: "Page not found — Credenza",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    path: useLocation().pathname,
+    noindex: true,
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: C.linen }}>

@@ -1,31 +1,17 @@
-import { useEffect } from "react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { IMAGES } from "@/components/sections/home/images";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { JOIN_VENDOR_URL, JOIN_DESIGNER_URL } from "@/lib/constants";
 
 export default function About() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document
-      .querySelector('meta[name="description"]')
-      ?.getAttribute("content");
-    document.title = "About Credenza";
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute(
-        "content",
-        "Credenza is the verified identity platform for the interior design trade. Founded in 2025 and headquartered in West Palm Beach, Florida.",
-      );
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc)
-        document
-          .querySelector('meta[name="description"]')
-          ?.setAttribute("content", prevDesc);
-    };
-  }, []);
+  usePageMeta({
+    title: "About Credenza",
+    description:
+      "Credenza is the verified identity platform for the interior design trade. Founded in 2025 and headquartered in West Palm Beach, Florida.",
+    path: "/about",
+  });
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>

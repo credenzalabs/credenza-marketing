@@ -32,6 +32,14 @@ export interface VendorWaitlistInput {
   email: string;
   /** Where the form lives — surfaced as event property for funnel slicing. */
   source?: string;
+  /* Optional sizing, from the /pricing intake form. The two numbers a tier is
+     priced on, plus the migration size. Omitted fields are simply not sent —
+     the form must stay submittable by someone who doesn't know them. */
+  applicationsPerMonth?: number | null;
+  activeCertificates?: number | null;
+  tradeCustomers?: number | null;
+  /** shopify | netsuite | adobe_commerce | quickbooks | other */
+  platforms?: string[];
 }
 
 async function postAnon(table: string, row: Record<string, string>): Promise<void> {
@@ -80,6 +88,10 @@ export async function submitVendorWaitlist(input: VendorWaitlistInput): Promise<
       email: input.email.trim().toLowerCase(),
       source: input.source ?? "marketing_site",
       ga_client_id: getGaClientId(),
+      ...(input.applicationsPerMonth != null && { applications_per_month: input.applicationsPerMonth }),
+      ...(input.activeCertificates != null && { active_certificates: input.activeCertificates }),
+      ...(input.tradeCustomers != null && { trade_customers: input.tradeCustomers }),
+      ...(input.platforms?.length ? { platforms: input.platforms } : {}),
     }),
   });
   if (!res.ok) {

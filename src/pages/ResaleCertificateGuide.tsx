@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
+import { useEffect } from "react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -8,11 +7,18 @@ import { IMAGES } from "@/components/sections/home/images";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { withCredenzaUtm } from "@/utils/utm";
 import { useCatalogCount } from "@/hooks/useCatalogCount";
+import { usePageMeta, absoluteUrl, SITE_URL } from "@/hooks/usePageMeta";
+import { Prose, H2, H3, FAQItem, TableOfContents, InlineHook, CTAButton } from "@/components/resources/prose";
 
 const PAGE_TITLE = "The Interior Designer's Guide to Resale Certificates";
 const PAGE_DESCRIPTION =
   "Everything interior designers need to know about resale certificates: what they are, why vendors require them, state-by-state requirements, common mistakes, and how to manage them across multiple states.";
-const PAGE_URL = "https://usecredenza.com/resources/interior-designer-resale-certificate-guide";
+const PAGE_PATH = "/resources/interior-designer-resale-certificate-guide";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
+// AUTHOR feeds both the Article schema and the visible byline below, so the
+// two can't drift apart — Google expects the markup to match a byline the
+// reader can actually see.
+const AUTHOR = "Credenza Team";
 const DATE_PUBLISHED = "2026-05-01";
 const DATE_MODIFIED = "2026-05-01";
 const CTA_HREF = "https://usecredenza.com/for-designers";
@@ -86,13 +92,14 @@ const FAQ_ITEMS = [
 
 export default function ResaleCertificateGuide() {
   const catalogCount = useCatalogCount();
-  useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    document.title = `${PAGE_TITLE} | Credenza`;
-    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
 
+  usePageMeta({
+    title: `${PAGE_TITLE} | Credenza`,
+    description: PAGE_DESCRIPTION,
+    path: PAGE_PATH,
+  });
+
+  useEffect(() => {
     const articleSchema = document.createElement("script");
     articleSchema.type = "application/ld+json";
     articleSchema.text = JSON.stringify({
@@ -105,7 +112,7 @@ export default function ResaleCertificateGuide() {
       author: {
         "@type": "Organization",
         name: "Credenza Labs, Inc.",
-        url: "https://usecredenza.com/",
+        url: `${SITE_URL}/`,
       },
       publisher: {
         "@type": "Organization",
@@ -150,8 +157,6 @@ export default function ResaleCertificateGuide() {
     document.head.appendChild(faqSchema);
 
     return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
       document.head.removeChild(articleSchema);
       document.head.removeChild(howToSchema);
       document.head.removeChild(faqSchema);
@@ -203,7 +208,7 @@ export default function ResaleCertificateGuide() {
           className="text-charcoal-soft mb-8"
           style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", letterSpacing: "0.02em" }}
         >
-          Credenza Team · May 1, 2026
+          {AUTHOR} · May 1, 2026
         </p>
         <p
           className="text-charcoal-mid italic mb-12"
@@ -252,7 +257,7 @@ export default function ResaleCertificateGuide() {
             The exposure isn't only on the vendor's side. If your certificate is invalid or expired and a vendor gets audited, most states have a good faith rule that can shift the liability to you for the unpaid tax plus interest. Intentional misuse—using a resale certificate for personal purchases or anything you're not reselling to a client—carries its own penalties in most states. If a vendor pays tax on your behalf during an audit because your certificate was invalid, don't be surprised to receive an invoice. Vendors have every incentive to recover that cost from you—though many will absorb it rather than sour the relationship. Either way, the underlying logic is the same: a resale certificate doesn't eliminate the tax obligation, it defers it. If the deferral turns out to be invalid, someone has to pay.
           </p>
           <p>
-            That's why the good vendors are exacting about this. When Kravet or Holly Hunt's accounts team kicks back your application for a missing certificate or a form-field discrepancy, it's not bureaucratic fussiness—it's their tax counsel's guidance. A clean, current, properly-completed certificate protects everyone.
+            That's why the good vendors are exacting about this. When an established house's accounts team kicks back your application for a missing certificate or a form-field discrepancy, it's not bureaucratic fussiness—it's their tax counsel's guidance. A clean, current, properly-completed certificate protects everyone.
           </p>
         </Prose>
 
@@ -337,7 +342,7 @@ export default function ResaleCertificateGuide() {
           </p>
         </Prose>
 
-        <InlineHook label="Credenza picks the right state form and pre-fills it correctly, every time" />
+        <InlineHook href={CTA_HREF} label="Credenza picks the right state form and pre-fills it correctly, every time" />
 
         <H2 id="manage-vendors">How to manage resale certificates across vendors</H2>
         <Prose>
@@ -355,7 +360,7 @@ export default function ResaleCertificateGuide() {
           </p>
         </Prose>
 
-        <InlineHook label="Skip the spreadsheet — Credenza tracks expirations and pre-fills renewals automatically" />
+        <InlineHook href={CTA_HREF} label="Skip the spreadsheet — Credenza tracks expirations and pre-fills renewals automatically" />
 
         <H2 id="audits">What happens during a vendor's audit—and why your cert quality matters</H2>
         <Prose>
@@ -385,7 +390,7 @@ export default function ResaleCertificateGuide() {
             Credenza was built specifically to remove this bottleneck from the trade application process—and we do so for any vendor you source from, not just those in the Credenza network.
           </p>
           <p>
-            When you create a Credenza profile, you enter your information once: your legal business name, your state of registration, your tax ID, your business details. From that single verified profile, Credenza generates compliant resale certificates for any of the 46 sales-tax states—instantly, completely pre-filled with your information.
+            When you create a Credenza profile, you enter your information once: your legal business name, your state of registration, your tax ID, your business details. From that single verified profile, Credenza generates compliant resale certificates for any of the 46 sales-tax jurisdictions—instantly, completely pre-filled with your information.
           </p>
           <p>
             The certificate engine follows the same priority logic an experienced tax attorney would apply: for states that accept multi-state forms, it generates an MTC or SST certificate where appropriate. For states requiring their own official forms, it generates those. For states that issue certificates to you directly, it tells you exactly where to retrieve yours and what to expect. And beyond the standard form logic, it's built around the edge cases—the state-specific rules, the per-vendor exceptions, the nuances that most designers never encounter until a cert gets rejected. You're never guessing which form to use, and you're covered for the scenarios most compliance tools miss.
@@ -426,7 +431,7 @@ export default function ResaleCertificateGuide() {
             <li><strong>Monitor your nexus</strong> as your practice grows across state lines, and register before you need to generate certificates</li>
           </ul>
           <p>
-            Credenza exists specifically to take this off your plate. One profile, compliant certificates for all 46 sales-tax states, for any vendor you work with—automatically submitted to every vendor you apply to in the Credenza network, and available on demand for everyone else. It's free for designers.
+            Credenza exists specifically to take this off your plate. One profile, compliant certificates for all 46 sales-tax jurisdictions, for any vendor you work with—automatically submitted to every vendor you apply to in the Credenza network, and available on demand for everyone else. It's free for designers.
           </p>
         </Prose>
 
@@ -469,146 +474,12 @@ export default function ResaleCertificateGuide() {
           </main>
           <aside className="hidden lg:block">
             <div className="sticky top-24">
-              <TableOfContents />
+              <TableOfContents items={TOC} />
             </div>
           </aside>
         </div>
       </div>
       <Footer />
     </div>
-  );
-}
-
-function Prose({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="text-charcoal-mid space-y-5 mb-10"
-      style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function H2({ id, children }: { id?: string; children: React.ReactNode }) {
-  return (
-    <h2
-      id={id}
-      className="font-freight text-charcoal mt-16 mb-6"
-      style={{ fontSize: "clamp(1.5rem, 2.6vw, 1.85rem)", letterSpacing: "-0.02em", lineHeight: 1.2, scrollMarginTop: "100px" }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function TableOfContents() {
-  return (
-    <nav aria-label="Table of contents">
-      <h4
-        className="text-charcoal-soft mb-4"
-        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600 }}
-      >
-        On this page
-      </h4>
-      <ul className="space-y-2 border-l border-sage-dark">
-        {TOC.map((item) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className="block pl-4 -ml-px border-l border-transparent hover:border-olive-mid hover:text-charcoal transition-colors duration-150 text-charcoal-soft"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.5 }}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
-function H3({ children }: { children: React.ReactNode }) {
-  return (
-    <h3
-      className="mt-10 mb-4"
-      style={{
-        fontFamily: "Inter, sans-serif",
-        fontWeight: 600,
-        fontSize: "0.78rem",
-        letterSpacing: "0.12em",
-        textTransform: "uppercase",
-        lineHeight: 1.4,
-        color: "#21353f",
-      }}
-    >
-      {children}
-    </h3>
-  );
-}
-
-function FAQItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-sage-dark">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        className="w-full flex items-start justify-between gap-6 py-5 text-left cursor-pointer bg-transparent"
-      >
-        <h3 className="font-freight text-charcoal" style={{ fontSize: "1.1rem", letterSpacing: "-0.015em", lineHeight: 1.3 }}>
-          {q}
-        </h3>
-        <div className={`shrink-0 mt-1 text-charcoal-soft transition-transform duration-200 ${open ? "rotate-45" : ""}`}>
-          <Plus size={20} />
-        </div>
-      </button>
-      {open && (
-        <p
-          className="pb-5 pr-10 text-charcoal-mid"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
-        >
-          {a}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function InlineHook({ label }: { label: string }) {
-  return (
-    <div className="my-8">
-      <a
-        href={CTA_HREF}
-        className="inline-flex items-baseline gap-1.5 text-olive-mid hover:text-charcoal transition-colors no-underline"
-        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}
-      >
-        <span className="underline decoration-olive-mid/40 underline-offset-4 hover:decoration-current">
-          {label}
-        </span>
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  );
-}
-
-function CTAButton({ href, label }: { href: string; label: string }) {
-  return (
-    <a
-      href={href}
-      className="no-underline block text-center py-3.5 px-6 transition-all duration-200 bg-teal hover:bg-[#99b8bd] text-forest rounded-none"
-      style={{
-        fontFamily: "Inter, sans-serif",
-        fontSize: "0.78rem",
-        fontWeight: 400,
-        letterSpacing: "0.1em",
-        textTransform: "uppercase",
-        outline: "0.5px solid #99b8bd",
-        outlineOffset: "2px",
-      }}
-    >
-      {label}
-    </a>
   );
 }

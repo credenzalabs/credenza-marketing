@@ -5,6 +5,8 @@ import ForDesigners from "./pages/ForDesigners";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import ResaleCertificateGuide from "./pages/ResaleCertificateGuide";
+import Pricing from "./pages/Pricing";
+import TradeProgramSoftwareGuide from "./pages/TradeProgramSoftwareGuide";
 import ResaleCertificateManagement from "./pages/ResaleCertificateManagement";
 import AutomatedDesignerVerification from "./pages/AutomatedDesignerVerification";
 import ShopifyPage from "./pages/Shopify";
@@ -33,9 +35,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/for-designers" element={<ForDesigners />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/interior-designer-resale-certificate-guide" element={<ResaleCertificateGuide />} />
+        <Route path="/resources/how-to-choose-trade-program-software" element={<TradeProgramSoftwareGuide />} />
         <Route path="/resale-certificate-management" element={<ResaleCertificateManagement />} />
         <Route path="/automated-designer-verification" element={<AutomatedDesignerVerification />} />
         <Route path="/shopify" element={<ShopifyPage />} />

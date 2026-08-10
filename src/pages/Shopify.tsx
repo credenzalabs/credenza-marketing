@@ -36,6 +36,7 @@ import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { JOIN_VENDOR_URL, C } from "@/lib/constants";
+import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 import { withCredenzaUtm } from "@/utils/utm";
 
 const HERO_IMAGE = {
@@ -55,7 +56,8 @@ const PAGE_TITLE =
   "Shopify trade onboarding: verified designers, auto-tagged, tax-exempt";
 const PAGE_DESCRIPTION =
   "Credenza is the verification layer behind every trade account in Shopify. Designers are verified through nine evidence checks before they reach your store; Credenza then creates the customer profile in Shopify (or updates it if the customer already exists), with verification status, exemption details, and a trade-customer tag, so your existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
-const CANONICAL_URL = "https://usecredenza.com/shopify";
+const PAGE_PATH = "/shopify";
+const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
@@ -158,17 +160,13 @@ const WHY_IT_MATTERS: Array<{ title: string; body: string }> = [
 ];
 
 export default function ShopifyPage() {
+  usePageMeta({
+    title: `${PAGE_TITLE} | Credenza`,
+    description: PAGE_DESCRIPTION,
+    path: PAGE_PATH,
+  });
+
   useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    const canonicalEl = document.querySelector('link[rel="canonical"]');
-    const prevCanonical = canonicalEl?.getAttribute("href");
-
-    document.title = `${PAGE_TITLE} | Credenza`;
-    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
-    canonicalEl?.setAttribute("href", CANONICAL_URL);
-
     const faqSchema = document.createElement("script");
     faqSchema.type = "application/ld+json";
     faqSchema.dataset.pageSchema = "shopify-faq";
@@ -214,9 +212,6 @@ export default function ShopifyPage() {
     document.head.appendChild(articleSchema);
 
     return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
-      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
       faqSchema.remove();
       articleSchema.remove();
     };

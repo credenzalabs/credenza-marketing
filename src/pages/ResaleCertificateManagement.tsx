@@ -19,30 +19,29 @@ import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
+import { TestimonialSection } from "@/components/sections/home/TestimonialSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PhotoCredit } from "@/components/ui/PhotoCredit";
 import { withCredenzaUtm } from "@/utils/utm";
 import { useReveal } from "@/hooks/useReveal";
 import { useCatalogCount } from "@/hooks/useCatalogCount";
+import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 
 const PAGE_TITLE = "Resale certificate management for the to-the-trade channel";
 const PAGE_DESCRIPTION =
   "Resale certificate management built for to-the-trade brands. Verified designer profiles, compliant certificates pre-attached at trade-account application, state-scoped exemption written directly to the Shopify customer profile.";
-const CANONICAL_URL = "https://usecredenza.com/resale-certificate-management";
+const PAGE_PATH = "/resale-certificate-management";
+const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
 export default function ResaleCertificateManagement() {
+  usePageMeta({
+    title: `${PAGE_TITLE} | Credenza`,
+    description: PAGE_DESCRIPTION,
+    path: PAGE_PATH,
+  });
+
   useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    const canonicalEl = document.querySelector('link[rel="canonical"]');
-    const prevCanonical = canonicalEl?.getAttribute("href");
-
-    document.title = `${PAGE_TITLE} | Credenza`;
-    descMeta?.setAttribute("content", PAGE_DESCRIPTION);
-    canonicalEl?.setAttribute("href", CANONICAL_URL);
-
     const faqSchema = document.createElement("script");
     faqSchema.type = "application/ld+json";
     faqSchema.dataset.pageSchema = "resale-cert-faq";
@@ -87,9 +86,6 @@ export default function ResaleCertificateManagement() {
     document.head.appendChild(articleSchema);
 
     return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
-      if (prevCanonical) canonicalEl?.setAttribute("href", prevCanonical);
       faqSchema.remove();
       articleSchema.remove();
     };
@@ -103,6 +99,7 @@ export default function ResaleCertificateManagement() {
       <Integrations />
       <Difference />
       <Problem />
+      <TestimonialSection />
       <FAQ />
       <Close />
       <Footer />
@@ -256,7 +253,7 @@ const FAQ_ITEMS = [
     a: "Native Shopify integration is live today. We're rolling out support for additional commerce platforms—tell us what you use and we'll share timelines. Credenza can also be used independently of your store—a system to collect, monitor, and renew your certificates, prompting the designer to renew with a simple signature before it lapses.",
   },
   {
-    q: "Is the certificate generation actually compliant for all 46 states?",
+    q: "Is the certificate generation actually compliant for all 46 jurisdictions?",
     a: "Yes. The engine handles MTC, SST, state-specific forms, and state-issued certificates. For the six states that issue certificates directly to the buyer (AL, FL, LA, NM, TN, WA), Credenza guides the designer through retrieval and tracks expirations.",
   },
   {
@@ -335,7 +332,7 @@ const CAPABILITIES = [
   },
   {
     title: "Generated from verified data, not user-typed fields",
-    body: "Credenza already has the designer's verified sales tax ID, EIN, legal entity name, and state registrations on file. The engine pairs that with their profession and shipping destinations to generate the right form for all 46 sales-tax states—MTC, SST, state-specific, or state-issued—prefilled correctly. No “please upload your cert” follow-ups. No blurry phone photos. No last year's PDF in this year's application.",
+    body: "Credenza already has the designer's verified sales tax ID, EIN, legal entity name, and state registrations on file. The engine pairs that with their profession and shipping destinations to generate the right form for all 46 sales-tax jurisdictions—MTC, SST, state-specific, or state-issued—prefilled correctly. No “please upload your cert” follow-ups. No blurry phone photos. No last year's PDF in this year's application.",
   },
   {
     title: "Pre-attached at application time",

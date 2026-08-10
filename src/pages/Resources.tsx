@@ -1,35 +1,46 @@
-import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { usePageMeta } from "@/hooks/usePageMeta";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 
-const RESOURCES = [
+// Grouped by audience: the section previously held one designer-side article,
+// which left vendors—the people who buy—with nothing to read.
+const SECTIONS = [
   {
-    title: "The Interior Designer's Guide to Resale Certificates",
-    description:
-      "Everything designers need to know about resale certificates: what they are, why vendors require them, state-by-state requirements, common mistakes, and how to manage them across multiple states.",
-    href: "/resources/interior-designer-resale-certificate-guide",
-    eyebrow: "Guide",
+    audience: "For to-the-trade brands",
+    resources: [
+      {
+        title: "How to Choose Trade Program Software",
+        description:
+          "An evaluation framework for vendors: what the category covers, the seven criteria that actually separate tools, how to test verification depth and certificate handling, the questions to ask on a demo, and when building in-house makes sense.",
+        href: "/resources/how-to-choose-trade-program-software",
+        eyebrow: "Buyer's guide",
+      },
+    ],
+  },
+  {
+    audience: "For interior designers",
+    resources: [
+      {
+        title: "The Interior Designer's Guide to Resale Certificates",
+        description:
+          "Everything designers need to know about resale certificates: what they are, why vendors require them, state-by-state requirements, common mistakes, and how to manage them across multiple states.",
+        href: "/resources/interior-designer-resale-certificate-guide",
+        eyebrow: "Guide",
+      },
+    ],
   },
 ];
 
 export default function Resources() {
-  useEffect(() => {
-    const prevTitle = document.title;
-    const descMeta = document.querySelector('meta[name="description"]');
-    const prevDesc = descMeta?.getAttribute("content");
-    document.title = "Resources | Credenza";
-    descMeta?.setAttribute(
-      "content",
+  usePageMeta({
+    title: "Resources | Credenza",
+    description:
       "Guides for interior designers and to-the-trade brands navigating trade verification, resale certificate compliance, and tax-exempt purchasing.",
-    );
-    return () => {
-      document.title = prevTitle;
-      if (prevDesc) descMeta?.setAttribute("content", prevDesc);
-    };
-  }, []);
+    path: "/resources",
+  });
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
@@ -54,8 +65,16 @@ export default function Resources() {
           Long-form guides for designers and to-the-trade brands working through trade verification, resale certificate compliance, and tax-exempt purchasing.
         </p>
 
+        {SECTIONS.map((section) => (
+        <section key={section.audience} className="mb-14 last:mb-0">
+        <h2
+          className="text-charcoal-soft mb-1"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}
+        >
+          {section.audience}
+        </h2>
         <div className="border-t border-sage-dark">
-          {RESOURCES.map((r) => (
+          {section.resources.map((r) => (
             <a
               key={r.href}
               href={r.href}
@@ -69,12 +88,12 @@ export default function Resources() {
                   {r.eyebrow}
                 </span>
               </div>
-              <h2
+              <h3
                 className="font-freight text-charcoal mb-3 group-hover:text-olive-mid transition-colors duration-150"
                 style={{ fontSize: "clamp(1.4rem, 2.4vw, 1.75rem)", letterSpacing: "-0.02em", lineHeight: 1.2 }}
               >
                 {r.title}
-              </h2>
+              </h3>
               <p
                 className="text-charcoal-mid mb-3"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7 }}
@@ -90,6 +109,8 @@ export default function Resources() {
             </a>
           ))}
         </div>
+        </section>
+        ))}
       </main>
       <Footer />
     </div>
