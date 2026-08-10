@@ -42,15 +42,19 @@ export function VerificationSection() {
             >
               Credenza verifies the person behind the paperwork—EINs, tax IDs, licenses, memberships, web presence, press, and more. Nine checks, run in parallel on every applicant, so your team has everything they need to make a decision, instantly.
             </p>
-            {/* Where AI is and isn't used — stated before the checks rather than
-                left to be inferred, but as prose: a second callout box here made
-                the column top-heavy. */}
+            {/* Where AI is and isn't used. Leads with the lookups and names the
+                actual authorities: opening on AI and then denying it ("never a
+                model's judgment") implied AI was the default and the lookups the
+                exception. Naming IRS, state registration systems and the
+                directories settles it without the denial. */}
             <p
               className="mb-6 text-charcoal-mid"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              AI reads the unstructured evidence—portfolios, PDFs, press. Tax permits,
-              licenses, and EINs are <span className="italic text-olive-mid">deterministic lookups</span>, never a model&rsquo;s judgment.
+              Tax permits, licenses, and EINs are checked against the issuing sources—state
+              registration systems, IRS records, and the professional directories themselves.
+              AI is used <span className="italic text-olive-mid">only</span> where the evidence
+              is unstructured: portfolios, PDFs, and press.
             </p>
             <p
               className="text-charcoal-mid"
