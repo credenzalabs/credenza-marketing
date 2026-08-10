@@ -1,6 +1,6 @@
 Data Processing Addendum
 
-Last Updated: 2026-06-11
+Last Updated: 2026-08-09
 
 This **Data Processing Addendum** ("DPA") forms part of, and is subject to, the Credenza Terms of Use at usecredenza.com/terms-of-use and the End-User License Agreement (together, the "Agreement") between **Credenza Labs, Inc.**, a Delaware corporation ("Credenza," "we," or "Processor"), and the customer entity that has entered into the Agreement ("Customer," "you," or "Controller"). This DPA governs the Processing of Personal Data by Credenza on Customer's behalf in connection with the Credenza platform and services (the "Services").  
 In the event of a conflict between this DPA and the rest of the Agreement with respect to the Processing of Personal Data, this DPA controls. Capitalized terms not defined here have the meanings given in the Agreement.
@@ -111,7 +111,6 @@ Customer authorizes the following Sub-processors. Credenza will update this list
 | Vercel | Frontend application hosting and content delivery | United States / Global edge |
 | Fly.io | Hosting for the authenticated profile-verification microservice | United States |
 | Stripe | Subscription billing and payment processing | United States |
-| Shopify | Commerce-platform integration for connected vendor stores | Canada / United States (global) |
 | Anthropic (Claude) | AI analysis of public business website and social-media content for verification | United States |
 | OpenAI | Vision-model classification of public profile content within the verification microservice | United States |
 | Sentry (Functional Software, Inc.) | Application error monitoring and diagnostics | United States |
@@ -119,6 +118,8 @@ Customer authorizes the following Sub-processors. Credenza will update this list
 | Serper.dev | Public news/press search to support verification | United States |
 
 Note: Some entries (for example, search and directory lookups) may process limited business identifiers rather than Personal Data. The list reflects providers used in delivering the Services and is maintained as the source of truth for Sub-processor notice and objection under Section 3.4.
+
+Note: Third-party services that Customer elects to connect to its own account—for example, Customer's Shopify store, QuickBooks Online company, or Klaviyo account—are not Sub-processors and are not listed above. Credenza exchanges data with those services at Customer's direction, only while Customer keeps the connection enabled, and only to the extent described in the Credenza Privacy Policy. Those accounts belong to Customer, and Customer's use of them is governed by Customer's own agreement with the relevant provider. Customer may disconnect any such integration at any time.
 
 Contact
 
