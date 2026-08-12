@@ -66,7 +66,7 @@ export function IntegrationsSection() {
                   logo: "/logo-klaviyo.png",
                   logoHeight: 18,
                   body: "Push any filtered set of trade accounts to a Klaviyo list—dormant, sampling but not buying, new this month—and campaign sends, opens, and clicks come back into each firm's activity feed.",
-                  href: undefined,
+                  href: `${prefix}/integrations/klaviyo`,
                 },
               ].map((item) => (
                 <div key={item.title} className="p-5 bg-white border border-sage-dark">

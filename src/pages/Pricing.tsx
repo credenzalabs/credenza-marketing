@@ -471,7 +471,7 @@ export default function Pricing() {
 
           The right panel stays forest so the form's field styling (light fields
           on dark) is unchanged, and so the page still closes on a dark note. */}
-      <section className="bg-white">
+      <section id="quote" className="bg-white" style={{ scrollMarginTop: 96 }}>
         <div className="grid lg:grid-cols-2 items-stretch">
           <div className="relative overflow-hidden min-h-[340px] lg:min-h-0 order-first">
             <img

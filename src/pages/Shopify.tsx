@@ -30,7 +30,7 @@
 
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { Check, ChevronDown, Pencil, X } from "lucide-react";
+import { Check, ChevronDown, Link2, Pencil, X } from "lucide-react";
 import { Nav } from "@/components/ui/Nav";
 import { Footer } from "@/components/sections/home/Footer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -219,7 +219,7 @@ export default function ShopifyPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFFFFF" }}>
-      <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
+      <Nav activePage="integrations" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
       <Definition />
       <WhyItMatters />
@@ -785,34 +785,39 @@ function InstallMock() {
       className="bg-white"
       style={{ border: `0.5px solid ${C.sageDark}`, boxShadow: "0 2px 24px rgba(33,53,63,0.06)" }}
     >
-      {/* Header bar */}
-      <div
-        className="flex items-center justify-between px-5 py-3"
-        style={{ borderBottom: `0.5px solid ${C.sageDark}`, backgroundColor: "#fbfaf6" }}
-      >
+      <div className="px-7 pt-7 pb-8">
+        {/* The Integrations screen's own header and wordmark tabs, rather than
+            an invented browser chrome: icon + title + subtitle, then one tab per
+            integration with a 2px charcoal underline on the active one. Mirrors
+            VendorIntegrations.tsx. */}
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: C.tealMid }} />
+          <Link2 size={18} style={{ color: C.charcoalSoft }} />
           <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 10,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: C.charcoalSoft,
-            }}
+            className="font-freight text-charcoal"
+            style={{ fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.015em" }}
           >
-            Credenza · Vendor dashboard · Integrations
+            Integrations
           </span>
         </div>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: C.charcoalSoft }}>
-          /vendor/integrations/shopify
-        </span>
-      </div>
-
-      <div className="px-7 py-8">
-        <div style={{ marginBottom: 10 }}>
-          <img src="/logo-shopify.png" alt="Shopify" style={{ height: 18 }} className="block w-auto" />
+        <div
+          style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: C.charcoalSoft, marginTop: 4 }}
+        >
+          Connect your platforms to keep trade data in sync automatically.
         </div>
+
+        <div className="flex items-center gap-6 mt-6 mb-7" style={{ borderBottom: "1px solid #e0dcd4" }}>
+          <span className="relative flex items-center pb-2.5 pt-1">
+            <img src="/logo-shopify.png" alt="Shopify" style={{ height: 22 }} className="block w-auto" />
+            <span
+              className="absolute left-0 right-0"
+              style={{ bottom: -1, height: 2, backgroundColor: C.charcoal }}
+            />
+          </span>
+          <span className="flex items-center pb-2.5 pt-1" style={{ opacity: 0.55 }}>
+            <img src="/logo-klaviyo.png" alt="Klaviyo" style={{ height: 15 }} className="block w-auto" />
+          </span>
+        </div>
+
         <div className="flex items-start gap-6 mb-7">
           <div className="flex-1">
             <div
