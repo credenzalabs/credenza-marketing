@@ -10,6 +10,7 @@ import TradeProgramSoftwareGuide from "./pages/TradeProgramSoftwareGuide";
 import ResaleCertificateManagement from "./pages/ResaleCertificateManagement";
 import AutomatedDesignerVerification from "./pages/AutomatedDesignerVerification";
 import ShopifyPage from "./pages/Shopify";
+import KlaviyoPage from "./pages/Klaviyo";
 import SocialCards from "./pages/SocialCards";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/resale-certificate-management" element={<ResaleCertificateManagement />} />
         <Route path="/automated-designer-verification" element={<AutomatedDesignerVerification />} />
         <Route path="/shopify" element={<ShopifyPage />} />
+        <Route path="/integrations/klaviyo" element={<KlaviyoPage />} />
         <Route path="/social-cards" element={<SocialCards />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
