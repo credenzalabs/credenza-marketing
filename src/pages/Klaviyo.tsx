@@ -82,9 +82,15 @@ const PAGE_DESCRIPTION =
 const PAGE_PATH = "/integrations/klaviyo";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
-/* The six opportunity segments, verbatim from the Member Health view in the
-   vendor dashboard. The label and the definition are what a vendor actually
-   sees on that screen, so they stay in step. */
+/* A sample of the opportunity segments, verbatim from the Member Health view in
+   the vendor dashboard — six is what fits the mock, NOT the whole set. Member
+   Health also carries expiring certs among active buyers and top firms by
+   revenue, and the Revenue Drivers cohorts (new, reactivated, retained, lapsed)
+   are syncable too; the full list is the RPC key table in the
+   vendor_klaviyo_list_subscriptions migration. Copy on this page must say "a
+   few of them" or similar rather than presenting these as the complete orbit.
+   The label and the definition are what a vendor actually sees on that screen,
+   so they stay in step. */
 const SEGMENTS: Array<{
   label: string;
   detail: string;
@@ -169,7 +175,7 @@ const USE_CASES: Array<{ title: string; body: string }> = [
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: "What does the Credenza Klaviyo integration do?",
-    a: "It turns your trade program into audiences you can campaign against. Credenza holds the trade application, the enriched firm record, and the order history for every account in your program, and reads them together to maintain a set of opportunity segments—Dormant VIPs, Recently lapsed, Sampling not buying, One and done, Approved no first order, and Reactivated. Any of those, or any filtered view of your Trade Directory, syncs to a Klaviyo list in a few clicks. Engagement on the campaigns you send then flows back onto each firm's record in Credenza.",
+    a: "It turns your trade program into audiences you can campaign against. Credenza holds the trade application, the enriched firm record, and the order history for every account in your program, and reads them together to maintain opportunity segments defined in trade terms—Dormant VIPs, Sampling not buying, and Approved no first order are a few of them. Any segment, or any filtered view of your Trade Directory, syncs to a Klaviyo list in a few clicks. Engagement on the campaigns you send then flows back onto each firm's record in Credenza.",
   },
   {
     q: "Which audiences can I send to Klaviyo?",
@@ -185,11 +191,11 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: "What comes back from Klaviyo into Credenza?",
-    a: "Email engagement—sends, opens, clicks, bounces, and unsubscribes—is pulled hourly and written onto the matching firm's record in Credenza, each event named with the campaign it came from. It appears under Activity on the firm profile, a tab from that firm's team, certificates, and verification. This is usually the part vendors notice: engagement data normally lives in the marketing tool, behind a seat the sales side doesn't have.",
+    a: "Email engagement—sends, opens, clicks, bounces, and unsubscribes—is pulled hourly and written onto the matching firm's record in Credenza, each event named with the campaign it came from. It appears under Activity on the firm profile, a tab from that firm's team, certificates, and verification.",
   },
   {
     q: "Do I need Shopify connected to use the Klaviyo integration?",
-    a: "No—the two integrations are independent and either runs on its own. Segments that depend on purchase behavior do need an order source: Credenza reads order history from your connected store, or from client and order data you import. Segments driven by program state rather than orders—approved with no first order, sample activity, certificates coming up for renewal—work as soon as your trade program is running in Credenza.",
+    a: "No—the two integrations are independent and either runs on its own. What the segments do need is a source of order history, since most of them are defined by what a firm has or hasn't bought: Credenza reads orders from your connected store, or from client and order data you import. Audiences built on application and approval state instead—every firm approved this quarter, or any filtered slice of your Trade Directory—work as soon as your trade program is running in Credenza.",
   },
 ];
 
