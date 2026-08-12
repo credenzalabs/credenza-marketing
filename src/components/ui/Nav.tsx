@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { C, LOGO_BLACK, LOGIN_URL } from "@/lib/constants";
 
@@ -30,36 +30,12 @@ export function Nav({
 }: NavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  // Desktop "Integrations" flyout. Opens on hover for mouse users and on
-  // click/Enter for keyboard users, so it is reachable either way.
-  const [integrationsOpen, setIntegrationsOpen] = useState(false);
-  const integrationsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
-
-  // Escape closes the flyout wherever focus is; a click outside closes it too,
-  // which a hover-only handler misses after a keyboard user opens it.
-  useEffect(() => {
-    if (!integrationsOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIntegrationsOpen(false);
-    };
-    const onPointerDown = (e: MouseEvent) => {
-      if (!integrationsRef.current?.contains(e.target as Node)) {
-        setIntegrationsOpen(false);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("mousedown", onPointerDown);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("mousedown", onPointerDown);
-    };
-  }, [integrationsOpen]);
 
   const isSolid = forceSolid || scrolled;
 
@@ -149,20 +125,17 @@ export function Nav({
               if (item.key !== "pricing") return link;
               return (
                 <div key="integrations-and-pricing" className="contents">
-                  <div
-                    key="integrations"
-                    ref={integrationsRef}
-                    className="relative"
-                    onMouseEnter={() => setIntegrationsOpen(true)}
-                    onMouseLeave={() => setIntegrationsOpen(false)}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setIntegrationsOpen((open) => !open)}
-                      aria-expanded={integrationsOpen}
-                      aria-haspopup="true"
-                      aria-controls="integrations-menu"
-                      className="flex items-center gap-1.5 bg-transparent border-none cursor-pointer p-0 transition-colors duration-200"
+                  {/* The flyout is ALWAYS in the DOM and hidden with CSS, never
+                      conditionally rendered. scripts/prerender.mjs snapshots the
+                      DOM as it stands, so an unmounted menu means every page
+                      ships to crawlers with no link to either integration page —
+                      which is exactly what happened until this was fixed. Opens
+                      on hover and on keyboard focus via group-hover /
+                      group-focus-within, so it needs no open state at all. */}
+                  <div key="integrations" className="relative group">
+                    <a
+                      href={`${prefix}/integrations`}
+                      className="no-underline flex items-center gap-1.5 transition-colors duration-200"
                       style={{
                         fontFamily: "Inter, sans-serif",
                         fontSize: "0.72rem",
@@ -176,62 +149,58 @@ export function Nav({
                       <ChevronDown
                         size={12}
                         aria-hidden="true"
-                        className="transition-transform duration-200"
-                        style={{ transform: integrationsOpen ? "rotate(180deg)" : undefined }}
+                        className="transition-transform duration-200 group-hover:rotate-180"
                       />
-                    </button>
-                    {integrationsOpen && (
+                    </a>
+                    <div
+                      // Sits directly under the trigger with no gap, so the
+                      // pointer can travel into it without closing the menu.
+                      className="absolute left-0 top-full pt-3 invisible opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                      style={{ width: 300 }}
+                    >
                       <div
-                        id="integrations-menu"
-                        // Sits directly under the trigger with no gap, so the
-                        // pointer can travel into it without closing the menu.
-                        className="absolute left-0 top-full pt-3"
-                        style={{ width: 300 }}
+                        style={{
+                          backgroundColor: "#FFFFFF",
+                          border: `0.5px solid ${C.sageDark}`,
+                          boxShadow: "0 8px 28px rgba(33,53,63,0.10)",
+                        }}
                       >
-                        <div
-                          style={{
-                            backgroundColor: "#FFFFFF",
-                            border: `0.5px solid ${C.sageDark}`,
-                            boxShadow: "0 8px 28px rgba(33,53,63,0.10)",
-                          }}
-                        >
-                          {integrationLinks.map((integration, i) => (
-                            <a
-                              key={integration.label}
-                              href={integration.href}
-                              className="no-underline block px-5 py-4 transition-colors duration-150"
+                        {integrationLinks.map((integration, i) => (
+                          <a
+                            key={integration.label}
+                            href={integration.href}
+                            className="no-underline block px-5 py-4 transition-colors duration-150"
+                            style={{
+                              borderTop: i > 0 ? `0.5px solid ${C.sageDark}` : undefined,
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.currentTarget as HTMLElement).style.backgroundColor = "#fbfaf6";
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                            }}
+                          >
+                            <img
+                              src={integration.logo}
+                              alt={integration.label}
+                              className="block w-auto mb-2"
+                              style={{ height: integration.logoHeight }}
+                            />
+                            <span
+                              className="block"
                               style={{
-                                borderTop: i > 0 ? `0.5px solid ${C.sageDark}` : undefined,
-                              }}
-                              onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLElement).style.backgroundColor = "#fbfaf6";
-                              }}
-                              onMouseLeave={(e) => {
-                                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                                fontFamily: "Inter, sans-serif",
+                                fontSize: "0.78rem",
+                                lineHeight: 1.5,
+                                color: C.charcoalMid,
                               }}
                             >
-                              <img
-                                src={integration.logo}
-                                alt={integration.label}
-                                className="block w-auto mb-2"
-                                style={{ height: integration.logoHeight }}
-                              />
-                              <span
-                                className="block"
-                                style={{
-                                  fontFamily: "Inter, sans-serif",
-                                  fontSize: "0.78rem",
-                                  lineHeight: 1.5,
-                                  color: C.charcoalMid,
-                                }}
-                              >
-                                {integration.blurb}
-                              </span>
-                            </a>
-                          ))}
-                        </div>
+                              {integration.blurb}
+                            </span>
+                          </a>
+                        ))}
                       </div>
-                    )}
+                    </div>
                   </div>
                   {link}
                 </div>
@@ -328,7 +297,9 @@ export function Nav({
               return (
                 <div key="integrations-and-pricing" className="contents">
                   <div key="integrations" className="flex flex-col gap-3">
-                    <span
+                    <a
+                      href={`${prefix}/integrations`}
+                      className="no-underline"
                       style={{
                         fontFamily: "Inter, sans-serif",
                         fontSize: "0.82rem",
@@ -339,7 +310,7 @@ export function Nav({
                       }}
                     >
                       Integrations
-                    </span>
+                    </a>
                     <div className="flex flex-col gap-3 pl-4" style={{ borderLeft: `1px solid ${C.sage}` }}>
                       {integrationLinks.map((integration) => (
                         <a
