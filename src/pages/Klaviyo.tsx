@@ -34,12 +34,13 @@
  *   4. From insight to action (four steps) — dark band
  *   5. Engagement comes back + ActivityFeedMock
  *   6. Use cases
- *   7. Close (conversion CTA)
+ *   7. FAQ (FAQPage schema fuel, and the definition passage)
+ *   8. Close (conversion CTA)
  *
- * SEO: Page-scoped TechArticle JSON-LD via useEffect.
+ * SEO: Page-scoped FAQPage + TechArticle JSON-LD via useEffect.
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Check,
@@ -155,6 +156,43 @@ const USE_CASES: Array<{ title: string; body: string }> = [
   },
 ];
 
+/* Answer-engine fuel, and the page's only question-shaped content — a model
+   asked "how does Credenza work with Klaviyo" lifts a passage, and without
+   these there was none to lift. The first answer doubles as the definition
+   paragraph.
+
+   These follow the page's TONE rule, not the product's full surface area:
+   consent handling, per-tenant scoping, and Klaviyo profile billing are real,
+   correct, and answered in the product and the privacy policy. A prospect
+   reading a sales page did not ask about them, and putting them here plants the
+   objection instead of answering it. Keep new entries on capability. */
+const FAQ_ITEMS: Array<{ q: string; a: string }> = [
+  {
+    q: "What does the Credenza Klaviyo integration do?",
+    a: "It turns your trade program into audiences you can campaign against. Credenza holds the trade application, the enriched firm record, and the order history for every account in your program, and reads them together to maintain a set of opportunity segments—Dormant VIPs, Recently lapsed, Sampling not buying, One and done, Approved no first order, and Reactivated. Any of those, or any filtered view of your Trade Directory, syncs to a Klaviyo list in a few clicks. Engagement on the campaigns you send then flows back onto each firm's record in Credenza.",
+  },
+  {
+    q: "Which audiences can I send to Klaviyo?",
+    a: "Two starting points. Member Health in Insights gives you maintained opportunity segments, defined in trade terms rather than generic ecommerce ones—top-quartile buyers who have gone quiet, firms that sampled without ordering, designers approved 30+ days ago who never placed a first order. The Trade Directory lets you filter your accounts however you like and sync that selection directly. Credenza shows you exactly which firms are in a segment before anything is sent.",
+  },
+  {
+    q: "How do I connect Klaviyo to Credenza?",
+    a: "With a private API key created in your own Klaviyo account, under Settings then API keys. Credenza asks for a Custom Key with six named scopes and tells you what each one is for: enough to find or create the list you're syncing to, add profiles to it, and read engagement events back. Setup takes a couple of minutes and you can disconnect at any time.",
+  },
+  {
+    q: "Does a synced list stay current on its own?",
+    a: "If you want it to. A push is a one-time snapshot by default, which suits a single targeted campaign. Choosing \"sync this list nightly\" on a maintained segment re-derives it every night and updates the Klaviyo list to match, so an automated flow always fires against a current audience rather than a list that was accurate the week you built it.",
+  },
+  {
+    q: "What comes back from Klaviyo into Credenza?",
+    a: "Email engagement—sends, opens, clicks, bounces, and unsubscribes—is pulled hourly and written onto the matching firm's record in Credenza, each event named with the campaign it came from. It appears under Activity on the firm profile, a tab from that firm's team, certificates, and verification. This is usually the part vendors notice: engagement data normally lives in the marketing tool, behind a seat the sales side doesn't have.",
+  },
+  {
+    q: "Do I need Shopify connected to use the Klaviyo integration?",
+    a: "No—the two integrations are independent and either runs on its own. Segments that depend on purchase behavior do need an order source: Credenza reads order history from your connected store, or from client and order data you import. Segments driven by program state rather than orders—approved with no first order, sample activity, certificates coming up for renewal—work as soon as your trade program is running in Credenza.",
+  },
+];
+
 export default function KlaviyoPage() {
   usePageMeta({
     title: PAGE_TITLE,
@@ -163,6 +201,19 @@ export default function KlaviyoPage() {
   });
 
   useEffect(() => {
+    const faqSchema = document.createElement("script");
+    faqSchema.type = "application/ld+json";
+    faqSchema.dataset.pageSchema = "klaviyo-faq";
+    faqSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+
     const articleSchema = document.createElement("script");
     articleSchema.type = "application/ld+json";
     articleSchema.dataset.pageSchema = "klaviyo-article";
@@ -191,9 +242,11 @@ export default function KlaviyoPage() {
       },
     });
 
+    document.head.appendChild(faqSchema);
     document.head.appendChild(articleSchema);
 
     return () => {
+      faqSchema.remove();
       articleSchema.remove();
     };
   }, []);
@@ -207,6 +260,7 @@ export default function KlaviyoPage() {
       <Steps />
       <EngagementLoop />
       <UseCases />
+      <FAQ />
       <Close />
       <Footer />
     </div>
@@ -1117,7 +1171,68 @@ function UseCases() {
 }
 
 /* =========================================================================
-   7. CLOSE — conversion CTA
+   7. FAQ
+   ========================================================================= */
+function FAQ() {
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  return (
+    <section className="py-24 md:py-32 bg-white">
+      <div className="container">
+        <div className="max-w-3xl mb-16">
+          <Eyebrow>Reference</Eyebrow>
+          <h2
+            className="font-freight text-charcoal"
+            style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em" }}
+          >
+            Frequently asked questions
+          </h2>
+        </div>
+        <div style={{ border: `0.5px solid ${C.sageDark}` }}>
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIdx === i;
+            return (
+              <div
+                key={item.q}
+                style={i < FAQ_ITEMS.length - 1 ? { borderBottom: `0.5px solid ${C.sageDark}` } : undefined}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIdx(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-detail-${i}`}
+                  className="w-full flex items-start gap-4 text-left bg-transparent border-none cursor-pointer px-5 md:px-8 py-5"
+                >
+                  <h3
+                    className="font-freight text-charcoal flex-1 m-0"
+                    style={{ fontSize: 18, lineHeight: 1.3, letterSpacing: "-0.01em" }}
+                  >
+                    {item.q}
+                  </h3>
+                  <ChevronDown
+                    size={16}
+                    className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {isOpen && (
+                  <div
+                    id={`faq-detail-${i}`}
+                    className="px-5 md:px-8 pb-6 text-charcoal-mid"
+                    style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+                  >
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
+   8. CLOSE — conversion CTA
    ========================================================================= */
 function Close() {
   return (
