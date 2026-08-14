@@ -1219,15 +1219,17 @@ function FAQ() {
                     className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                {isOpen && (
-                  <div
-                    id={`faq-detail-${i}`}
-                    className="px-5 md:px-8 pb-6 text-charcoal-mid"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
-                  >
-                    {item.a}
-                  </div>
-                )}
+                {/* Rendered always, hidden with CSS when collapsed — see the
+                    same fix on /shopify. Conditional mounting kept the answers
+                    out of the prerendered HTML while the FAQPage schema
+                    asserted them. */}
+                <div
+                  id={`faq-detail-${i}`}
+                  className={`px-5 md:px-8 pb-6 text-charcoal-mid ${isOpen ? "" : "hidden"}`}
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+                >
+                  {item.a}
+                </div>
               </div>
             );
           })}

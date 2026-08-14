@@ -14,9 +14,9 @@ const SECTIONS = [
       {
         title: "How to Choose Trade Program Software",
         description:
-          "An evaluation framework for vendors: what the category covers, the seven criteria that actually separate tools, how to test verification depth and certificate handling, the questions to ask on a demo, and when building in-house makes sense.",
+          "The seven stages every trade program has to get through, how to tell which of them you have actually automated and which you are absorbing as labor, how to test what a tool really does underneath the language on its website, and when building it yourself is the right answer.",
         href: "/resources/how-to-choose-trade-program-software",
-        eyebrow: "Buyer's guide",
+        eyebrow: "Guide",
       },
     ],
   },

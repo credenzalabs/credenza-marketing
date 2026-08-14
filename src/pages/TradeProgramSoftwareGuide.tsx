@@ -1,16 +1,37 @@
 /*
- * HOW TO CHOOSE TRADE PROGRAM SOFTWARE — vendor-side buyer's guide
+ * HOW TO CHOOSE TRADE PROGRAM SOFTWARE — vendor-side guide to the workflow
  *
  * The resources section had one article, written for designers. This is the
  * vendor-side counterpart, and the page meant to be the canonical answer when
  * someone asks an assistant "how do I choose trade program software" — a
  * question the site previously had no content for at all.
  *
- * Written as a genuine evaluation framework, not a feature list: the criteria
- * and demo questions apply to any tool in the category. The Credenza section is
- * fenced off and labeled so the buyer knows where the neutral guidance ends.
+ * PREMISE (load-bearing — do not reintroduce a bake-off framing): there is no
+ * field of competing products that span this lifecycle. What exists is point
+ * solutions covering one slice each, adjacent tools pressed into service, and
+ * manual work in the seams. So this is NOT a vendor comparison guide, and must
+ * not pose as a neutral referee among peers — that framing invited the reader
+ * (and answer engines) to assemble a comparison set out of certificate managers
+ * and B2B platforms, which is the positioning the rest of the site works to
+ * escape. The seven-stage lifecycle is the asset here: it defines the work
+ * and shows where the seams fall, whatever the reader does about them.
  *
- * SEO: Article (named Person author) + FAQPage JSON-LD via useEffect.
+ * Do not write "the category" or "the market" as though a populated shelf of
+ * comparable products exists — it does not. "Trade program software" is kept
+ * as a term of art (it is the query this page answers), but it names a kind of
+ * work, not a recognized market segment.
+ *
+ * "Vendor" means the reader — a to-the-trade brand — everywhere on this site.
+ * Never use it for a software company; say "provider," "product," or "tool."
+ *
+ * VOICE: matches ResaleCertificateGuide.tsx, aimed at the vendor rather than
+ * the designer. Open on a scene the reader recognizes, explain why before how,
+ * long paragraphs over clipped aphorisms, bold lead-ins instead of bullet lists
+ * where each point needs a sentence, concrete specifics over abstractions, and
+ * the occasional dry aside. Never lecture — the reader already runs this
+ * program and knows more about their business than we do.
+ *
+ * SEO: Article + FAQPage JSON-LD via useEffect.
  */
 
 import { useEffect } from "react";
@@ -32,26 +53,29 @@ import {
   CTAButton,
 } from "@/components/resources/prose";
 
-const PAGE_TITLE = "How to choose trade program software: a buyer's guide";
+// Keeps the "how to choose trade program software" query match — that phrase is
+// the reason the page exists — without the "buyer's guide" suffix, which sold
+// the comparison-shopping frame this rewrite removed.
+const PAGE_TITLE = "How to Choose Trade Program Software: What It Has to Cover";
 const PAGE_DESCRIPTION =
-  "An evaluation framework for to-the-trade brands: what trade program software covers, the seven criteria that actually separate tools, how to test verification depth and certificate handling, the questions to ask on a demo, and when building in-house makes sense.";
+  "An evaluation framework for to-the-trade brands: the seven stages of a trade program, why most tools cover only one or two of them, how to test verification depth and certificate handling, the questions worth asking, and when building in-house makes sense.";
 const PAGE_PATH = "/resources/how-to-choose-trade-program-software";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 const AUTHOR = "Credenza Team";
 const DATE_PUBLISHED = "2026-08-07";
-const DATE_MODIFIED = "2026-08-07";
+const DATE_MODIFIED = "2026-08-14";
 const CTA_HREF = JOIN_VENDOR_URL;
 
 const TOC = [
-  { id: "what-it-is", label: "What the category covers" },
-  { id: "outgrown", label: "Signs you've outgrown manual intake" },
-  { id: "criteria", label: "Seven evaluation criteria" },
-  { id: "verification", label: "Testing verification depth" },
-  { id: "certificates", label: "Testing certificate handling" },
-  { id: "integration", label: "Testing commerce integration" },
-  { id: "build-vs-buy", label: "Build, buy, or bolt on" },
-  { id: "questions", label: "Questions to ask on a demo" },
-  { id: "credenza", label: "Where Credenza fits" },
+  { id: "what-it-is", label: "What the Work Covers" },
+  { id: "outgrown", label: "Signs You've Outgrown Manual Intake" },
+  { id: "criteria", label: "Seven Evaluation Criteria" },
+  { id: "verification", label: "Testing Verification Depth" },
+  { id: "certificates", label: "Testing Certificate Handling" },
+  { id: "integration", label: "Testing Commerce Integration" },
+  { id: "build-vs-buy", label: "Build, Buy, or Bolt On" },
+  { id: "questions", label: "Questions Worth Asking" },
+  { id: "credenza", label: "Where Credenza Fits" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -59,6 +83,14 @@ const FAQ_ITEMS = [
   {
     q: "What is trade program software?",
     a: "Trade program software automates the lifecycle of a vendor's to-the-trade program: taking in applications from interior designers and other trade buyers, verifying that the applicant is a legitimate practicing professional, applying an approval decision, collecting and validating resale certificates, provisioning the approved buyer in the vendor's commerce platform with the right pricing tier and tax-exempt status, and maintaining that account as certificates expire and details change. Brands without it typically assemble the same workflow from a web form, a shared inbox, a spreadsheet, and manual data entry into their store.",
+  },
+  {
+    q: "Is there one tool that covers the whole trade program lifecycle?",
+    a: "Rarely. What exists is mostly point solutions, each covering a slice: exemption certificate managers that store and validate tax documents, form builders and portal tools that handle intake, B2B commerce platforms that price and transact once a buyer is already approved, and marketplaces that own the buyer relationship outright. Adjacent products get pressed into service too—a CRM holding applications, a spreadsheet tracking expirations. Most brands end up assembling two or three of these with manual work in the seams, which is workable as long as you know where the seams are. The seams usually fall on the verification decision and the provisioning step, which is to say the two places a person ends up back in the loop. Map any option against the seven stages before assuming it closes the loop.",
+  },
+  {
+    q: "Is a trade program the same as a wholesale or B2B program?",
+    a: "Substantially, yes. A trade program is what the interior design industry calls a wholesale or B2B program: wholesale pricing, tax-exempt purchasing, and a formal application and approval process in front of both. The vocabulary differs—the design trade says trade customers rather than wholesale accounts, and to-the-trade rather than B2B—but the workflow is the same one. The meaningful difference is the buyer. An interior designer purchases on behalf of a client rather than to stock a store, so approval turns on whether they are a practicing design professional, and the resale certificate has to be valid for the state the goods ship to rather than for a single storefront location. If you run a wholesale program for designers, this guide is about your workflow.",
   },
   {
     q: "How is trade program software different from B2B e-commerce software?",
@@ -74,7 +106,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is trade program software usually priced?",
-    a: "Most tools in the category price as an annual or monthly subscription, commonly tiered by the volume of applications and certificates processed and by which features are included. Be specific about what triggers a tier change before signing. Ask directly whether the vendor takes a percentage of sales, transactions, or designer spend—some adjacent products do, and that changes the economics considerably as your program grows.",
+    a: "Most products of this kind price as an annual or monthly subscription, commonly tiered by the volume of applications and certificates processed and by which features are included. Be specific about what triggers a tier change before signing. Ask directly whether the provider takes a percentage of sales, transactions, or designer spend—some adjacent products do, and that changes the economics considerably as your program grows.",
   },
   {
     q: "Can we just build this in-house?",
@@ -93,38 +125,38 @@ const FAQ_ITEMS = [
 const CRITERIA = [
   {
     n: "01",
-    title: "Verification depth and evidence trail",
-    body: "Does the tool verify against authoritative sources, or does it collect uploads and route them to a human? Ask what evidence is retained per decision, and whether you could reconstruct why a given applicant was approved two years later.",
+    title: "Verification Depth and Evidence Trail",
+    body: "Does it check anything against an outside source, or does it collect uploads and hand them to a person? Ask what evidence gets kept with each decision—and whether, two years from now, you could explain why this particular designer was approved.",
   },
   {
     n: "02",
-    title: "Decision automation you control",
-    body: "Auto-approval is only useful if the criteria are yours to set and change. Ask whether rules are configurable by your team without vendor involvement, and what happens to an applicant who narrowly misses one.",
+    title: "Decision Automation You Control",
+    body: "Auto-approval only helps if the criteria are genuinely yours. Ask whether your team can change the rules themselves or whether every adjustment is a support request—and ask what becomes of the designer who misses one of them by a hair, because that is where good accounts get lost.",
   },
   {
     n: "03",
-    title: "Certificate generation, not just storage",
-    body: "Storing an uploaded PDF is filing. Generating the correct state form, pre-filled and matched to your nexus, is compliance work. These are very different products that describe themselves with similar language.",
+    title: "Certificate Generation, Not Just Storage",
+    body: "Holding an uploaded PDF is filing. Producing the correct state form, pre-filled and matched to your nexus and the ship-to state, is compliance work. Both get described as certificate management, and the gap between them is most of the job.",
   },
   {
     n: "04",
-    title: "Write-back to your commerce platform",
-    body: "An approval that ends in a CSV export is a half-finished workflow. Ask what gets written to the customer record, whether tax exemption is applied per state, and whether the connection stays live after the initial provisioning.",
+    title: "Write-Back to Your Commerce Platform",
+    body: "An approval that ends in a CSV export is half a workflow, and you are the other half. Ask exactly what lands on the customer record, whether exemption is set per state rather than as one switch, and whether the connection is still doing anything a month after setup.",
   },
   {
     n: "05",
-    title: "Audit defensibility",
-    body: "Assume a state auditor asks you to justify three years of tax-exempt sales to one designer. Ask to see how the tool links the order, the exemption, and the certificate that supports it—as an exercise during the demo, not as a description.",
+    title: "Audit Defensibility",
+    body: "Picture a state auditor asking you to justify three years of tax-free sales to one designer. Then ask to see the order, the exemption, and the certificate that supports it connected on screen—as something done in front of you, not described to you.",
   },
   {
     n: "06",
-    title: "The applicant's experience",
-    body: "Every field you ask for costs you completed applications from designers who have other brands to choose from. Ask what a first-time applicant actually fills in, and what a designer who has already been verified elsewhere has to repeat.",
+    title: "The Applicant's Experience",
+    body: "Every field you ask for costs you finished applications from designers with other brands to choose from. Ask what a first-timer actually has to fill in, and what someone already verified elsewhere is made to type again.",
   },
   {
     n: "07",
-    title: "Program intelligence",
-    body: "Once intake is automated, the program becomes a sales channel you can manage. Ask what you can segment on, what you can export for outreach, and whether you can tell an active account from a dormant one without a spreadsheet.",
+    title: "Program Intelligence",
+    body: "Once intake runs itself, the program stops being an inbox and starts being a sales channel. Ask what you can segment on, what you can pull for outreach, and whether you can tell a thriving account from a dormant one without building a spreadsheet first.",
   },
 ];
 
@@ -247,7 +279,7 @@ export default function TradeProgramSoftwareGuide() {
               className="font-freight text-charcoal mb-4"
               style={{ fontSize: "clamp(2.25rem, 4vw, 3rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
             >
-              How to choose trade program software
+              How to Choose Trade Program Software
             </h1>
             <p
               className="text-charcoal-soft mb-8"
@@ -259,25 +291,34 @@ export default function TradeProgramSoftwareGuide() {
               className="text-charcoal-mid italic mb-12"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "1.05rem", lineHeight: 1.6 }}
             >
-              Most of the category sounds identical in a demo. These are the questions that separate the tools that do the compliance work from the ones that file your paperwork more attractively.
+              You built a beautiful line and a trade program that works. Neither of those is why someone on your team spends Thursday afternoons squinting at Instagram profiles.
             </p>
 
             <Prose>
               <p>
-                If you sell to the trade, you already run a trade program—whether or not you'd call it that. Someone applies, someone decides, someone sets up the account, and someone keeps the paperwork current. The only question is how much of that is a person's job.
+                You know the afternoon. A designer applied on Sunday night, and the application has been sitting in a shared inbox since. Someone finally opens it, looks at the website, looks at the Instagram, decides the work looks real, and approves. Then they open the store, create the customer, type the trade tag, set the tax exemption, and drop the resale certificate into a folder. Twenty minutes, maybe, if nothing is missing. Something is usually missing.
               </p>
               <p>
-                The software category that automates it is young enough that the terminology hasn't settled. Products describe themselves as trade portals, B2B onboarding, wholesale account management, or tax exemption tools, and the overlap between them is uneven. Two tools that look interchangeable on a feature grid can differ enormously in whether they actually carry your compliance risk.
+                Multiply that by every application, then add the ones that stall because a designer didn't attach a certificate, the ones nobody is sure about, and the follow-up emails that go out and don't come back. Meanwhile the designer who applied Sunday night has been waiting four days, and the brand she applied to on Monday approved her in ten minutes.
               </p>
               <p>
-                This guide is the evaluation framework we'd want a brand to use on any vendor in the category, including us. The Credenza-specific section is at the end and labeled, so you can read the rest as neutral guidance.
+                Running a trade program is one of those mundane-but-consequential pieces of the business that nobody hands you a manual for. You're supposed to already know—how much diligence is enough, what a resale certificate has to say to actually protect you, when a designer stops being worth chasing. Most brands assemble that understanding the same way: slowly, out of near-misses, a scary conversation with a CPA, and the accumulated instinct of whoever has been doing the approvals longest.
+              </p>
+              <p>
+                This guide covers the whole thing: the seven stages every trade program has to get through, how to tell which of them you've actually automated and which you're absorbing as labor, how to test what a tool really does underneath the language on its website, and when building it yourself is the right answer. We build software that does this work, so read the last section accordingly—it's labeled.
               </p>
             </Prose>
 
-            <H2 id="what-it-is">What the category covers</H2>
+            <H2 id="what-it-is">What the Work Covers</H2>
             <Prose>
               <p>
-                Trade program software automates the lifecycle between a designer discovering your brand and that designer placing tax-exempt orders at trade pricing. That lifecycle has seven stages, and most tools cover some but not all of them:
+                Everything between a designer finding your brand and that designer placing tax-exempt orders at trade pricing is one continuous piece of work. It has seven stages, and it runs whether or not you've named it. The only real question is how much of it a person is doing by hand.
+              </p>
+              <p>
+                A note on vocabulary, because it trips people up when they go looking for help. What the design trade calls a trade program is what nearly every other industry calls a wholesale or B2B program—wholesale pricing, tax-exempt purchasing, and an approval gate in front of both. If you think of your designers as wholesale accounts and yourself as running B2B, none of what follows changes. The words are different; the work is identical.
+              </p>
+              <p>
+                Worth saying plainly before the list: there is no shelf of comparable products to line up against each other here. What exists is point solutions that each do one part of this well—certificate managers, form builders, B2B platforms that price and transact once a buyer is already approved—plus adjacent tools you press into service, and the manual work that fills the space between them. So the useful exercise isn't comparison shopping. It's knowing the seven stages well enough to see which ones you've genuinely covered.
               </p>
               <ol className="list-decimal pl-5 space-y-2">
                 <li><strong>Intake</strong>—the application itself, and what you ask for.</li>
@@ -289,32 +330,39 @@ export default function TradeProgramSoftwareGuide() {
                 <li><strong>Intelligence</strong>—knowing which accounts are active, dormant, or worth calling.</li>
               </ol>
               <p>
-                When you evaluate a tool, map it against these seven stages explicitly. The gaps are where your team's manual work will continue to live, and vendors rarely volunteer them.
+                Take anything you're considering—including the setup you already run—and walk it through those seven stages one at a time. Wherever a stage doesn't have a clear answer, that's not a gap in the software; that's a standing appointment on someone's calendar. Nothing volunteers the stages it doesn't reach, and the ones it doesn't reach are rarely the ones on the homepage.
               </p>
             </Prose>
 
-            <H2 id="outgrown">Signs you've outgrown manual intake</H2>
+            <H2 id="outgrown">Signs You've Outgrown Manual Intake</H2>
             <Prose>
               <p>
-                Manual review is entirely reasonable at low volume. It stops being reasonable at recognizable points:
+                Reviewing applications by hand is entirely reasonable at low volume, and plenty of excellent brands still do it. Nobody needs software to approve four designers a month. What changes isn't really the volume, though—it's that the manual version stops failing visibly and starts failing quietly. These are the points where that has usually already happened.
               </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Applications accumulate in a shared inbox, and approval time is measured in days rather than minutes.</li>
-                <li>Nobody can answer how many active trade accounts you have without building a spreadsheet first.</li>
-                <li>Resale certificates live in a folder, and no one is confident which have expired.</li>
-                <li>Reconstructing why a particular designer was approved requires finding the person who approved them.</li>
-                <li>Approved applicants are re-keyed into the store by hand, with the tagging errors that implies.</li>
-                <li>Your team is doing tax-compliance review as a side effect of doing customer service.</li>
-              </ul>
               <p>
-                The last one is the expensive one. Reviewing exemption paperwork is specialized work being performed by people you hired to sell and to look after designers.
+                <strong>Approval time is measured in days.</strong> Applications collect in a shared inbox and get looked at when someone has a window. Designers specify at the speed of e-commerce and often apply to three brands in an afternoon; the one that answers first tends to get the order, and you rarely find out you lost it.
+              </p>
+              <p>
+                <strong>Nobody can tell you how many active trade accounts you have.</strong> Not without exporting something and cleaning it up first. Which means nobody can tell you how many have gone dormant, either, or which ones were worth a call six months ago.
+              </p>
+              <p>
+                <strong>Resale certificates live in a folder.</strong> They're all there, technically. But no one is confident which have expired, and finding out means opening them one at a time. This is the one that turns into a real number during an audit.
+              </p>
+              <p>
+                <strong>Reconstructing a decision means finding the person who made it.</strong> A designer was approved in 2024. Why? The answer lives in someone's memory, or in an email thread, or nowhere. If that person has since left, it lives nowhere.
+              </p>
+              <p>
+                <strong>Approved designers get re-keyed into the store by hand.</strong> Every approval ends with someone typing a customer record, a trade tag, and a tax setting. A mistyped or forgotten tag means a designer sees retail pricing and quietly doesn't order—or holds a tax exemption they're no longer entitled to, which is the same mistake pointed at your balance sheet instead of theirs.
+              </p>
+              <p>
+                <strong>Your team is doing tax compliance as a side effect of customer service.</strong> This is the expensive one. Reviewing exemption paperwork is specialized work, and it's being done between order questions and freight quotes by people you hired to sell and to look after designers. They're not slow at it because they're careless—it's genuinely not their job, and it has landed on them anyway.
               </p>
             </Prose>
 
-            <H2 id="criteria">Seven evaluation criteria</H2>
+            <H2 id="criteria">Seven Evaluation Criteria</H2>
             <Prose>
               <p>
-                Feature lists converge; these are the axes on which tools genuinely differ.
+                Read enough feature lists and they all start to sound the same, which is not an accident—everyone is describing the same seven stages with slightly different nouns. These are the seven places where what's underneath actually differs, and where a few pointed questions will tell you more than an hour of demo.
               </p>
             </Prose>
             <div className="border-t border-sage-dark mb-10">
@@ -344,14 +392,17 @@ export default function TradeProgramSoftwareGuide() {
               ))}
             </div>
 
-            <H2 id="verification">Testing verification depth</H2>
+            <H2 id="verification">Testing Verification Depth</H2>
             <Prose>
               <p>
-                The single most useful question to ask a vendor is which of their checks hit an authoritative external source and which are self-reported. A tool that asks an applicant to type their EIN and upload a business license has collected two documents. A tool that confirms the entity is registered and in good standing has verified something. Both may appear on a feature list as "business verification."
+                Almost everything in this space says it does verification, and the word is doing an enormous amount of work. The single most useful question you can ask about any product is which of its checks reach an authoritative outside source, and which simply record what the applicant typed. Something that asks a designer to type an EIN and upload a business license has collected two documents. Something that confirms the entity is actually registered and in good standing has verified a fact about the world. On a feature list, both of those are "business verification," and they are not remotely the same product.
               </p>
-              <H3>Checks worth insisting on</H3>
               <p>
-                A serious verification stack draws on several independent signals, because any one of them can be stale or gamed:
+                This matters more than it sounds, because the failure is silent. A collected document sits in your file looking exactly like a verified one. You find out which kind you had years later, when someone official asks.
+              </p>
+              <H3>Checks Worth Insisting On</H3>
+              <p>
+                No single signal tells you whether a designer is real, so a serious verification stack draws on several independent ones—any individual check can be stale, or thin, or quietly gamed:
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Business entity registration and EIN</li>
@@ -365,66 +416,66 @@ export default function TradeProgramSoftwareGuide() {
                 <li>Press coverage or showhouse participation</li>
               </ul>
               <p>
-                No single check is decisive. A newly formed studio run by an experienced designer will fail a longevity test; an established practice may not belong to any association. What matters is whether the tool surfaces the pattern clearly enough for you to make a fast decision, and whether it keeps the evidence.
+                None of these is decisive on its own, and you shouldn't want it to be. A designer who left a good firm last spring to start her own studio will fail every longevity test you can devise, and she may be exactly the account you want. A thirty-year practice with a devoted client list may belong to no association at all. What you're looking for is a tool that lays the signals out clearly enough that you can make the call in seconds—and then keeps the evidence, so the call is still explicable later.
               </p>
               <p>
-                Ask, too, about re-verification. A designer verified in 2024 whose sales tax registration lapsed in 2026 is a live exposure, and a one-time check at application will never catch it.
+                Ask about re-verification too, because this is the one almost nobody thinks to ask. A designer you verified in 2024 whose state registration lapsed in 2026 is a live exposure sitting inside your approved accounts, looking perfectly fine. A check that only runs at application will never find her.
               </p>
               <InlineHook href="/automated-designer-verification" label="How automated designer verification works in practice" />
             </Prose>
 
-            <H2 id="certificates">Testing certificate handling</H2>
+            <H2 id="certificates">Testing Certificate Handling</H2>
             <Prose>
               <p>
-                This is where the category divides most sharply, and where the language is least reliable.
+                This is where products diverge most sharply, and where the language on their websites is least reliable. It's also where your actual money is, so it's worth slowing down.
               </p>
               <p>
-                Forty-six US jurisdictions impose sales tax—45 states plus the District of Columbia. Five states have no statewide sales tax at all. Most of the taxing jurisdictions publish their own exemption certificate form; two multistate instruments, the Multistate Tax Commission's Uniform Sales and Use Tax Exemption Certificate and the Streamlined Sales and Use Tax Agreement certificate, are accepted by some states and not others, with per-state conditions on their use.
+                Forty-six US jurisdictions impose sales tax—45 states plus the District of Columbia. Five have no statewide sales tax at all. Most of the taxing jurisdictions publish their own exemption certificate form, and then there are two multistate instruments, the Multistate Tax Commission's Uniform Sales and Use Tax Exemption Certificate and the Streamlined Sales and Use Tax Agreement certificate, each accepted by some states and not others, with conditions attached that vary by state.
               </p>
               <p>
-                Which certificate is valid for any given transaction depends on where the designer is registered, where you have nexus, and where the goods are going. That is a matrix, not a document.
+                So which certificate is valid for any given order depends on where the designer is registered, where you have nexus, and where the goods are actually going. That's a matrix, not a document—which is why "we store resale certificates" and "we make sure you have the right resale certificate" are two very different promises, delivered in nearly identical language.
               </p>
-              <H3>The distinction to test</H3>
+              <H3>The Distinction to Test</H3>
               <p>
-                Ask the vendor to name the states they generate official pre-filled forms for, and the states where they only accept an upload. Then ask who is responsible when the wrong form is on file. A tool that stores documents is a filing cabinet with a search box—useful, but it has not moved the compliance burden off your team.
+                Ask anything you're considering to name the states it generates official pre-filled forms for, and the states where it only takes an upload. It's a specific question with a specific answer, and the answer tells you what you're actually buying. Then ask the follow-up: when the wrong form turns out to be on file, whose problem is that? Storing documents is a filing cabinet with a search box. Useful—genuinely useful—but the compliance burden hasn't moved off your team, it's just better organized.
               </p>
               <p>
-                Test expiration handling as a scenario rather than a feature. Walk through the day a certificate lapses: who is notified, when, and does the tax exemption come off the customer record automatically or does it wait for someone to notice? In most states the vendor carries the assessment for tax-free sales made against an invalid certificate, so automatic revocation is a risk control, not a convenience.
+                Test expiration as a scenario rather than a feature. Don't ask whether it tracks expiration dates; everything says yes. Instead, walk through the day a certificate lapses. Who gets notified, and when? Does the tax exemption come off the customer record on its own, or does it sit there until somebody notices? In most states you carry the assessment for tax-free sales made against an invalid certificate—not the designer—so automatic revocation isn't a convenience feature. It's the thing standing between a lapsed form and a bill you didn't budget for.
               </p>
               <InlineHook href="/resale-certificate-management" label="What resale certificate management involves" />
             </Prose>
 
-            <H2 id="integration">Testing commerce integration</H2>
+            <H2 id="integration">Testing Commerce Integration</H2>
             <Prose>
               <p>
-                An approval decision has no commercial value until it reaches the system that prices the order. Ask precisely what gets written, and treat a CSV export as a red flag rather than an integration.
+                An approval is worth nothing commercially until it reaches the system that prices the order. Until then it's a decision somebody made, sitting in a different piece of software. So ask precisely what gets written, field by field—and if the answer involves exporting a CSV, that's not an integration, that's data entry with extra steps.
               </p>
               <p>
-                On a well-integrated setup, approval should create or update the customer record, apply whatever tag or group your pricing rules key on, and set tax exemption <em>per state</em> rather than as one account-level switch—because a designer may be exempt in the states where they're registered and taxable elsewhere. If you run a B2B setup with company-level accounts, the same fields need to reach the company record, since that is what company-scoped price lists target.
+                What you want is for approval to create or update the customer record, apply whatever tag or group your pricing rules actually key on, and set tax exemption <em>per state</em> rather than as one account-level switch. That last distinction matters more than it seems: a designer is typically exempt in the states where she's registered and perfectly taxable everywhere else, and a single on/off flag can't express that. If you run B2B with company-level accounts, those same fields need to reach the company record, because that's what company-scoped price lists look at.
               </p>
               <p>
-                Then ask the question most vendors haven't prepared for: what happens when someone on your team edits one of those fields by hand? Fields managed by an integration drift. A tool that detects and reports drift is telling you it takes ownership of the data; one that silently overwrites, or silently doesn't, is leaving you to discover the discrepancy during an audit.
+                Then ask the question that almost never comes up on a call: what happens when someone on your team edits one of those fields by hand? Because they will—a rushed fix on a Friday, a tag typed directly into the customer record to unblock an order. Fields managed by an integration drift. A tool that notices the drift and tells you is taking ownership of that data. One that silently overwrites your change, or silently leaves it, has handed you a discrepancy you'll meet for the first time in an audit.
               </p>
               <InlineHook href="/shopify" label="How the Shopify integration writes verified buyers" />
             </Prose>
 
-            <H2 id="build-vs-buy">Build, buy, or bolt on</H2>
+            <H2 id="build-vs-buy">Build, Buy, or Bolt On</H2>
             <Prose>
               <p>
-                Building the visible part is genuinely straightforward. An application form, a queue, an approve button, and a webhook into your store is a few weeks of work for a competent team, and if your trade program is a flat discount with no tax-exempt purchasing, that may be the correct answer. Build it.
+                Building the visible part is genuinely straightforward, and anyone who tells you otherwise is selling something. An application form, a queue, an approve button, and a webhook into your store is a few weeks for a competent team. If your trade program is a flat discount with no tax-exempt purchasing, that may well be the right answer. Build it and move on.
               </p>
               <p>
-                The calculation changes entirely once exemption certificates are involved, because you are no longer building a workflow—you are committing to maintain tax content indefinitely. Form revisions, changing conditions on multistate certificates, and nexus thresholds that have been in motion since <em>South Dakota v. Wayfair</em> in 2018 all have to be tracked by someone, forever, and the cost of being wrong is an assessment rather than a bug report.
+                The math changes completely the moment exemption certificates enter the picture, because you're no longer building a workflow—you're taking on the upkeep of tax content, permanently. Forms get revised. Conditions on the multistate certificates shift. Nexus thresholds have been in motion since <em>South Dakota v. Wayfair</em> in 2018 and haven't settled. Someone has to track all of it, forever, and when that someone gets it wrong the output isn't a bug report, it's an assessment.
               </p>
               <p>
-                The bolt-on option—a tax engine alongside a form builder alongside your CRM—works, but be honest about where the seams fall. The seams are usually the verification decision and the provisioning step, which is to say the two places where a person ends up in the loop.
+                The third option is to bolt things together—a tax engine next to a form builder next to your CRM—and it genuinely works. Just be honest with yourself about where the seams fall, because that's where the labor hides. In practice the seams land on the verification decision and the provisioning step: the two places a person ends up back in the loop, which are also the two places you were trying to get a person out of.
               </p>
             </Prose>
 
-            <H2 id="questions">Questions to ask on a demo</H2>
+            <H2 id="questions">Questions Worth Asking</H2>
             <Prose>
               <p>
-                Bring these verbatim. Most are answerable in a sentence by a vendor whose product does the work, and produce a change of subject from one whose product doesn't.
+                Bring these verbatim—to a sales call, to a tool you already run, or to your own team if someone is proposing to build it. There's no trick to them. Anything that genuinely does the work answers most of these in a sentence; anything that doesn't will change the subject, warmly and at length.
               </p>
               <ol className="list-decimal pl-5 space-y-2.5">
                 {DEMO_QUESTIONS.map((q) => (
@@ -432,14 +483,14 @@ export default function TradeProgramSoftwareGuide() {
                 ))}
               </ol>
               <p>
-                Ask for the fifth and tenth as live demonstrations rather than descriptions. Reconstructing an audit trail in front of a prospect is easy if the data model supports it and impossible if it doesn't.
+                Ask for the fifth and the tenth as live demonstrations rather than descriptions. Pulling up an order and tracing it back to the certificate that justifies its exemption takes about fifteen seconds if the data model supports it, and cannot be done at all if it doesn't. There's no middle ground to talk your way into.
               </p>
             </Prose>
 
-            <H2 id="credenza">Where Credenza fits</H2>
+            <H2 id="credenza">Where Credenza Fits</H2>
             <Prose>
               <p>
-                This is the part of the guide where we describe our own product, so read it accordingly.
+                Here's the part where we describe our own product. You've been warned, and everything above stands on its own if you'd rather stop here.
               </p>
               <p>
                 Credenza is trade program software for interior design vendors, built around the three stages that are hardest to do by hand. Verification runs up to nine evidence checks against authoritative sources and surfaces the result as a decision, not a document pile. Certificate generation produces compliant certificates across the 46 taxing jurisdictions, auto-filling 39 official state forms, matched to your nexus and the destination state. Onboarding applies your auto-approval rules and writes the approved designer into your commerce platform with state-scoped tax exemption applied, then monitors certificates for expiry, chases renewals, and revokes exemption if a certificate lapses.
@@ -448,14 +499,14 @@ export default function TradeProgramSoftwareGuide() {
                 Credenza is not a commerce platform and does not replace one—it complements B2B setups by handling identity, verification, and compliance, which those platforms leave to you. It is not a marketplace: designers apply to the brands they choose, and your trade relationships remain yours.
               </p>
               <p>
-                Where we'd tell you to look elsewhere: if your trade program has no tax-exempt component, most of what Credenza does is overhead you don't need.
+                And the honest disqualifier: if your trade program is a flat discount with no tax-exempt purchasing anywhere in it, most of what Credenza does is machinery you'd be paying for and not using. Build the form, wire up the webhook, and spend the money on something else.
               </p>
               <div className="mt-8 max-w-xs">
                 <CTAButton href={CTA_HREF} label="Talk to us about your program" />
               </div>
             </Prose>
 
-            <H2 id="faq">Frequently asked questions</H2>
+            <H2 id="faq">Frequently Asked Questions</H2>
             <div className="border-t border-sage-dark mb-12">
               {FAQ_ITEMS.map((f) => (
                 <FAQItem key={f.q} q={f.q} a={f.a} />

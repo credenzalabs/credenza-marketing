@@ -55,7 +55,7 @@ const HERO_IMAGE = {
 const PAGE_TITLE =
   "Shopify trade onboarding: verified designers, auto-tagged, tax-exempt";
 const PAGE_DESCRIPTION =
-  "Credenza is the verification layer behind every trade account in Shopify. Designers are verified through nine evidence checks before they reach your store; Credenza then creates the customer profile in Shopify (or updates it if the customer already exists), with verification status, exemption details, and a trade-customer tag, so your existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
+  "Credenza is the verification layer behind every trade account in Shopify—wholesale and B2B customer approval for brands selling to interior designers. Designers are verified through nine evidence checks before they reach your store; Credenza then creates the customer profile in Shopify (or updates it if the customer already exists), with verification status, exemption details, and a trade-customer tag, so your existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
 const PAGE_PATH = "/shopify";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -71,6 +71,10 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: "Does the integration require Shopify Plus?",
     a: "No. The integration works on every Shopify plan that supports customer metafields and customer tags—which is every plan from Basic to Plus. For Plus merchants using Shopify B2B, Credenza also writes verification metafields to the corresponding company record so company-scoped pricing rules can target verified trade buyers.",
+  },
+  {
+    q: "Does this work for a Shopify wholesale or B2B program?",
+    a: "Yes—that's the same thing this is built for. A trade program is what the interior design industry calls a wholesale or B2B program: wholesale pricing, tax-exempt purchasing, and an application-and-approval gate in front of both. Whether your store calls those customers trade accounts, wholesale accounts, or B2B companies, the workflow is identical—someone has to decide whether an applicant qualifies, collect a valid resale certificate, and get the right tag, price list, and tax treatment onto the customer record. Credenza does that part and writes the result into Shopify. On Plus with Shopify B2B, it also writes to the company record so company-scoped catalogs and price lists target verified buyers.",
   },
   {
     q: "How is this different from manual customer tagging in Shopify?",
@@ -1032,15 +1036,17 @@ function FAQ() {
                     className={`text-charcoal-soft shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                {isOpen && (
-                  <div
-                    id={`faq-detail-${i}`}
-                    className="px-5 md:px-8 pb-6 text-charcoal-mid"
-                    style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
-                  >
-                    {item.a}
-                  </div>
-                )}
+                {/* Rendered always, hidden with CSS when collapsed — conditional
+                    mounting kept every answer out of the prerendered HTML, so
+                    crawlers saw the questions and none of the answers while the
+                    FAQPage schema asserted text the page didn't contain. */}
+                <div
+                  id={`faq-detail-${i}`}
+                  className={`px-5 md:px-8 pb-6 text-charcoal-mid ${isOpen ? "" : "hidden"}`}
+                  style={{ fontFamily: "Inter, sans-serif", fontSize: 15, lineHeight: 1.75 }}
+                >
+                  {item.a}
+                </div>
               </div>
             );
           })}

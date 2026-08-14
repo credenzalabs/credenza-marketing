@@ -30,7 +30,7 @@ import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 
 const PAGE_TITLE = "Resale certificate management for the to-the-trade channel";
 const PAGE_DESCRIPTION =
-  "Resale certificate management built for to-the-trade brands. Verified designer profiles, compliant certificates pre-attached at trade-account application, state-scoped exemption written directly to the Shopify customer profile.";
+  "Resale certificate management built for to-the-trade brands—sales tax exemption compliance for wholesale and B2B programs selling to interior designers. Verified designer profiles, compliant certificates pre-attached at trade-account application, state-scoped exemption written directly to the Shopify customer profile.";
 const PAGE_PATH = "/resale-certificate-management";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -310,14 +310,17 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           <Plus size={20} />
         </div>
       </button>
-      {open && (
-        <p
-          className="pb-5 pr-10 text-charcoal-mid"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
-        >
-          {a}
-        </p>
-      )}
+      {/* Rendered always, hidden with CSS when collapsed. Conditional mounting
+          ({open && ...}) kept every answer out of the prerendered HTML, so
+          crawlers and answer engines saw the questions and none of the answers
+          — and the FAQPage schema asserted text the page did not contain.
+          Collapsed-but-present is explicitly fine for Google. */}
+      <p
+        className={`pb-5 pr-10 text-charcoal-mid ${open ? "" : "hidden"}`}
+        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+      >
+        {a}
+      </p>
     </div>
   );
 }

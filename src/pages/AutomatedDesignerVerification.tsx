@@ -38,7 +38,7 @@ import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 
 const PAGE_TITLE = "Automated designer verification for to-the-trade brands";
 const PAGE_DESCRIPTION =
-  "Automated designer verification for furniture, lighting, rug, and home-decor brands selling to the trade. Nine evidence checks—EIN, sales tax ID, memberships, website, Instagram, state license, resale certificate, trade references, press and showhouse recognition—run in parallel against authoritative sources. Vendors set their own gating and auto-approval rules.";
+  "Automated designer verification for furniture, lighting, rug, and home-decor brands selling to the trade—wholesale and B2B customer approval for brands whose buyers are interior designers. Nine evidence checks—EIN, sales tax ID, memberships, website, Instagram, state license, resale certificate, trade references, press and showhouse recognition—run in parallel against authoritative sources. Vendors set their own gating and auto-approval rules.";
 const PAGE_PATH = "/automated-designer-verification";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -630,14 +630,17 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           <Plus size={20} />
         </div>
       </button>
-      {open && (
-        <p
-          className="pb-5 pr-10 text-charcoal-mid"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
-        >
-          {a}
-        </p>
-      )}
+      {/* Rendered always, hidden with CSS when collapsed. Conditional mounting
+          ({open && ...}) kept every answer out of the prerendered HTML, so
+          crawlers and answer engines saw the questions and none of the answers
+          — and the FAQPage schema asserted text the page did not contain.
+          Collapsed-but-present is explicitly fine for Google. */}
+      <p
+        className={`pb-5 pr-10 text-charcoal-mid ${open ? "" : "hidden"}`}
+        style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+      >
+        {a}
+      </p>
     </div>
   );
 }
