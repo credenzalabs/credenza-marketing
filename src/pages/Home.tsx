@@ -30,7 +30,7 @@ export default function Home() {
     title:
       "Credenza — Trade Program Software for Interior Design Vendors | Trade Verification & Resale Certificate Management",
     description:
-      "Credenza is trade program software for interior design vendors. Automate trade verification, designer onboarding, and resale certificate management across 46 jurisdictions. Built for Shopify.",
+      "Credenza is trade program software for interior design vendors—wholesale and B2B account approval for brands selling to designers. Automate trade verification, designer onboarding, and resale certificate management across 46 jurisdictions. Built for Shopify.",
     path: "/",
     ogTitle: "Credenza — Trade Program Software for Interior Design Vendors",
   });

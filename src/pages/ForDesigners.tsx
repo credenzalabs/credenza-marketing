@@ -1058,14 +1058,17 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           <Plus size={20} />
         </div>
       </button>
-      {open && (
-        <p
-          className="pb-5 pr-10 text-charcoal-mid"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.7 }}
-        >
-          {a}
-        </p>
-      )}
+      {/* Rendered always, hidden with CSS when collapsed. Conditional mounting
+          ({open && ...}) kept every answer out of the prerendered HTML, so
+          crawlers and answer engines saw the questions and none of the answers
+          — and the FAQPage schema asserted text the page did not contain.
+          Collapsed-but-present is explicitly fine for Google. */}
+      <p
+        className={`pb-5 pr-10 text-charcoal-mid ${open ? "" : "hidden"}`}
+        style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.7 }}
+      >
+        {a}
+      </p>
     </div>
   );
 }
