@@ -10,9 +10,17 @@ import { useCatalogCount } from "@/hooks/useCatalogCount";
 import { usePageMeta, absoluteUrl, SITE_URL } from "@/hooks/usePageMeta";
 import { Prose, H2, H3, FAQItem, TableOfContents, InlineHook, CTAButton } from "@/components/resources/prose";
 
-const PAGE_TITLE = "The Interior Designer's Guide to Resale Certificates";
+// Retitled 2026-08-15 for click-through, not ranking. GSC (3 months) had this
+// page at average position 6.6 on 112 impressions with zero clicks — page one,
+// nobody choosing it. "The ... Guide to ..." says nothing a designer comparing
+// ten results can use, so the title now leads with the entity and audience and
+// ends on the thing this page actually has that others don't: the state-level
+// breakdown. The " | Credenza" suffix is dropped here; it cost ~11 characters
+// to advertise a brand the searcher doesn't know, and "Credenza" competes in
+// results with a furniture noun and three unrelated software companies.
+const PAGE_TITLE = "Resale Certificates for Interior Designers: State by State";
 const PAGE_DESCRIPTION =
-  "Everything interior designers need to know about resale certificates: what they are, why vendors require them, state-by-state requirements, common mistakes, and how to manage them across multiple states.";
+  "Which states require their own form, which accept the MTC or SST certificate, and which issue one to you—plus the mistakes that get a certificate rejected.";
 const PAGE_PATH = "/resources/interior-designer-resale-certificate-guide";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 // AUTHOR feeds both the Article schema and the visible byline below, so the
@@ -94,7 +102,7 @@ export default function ResaleCertificateGuide() {
   const catalogCount = useCatalogCount();
 
   usePageMeta({
-    title: `${PAGE_TITLE} | Credenza`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     path: PAGE_PATH,
   });
