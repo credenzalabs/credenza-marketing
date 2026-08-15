@@ -16,9 +16,9 @@ const SECTIONS = [
     audience: "For interior designers",
     resources: [
       {
-        title: "The Interior Designer's Guide to Resale Certificates",
+        title: "Resale Certificates for Interior Designers: State by State",
         description:
-          "Everything designers need to know about resale certificates: what they are, why vendors require them, state-by-state requirements, common mistakes, and how to manage them across multiple states.",
+          "Which states require their own form, which accept the MTC or SST certificate, and which issue one to you—plus the mistakes that get a certificate rejected.",
         href: "/resources/interior-designer-resale-certificate-guide",
         eyebrow: "Guide",
       },
