@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/resources/how-to-choose-trade-program-software",
+      "destination": "/resources",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/" }
   ]
