@@ -69,10 +69,7 @@ const CTA_HREF = JOIN_VENDOR_URL;
 const TOC = [
   { id: "what-it-is", label: "What the Work Covers" },
   { id: "outgrown", label: "Signs You've Outgrown Manual Intake" },
-  { id: "criteria", label: "Seven Evaluation Criteria" },
-  { id: "verification", label: "Testing Verification Depth" },
   { id: "certificates", label: "Testing Certificate Handling" },
-  { id: "integration", label: "Testing Commerce Integration" },
   { id: "build-vs-buy", label: "Build, Buy, or Bolt On" },
   { id: "questions", label: "Questions Worth Asking" },
   { id: "credenza", label: "Where Credenza Fits" },
@@ -122,57 +119,14 @@ const FAQ_ITEMS = [
   },
 ];
 
-const CRITERIA = [
-  {
-    n: "01",
-    title: "Verification Depth and Evidence Trail",
-    body: "Does it check anything against an outside source, or does it collect uploads and hand them to a person? Ask what evidence gets kept with each decision—and whether, two years from now, you could explain why this particular designer was approved.",
-  },
-  {
-    n: "02",
-    title: "Decision Automation You Control",
-    body: "Auto-approval only helps if the criteria are genuinely yours. Ask whether your team can change the rules themselves or whether every adjustment is a support request—and ask what becomes of the designer who misses one of them by a hair, because that is where good accounts get lost.",
-  },
-  {
-    n: "03",
-    title: "Certificate Generation, Not Just Storage",
-    body: "Holding an uploaded PDF is filing. Producing the correct state form, pre-filled and matched to your nexus and the ship-to state, is compliance work. Both get described as certificate management, and the gap between them is most of the job.",
-  },
-  {
-    n: "04",
-    title: "Write-Back to Your Commerce Platform",
-    body: "An approval that ends in a CSV export is half a workflow, and you are the other half. Ask exactly what lands on the customer record, whether exemption is set per state rather than as one switch, and whether the connection is still doing anything a month after setup.",
-  },
-  {
-    n: "05",
-    title: "Audit Defensibility",
-    body: "Picture a state auditor asking you to justify three years of tax-free sales to one designer. Then ask to see the order, the exemption, and the certificate that supports it connected on screen—as something done in front of you, not described to you.",
-  },
-  {
-    n: "06",
-    title: "The Applicant's Experience",
-    body: "Every field you ask for costs you finished applications from designers with other brands to choose from. Ask what a first-timer actually has to fill in, and what someone already verified elsewhere is made to type again.",
-  },
-  {
-    n: "07",
-    title: "Program Intelligence",
-    body: "Once intake runs itself, the program stops being an inbox and starts being a sales channel. Ask what you can segment on, what you can pull for outreach, and whether you can tell a thriving account from a dormant one without building a spreadsheet first.",
-  },
-];
-
 const DEMO_QUESTIONS = [
+  "How do you confirm a sales tax ID is active and registered to the applicant's business, not just correctly formatted—and how long does that check take?",
   "Which of your checks hit an authoritative external source, and which are self-reported by the applicant?",
-  "Show me the evidence retained for a single approved applicant, as an auditor would see it.",
   "Can my team change the auto-approval rules ourselves? Show me the screen.",
   "Which states do you generate official forms for, and which do you only accept uploads for?",
-  "How do you decide which certificate form is valid for a given designer, my nexus, and the ship-to state?",
-  "What exactly gets written to my commerce platform on approval—fields, tags, tax settings?",
-  "Is tax exemption applied per state, or as a single account-level flag?",
-  "What happens if someone on my team edits one of those fields by hand?",
+  "What exactly gets written to my commerce platform on approval—fields, tags, tax settings—and is exemption applied per state or as one account-level flag?",
   "Walk me through the day a certificate expires. What happens automatically?",
   "Link an order to the certificate that justifies its exemption, in front of me.",
-  "How do you price, and what specifically moves us to the next tier?",
-  "Do you take any percentage of sales, transactions, or designer spend?",
 ];
 
 export default function TradeProgramSoftwareGuide() {
@@ -296,16 +250,13 @@ export default function TradeProgramSoftwareGuide() {
 
             <Prose>
               <p>
-                You know the afternoon. A designer applied on Sunday night, and the application has been sitting in a shared inbox since. Someone finally opens it, looks at the website, looks at the Instagram, decides the work looks real, and approves. Then they open the store, create the customer, type the trade tag, set the tax exemption, and drop the resale certificate into a folder. Twenty minutes, maybe, if nothing is missing. Something is usually missing.
+                You know the afternoon. A designer applied on Sunday night and the application has been sitting in a shared inbox since. Someone finally opens it, looks at the website, looks at the Instagram, decides the work looks real, and approves. Then they open the store, create the customer, type the trade tag, set the tax exemption, and file the certificate. Twenty minutes, if nothing is missing. Something is usually missing.
               </p>
               <p>
-                Multiply that by every application, then add the ones that stall because a designer didn't attach a certificate, the ones nobody is sure about, and the follow-up emails that go out and don't come back. Meanwhile the designer who applied Sunday night has been waiting four days, and the brand she applied to on Monday approved her in ten minutes.
+                Multiply that by every application, add the ones stalled waiting on a certificate and the follow-ups that go out and don't come back, and the designer who applied Sunday night has now waited four days—while the brand she applied to on Monday approved her in ten minutes.
               </p>
               <p>
-                Running a trade program is one of those mundane-but-consequential pieces of the business that nobody hands you a manual for. You're supposed to already know—how much diligence is enough, what a resale certificate has to say to actually protect you, when a designer stops being worth chasing. Most brands assemble that understanding the same way: slowly, out of near-misses, a scary conversation with a CPA, and the accumulated instinct of whoever has been doing the approvals longest.
-              </p>
-              <p>
-                This guide covers the whole thing: the seven stages every trade program has to get through, how to tell which of them you've actually automated and which you're absorbing as labor, how to test what a tool really does underneath the language on its website, and when building it yourself is the right answer. We build software that does this work, so read the last section accordingly—it's labeled.
+                What follows is the job laid out: the seven stages every trade program runs through, how to tell which ones you've automated and which you're absorbing as labor, and when building it yourself is the right answer. We build software that does this work, so read the last section accordingly—it's labeled.
               </p>
             </Prose>
 
@@ -321,107 +272,41 @@ export default function TradeProgramSoftwareGuide() {
                 Worth saying plainly before the list: there is no shelf of comparable products to line up against each other here. What exists is point solutions that each do one part of this well—certificate managers, form builders, B2B platforms that price and transact once a buyer is already approved—plus adjacent tools you press into service, and the manual work that fills the space between them. So the useful exercise isn't comparison shopping. It's knowing the seven stages well enough to see which ones you've genuinely covered.
               </p>
               <ol className="list-decimal pl-5 space-y-2">
-                <li><strong>Intake</strong>—the application itself, and what you ask for.</li>
-                <li><strong>Verification</strong>—establishing that the applicant is a practicing trade professional.</li>
+                <li><strong>Intake</strong>—the application itself, and what you ask for. Every extra field costs you finished applications from designers with other brands to choose from.</li>
+                <li><strong>Verification</strong>—establishing that the applicant is a practicing trade professional. The check that matters is whether the sales tax ID is <em>active</em> and registered to the business on the application, how fast that answer comes back, and whether it ever runs again: a designer verified in 2024 whose registration lapsed in 2026 is a live exposure that looks perfectly fine.</li>
                 <li><strong>Decision</strong>—approve, decline, or route for review, against criteria you set.</li>
                 <li><strong>Tax documentation</strong>—obtaining a valid resale certificate for the relevant jurisdictions.</li>
-                <li><strong>Provisioning</strong>—creating the account in your commerce platform with the correct pricing and tax treatment.</li>
+                <li><strong>Provisioning</strong>—creating the account in your commerce platform with the correct pricing and tax treatment, exemption set per state rather than as one account-level switch. An approval that ends in a CSV export is data entry with extra steps.</li>
                 <li><strong>Maintenance</strong>—renewals, expirations, revocations, and changes to the designer's details.</li>
-                <li><strong>Intelligence</strong>—knowing which accounts are active, dormant, or worth calling.</li>
+                <li><strong>Intelligence</strong>—knowing which accounts are active, dormant, or worth calling, without building a spreadsheet first.</li>
               </ol>
               <p>
-                Take anything you're considering—including the setup you already run—and walk it through those seven stages one at a time. Wherever a stage doesn't have a clear answer, that's not a gap in the software; that's a standing appointment on someone's calendar. Nothing volunteers the stages it doesn't reach, and the ones it doesn't reach are rarely the ones on the homepage.
+                Walk that list slowly against whatever you run today. Most of it will have an easy answer—you have an application form, so intake is handled; you have a folder of certificates, so tax documentation is, more or less. The stages that matter are the ones where the answer turns out to be a person's name. If provisioning is "Megan does it," that isn't a gap in your software. That's Megan's Thursday, and it gets longer every quarter the program grows.
               </p>
+              <InlineHook href="/automated-designer-verification" label="How automated designer verification works in practice" />
+              <InlineHook href="/shopify" label="How the Shopify integration writes verified buyers" />
             </Prose>
 
             <H2 id="outgrown">Signs You've Outgrown Manual Intake</H2>
             <Prose>
               <p>
-                Reviewing applications by hand is entirely reasonable at low volume, and plenty of excellent brands still do it. Nobody needs software to approve four designers a month. What changes isn't really the volume, though—it's that the manual version stops failing visibly and starts failing quietly. These are the points where that has usually already happened.
+                Reviewing applications by hand is entirely reasonable at low volume. What changes isn't the volume so much as the way the manual version stops failing visibly and starts failing quietly.
               </p>
               <p>
-                <strong>Approval time is measured in days.</strong> Applications collect in a shared inbox and get looked at when someone has a window. Designers specify at the speed of e-commerce and often apply to three brands in an afternoon; the one that answers first tends to get the order, and you rarely find out you lost it.
+                <strong>Approval time is measured in days.</strong> Applications sit in a shared inbox until someone has a window, while designers compare three brands in an afternoon and the first answer tends to get the order.
               </p>
               <p>
-                <strong>Nobody can tell you how many active trade accounts you have.</strong> Not without exporting something and cleaning it up first. Which means nobody can tell you how many have gone dormant, either, or which ones were worth a call six months ago.
+                <strong>Nobody can tell you how many active trade accounts you have.</strong> Not without exporting something and cleaning it up first—which means nobody can tell you which have gone dormant either.
               </p>
               <p>
-                <strong>Resale certificates live in a folder.</strong> They're all there, technically. But no one is confident which have expired, and finding out means opening them one at a time. This is the one that turns into a real number during an audit.
+                <strong>Resale certificates live in a folder.</strong> Knowing which are still <em>valid</em> isn't a matter of opening them: most states don't print an expiration date, and a certificate stops being valid on the state's schedule rather than the document's. Answering the question means carrying every jurisdiction's renewal and invalidation rules in someone's head, and keeping them current as the states revise them.
               </p>
               <p>
-                <strong>Reconstructing a decision means finding the person who made it.</strong> A designer was approved in 2024. Why? The answer lives in someone's memory, or in an email thread, or nowhere. If that person has since left, it lives nowhere.
+                <strong>Approved designers get re-keyed into the store by hand.</strong> A mistyped or forgotten tag means a designer sees retail pricing and quietly doesn't order—or holds a tax exemption they're no longer entitled to, which a tax auditor will fine you for, not them.
               </p>
               <p>
-                <strong>Approved designers get re-keyed into the store by hand.</strong> Every approval ends with someone typing a customer record, a trade tag, and a tax setting. A mistyped or forgotten tag means a designer sees retail pricing and quietly doesn't order—or holds a tax exemption they're no longer entitled to, which is the same mistake pointed at your balance sheet instead of theirs.
+                <strong>Your team is doing tax compliance as a side effect of customer service.</strong> Reviewing exemption paperwork is specialized work and very easy to get wrong—which tax ID format is valid for this profession in this state, which fields have to be completed, which boxes checked for the exemption to hold—and it's happening between order questions and freight quotes.
               </p>
-              <p>
-                <strong>Your team is doing tax compliance as a side effect of customer service.</strong> This is the expensive one. Reviewing exemption paperwork is specialized work, and it's being done between order questions and freight quotes by people you hired to sell and to look after designers. They're not slow at it because they're careless—it's genuinely not their job, and it has landed on them anyway.
-              </p>
-            </Prose>
-
-            <H2 id="criteria">Seven Evaluation Criteria</H2>
-            <Prose>
-              <p>
-                Read enough feature lists and they all start to sound the same, which is not an accident—everyone is describing the same seven stages with slightly different nouns. These are the seven places where what's underneath actually differs, and where a few pointed questions will tell you more than an hour of demo.
-              </p>
-            </Prose>
-            <div className="border-t border-sage-dark mb-10">
-              {CRITERIA.map((c) => (
-                <div key={c.n} className="py-6 border-b border-sage-dark grid grid-cols-[2.5rem_1fr] gap-4">
-                  <span
-                    className="font-freight text-olive-mid"
-                    style={{ fontSize: "1.1rem", lineHeight: 1.3 }}
-                  >
-                    {c.n}
-                  </span>
-                  <div>
-                    <h3
-                      className="font-freight text-charcoal mb-1.5"
-                      style={{ fontSize: "1.1rem", letterSpacing: "-0.015em", lineHeight: 1.3 }}
-                    >
-                      {c.title}
-                    </h3>
-                    <p
-                      className="text-charcoal-mid"
-                      style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7 }}
-                    >
-                      {c.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <H2 id="verification">Testing Verification Depth</H2>
-            <Prose>
-              <p>
-                Almost everything in this space says it does verification, and the word is doing an enormous amount of work. The single most useful question you can ask about any product is which of its checks reach an authoritative outside source, and which simply record what the applicant typed. Something that asks a designer to type an EIN and upload a business license has collected two documents. Something that confirms the entity is actually registered and in good standing has verified a fact about the world. On a feature list, both of those are "business verification," and they are not remotely the same product.
-              </p>
-              <p>
-                This matters more than it sounds, because the failure is silent. A collected document sits in your file looking exactly like a verified one. You find out which kind you had years later, when someone official asks.
-              </p>
-              <H3>Checks Worth Insisting On</H3>
-              <p>
-                No single signal tells you whether a designer is real, so a serious verification stack draws on several independent ones—any individual check can be stale, or thin, or quietly gamed:
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Business entity registration and EIN</li>
-                <li>State sales tax registration</li>
-                <li>Professional association membership</li>
-                <li>An active business website, and how long it has existed</li>
-                <li>Portfolio or social presence showing completed work</li>
-                <li>Occupational licensure, in states that regulate the title</li>
-                <li>A valid, current resale certificate</li>
-                <li>Trade references from other brands</li>
-                <li>Press coverage or showhouse participation</li>
-              </ul>
-              <p>
-                None of these is decisive on its own, and you shouldn't want it to be. A designer who left a good firm last spring to start her own studio will fail every longevity test you can devise, and she may be exactly the account you want. A thirty-year practice with a devoted client list may belong to no association at all. What you're looking for is a tool that lays the signals out clearly enough that you can make the call in seconds—and then keeps the evidence, so the call is still explicable later.
-              </p>
-              <p>
-                Ask about re-verification too, because this is the one almost nobody thinks to ask. A designer you verified in 2024 whose state registration lapsed in 2026 is a live exposure sitting inside your approved accounts, looking perfectly fine. A check that only runs at application will never find her.
-              </p>
-              <InlineHook href="/automated-designer-verification" label="How automated designer verification works in practice" />
             </Prose>
 
             <H2 id="certificates">Testing Certificate Handling</H2>
@@ -430,7 +315,7 @@ export default function TradeProgramSoftwareGuide() {
                 This is where products diverge most sharply, and where the language on their websites is least reliable. It's also where your actual money is, so it's worth slowing down.
               </p>
               <p>
-                Forty-six US jurisdictions impose sales tax—45 states plus the District of Columbia. Five have no statewide sales tax at all. Most of the taxing jurisdictions publish their own exemption certificate form, and then there are two multistate instruments, the Multistate Tax Commission's Uniform Sales and Use Tax Exemption Certificate and the Streamlined Sales and Use Tax Agreement certificate, each accepted by some states and not others, with conditions attached that vary by state.
+                Forty-six US jurisdictions impose sales tax, most publishing their own exemption form, plus two multistate instruments that some states accept and others don't, with conditions that vary by state.
               </p>
               <p>
                 So which certificate is valid for any given order depends on where the designer is registered, where you have nexus, and where the goods are actually going. That's a matrix, not a document—which is why "we store resale certificates" and "we make sure you have the right resale certificate" are two very different promises, delivered in nearly identical language.
@@ -443,20 +328,6 @@ export default function TradeProgramSoftwareGuide() {
                 Test expiration as a scenario rather than a feature. Don't ask whether it tracks expiration dates; everything says yes. Instead, walk through the day a certificate lapses. Who gets notified, and when? Does the tax exemption come off the customer record on its own, or does it sit there until somebody notices? In most states you carry the assessment for tax-free sales made against an invalid certificate—not the designer—so automatic revocation isn't a convenience feature. It's the thing standing between a lapsed form and a bill you didn't budget for.
               </p>
               <InlineHook href="/resale-certificate-management" label="What resale certificate management involves" />
-            </Prose>
-
-            <H2 id="integration">Testing Commerce Integration</H2>
-            <Prose>
-              <p>
-                An approval is worth nothing commercially until it reaches the system that prices the order. Until then it's a decision somebody made, sitting in a different piece of software. So ask precisely what gets written, field by field—and if the answer involves exporting a CSV, that's not an integration, that's data entry with extra steps.
-              </p>
-              <p>
-                What you want is for approval to create or update the customer record, apply whatever tag or group your pricing rules actually key on, and set tax exemption <em>per state</em> rather than as one account-level switch. That last distinction matters more than it seems: a designer is typically exempt in the states where she's registered and perfectly taxable everywhere else, and a single on/off flag can't express that. If you run B2B with company-level accounts, those same fields need to reach the company record, because that's what company-scoped price lists look at.
-              </p>
-              <p>
-                Then ask the question that almost never comes up on a call: what happens when someone on your team edits one of those fields by hand? Because they will—a rushed fix on a Friday, a tag typed directly into the customer record to unblock an order. Fields managed by an integration drift. A tool that notices the drift and tells you is taking ownership of that data. One that silently overwrites your change, or silently leaves it, has handed you a discrepancy you'll meet for the first time in an audit.
-              </p>
-              <InlineHook href="/shopify" label="How the Shopify integration writes verified buyers" />
             </Prose>
 
             <H2 id="build-vs-buy">Build, Buy, or Bolt On</H2>
@@ -483,7 +354,7 @@ export default function TradeProgramSoftwareGuide() {
                 ))}
               </ol>
               <p>
-                Ask for the fifth and the tenth as live demonstrations rather than descriptions. Pulling up an order and tracing it back to the certificate that justifies its exemption takes about fifteen seconds if the data model supports it, and cannot be done at all if it doesn't. There's no middle ground to talk your way into.
+                Ask for the last two as live demonstrations rather than descriptions. Pulling up an order and tracing it back to the certificate that justifies its exemption takes about fifteen seconds if the data model supports it, and cannot be done at all if it doesn't. There's no middle ground to talk your way into.
               </p>
             </Prose>
 
