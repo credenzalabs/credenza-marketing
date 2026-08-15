@@ -5,21 +5,13 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 
-// Grouped by audience: the section previously held one designer-side article,
-// which left vendors—the people who buy—with nothing to read.
+// Grouped by audience. The vendor-side section is empty again: the trade
+// program software guide was unrouted on 2026-08-15 because it read as
+// generated rather than reported — a bad look anywhere, and a worse one for a
+// company that sells verification. src/pages/TradeProgramSoftwareGuide.tsx is
+// still in the repo; the parts worth keeping came from Julia's corrections and
+// should be the seed of a rebuild from real source, not a rewrite of the prose.
 const SECTIONS = [
-  {
-    audience: "For to-the-trade brands",
-    resources: [
-      {
-        title: "How to Choose Trade Program Software",
-        description:
-          "The seven stages every trade program has to get through, how to tell which of them you have actually automated and which you are absorbing as labor, how to test what a tool really does underneath the language on its website, and when building it yourself is the right answer.",
-        href: "/resources/how-to-choose-trade-program-software",
-        eyebrow: "Guide",
-      },
-    ],
-  },
   {
     audience: "For interior designers",
     resources: [
