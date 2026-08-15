@@ -45,7 +45,6 @@ const ROUTES = [
   { path: "/pricing", priority: "0.9", changefreq: "monthly" },
   { path: "/resources", priority: "0.7", changefreq: "weekly" },
   { path: "/resources/interior-designer-resale-certificate-guide", priority: "0.8", changefreq: "monthly" },
-  { path: "/resources/how-to-choose-trade-program-software", priority: "0.8", changefreq: "monthly" },
   { path: "/about", priority: "0.6", changefreq: "monthly" },
   { path: "/privacy-policy", priority: "0.3", changefreq: "monthly" },
   { path: "/terms-of-use", priority: "0.3", changefreq: "monthly" },
