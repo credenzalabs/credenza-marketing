@@ -30,9 +30,9 @@ import { Footer } from "@/components/sections/home/Footer";
 
 const IMAGES = {
   // Credited designer project photography
-  alisonRoseKitchen:         "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/alison-rose-kitchen_ed131ff5.jpg",
-  nickOlsonReidRolls:        "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/nick-olson-reid-rolls_d58f9523.webp",
-  kavanaughLakeside:         "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp",
+  alisonRoseKitchen:         "/alison-rose-kitchen.jpg",
+  nickOlsonReidRolls:        "/nick-olsen-reid-rolls.webp",
+  kavanaughLakeside:         "/kavanaugh-lakeside.webp",
 };
 
 

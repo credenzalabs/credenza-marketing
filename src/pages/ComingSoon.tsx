@@ -14,7 +14,7 @@ const STUDIO_DORION_CREDIT = [
   { text: ")" },
 ];
 
-const BG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-park-slope-brownstone_543060ca.avif";
+const BG_IMAGE = "/studio-dorion-park-slope-brownstone-email.jpg";
 
 export default function ComingSoon() {
   const [form, setForm] = useState({ name: "", email: "", company: "", role: "" });

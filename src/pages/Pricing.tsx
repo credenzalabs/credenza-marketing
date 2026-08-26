@@ -60,7 +60,7 @@ const HERO_IMAGE = {
 };
 
 const PLANS_IMAGE = {
-  src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/kavanaugh-lakeside_2007c26c.webp",
+  src: "/kavanaugh-lakeside.webp",
   alt: "Interior by Ellen Kavanaugh Interiors",
   objectPosition: "center 40%",
   credits: [

@@ -29,7 +29,7 @@ export const C = {
 };
 
 export const LOGO_BLACK =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/CredenzaLogo_transparent_e1d9cbc2.png";
+  "/credenza-wordmark.png";
 
 export const ACCESS_REQUEST_URL = import.meta.env.VITE_ACCESS_REQUEST_URL as string;
 

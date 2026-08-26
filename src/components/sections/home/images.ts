@@ -1,11 +1,13 @@
+// Self-hosted out of /public. These used to load from a CloudFront distribution
+// (d2xsxph8kpxj0f) that now returns 403 AccessDenied on every object, which is
+// how the logo and the hero art disappeared. Keep new imagery in /public.
 export const IMAGES = {
-  // Studio Dorion — hero pair
-  studioDorionBrownstone: "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-park-slope-brownstone_543060ca.avif",
-  studioDorionNoho:       "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/studio-dorion-noho-apartment_77856e33.avif",
-  // Alison Rose — kitchen detail (Arch Digest)
-  alisonRoseKitchen:      "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/alison-rose-kitchen_ed131ff5.jpg",
-  // Nick Olson — colorful living room
-  nickOlsonReidRolls:     "https://d2xsxph8kpxj0f.cloudfront.net/310519663400666768/au946vH5rjwmQAZ5wCBePX/nick-olson-reid-rolls_d58f9523.webp",
+  // Studio Dorion — Park Slope brownstone
+  studioDorionBrownstone: "/studio-dorion-park-slope-brownstone-email.jpg",
+  // Alison Rose NY — kitchen detail (photo by Reid Rolls)
+  alisonRoseKitchen:      "/alison-rose-kitchen.jpg",
+  // Nick Olsen — colorful living room (photo by Reid Rolls)
+  nickOlsonReidRolls:     "/nick-olsen-reid-rolls.webp",
   // Sarah Bartholomew — living room (photo by Melanie Acevedo)
   sarahBartholomewLivingRoom: "/sarah-bartholomew-living-room.jpg",
 };
