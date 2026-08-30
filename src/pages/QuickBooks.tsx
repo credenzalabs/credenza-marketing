@@ -81,7 +81,7 @@ const CAPABILITIES: Array<{ title: string; body: string }> = [
   },
   {
     title: "Certificates you already hold, read and filed",
-    body: "Resale certificates attached to those customers are opened and read for the state they cover, the number on them, and the date they lapse, then filed against the right client. Loan forms, business licenses and W-9s are recognized for what they are and left alone.",
+    body: "Resale certificates attached to those customers are opened and read for the state they cover, the number on them, and the date they lapse, then filed against the right client. Other business documents are recognized for what they are and left alone.",
   },
   {
     title: "A taxable flag that keeps itself current",
