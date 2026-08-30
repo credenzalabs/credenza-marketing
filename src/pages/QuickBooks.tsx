@@ -461,7 +461,6 @@ function CustomerRecordMock() {
             Customer
           </span>
         </div>
-        <img src="/logo-quickbooks.png" alt="QuickBooks" style={{ height: 13 }} className="block w-auto" />
       </div>
 
       <div className="px-7 py-7">
@@ -479,11 +478,16 @@ function CustomerRecordMock() {
         >
           Filed under
         </div>
-        <div
-          className="text-charcoal mb-1"
-          style={{ fontFamily: "Inter, sans-serif", fontSize: 13.5 }}
-        >
-          Hayes &amp; Howe Design
+        <div className="flex items-center gap-2 mb-1">
+          <img
+            src="/icon-quickbooks.png"
+            alt="QuickBooks"
+            style={{ width: 15, height: 15 }}
+            className="block shrink-0"
+          />
+          <span className="text-charcoal" style={{ fontFamily: "Inter, sans-serif", fontSize: 13.5 }}>
+            Hayes &amp; Howe Design
+          </span>
         </div>
         <div className="flex items-center gap-2 mb-6" style={{ paddingLeft: 2 }}>
           <span style={{ color: C.sageDark, fontSize: 13 }}>└</span>
