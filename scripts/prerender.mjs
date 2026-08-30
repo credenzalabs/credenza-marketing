@@ -40,6 +40,7 @@ const ROUTES = [
   { path: "/shopify", priority: "0.8", changefreq: "weekly" },
   { path: "/integrations", priority: "0.7", changefreq: "monthly" },
   { path: "/integrations/klaviyo", priority: "0.8", changefreq: "weekly" },
+  { path: "/integrations/quickbooks", priority: "0.8", changefreq: "weekly" },
   { path: "/resale-certificate-management", priority: "0.8", changefreq: "weekly" },
   { path: "/automated-designer-verification", priority: "0.8", changefreq: "weekly" },
   { path: "/pricing", priority: "0.9", changefreq: "monthly" },

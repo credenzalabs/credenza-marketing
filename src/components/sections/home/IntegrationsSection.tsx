@@ -48,8 +48,8 @@ export function IntegrationsSection() {
               The moment you approve a designer, Credenza creates their trade
               account and applies the correct state-level tax exemption. No one
               on your team touches a keyboard. That same verified record then
-              flows into your marketing stack, so the designers you just
-              approved are already segmented and reachable.
+              flows into your books and your marketing stack, so the designers
+              you just approved are billed correctly and already reachable.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -67,6 +67,15 @@ export function IntegrationsSection() {
                   logoHeight: 18,
                   body: "Push any filtered set of trade accounts to a Klaviyo list—dormant, sampling but not buying, new this month—and campaign sends, opens, and clicks come back into each firm's activity feed.",
                   href: `${prefix}/integrations/klaviyo`,
+                },
+                {
+                  title: "QuickBooks",
+                  // Intuit's lockup carries the icon, so it needs more box
+                  // height than the other wordmarks to read at the same size.
+                  logo: "/logo-quickbooks.png",
+                  logoHeight: 24,
+                  body: "Each trade customer you invoice carries their taxable status, resale number, and covered states—kept in step as certificates arrive and lapse. Your invoices come back as per-firm trade revenue.",
+                  href: `${prefix}/integrations/quickbooks`,
                 },
               ].map((item) => (
                 <div key={item.title} className="p-5 bg-white border border-sage-dark">

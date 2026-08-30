@@ -26,9 +26,9 @@ import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 import { withCredenzaUtm } from "@/utils/utm";
 
 // Kept short enough that " | Credenza" still fits inside a ~60-char SERP title.
-const PAGE_TITLE = "Integrations: Shopify and Klaviyo for trade programs";
+const PAGE_TITLE = "Integrations: Shopify, Klaviyo and QuickBooks for trade";
 const PAGE_DESCRIPTION =
-  "Credenza connects your trade program to the tools you already run. Shopify gets verified buyers, trade tags, and state-scoped tax exemption; Klaviyo gets ready-made trade segments, with engagement coming back to each firm's record.";
+  "Credenza connects your trade program to the tools you already run. Shopify gets verified buyers, trade tags, and state-scoped tax exemption; Klaviyo gets ready-made trade segments; QuickBooks gets resale certificates and exemption on the customers you invoice.";
 const PAGE_PATH = "/integrations";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -67,6 +67,22 @@ const INTEGRATIONS: Array<{
       "Push a segment once, or keep the list synced nightly",
       "Opens and clicks return to each firm's record in Credenza",
       "Your sales team sees engagement without a seat in your marketing tool",
+    ],
+  },
+  {
+    name: "QuickBooks",
+    // Intuit's lockup carries the icon, so it needs more box height than the
+    // Shopify and Klaviyo wordmarks to read at the same optical size.
+    logo: "/logo-quickbooks.png",
+    logoHeight: 26,
+    href: "/integrations/quickbooks",
+    headline: "The exemption right, before you invoice.",
+    body: "Credenza keeps each trade customer in QuickBooks in step with the resale certificates behind them, and reads back the invoices you raise as trade program revenue.",
+    points: [
+      "Taxable status, resale number, and covered states on the customer record",
+      "Certificates already attached to your customers read and filed",
+      "Designers filed under the firm they work for, projects left out of it",
+      "Invoices return nightly as per-firm revenue and lifetime value",
     ],
   },
 ];
@@ -133,8 +149,8 @@ function Header() {
           >
             Verification, certificates, and program intelligence are only useful where
             your team already spends its day. Credenza writes verified trade accounts
-            into your store, and turns what it knows about them into audiences your
-            marketing can act on.
+            into your store, keeps the exemption right in your books, and turns what it
+            knows about them into audiences your marketing can act on.
           </p>
         </div>
       </div>
@@ -146,12 +162,12 @@ function Cards() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8">
           {INTEGRATIONS.map((integration) => (
             <a
               key={integration.name}
               href={integration.href}
-              className="no-underline block p-8 md:p-10 transition-colors duration-200"
+              className="no-underline block p-7 md:p-8 transition-colors duration-200"
               style={{ border: `0.5px solid ${C.sageDark}`, backgroundColor: "#fff" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.backgroundColor = "#fbfaf6";
@@ -220,8 +236,8 @@ function Cards() {
           className="text-charcoal-soft mt-10"
           style={{ fontFamily: "Inter, sans-serif", fontSize: "0.85rem", lineHeight: 1.7, maxWidth: 640 }}
         >
-          QuickBooks is in progress, and custom e-commerce stacks and ERPs are on the
-          roadmap—if you&rsquo;re running something bespoke, let&rsquo;s talk.
+          Custom e-commerce stacks and ERPs are on the roadmap—if you&rsquo;re running
+          something bespoke, let&rsquo;s talk.
         </p>
       </div>
     </section>

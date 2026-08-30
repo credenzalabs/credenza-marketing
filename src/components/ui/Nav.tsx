@@ -66,6 +66,15 @@ export function Nav({
       logoHeight: 16,
       blurb: "Ready-made trade segments, synced to your lists",
     },
+    {
+      label: "QuickBooks",
+      href: `${prefix}/integrations/quickbooks`,
+      // Intuit's lockup carries the icon, so it needs more box height than the
+      // Shopify and Klaviyo wordmarks to read at the same optical size.
+      logo: "/logo-quickbooks.png",
+      logoHeight: 20,
+      blurb: "Exemptions and certificates on the customers you invoice",
+    },
   ];
   const integrationsActive = activePage === "integrations";
 
@@ -128,7 +137,7 @@ export function Nav({
                   {/* The flyout is ALWAYS in the DOM and hidden with CSS, never
                       conditionally rendered. scripts/prerender.mjs snapshots the
                       DOM as it stands, so an unmounted menu means every page
-                      ships to crawlers with no link to either integration page —
+                      ships to crawlers with no link to any integration page —
                       which is exactly what happened until this was fixed. Opens
                       on hover and on keyboard focus via group-hover /
                       group-focus-within, so it needs no open state at all. */}
