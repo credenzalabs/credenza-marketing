@@ -118,11 +118,11 @@ const USE_CASES: Array<{ title: string; body: string }> = [
   },
   {
     title: "A certificate that lapses mid-season",
-    body: "Certificates expire on their own schedule, and some states reset every January. Credenza tracks the date, asks the designer for the replacement, and takes the exemption off the QuickBooks customer if it doesn't arrive.",
+    body: "Certificates expire on their own schedule, and some states reset every December. Credenza tracks the date, asks the designer for the replacement, and takes the exemption off the QuickBooks customer if it doesn't arrive.",
   },
   {
     title: "Coverage that stops at a state line",
-    body: "A designer registered in New York buying for a project shipping to Texas is not exempt in Texas. Credenza compares what they hold against the states you actually ship to, and says so on the record your team bills against.",
+    body: "A designer registered in New York buying for a project shipping to Texas is not exempt in Texas. Credenza compares their resale certificate posture against your nexus states, and says so on the record your team bills against.",
   },
   {
     title: "A firm, not an inbox",
@@ -904,9 +904,7 @@ function OrdersLoop() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
             >
               That is what puts trade revenue, per-firm lifetime value, and spend-based
-              tier upgrades on real numbers—and what lets &ldquo;bought last season, not
-              this one&rdquo; mean something. Nothing is written back to your invoices,
-              and nobody on your team has to tag anything.
+              tier upgrades on real numbers and powers customer segmentation.
             </p>
           </div>
         </div>
