@@ -122,7 +122,7 @@ const USE_CASES: Array<{ title: string; body: string }> = [
   },
   {
     title: "Coverage that stops at a state line",
-    body: "A designer registered in New York buying for a project shipping to Texas is not exempt in Texas. Credenza compares what they hold against the states you actually ship to, and says so on the record your team bills against.",
+    body: "A designer registered in New York buying for a project shipping to Texas is not exempt in Texas. Credenza compares their resale certificate posture against your nexus states, and says so on the record your team bills against.",
   },
   {
     title: "A firm, not an inbox",
