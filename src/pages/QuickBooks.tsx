@@ -118,7 +118,7 @@ const USE_CASES: Array<{ title: string; body: string }> = [
   },
   {
     title: "A certificate that lapses mid-season",
-    body: "Certificates expire on their own schedule, and some states reset every January. Credenza tracks the date, asks the designer for the replacement, and takes the exemption off the QuickBooks customer if it doesn't arrive.",
+    body: "Certificates expire on their own schedule, and some states reset every December. Credenza tracks the date, asks the designer for the replacement, and takes the exemption off the QuickBooks customer if it doesn't arrive.",
   },
   {
     title: "Coverage that stops at a state line",
