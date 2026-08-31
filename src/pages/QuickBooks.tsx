@@ -904,9 +904,7 @@ function OrdersLoop() {
               style={{ fontFamily: "Inter, sans-serif", fontSize: "1rem", lineHeight: 1.75 }}
             >
               That is what puts trade revenue, per-firm lifetime value, and spend-based
-              tier upgrades on real numbers—and what lets &ldquo;bought last season, not
-              this one&rdquo; mean something. Nothing is written back to your invoices,
-              and nobody on your team has to tag anything.
+              tier upgrades on real numbers and powers customer segmentation.
             </p>
           </div>
         </div>
