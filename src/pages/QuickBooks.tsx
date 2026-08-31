@@ -461,6 +461,7 @@ function CustomerRecordMock() {
             Customer
           </span>
         </div>
+        <img src="/logo-quickbooks.png" alt="QuickBooks" style={{ height: 13 }} className="block w-auto" />
       </div>
 
       <div className="px-7 py-7">
