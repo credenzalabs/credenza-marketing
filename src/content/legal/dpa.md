@@ -1,6 +1,6 @@
 Data Processing Addendum
 
-Last Updated: 2026-08-09
+Last Updated: 2026-09-09
 
 This **Data Processing Addendum** ("DPA") forms part of, and is subject to, the Credenza Terms of Use at usecredenza.com/terms-of-use and the End-User License Agreement (together, the "Agreement") between **Credenza Labs, Inc.**, a Delaware corporation ("Credenza," "we," or "Processor"), and the customer entity that has entered into the Agreement ("Customer," "you," or "Controller"). This DPA governs the Processing of Personal Data by Credenza on Customer's behalf in connection with the Credenza platform and services (the "Services").  
 In the event of a conflict between this DPA and the rest of the Agreement with respect to the Processing of Personal Data, this DPA controls. Capitalized terms not defined here have the meanings given in the Agreement.
@@ -91,7 +91,7 @@ Annex II — Technical and Organizational Security Measures
 
 Credenza maintains a security program that includes, at a minimum, the following measures, which may be updated as the Services evolve provided protection is not materially reduced:
 
-			•	Access control and authentication. Passwordless magic-link authentication for users; role-based access; the principle of least privilege for personnel; multi-factor authentication for administrative access to production systems.  
+			•	Access control and authentication. Passwordless authentication for users by emailed sign-in link or one-time passcode; role-based access; the principle of least privilege for personnel; multi-factor authentication for administrative access to production systems.  
 	•	Tenant isolation and data segregation. Row-Level Security enforced at the database layer scopes data to the owning firm or vendor; service-role credentials are confined to server-side functions and are never exposed to client applications.  
 	•	Encryption. Encryption of Personal Data in transit (TLS) and at rest using industry-standard mechanisms provided by Credenza's hosting Sub-processors.  
 	•	Data minimization for AI processing. Sensitive identifiers (EIN, state tax identification numbers, resale-certificate numbers, and designer contact details) are validated locally and are not transmitted to third-party AI providers; only the limited business information needed for analysis is sent. AI providers are engaged under zero-data-retention or no-training terms where available.  
