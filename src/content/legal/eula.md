@@ -1,6 +1,6 @@
 # End-User License Agreement
 
-Last Updated: 2026-08-09
+Last Updated: 2026-09-09
 
 This End-User License Agreement (this "Agreement" or "EULA") is a binding legal agreement between you, either an individual or the entity you represent ("you" or "User"), and Credenza Labs, Inc., a Delaware corporation ("Credenza," "we," "us," or "our"), governing your access to and use of the Credenza Software (defined below).  
 This Agreement supplements, and is in addition to, the Credenza Terms of Use available at usecredenza.com/terms-of-use (the "Terms of Use") and the Credenza Privacy Policy available at usecredenza.com/privacy-policy (the "Privacy Policy"), each of which is incorporated into this Agreement by reference. This EULA governs your license to use the Software; the Terms of Use govern your broader use of the Credenza service. In the event of a direct conflict between this Agreement and the Terms of Use with respect to the licensing of the Software, this Agreement controls.
@@ -46,7 +46,7 @@ If you provide Credenza with any suggestions, ideas, enhancement requests, or ot
 
 6\. Accounts and Authorized Users
 
-Access to the Software requires an account. You are responsible for (a) maintaining the confidentiality of your account credentials and magic-link sign-in access; (b) all activity that occurs under your account, including the acts and omissions of your Authorized Users; and (c) ensuring your Authorized Users comply with this Agreement. You will promptly notify Credenza of any unauthorized use of your account or any other breach of security. You are responsible for the accuracy of the information associated with your account.
+Access to the Software requires an account. You are responsible for (a) maintaining the confidentiality of your account credentials, including any sign-in link or one-time passcode sent to your email address; (b) all activity that occurs under your account, including the acts and omissions of your Authorized Users; and (c) ensuring your Authorized Users comply with this Agreement. You will promptly notify Credenza of any unauthorized use of your account or any other breach of security. You are responsible for the accuracy of the information associated with your account.
 
 7\. Compliance, Tax, and Verification Disclaimer
 
