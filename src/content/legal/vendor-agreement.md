@@ -1,6 +1,6 @@
 **Credenza Vendor Agreement**
 
-**Last Updated: 2026-06-11**  
+**Last Updated: 2026-09-10**  
 This Vendor Agreement ("Agreement") is entered into between **Credenza Labs, Inc.**, a Delaware corporation ("Credenza," "we," "us," or "our"), and the entity accepting this Agreement ("Vendor," "you," or "your").  
 By creating an account, accessing the Platform, executing an order form, or using any Credenza services, Vendor agrees to be bound by this Agreement.
 
@@ -194,8 +194,9 @@ Credenza may suspend or terminate access to the Platform immediately if Vendor:
 			•	Fails to pay fees when due;  
 	•	Violates this Agreement;  
 	•	Engages in fraudulent or unlawful activity;  
-	•	Creates security risks; or  
-	•	Uses the Platform in a manner that may harm Credenza, Designers, or other users.
+	•	Creates security risks;  
+	•	Uses the Platform in a manner that may harm Credenza, Designers, or other users; or  
+	•	Files for protection under bankruptcy laws, makes an assignment for the benefit of creditors, appoints or suffers appointment of a receiver or trustee over its property, files a petition under any bankruptcy or insolvency act or has any such petition filed against it.
 
 Either party may terminate this Agreement at any time for any reason upon written notice.  
 Upon termination, Vendor's right to access the Platform shall cease immediately. Handling of Vendor Data and personal data following termination is described in the DPA and the Privacy Policy.
