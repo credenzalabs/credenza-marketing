@@ -19,7 +19,7 @@ export function Footer() {
           </div>
           {[
             { heading: "Product", links: [{ label: "For Designers", href: `${prefix}/for-designers` }, { label: "For Vendors", href: `${prefix}/` }, { label: "Resale Certificate Management", href: `${prefix}/resale-certificate-management` }, { label: "Shopify Integration", href: `${prefix}/shopify` }, { label: "Pricing", href: `${prefix}/pricing` }] },
-            { heading: "Company", links: [{ label: "About", href: `${prefix}/about` }, { label: "Resources", href: `${prefix}/resources` }] },
+            { heading: "Company", links: [{ label: "About", href: `${prefix}/about` }, { label: "Resources", href: `${prefix}/resources` }, { label: "Week in Design", href: `${prefix}/week-in-design` }] },
             { heading: "Contact", links: [{ label: "info@usecredenza.com", href: "mailto:info@usecredenza.com" }] },
           ].map((col) => (
             <div key={col.heading}>

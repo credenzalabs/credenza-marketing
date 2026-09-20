@@ -48,3 +48,11 @@ export const JOIN_VENDOR_URL = `${appBase}/join/vendor`;
 // flow). The cert-tool also redirects /waitlist + /waitlist/designer here
 // so any stale links carry through.
 export const JOIN_DESIGNER_URL = `${appBase}/join/designer`;
+
+/** Loops custom-form endpoint for the Week in Design newsletter.
+ *  https://loops.so/docs/forms/custom-form — the newsletter-form endpoint is
+ *  public by design (no API key), so it is safe to call straight from the
+ *  browser. Env-overridable so a preview build can point at a test form. */
+export const LOOPS_FORM_URL =
+  (import.meta.env.VITE_LOOPS_FORM_URL as string | undefined) ??
+  "https://app.loops.so/api/newsletter-form/cmp1e9liq02f90i1h1j7f34w5";
