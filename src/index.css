@@ -354,4 +354,208 @@
   .img-zoom:hover img {
     transform: scale(1.04);
   }
+
+  /* ── Week in Design (/week-in-design) ──────────────────────────────────────
+     Ported from the standalone signup page design. Scoped to .wid-* and kept
+     in CSS rather than inline styles because the layout needs a media query,
+     :focus/:hover states, and grid spans that style props can't express.
+     Type differs from the design file in one way: it specified Freight Text
+     Pro and Freight Sans Pro, which aren't in the site's Typekit kit, so the
+     serif is the site's freight-display-pro and the sans is Inter. */
+  .wid-page {
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    align-items: stretch;
+    overflow: hidden;
+    background: #f6f3ee;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+  }
+  .wid-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(28px, 3.4vh, 52px) clamp(32px, 4vw, 56px) clamp(28px, 3.4vh, 52px) clamp(32px, 4.5vw, 64px);
+    min-width: 0;
+    overflow: hidden;
+  }
+  .wid-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .wid-brand img {
+    display: block;
+    width: 44px;
+    height: 44px;
+  }
+  .wid-brand span {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .wid-body {
+    max-width: 620px;
+    padding: clamp(24px, 4vh, 56px) 0;
+  }
+  .wid-eyebrow {
+    margin: 0 0 26px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a8a5c;
+  }
+  .wid-title {
+    margin: 0;
+    font-family: 'freight-display-pro', Georgia, serif;
+    font-size: clamp(42px, min(6.2vw, 10.5vh), 92px);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .wid-sub {
+    margin: clamp(14px, 2vh, 26px) 0 0;
+    font-family: 'freight-display-pro', Georgia, serif;
+    font-size: clamp(19px, min(2.1vw, 3.4vh), 30px);
+    line-height: 1.4;
+    font-style: italic;
+    color: #54514d;
+    text-wrap: pretty;
+  }
+  .wid-lede {
+    margin: clamp(18px, 2.6vh, 34px) 0 0;
+    font-size: clamp(15px, min(1.4vw, 2.2vh), 19px);
+    line-height: 1.6;
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+  .wid-fine {
+    margin: clamp(14px, 1.8vh, 20px) 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #8a8a5c;
+  }
+  .wid-footer {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a8a5c;
+    text-decoration: none;
+  }
+  .wid-footer:hover {
+    color: #1a1a1a;
+  }
+  .wid-form {
+    margin: clamp(24px, 3.4vh, 44px) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 560px;
+  }
+  .wid-input {
+    flex: 1 1 260px;
+    min-width: 0;
+    font: inherit;
+    font-size: 17px;
+    color: #1a1a1a;
+    background: #ffffff;
+    border: 1px solid #cfcabf;
+    border-radius: 0;
+    padding: 17px 18px;
+    outline: none;
+  }
+  .wid-input:focus {
+    border-color: #8a8a5c;
+  }
+  .wid-button {
+    flex: 0 0 auto;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f6f3ee;
+    background: #1a1a1a;
+    border: none;
+    border-radius: 0;
+    padding: 18px 34px;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+  }
+  .wid-button:hover {
+    background: #3d3b2e;
+  }
+  .wid-button:disabled {
+    cursor: default;
+  }
+  .wid-note {
+    margin: 18px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #3d3b2e;
+  }
+  .wid-note-error {
+    color: #9a3412;
+  }
+  .wid-back {
+    display: inline-block;
+    margin: 14px 0 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: #8a8a5c;
+  }
+  .wid-back:hover {
+    text-decoration: underline;
+    color: #1a1a1a;
+  }
+  .wid-grid {
+    position: relative;
+    min-width: 0;
+    background: #c5c88d;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+  .wid-grid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+  }
+  .wid-grid img:last-child {
+    grid-column: span 2;
+  }
+  @media (max-width: 820px) {
+    .wid-page {
+      height: auto;
+      min-height: 100vh;
+      grid-template-columns: minmax(0, 1fr);
+      overflow: visible;
+    }
+    .wid-left {
+      padding: 40px 28px;
+    }
+    .wid-body {
+      padding: 48px 0;
+    }
+    .wid-grid {
+      min-height: 340px;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+    .wid-grid img:nth-child(4),
+    .wid-grid img:nth-child(5) {
+      display: none;
+    }
+  }
 }

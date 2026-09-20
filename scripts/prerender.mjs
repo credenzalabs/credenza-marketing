@@ -47,6 +47,7 @@ const ROUTES = [
   { path: "/resources", priority: "0.7", changefreq: "weekly" },
   { path: "/resources/interior-designer-resale-certificate-guide", priority: "0.8", changefreq: "monthly" },
   { path: "/about", priority: "0.6", changefreq: "monthly" },
+  { path: "/week-in-design", priority: "0.7", changefreq: "weekly" },
   { path: "/privacy-policy", priority: "0.3", changefreq: "monthly" },
   { path: "/terms-of-use", priority: "0.3", changefreq: "monthly" },
   { path: "/vendor-agreement", priority: "0.3", changefreq: "monthly" },
