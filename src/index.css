@@ -359,9 +359,11 @@
      Ported from the standalone signup page design. Scoped to .wid-* and kept
      in CSS rather than inline styles because the layout needs a media query,
      :focus/:hover states, and grid spans that style props can't express.
-     Type differs from the design file in one way: it specified Freight Text
-     Pro and Freight Sans Pro, which aren't in the site's Typekit kit, so the
-     serif is the site's freight-display-pro and the sans is Inter. */
+     Type is the site's, not the design file's: that file specified Freight
+     Text Pro and Freight Sans Pro, and this page uses freight-display-pro and
+     Inter like every other page instead. Deliberate — keeping the newsletter
+     in the same type as the rest of the site beats adding two families to the
+     Typekit kit. Don't "restore" the originals. */
   .wid-page {
     height: 100dvh;
     display: grid;
