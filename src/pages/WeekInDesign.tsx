@@ -36,7 +36,7 @@ export default function WeekInDesign() {
   usePageMeta({
     title: "Week in Design | A Weekly Letter for the Interior Design Trade",
     description:
-      "Week in Design is a free Sunday letter for the interior design trade: new collections, market dates, sample sales, and the pieces worth specifying—read in five minutes.",
+      "Week in Design is a free Sunday letter for the interior design trade: new collections, the business of the trade, and the pieces worth specifying—read in five minutes.",
     path: "/week-in-design",
     ogTitle: "Week in Design — Launches Worth a Look, Trade News to Know",
   });
@@ -75,7 +75,7 @@ export default function WeekInDesign() {
           <h1 className="wid-title">Week in Design</h1>
           <p className="wid-sub">Launches worth a look and trade news to know.</p>
           <p className="wid-lede">
-            New collections, market dates, sample sales, and the pieces worth
+            New collections, the business of the trade, and the pieces worth
             specifying—read in five minutes, free.
           </p>
 
