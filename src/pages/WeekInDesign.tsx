@@ -19,15 +19,15 @@ import { useState } from "react";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { subscribeToNewsletter, NewsletterError } from "@/lib/newsletter";
 
-/* The four small tiles plus the wide one that spans both columns. Alt text is
-   deliberately descriptive rather than crediting the brand or maker in each
-   frame — same rule the rest of the marketing site follows. */
+/* The four small tiles plus the wide one that spans both columns. Alt text
+   credits the brand and piece, as the design file did: this letter is about
+   what's newly available, so naming the work is the point rather than a slip. */
 const GRID = [
-  { src: "/wid-chinoiserie-wallcovering.jpg", alt: "Hand-painted chinoiserie wallcovering with a bird and peonies" },
-  { src: "/wid-woven-fabric.jpg", alt: "Folded lengths of textured olive upholstery fabric" },
-  { src: "/wid-block-print-tablecloth.jpg", alt: "Bowl of cherries on a green block-print tablecloth" },
-  { src: "/wid-verdigris-mirror.jpg", alt: "Corner detail of a scalloped verdigris mirror frame" },
-  { src: "/wid-ceramic-vases.jpg", alt: "Row of white fluted ceramic vases against a dark ground" },
+  { src: "/wid-chinoiserie-wallcovering.jpg", alt: "Milton chinoiserie wallcovering" },
+  { src: "/wid-woven-fabric.jpg", alt: "Coraggio x Thomas Lavin fabric" },
+  { src: "/wid-block-print-tablecloth.jpg", alt: "Sister Parish x Sharland England tablecloth" },
+  { src: "/wid-verdigris-mirror.jpg", alt: "Ngala Trading Victoria Mirror" },
+  { src: "/wid-ceramic-vases.jpg", alt: "Hitoshi Kato Shinogi vases" },
 ];
 
 type Status = "idle" | "sending" | "sent" | "error";
