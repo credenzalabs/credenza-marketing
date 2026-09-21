@@ -4,7 +4,7 @@ export function PrivacyPolicyContent() {
       className="text-charcoal-mid"
       style={{ fontFamily: "Inter, sans-serif", fontSize: "0.9rem", lineHeight: 1.8 }}
     >
-      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: August 9, 2026</p>
+      <p className="text-charcoal-soft mb-6">Effective Date: November 8, 2025 · Last Updated: September 20, 2026</p>
       <p className="mb-4">Credenza Labs, Inc. ("Credenza," "we," "our," or "us") provides this Privacy Policy to explain how we collect, use, and protect information when you visit usecredenza.com or use our related services (collectively, the "Platform").</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>1. Information We Collect</h2>
@@ -26,7 +26,7 @@ export function PrivacyPolicyContent() {
       </ul>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>3. Cookies and Analytics</h2>
-      <p className="mb-4">We use cookies and similar technologies to recognize your browser, analyze traffic, and enhance your experience. We do not share any cookie analytics with third parties. You can adjust cookie settings in your browser, but some parts of the Platform may not function properly without them.</p>
+      <p className="mb-4">We use cookies and similar technologies to recognize your browser, analyze traffic, and enhance your experience. We use Google Analytics to measure traffic and engagement, and Microsoft Clarity to record session replays, which capture interactions such as clicks, scrolls, and navigation within the Platform. Both providers receive the usage data described in Section 1. You can adjust cookie settings in your browser, but some parts of the Platform may not function properly without them.</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>4. Browser Extension</h2>
       <p className="mb-4">The Credenza browser extension lets signed-in designers save vendors to their firms' trade accounts while browsing. It is scoped to this single purpose. The extension does not collect browsing history, track you across unrelated sites, read content on non-vendor pages, or share any data with advertisers.</p>
@@ -47,6 +47,7 @@ export function PrivacyPolicyContent() {
         <li className="mb-2">Order data (order number, line items, shipping address, tax status) used to link tax-exempt trade orders to the resale certificate that justifies the exemption.</li>
         <li className="mb-2">Company records (for Shopify B2B merchants), used to mirror verification status and tax-exemption metafields onto the company entity.</li>
         <li className="mb-2">Store configuration to detect Shopify Plus and B2B capabilities so the app behaves correctly for each store type.</li>
+        <li className="mb-2">Product, catalog, and file data (product and variant records, B2B catalog membership, and product images), used to sync catalogs and, for B2B stores, to place verified trade buyers in the correct catalog.</li>
       </ul>
       <p className="mb-4">We send transactional emails related to verification, approvals, certificate management, and orders linked to verified accounts.</p>
       <p className="mb-4">We do not sell or rent Shopify customer data. We do not use Shopify customer data for advertising, profiling, or any purpose outside the verification and tax-compliance use cases described above.</p>
@@ -54,20 +55,20 @@ export function PrivacyPolicyContent() {
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2"><span className="font-medium">customers/data_request</span>—When a customer asks the merchant for their data, we collect every record we hold for that customer and make it available to the merchant for fulfillment within 30 days.</li>
         <li className="mb-2"><span className="font-medium">customers/redact</span>—When a customer asks the merchant to delete their data, we anonymize the corresponding Credenza records (the audit trail of verification events is preserved with the customer identifier removed, as required for tax-compliance recordkeeping).</li>
-        <li className="mb-2"><span className="font-medium">shop/redact</span>—48 hours after a merchant uninstalls the Credenza app, we erase all Shopify-sourced data for that store.</li>
+        <li className="mb-2"><span className="font-medium">shop/redact</span>—48 hours after a merchant uninstalls the Credenza app, we delete or irreversibly anonymize all Shopify-sourced data for that store.</li>
       </ul>
       <p className="mb-4">All webhook deliveries are authenticated using Shopify's HMAC-SHA256 signature. The merchant remains the data controller for their Shopify customer data; Credenza acts as a data processor on the merchant's behalf.</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>6. QuickBooks Integration</h2>
       <p className="mb-4">If you connect QuickBooks Online, Credenza accesses your QuickBooks company through Intuit's API using credentials you authorize.</p>
       <p className="mb-4">We read: customer records (name, company name, contact name, email, phone, billing and shipping addresses, resale certificate number, active status); invoices (number, date, totals, tax amounts, customer reference, memo, and line items); item records (name, SKU, type); and your company name.</p>
-      <p className="mb-4">We write only to customer records, and only these fields: the taxable flag, the tax exemption reason, the resale certificate number, and a clearly delimited Credenza block within Notes. Any other text in Notes is preserved. No other QuickBooks record is modified, and we never create invoices, payments, or journal entries.</p>
-      <p className="mb-4">QuickBooks data is used to keep resale exemption status accurate on your customers and to report your trade revenue back to you. It is not shared with other vendors, with designers, or with any AI service.</p>
+      <p className="mb-4">We write only to customer records. We may create a customer record for a trade client you have approved, and on customer records we write contact and business identity fields (name, company name, email, phone, billing and shipping address, and customer type), the taxable flag, the tax exemption reason, the resale certificate number, and a clearly delimited Credenza block within Notes. Any other text in Notes is preserved. No other QuickBooks record is modified, and we never create invoices, payments, or journal entries.</p>
+      <p className="mb-4">QuickBooks data is used to keep resale exemption status accurate on your customers and to report your trade revenue back to you. QuickBooks accounting records—invoices, items, and revenue figures—are not sent to any AI service, and are not shared with other vendors or with designers. Where you import a resale certificate stored as a QuickBooks attachment, that document and the associated customer name are processed by our AI provider to extract the certificate details, as described in Section 8.</p>
       <p className="mb-4">Access tokens are stored encrypted at rest and are readable only by our servers; they are never sent to a browser. Disconnecting QuickBooks deletes those credentials. Customer and order records already imported into your Credenza account remain until you delete them or ask us to.</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>7. Klaviyo Integration</h2>
       <p className="mb-4">If you connect Klaviyo, Credenza can sync your approved trade clients to a list in your Klaviyo account, and read back email engagement to show in your Credenza activity feed.</p>
-      <p className="mb-4">We send: the trade member's email address, first name and last name. We do not send certificates, tax identifiers, or order data.</p>
+      <p className="mb-4">We send: the trade member's email address, first name, last name, their firm name, and a Credenza firm identifier. We do not send certificates, tax identifiers, or order data.</p>
       <p className="mb-4">Marketing consent is captured on the trade application. Where a member has not given it, Credenza never asserts consent to Klaviyo—they are synced as not subscribed, and it is your responsibility as the list owner to honor that status.</p>
       <p className="mb-4">The Klaviyo account is yours, not Credenza's, and data sent there is governed by Klaviyo's terms and your agreement with them. Credenza does not send marketing email on your behalf. A trade member who wishes to stop receiving a vendor's marketing can unsubscribe using the link in those emails or by contacting the vendor directly; Credenza cannot manage that subscription for them.</p>
 
@@ -79,11 +80,11 @@ export function PrivacyPolicyContent() {
         <li className="mb-2">Third-party systems a vendor has connected to their own Credenza account—their Shopify store, QuickBooks company, or Klaviyo account—limited to the data described in the integration sections above, and only for that vendor's own trade members.</li>
         <li className="mb-2">Legal authorities if required to comply with law or protect against misuse of the Platform.</li>
       </ul>
-      <p className="mb-4">We use AI services from Anthropic and OpenAI to extract information from the documents you submit and to check public business information during verification. We do not use your data to train any AI model, and our agreements with these providers do not permit them to use it to train their models. Accounting data obtained from QuickBooks—customers, invoices, items, and revenue figures—is never sent to an AI service.</p>
+      <p className="mb-4">We use AI services from Anthropic and OpenAI to extract information from the documents you submit and to check public business information during verification. We do not use your data to train any AI model, and our agreements with these providers do not permit them to use it to train their models. QuickBooks invoices, items, and revenue figures are never sent to an AI service.</p>
       <p className="mb-4">A complete, current list of our sub-processors, including each one's purpose and processing location, is maintained in Annex III of our <a href="/dpa" className="text-teal-mid">Data Processing Addendum</a>.</p>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>9. Data Retention</h2>
-      <p className="mb-2">We retain information as long as your account is active or as needed to provide our services, comply with legal obligations, or resolve disputes. You may request deletion of your data by contacting us. We may retain your data for certain permissible reasons, including:</p>
+      <p className="mb-2">We retain information as long as your account is active or as needed to provide our services, comply with legal obligations, or resolve disputes. You may request deletion of your data by contacting us. When you do, we delete the data only you rely on, such as your firm's private list of vendor accounts and any saved portal credentials, and we deactivate your login. We retain the resale certificates you signed, the state registrations they rest on, and the records of the exempt orders they cover, because a certificate belongs to both the designer who signed it and the vendor who accepted it, and either may need it to substantiate a tax-exempt sale to a state tax authority. We separately retain your trade application and its verification results as the vendor's record of why your account was approved. If you never submitted anything to a vendor, we delete your account and its data outright. We may retain your data for certain permissible reasons, including:</p>
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2">To complete a transaction or service requested by you.</li>
         <li className="mb-2">To detect security breaches.</li>
@@ -93,7 +94,7 @@ export function PrivacyPolicyContent() {
       </ul>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>10. Security and Data Location</h2>
-      <p className="mb-4">Credenza data is stored in the United States, in Amazon Web Services' us-west-2 region.</p>
+      <p className="mb-4">Credenza's primary database and document storage are hosted in the United States, in Amazon Web Services' us-west-2 region.</p>
       <p className="mb-2">Our safeguards include:</p>
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2">Encryption in transit (TLS) and encryption at rest for stored data, including uploaded certificates and documents.</li>
