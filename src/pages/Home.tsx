@@ -16,6 +16,7 @@ import { VerificationSection } from "@/components/sections/home/VerificationSect
 import { CertSection } from "@/components/sections/home/CertSection";
 import { ForVendors } from "@/components/sections/home/ForVendors";
 import { TestimonialSection } from "@/components/sections/home/TestimonialSection";
+import { DesignerVoicesSection } from "@/components/sections/home/DesignerVoicesSection";
 import { TiersSection } from "@/components/sections/home/TiersSection";
 import { DataSection } from "@/components/sections/home/DataSection";
 import { MigrationSection } from "@/components/sections/home/MigrationSection";
@@ -47,6 +48,7 @@ export default function Home() {
       <TestimonialSection />
       <IntegrationsSection />
       <CertSection />
+      <DesignerVoicesSection />
       <DataSection />
       <PositioningSection />
       <TiersSection />
