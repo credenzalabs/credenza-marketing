@@ -9,7 +9,10 @@ import { useStagger } from "@/hooks/useStagger";
  * Credenza. This is the other side of the same transaction: the designers
  * who went through a Credenza-run application, saying what it felt like.
  * For a vendor the argument is revenue, not sentiment—an applicant who is
- * approved the same day is an applicant who orders the same day.
+ * approved the same day is an applicant who orders the same day. The
+ * headline names the quotes for what they are; the lede carries the
+ * argument, so "Approved in minutes" stays with the Hero, which already
+ * owns that phrase.
  *
  * Placed immediately after CertSection so both quotes land as evidence for
  * claims the page has already made: VerificationSection promised same-day
@@ -64,20 +67,20 @@ export function DesignerVoicesSection() {
             column than stretched across the full grid. */}
         <div className="max-w-4xl mx-auto">
           <div className="max-w-2xl mb-10">
-            <Eyebrow>What your designers say</Eyebrow>
+            <Eyebrow>In their words</Eyebrow>
             <h2
               className="font-freight text-charcoal"
               style={{ fontSize: "clamp(1.6rem, 2.35vw, 2.3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
             >
-              Approved in minutes,
+              What designers are saying
               <br />
-              <span className="italic text-olive-mid">ordering the same day.</span>
+              <span className="italic text-olive-mid">about their experience.</span>
             </h2>
             <p
               className="text-charcoal-mid mt-6"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              What clears your team's queue is what designers feel on the other side of it—no paperwork, no waiting, an open account while the project is still in front of them.
+              The automation that clears your team's queue is what they feel on the other side of it—no paperwork, no delay, an open account while the project is still in front of them.
             </p>
           </div>
 
