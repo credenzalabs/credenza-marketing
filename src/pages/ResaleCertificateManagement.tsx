@@ -254,7 +254,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is the certificate generation actually compliant for all 46 jurisdictions?",
-    a: "Yes. The engine handles MTC, SST, state-specific forms, and state-issued certificates. For the six states that issue certificates directly to the buyer (AL, FL, LA, NM, TN, WA), Credenza guides the designer through retrieval and tracks expirations.",
+    a: "Yes. The engine handles MTC, SST, state-specific forms, and state-issued certificates. For the five states that issue certificates directly to the buyer (AL, FL, LA, NM, WA), Credenza guides the designer through retrieval and tracks expirations.",
   },
   {
     q: "What does the audit trail look like?",
