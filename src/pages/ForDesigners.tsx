@@ -189,7 +189,7 @@ function TaxStrategy() {
             },
             {
               title: "Bring your own cert",
-              body: "Six states require their own state-issued certificate—AL, FL, LA, NM, TN, WA. Upload yours once—Credenza tracks expirations and keeps it ready to send to any vendor on the Credenza network.",
+              body: "Five states require their own state-issued certificate—AL, FL, LA, NM, WA. Upload yours once—Credenza tracks expirations and keeps it ready to send to any vendor on the Credenza network. New Mexico is the exception: its NTTCs are issued per vendor through the state’s TAP portal.",
             },
           ].map((card, i) => (
             <div key={card.title} className={`py-8 md:pr-8 border-b border-sage-dark ${i > 0 ? "md:pl-8" : ""} ${i < 3 ? "md:border-r md:border-sage-dark" : ""}`}>
@@ -1083,7 +1083,7 @@ function FAQ() {
     },
     {
       q: "Which states do you support?",
-      a: "All 45 states with sales tax, plus DC—46 jurisdictions in total. We auto-fill the official PDF form for 39 states. Six states (AL, FL, LA, NM, TN, WA) require their own state-issued cert—upload yours once and Credenza keeps it ready to send to any vendor on the Credenza network.",
+      a: "All 45 states with sales tax, plus DC—46 jurisdictions in total. We auto-fill the official PDF form for 40 states. Five states (AL, FL, LA, NM, WA) require their own state-issued cert—upload yours once and Credenza keeps it ready to send to any vendor on the Credenza network. Mississippi is its own case: the state has no form, so Credenza generates a branded PDF from your sales tax ID.",
     },
     {
       q: "How do I move my existing account/source list into Credenza?",

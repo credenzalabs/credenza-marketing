@@ -75,7 +75,7 @@ const PLANS_IMAGE = {
 const VENDOR_INCLUDES = [
   { icon: ShieldCheck, title: "Trade verification", body: "Up to nine evidence checks, combining AI-powered web research with deterministic database lookups against authoritative tax and state sources." },
   { icon: Zap, title: "Auto-approval rules", body: "Approval criteria you configure and change yourself, so qualifying applicants clear in minutes rather than days." },
-  { icon: FileText, title: "Resale certificate engine", body: "Compliant certificates across 46 jurisdictions, auto-filling 39 official state forms, matched to your nexus and the ship-to state." },
+  { icon: FileText, title: "Resale certificate engine", body: "Compliant certificates across 46 jurisdictions, auto-filling 40 official state forms, matched to your nexus and the ship-to state." },
   { icon: RefreshCw, title: "Resale certificate management", body: "Expiration monitoring, renewal chasing, and automatic revocation of tax exemption when a certificate lapses." },
   { icon: LifeBuoy, title: "Managed service included", body: "We handle applicant follow-up and credential collection when an application needs more information. You retain final approval authority." },
   { icon: Plug, title: "Commerce integration", body: "Approved buyers written into your store with trade tagging and state-scoped tax exemption applied, plus drift detection on every field." },
