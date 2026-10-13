@@ -72,10 +72,9 @@ export default function ComingSoon() {
           <img src={LOGO_BLACK} alt="Credenza" style={{ height: "36px", width: "auto", marginBottom: "3rem", marginTop: "1rem" }} />
 
           <div
-            className="flex items-center gap-2 mb-8"
+            className="mb-8"
             style={{ fontFamily: "Inter, sans-serif", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: C.oliveMid, fontWeight: 600 }}
           >
-            <div style={{ width: "1.5rem", height: "1px", backgroundColor: C.sageDark }} />
             Coming soon
           </div>
 
