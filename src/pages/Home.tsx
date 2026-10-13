@@ -7,6 +7,7 @@ import { Nav } from "@/components/ui/Nav";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 import { Hero } from "@/components/sections/home/Hero";
+import { LogoBar } from "@/components/sections/home/LogoBar";
 import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection";
 import { InterludeBand } from "@/components/sections/home/InterludeBand";
 import { MidPageCTA } from "@/components/sections/home/MidPageCTA";
@@ -40,7 +41,7 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>
       <Nav activePage="vendors" ctaHref={JOIN_VENDOR_URL} />
       <Hero />
-      {/* <LogoBar /> — hidden until we have enough named, permissioned brands */}
+      <LogoBar />
       <HowItWorksSection />
       <VerificationSection />
       <ForVendors />
