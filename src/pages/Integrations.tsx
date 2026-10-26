@@ -28,7 +28,7 @@ import { withCredenzaUtm } from "@/utils/utm";
 // Kept short enough that " | Credenza" still fits inside a ~60-char SERP title.
 const PAGE_TITLE = "Integrations: Shopify, Klaviyo and QuickBooks for trade";
 const PAGE_DESCRIPTION =
-  "Credenza connects your trade program to the tools you already run. Shopify gets verified buyers, trade tags, and state-scoped tax exemption; Klaviyo gets ready-made trade segments; QuickBooks gets resale certificates and exemption on the customers you invoice.";
+  "Credenza connects your trade program to Shopify, Klaviyo, and QuickBooks—verified buyers, trade tags, state-scoped tax exemption, and ready-made segments.";
 const PAGE_PATH = "/integrations";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 

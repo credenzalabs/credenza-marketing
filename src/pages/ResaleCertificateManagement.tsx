@@ -30,7 +30,7 @@ import { C, JOIN_VENDOR_URL } from "@/lib/constants";
 
 const PAGE_TITLE = "Resale certificate management for the to-the-trade channel";
 const PAGE_DESCRIPTION =
-  "Resale certificate management built for to-the-trade brands—sales tax exemption compliance for wholesale and B2B programs selling to interior designers. Verified designer profiles, compliant certificates pre-attached at trade-account application, state-scoped exemption written directly to the Shopify customer profile.";
+  "Resale certificate management for home furnishings brands—compliant certificates pre-attached at application, state-scoped exemption written to Shopify.";
 const PAGE_PATH = "/resale-certificate-management";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -401,6 +401,24 @@ function Capabilities() {
             );
           })}
         </div>
+
+        {/* Third crawlable link into /automated-designer-verification (the
+            others are on the homepage and /shopify). Every capability above
+            starts from a verified profile, so the handoff is editorial, not
+            bolted on. */}
+        <p
+          className="mt-10 text-charcoal-mid"
+          style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
+        >
+          Every certificate above starts from a profile that has already been checked.{" "}
+          <a
+            href="/automated-designer-verification"
+            className="text-charcoal hover:text-olive-mid underline"
+          >
+            See how automated designer verification works
+          </a>
+          .
+        </p>
       </div>
     </section>
   );

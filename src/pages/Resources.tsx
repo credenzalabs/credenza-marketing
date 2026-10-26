@@ -5,12 +5,12 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { JOIN_VENDOR_URL } from "@/lib/constants";
 
-// Grouped by audience. The vendor-side section is empty again: the trade
-// program software guide was unrouted on 2026-08-15 because it read as
-// generated rather than reported — a bad look anywhere, and a worse one for a
-// company that sells verification. src/pages/TradeProgramSoftwareGuide.tsx is
-// still in the repo; the parts worth keeping came from Julia's corrections and
-// should be the seed of a rebuild from real source, not a rewrite of the prose.
+// Grouped by audience. The vendor-side section is empty: the trade program
+// software guide was unrouted on 2026-08-15 because it read as generated rather
+// than reported — a bad look anywhere, and a worse one for a company that sells
+// verification. The page has since been deleted outright (2026-10-26); its URL
+// stays 301'd to this page in vercel.json. A vendor-side guide should be
+// reported from real source, not rebuilt from that draft.
 const SECTIONS = [
   {
     audience: "For interior designers",

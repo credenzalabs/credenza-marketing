@@ -33,9 +33,9 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { withCredenzaUtm } from "@/utils/utm";
 import { useEffect } from "react";
 
-const PAGE_TITLE = "Credenza pricing: trade program software for interior design vendors";
+const PAGE_TITLE = "Credenza pricing: trade program software for home furnishings brands";
 const PAGE_DESCRIPTION =
-  "Credenza pricing for to-the-trade vendors: full-featured plans start at $499/month, priced on trade application and active certificate volume. No percentage of sales, no setup fee. Free for interior designers.";
+  "Plans start at $499/month, priced on trade application and active certificate volume. No percentage of sales, no setup fee. Free for interior designers.";
 const PAGE_PATH = "/pricing";
 
 const STARTING_AT = "$499/month";

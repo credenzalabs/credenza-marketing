@@ -16,6 +16,11 @@
  * Safety: prerendering can NEVER block a deploy. If Chrome fails to launch we
  * log and exit 0 (the SPA shell ships, i.e. today's behavior). Per-route
  * failures are logged and skipped, leaving that route to the SPA fallback.
+ *
+ * The one exception is the vercel.json allowlist check, which runs before
+ * Chrome and exits 1 — see assertRewriteAllowlistMatches. It catches a config
+ * state that would serve 404s for real pages, which a silent warning would let
+ * reach production.
  */
 import { createServer } from "node:http";
 import { readFile, writeFile, mkdir, stat } from "node:fs/promises";
@@ -34,25 +39,33 @@ const SITE_URL = "https://usecredenza.com";
 // here now prerenders it AND lists it, so the two can't disagree.
 // `index: false` prerenders the route but keeps it out of the sitemap — use it
 // for anything that also sets `noindex` via usePageMeta.
+//
+// `lastmod` is maintained BY HAND and bumped only when a page's content or
+// metadata materially changes. It is deliberately not derived from git: Vercel
+// builds from a shallow clone, so `git log -1 -- <file>` there reports the
+// oldest commit in the truncated history (or nothing at all) rather than the
+// real last change — which would publish confidently wrong dates. A date that
+// moves on every deploy teaches crawlers to ignore it, so leave it alone for
+// copy tweaks and typo fixes.
 const ROUTES = [
-  { path: "/", priority: "1.0", changefreq: "weekly" },
-  { path: "/for-designers", priority: "0.8", changefreq: "weekly" },
-  { path: "/shopify", priority: "0.8", changefreq: "weekly" },
-  { path: "/integrations", priority: "0.7", changefreq: "monthly" },
-  { path: "/integrations/klaviyo", priority: "0.8", changefreq: "weekly" },
-  { path: "/integrations/quickbooks", priority: "0.8", changefreq: "weekly" },
-  { path: "/resale-certificate-management", priority: "0.8", changefreq: "weekly" },
-  { path: "/automated-designer-verification", priority: "0.8", changefreq: "weekly" },
-  { path: "/pricing", priority: "0.9", changefreq: "monthly" },
-  { path: "/resources", priority: "0.7", changefreq: "weekly" },
-  { path: "/resources/interior-designer-resale-certificate-guide", priority: "0.8", changefreq: "monthly" },
-  { path: "/about", priority: "0.6", changefreq: "monthly" },
-  { path: "/week-in-design", priority: "0.7", changefreq: "weekly" },
-  { path: "/privacy-policy", priority: "0.3", changefreq: "monthly" },
-  { path: "/terms-of-use", priority: "0.3", changefreq: "monthly" },
-  { path: "/vendor-agreement", priority: "0.3", changefreq: "monthly" },
-  { path: "/dpa", priority: "0.3", changefreq: "monthly" },
-  { path: "/eula", priority: "0.3", changefreq: "monthly" },
+  { path: "/", lastmod: "2026-10-26", priority: "1.0", changefreq: "weekly" },
+  { path: "/for-designers", lastmod: "2026-10-04", priority: "0.8", changefreq: "weekly" },
+  { path: "/shopify", lastmod: "2026-10-26", priority: "0.8", changefreq: "weekly" },
+  { path: "/integrations", lastmod: "2026-10-26", priority: "0.7", changefreq: "monthly" },
+  { path: "/integrations/klaviyo", lastmod: "2026-08-14", priority: "0.8", changefreq: "weekly" },
+  { path: "/integrations/quickbooks", lastmod: "2026-08-31", priority: "0.8", changefreq: "weekly" },
+  { path: "/resale-certificate-management", lastmod: "2026-10-26", priority: "0.8", changefreq: "weekly" },
+  { path: "/automated-designer-verification", lastmod: "2026-10-26", priority: "0.8", changefreq: "weekly" },
+  { path: "/pricing", lastmod: "2026-10-26", priority: "0.9", changefreq: "monthly" },
+  { path: "/resources", lastmod: "2026-08-15", priority: "0.7", changefreq: "weekly" },
+  { path: "/resources/interior-designer-resale-certificate-guide", lastmod: "2026-10-04", priority: "0.8", changefreq: "monthly" },
+  { path: "/about", lastmod: "2026-08-10", priority: "0.6", changefreq: "monthly" },
+  { path: "/week-in-design", lastmod: "2026-09-20", priority: "0.7", changefreq: "weekly" },
+  { path: "/privacy-policy", lastmod: "2026-09-21", priority: "0.3", changefreq: "monthly" },
+  { path: "/terms-of-use", lastmod: "2026-04-23", priority: "0.3", changefreq: "monthly" },
+  { path: "/vendor-agreement", lastmod: "2026-09-11", priority: "0.3", changefreq: "monthly" },
+  { path: "/dpa", lastmod: "2026-09-09", priority: "0.3", changefreq: "monthly" },
+  { path: "/eula", lastmod: "2026-09-09", priority: "0.3", changefreq: "monthly" },
   // Internal creative-export surface — prerendered, but noindex and unlisted.
   { path: "/social-cards", index: false },
 ];
@@ -64,10 +77,11 @@ function buildSitemap(routes) {
       [
         "  <url>",
         `    <loc>${SITE_URL}${r.path === "/" ? "/" : r.path}</loc>`,
+        ...(r.lastmod ? [`    <lastmod>${r.lastmod}</lastmod>`] : []),
         `    <changefreq>${r.changefreq}</changefreq>`,
         `    <priority>${r.priority}</priority>`,
         "  </url>",
-      ].join("\n"),
+      ].filter(Boolean).join("\n"),
     )
     .join("\n");
 
@@ -79,6 +93,56 @@ function buildSitemap(routes) {
     "</urlset>",
     "",
   ].join("\n");
+}
+
+// Unknown routes must return a real 404, which means vercel.json can no longer
+// rewrite everything to "/" — it carries an explicit allowlist of known routes
+// instead. That allowlist is the SPA safety net: if Chrome fails to launch on a
+// build host, prerendering bails and every listed route still client-renders
+// from the shell. A route in ROUTES but missing from that list would be served
+// 404.html instead, so the two files have to agree.
+//
+// This check is fatal, unlike the prerender step below. A missing entry here is
+// a live page returning 404 to users and crawlers; a failed build that names the
+// exact route to add is strictly the cheaper outcome.
+function fatal(message) {
+  const err = new Error(message);
+  err.fatal = true; // read by the last-resort guard at the bottom of this file
+  return err;
+}
+
+async function assertRewriteAllowlistMatches(routes) {
+  const configPath = join(DIST, "..", "vercel.json");
+  const config = JSON.parse(await readFile(configPath, "utf8"));
+  const rewrite = (config.rewrites ?? []).find((r) => r.destination === "/");
+  if (!rewrite) {
+    throw fatal("vercel.json has no rewrite to '/' — the SPA fallback is gone.");
+  }
+
+  const allowlisted = new Set(
+    rewrite.source.replace(/^\/\(/, "").replace(/\)$/, "").split("|"),
+  );
+  // "/" is served by dist/index.html directly and needs no rewrite entry.
+  const expected = routes.map((r) => r.path).filter((p) => p !== "/");
+
+  const missing = expected.filter((p) => !allowlisted.has(p.replace(/^\//, "")));
+  const extra = [...allowlisted].filter(
+    (slug) => !expected.includes(`/${slug}`),
+  );
+
+  if (extra.length) {
+    console.warn(
+      `[prerender] vercel.json rewrites list routes not in ROUTES (harmless, but stale): ${extra.join(", ")}`,
+    );
+  }
+  if (missing.length) {
+    throw fatal(
+      `vercel.json rewrite allowlist is missing ${missing.length} route(s) from ROUTES: ` +
+        `${missing.join(", ")}\nAdd them to the "source" alternation in vercel.json, ` +
+        "or they will serve 404.html in production.",
+    );
+  }
+  console.log(`[prerender] vercel.json allowlist ✓ ${expected.length} routes`);
 }
 
 const MIME = {
@@ -179,7 +243,44 @@ async function launchBrowser() {
   });
 }
 
+// dist/404.html — the only page Vercel serves with a non-200 status. Without
+// it, Vercel falls back to its own generic 404 body (still a correct 404, just
+// unbranded), so this is an enhancement and never fatal.
+async function snapshot404(browser, base) {
+  const page = await browser.newPage();
+  try {
+    // Any path App.tsx doesn't route renders NotFound through the "*" wildcard.
+    await page.goto(`${base}/_prerender-404`, { waitUntil: "networkidle0", timeout: 30000 });
+    await page
+      .waitForFunction("document.title && document.title.length > 0", { timeout: 5000 })
+      .catch(() => {});
+    await new Promise((r) => setTimeout(r, 300));
+
+    // This one file answers for every dead URL, so the self-canonical and
+    // og:url that NotFound derives from the current pathname would point every
+    // 404 on the site at /_prerender-404. Strip both from the snapshot: the
+    // page is noindex anyway, and the moment the SPA hydrates NotFound rewrites
+    // them for the URL the visitor actually hit.
+    await page.evaluate(() => {
+      document.querySelector('link[rel="canonical"]')?.remove();
+      document.querySelector('meta[property="og:url"]')?.remove();
+    });
+
+    const html = "<!DOCTYPE html>\n" + (await page.evaluate(() => document.documentElement.outerHTML));
+    await writeFile(join(DIST, "404.html"), html, "utf8");
+    console.log("[prerender] \u2713 404 -> dist/404.html");
+  } catch (err) {
+    console.warn(`[prerender] \u2717 404.html skipped (Vercel default 404 will serve): ${err?.message}`);
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
 async function main() {
+  // Config consistency before anything else — it needs no Chrome and no build
+  // output, and a mismatch is the one failure here worth stopping a deploy for.
+  await assertRewriteAllowlistMatches(ROUTES);
+
   // Write the sitemap first: it's pure string building with no Chrome
   // dependency, so it still ships on build hosts where prerendering bails.
   await writeFile(join(DIST, "sitemap.xml"), buildSitemap(ROUTES), "utf8");
@@ -228,13 +329,21 @@ async function main() {
     }
   }
 
+  await snapshot404(browser, base);
+
   await browser.close().catch(() => {});
   server.close();
   console.log(`[prerender] done — ${ok} prerendered, ${failed} skipped, ${ROUTES.length} total`);
 }
 
 main().catch((err) => {
-  // Last-resort guard: a crash here must not fail the production build.
+  // Last-resort guard: a prerender crash must not fail the production build.
+  // Config errors flagged fatal() are the deliberate exception — they describe
+  // a site that would ship broken, so they stop the build instead.
+  if (err?.fatal) {
+    console.error("[prerender] FATAL:", err.message);
+    process.exit(1);
+  }
   console.warn("[prerender] unexpected error, shipping SPA shell:", err?.message);
   process.exit(0);
 });
