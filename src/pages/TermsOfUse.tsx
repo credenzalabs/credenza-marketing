@@ -10,6 +10,9 @@ export default function TermsOfUse() {
     description:
       "The terms governing your access to and use of usecredenza.com and Credenza's related services.",
     path: "/terms-of-use",
+    // Reachable, not searchable — see the legal-doc note in
+    // scripts/prerender.mjs, which also drops these from the sitemap.
+    noindex: true,
   });
 
   return (

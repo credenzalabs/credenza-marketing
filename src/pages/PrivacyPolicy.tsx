@@ -10,6 +10,9 @@ export default function PrivacyPolicy() {
     description:
       "How Credenza collects, uses, and protects information when you use usecredenza.com and related services.",
     path: "/privacy-policy",
+    // Reachable, not searchable — see the legal-doc note in
+    // scripts/prerender.mjs, which also drops these from the sitemap.
+    noindex: true,
   });
 
   return (

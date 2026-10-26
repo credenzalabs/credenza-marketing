@@ -10,6 +10,9 @@ export default function Eula() {
     description:
       "The license terms governing use of the Credenza software.",
     path: "/eula",
+    // Reachable, not searchable — see the legal-doc note in
+    // scripts/prerender.mjs, which also drops these from the sitemap.
+    noindex: true,
   });
 
   return (
