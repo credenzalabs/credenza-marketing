@@ -18,11 +18,27 @@ export const HOME_FAQ = [
   },
   {
     q: "What is Credenza?",
-    a: "Credenza is trade program software for home furnishings brands. It handles trade verification, configurable approval rules, designer onboarding, and resale certificate management—eliminating manual review and protecting vendors in an audit. For designers, it's one verified trade profile they use to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds.",
+    a: "Credenza is trade program software for home furnishings brands and showrooms. It handles trade verification, configurable approval rules, designer onboarding, and resale certificate management—eliminating manual review and helping brands stay audit-ready. For designers, it's one verified trade profile they use to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds.",
   },
   {
+    // The collision answer, and the one place on the site where naming the
+    // other Credenzas is the job. Three things have to be literally present:
+    //
+    // 1. "Web3" and "sports" as strings. An assistant asked "is Credenza the
+    //    web3 company" matches on those words. A generically worded version
+    //    ("other companies called Credenza") reads cleaner and answers nobody,
+    //    because the query never contains that phrase. Keep the words.
+    // 2. The question phrased the way a confused reader actually asks it —
+    //    FAQPage schema indexes the question text too.
+    // 3. The category, stated affirmatively before the denial, so the answer
+    //    says what we ARE and not only what we aren't.
+    //
+    // "Credenza Labs, Inc." deliberately does NOT appear: it is the
+    // structured-data legalName and the signature on the agreements, not
+    // customer-facing positioning. The catch-all final clause covers the next
+    // collision without needing an edit.
     q: "Are you the Credenza that does Web3 or sports?",
-    a: "No. Credenza Labs, Inc. is a software platform for the interior design industry. We are unrelated to other companies sharing the Credenza name.",
+    a: "No. Credenza is trade program software for home furnishings brands and showrooms. We are unrelated to the Web3 company, the sports company, and every other business that uses the Credenza name.",
   },
   {
     q: "Is Credenza a marketplace?",
