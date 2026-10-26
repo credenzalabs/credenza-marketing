@@ -18,7 +18,7 @@ export const HOME_FAQ = [
   },
   {
     q: "What is Credenza?",
-    a: "Credenza is trade program software for interior design vendors. It handles trade verification, configurable approval rules, designer onboarding, and resale certificate management—eliminating manual review and protecting vendors in an audit. For designers, it's one verified trade profile they use to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds.",
+    a: "Credenza is trade program software for home furnishings brands. It handles trade verification, configurable approval rules, designer onboarding, and resale certificate management—eliminating manual review and protecting vendors in an audit. For designers, it's one verified trade profile they use to apply across every participating brand, manage every trade account in one dashboard, and generate compliant resale certificates in seconds.",
   },
   {
     q: "Are you the Credenza that does Web3 or sports?",

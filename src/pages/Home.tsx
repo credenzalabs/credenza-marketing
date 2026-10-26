@@ -29,12 +29,18 @@ import { Footer } from "@/components/sections/home/Footer";
 
 export default function Home() {
   usePageMeta({
-    title:
-      "Credenza — Trade Program Software for Interior Design Vendors | Trade Verification & Resale Certificate Management",
+    // 61 chars. The old title ran 114 and truncated mid-clause in the SERP,
+    // losing everything after "Vendors". "Home furnishings brands" replaces
+    // "interior design vendors" as the category descriptor: the old phrase
+    // bid against supplier directories for designers hunting vendors to buy
+    // from — the opposite audience. "Vendor" stays as the reader-noun
+    // everywhere in the body copy; only the category label changed.
+    title: "Credenza | Trade Program Software for Home Furnishings Brands",
     description:
-      "Credenza is trade program software for interior design vendors—wholesale and B2B account approval for brands selling to designers. Automate trade verification, designer onboarding, and resale certificate management across 46 jurisdictions. Built for Shopify.",
+      "Trade program software for home furnishings brands—wholesale and B2B account approval, designer verification, and resale certificates across 46 jurisdictions.",
     path: "/",
-    ogTitle: "Credenza — Trade Program Software for Interior Design Vendors",
+    // og:site_name already renders "Credenza" beside the card title.
+    ogTitle: "Trade Program Software for Home Furnishings Brands",
   });
 
   return (

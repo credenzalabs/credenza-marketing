@@ -55,7 +55,7 @@ const HERO_IMAGE = {
 const PAGE_TITLE =
   "Shopify trade onboarding: verified designers, auto-tagged, tax-exempt";
 const PAGE_DESCRIPTION =
-  "Credenza is the verification layer behind every trade account in Shopify—wholesale and B2B customer approval for brands selling to interior designers. Designers are verified through nine evidence checks before they reach your store; Credenza then creates the customer profile in Shopify (or updates it if the customer already exists), with verification status, exemption details, and a trade-customer tag, so your existing pricing rules and tax-exempt checkout work automatically. The signed resale certificate lives in Credenza's secure, audit-ready vault.";
+  "The verification layer behind every trade account in Shopify—designers verified before they reach your store, then tagged and tax-exempted automatically.";
 const PAGE_PATH = "/shopify";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 
@@ -376,6 +376,13 @@ function Definition() {
               exemption fields, and a trade-customer tag. The signed resale certificate
               lives in Credenza's secure, audit-ready vault.
             </p>
+            <a
+              href="/automated-designer-verification"
+              className="no-underline inline-flex items-center gap-1 mt-6 text-teal-mid transition-colors duration-150 hover:text-charcoal"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}
+            >
+              Inside automated designer verification →
+            </a>
           </div>
           <div className="lg:col-span-7">
             <ShopifyCustomerMock />

@@ -38,7 +38,7 @@ import { usePageMeta, absoluteUrl } from "@/hooks/usePageMeta";
 
 const PAGE_TITLE = "Automated designer verification for to-the-trade brands";
 const PAGE_DESCRIPTION =
-  "Automated designer verification for furniture, lighting, rug, and home-decor brands selling to the trade—wholesale and B2B customer approval for brands whose buyers are interior designers. Nine evidence checks—EIN, sales tax ID, memberships, website, Instagram, state license, resale certificate, trade references, press and showhouse recognition—run in parallel against authoritative sources. Vendors set their own gating and auto-approval rules.";
+  "Nine evidence checks—EIN, tax ID, memberships, license, press—run in parallel on every trade applicant. You set the rules for approval and manual review.";
 const PAGE_PATH = "/automated-designer-verification";
 const CANONICAL_URL = absoluteUrl(PAGE_PATH);
 

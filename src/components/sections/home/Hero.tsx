@@ -45,8 +45,8 @@ export function Hero() {
           {/* Left: Copy—5 columns */}
           <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-16 pb-12 lg:pb-0">
             <Eyebrow>
-              Trade Program Software for Interior Design{" "}
-              <span className="whitespace-nowrap">Vendors &amp; Showrooms</span>
+              Trade Program Software for Home Furnishings{" "}
+              <span className="whitespace-nowrap">Brands &amp; Showrooms</span>
             </Eyebrow>
 
             <h1

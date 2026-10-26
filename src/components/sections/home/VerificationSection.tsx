@@ -79,6 +79,18 @@ export function VerificationSection() {
                 your team.
               </p>
             </div>
+            {/* The only homepage link into /automated-designer-verification.
+                That page sat orphaned: its sole inbound links lived in the
+                trade-program-software guide, which is unrouted and 301'd to
+                /resources, so nothing crawlable pointed at it. Anchor text is
+                the page's own keyword, not "learn more". */}
+            <a
+              href="/automated-designer-verification"
+              className="no-underline inline-flex items-center gap-1 mt-6 text-teal-mid transition-colors duration-150 hover:text-charcoal"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}
+            >
+              How automated designer verification works →
+            </a>
           </div>
 
           {/* Verification checklist—collapsible accordion */}
