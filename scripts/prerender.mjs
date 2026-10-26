@@ -61,11 +61,18 @@ const ROUTES = [
   { path: "/resources/interior-designer-resale-certificate-guide", lastmod: "2026-10-04", priority: "0.8", changefreq: "monthly" },
   { path: "/about", lastmod: "2026-08-10", priority: "0.6", changefreq: "monthly" },
   { path: "/week-in-design", lastmod: "2026-09-20", priority: "0.7", changefreq: "weekly" },
-  { path: "/privacy-policy", lastmod: "2026-09-21", priority: "0.3", changefreq: "monthly" },
-  { path: "/terms-of-use", lastmod: "2026-04-23", priority: "0.3", changefreq: "monthly" },
-  { path: "/vendor-agreement", lastmod: "2026-09-11", priority: "0.3", changefreq: "monthly" },
-  { path: "/dpa", lastmod: "2026-09-09", priority: "0.3", changefreq: "monthly" },
-  { path: "/eula", lastmod: "2026-09-09", priority: "0.3", changefreq: "monthly" },
+  // Legal docs: reachable, not searchable. They were never meant to be organic
+  // entry points — the footer links privacy and terms, and those two cross-link
+  // the three agreements, so nothing here is orphaned. Each page sets
+  // noindex via usePageMeta; delisting here keeps the sitemap from asking
+  // Google to index pages the pages themselves decline, which is the kind of
+  // mixed signal that gets a whole sitemap discounted. The two must move
+  // together: re-listing one without clearing its noindex does nothing.
+  { path: "/privacy-policy", index: false },
+  { path: "/terms-of-use", index: false },
+  { path: "/vendor-agreement", index: false },
+  { path: "/dpa", index: false },
+  { path: "/eula", index: false },
   // Internal creative-export surface — prerendered, but noindex and unlisted.
   { path: "/social-cards", index: false },
 ];

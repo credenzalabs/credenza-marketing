@@ -10,6 +10,9 @@ export default function VendorAgreement() {
     description:
       "The master commercial agreement governing a vendor's paid use of the Credenza platform.",
     path: "/vendor-agreement",
+    // Reachable, not searchable — see the legal-doc note in
+    // scripts/prerender.mjs, which also drops these from the sitemap.
+    noindex: true,
   });
 
   return (

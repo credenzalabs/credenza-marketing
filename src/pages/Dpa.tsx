@@ -10,6 +10,9 @@ export default function Dpa() {
     description:
       "How Credenza processes personal data on a vendor's behalf as a processor under GDPR, UK GDPR, and CCPA.",
     path: "/dpa",
+    // Reachable, not searchable — see the legal-doc note in
+    // scripts/prerender.mjs, which also drops these from the sitemap.
+    noindex: true,
   });
 
   return (
