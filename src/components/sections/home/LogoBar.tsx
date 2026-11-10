@@ -6,16 +6,17 @@ import { useReveal } from "@/hooks/useReveal";
 // agreed to be named — "Trusted by" is an endorsement claim, so an
 // unpermissioned name is a real problem even if it's accurate. The list once
 // held eight well-known house names that were never customers; that is the
-// mistake this comment exists to prevent. All four brands currently listed are
-// signed customers (confirmed 2026-10-12). Using a brand's logo raises the same
-// question twice over: drop in the asset the brand supplies to partners, not
-// one lifted off their site.
+// mistake this comment exists to prevent. The first four were confirmed signed
+// customers on 2026-10-12; English Village Lane was added on 2026-11-10 at the
+// owner's request. Using a brand's logo raises the same question twice over:
+// drop in the asset the brand supplies to partners, not one lifted off their
+// site.
 //
 // A brand with no `logo` falls back to its name set in freight, so the bar
 // stays shippable while assets are still being collected.
 //
-// Logos are normalised by height, not width, and desaturated — four marks at
-// four different weights and colours otherwise read as a ransom note. `height`
+// Logos are normalised by height, not width, and desaturated — five marks at
+// five different weights and colours otherwise read as a ransom note. `height`
 // is per-brand because a tall stacked mark and a long wordmark look wrong at
 // the same pixel height; tune it by eye against the others.
 type Brand = {
@@ -51,6 +52,16 @@ const BRANDS: Brand[] = [
     logo: "/logo-aqualille.png",
     height: 23,
     intrinsic: { width: 4035, height: 1011 },
+  },
+  {
+    // A framed mark, not a wordmark: the border box is most of the height, so
+    // the two lines of type inside end up far smaller than the neighbouring
+    // wordmarks at the same pixel height. Sized taller than the rest on
+    // purpose — matching optical weight here means breaking height parity.
+    name: "English Village Lane",
+    logo: "/logo-english-village-lane.png",
+    height: 36,
+    intrinsic: { width: 935, height: 351 },
   },
 ];
 
