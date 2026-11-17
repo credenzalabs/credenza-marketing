@@ -104,7 +104,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is it billed monthly or annually?",
-    a: "Either. Annual is paid upfront and monthly is month-to-month. Through October 2026, our founding vendor offer saves you 20% on annual plans. A 14-day trial runs before the first charge.",
+    a: "Either. Annual is paid upfront and monthly is month-to-month. Annual plans save 15%. A 14-day trial runs before the first charge.",
   },
   {
     q: "What moves us from one tier to the next?",
@@ -316,15 +316,11 @@ export default function Pricing() {
             >
               Request a quote
             </a>
-            {/* TIME-BOUND — remove after October 2026. */}
             <div
               className="border-l-2 border-olive-mid pl-4 py-1 mb-6"
               style={{ fontFamily: "Inter, sans-serif", fontSize: "0.95rem", lineHeight: 1.7 }}
             >
-              <span className="text-charcoal" style={{ fontWeight: 600 }}>Founding vendor offer:</span>{" "}
-              <span className="text-charcoal-mid">
-                save 20% on annual plans through October 2026.
-              </span>
+              <span className="text-charcoal-mid">Save 15% on annual plans.</span>
             </div>
           </div>
         </div>
