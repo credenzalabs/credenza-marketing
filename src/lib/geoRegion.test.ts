@@ -3,7 +3,13 @@ import { resolve } from "node:path";
 
 import { describe, it, expect } from "vitest";
 
-import { geoRegionValue, isRegulatedRegion, REGULATED_REGIONS } from "./geoRegion";
+import {
+  geoRegionValue,
+  isIndeterminate,
+  isRegulatedRegion,
+  REGULATED_REGIONS,
+  shouldNotify,
+} from "./geoRegion";
 
 /**
  * The bug these tests exist for: middleware read `Geo.region` (the Vercel edge
@@ -82,14 +88,16 @@ describe("unknown or partial locations", () => {
   });
 
   /**
-   * DECISION, not an accident: a US visitor whose state cannot be resolved is
-   * NOT shown the notice. This preserves the behaviour that shipped before the
-   * fix. The safer-for-compliance alternative is to notify on doubt — flagged
-   * in the PR rather than changed here.
+   * DECISION: a US visitor whose state cannot be resolved IS notified. "US" is
+   * not a regulated region — it is an unplaceable one — so it is caught by the
+   * indeterminate branch rather than by adding "US" to the set, which would
+   * desynchronise the set from index.html.
    */
-  it("does not notify a US visitor whose state is unresolved", () => {
+  it("notifies a US visitor whose state is unresolved", () => {
     expect(geoRegionValue({ country: "US" })).toBe("US");
     expect(isRegulatedRegion("US")).toBe(false);
+    expect(isIndeterminate("US")).toBe(true);
+    expect(shouldNotify("US")).toBe(true);
   });
 
   it("treats a missing or malformed cookie as not regulated", () => {
@@ -97,6 +105,25 @@ describe("unknown or partial locations", () => {
     expect(isRegulatedRegion(undefined)).toBe(false);
     expect(isRegulatedRegion("")).toBe(false);
     expect(isRegulatedRegion("us-ca")).toBe(false); // case-sensitive by design
+  });
+
+  it("notifies when there is no cookie at all", () => {
+    // Middleware did not run, or the browser dropped it. Failing visible beats
+    // failing silent — a silent fail is what hid the US-iad1 bug.
+    expect(shouldNotify(null)).toBe(true);
+    expect(shouldNotify(undefined)).toBe(true);
+    expect(shouldNotify("")).toBe(true);
+  });
+
+  it("notifies when the country could not be resolved", () => {
+    expect(shouldNotify("UNKNOWN")).toBe(true);
+  });
+
+  it("still stays silent in a placeable, unregulated location", () => {
+    // The conservative branch must not swallow the ordinary negative case.
+    expect(shouldNotify("US-FL")).toBe(false);
+    expect(shouldNotify("JP")).toBe(false);
+    expect(isIndeterminate("US-FL")).toBe(false);
   });
 });
 

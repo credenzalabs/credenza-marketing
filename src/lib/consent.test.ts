@@ -13,10 +13,16 @@ describe("whether the notice appears", () => {
     expect(shouldShowBanner(null, "GB")).toBe(true);
   });
 
-  it("stays hidden on a first visit from elsewhere", () => {
+  it("stays hidden on a first visit from a placeable, unregulated location", () => {
     expect(shouldShowBanner(null, "US-FL")).toBe(false);
     expect(shouldShowBanner(null, "JP")).toBe(false);
-    expect(shouldShowBanner(null, "UNKNOWN")).toBe(false);
+  });
+
+  it("shows on a first visit we cannot place", () => {
+    // Conservative on doubt — see shouldNotify().
+    expect(shouldShowBanner(null, "UNKNOWN")).toBe(true);
+    expect(shouldShowBanner(null, "US")).toBe(true);
+    expect(shouldShowBanner(null, null)).toBe(true);
   });
 
   it("stays hidden once a choice exists, whichever way it went", () => {
@@ -35,13 +41,17 @@ describe("whether the notice appears", () => {
    * that response lands, the old value must still fail closed rather than
    * throw.
    */
-  it("treats a pre-fix cookie as simply not regulated", () => {
+  it("treats a pre-fix cookie as a placeable, unregulated location", () => {
+    // "US-iad1" parses as a region we simply do not regulate, so it is NOT
+    // caught by the indeterminate branch. The stale value is corrected by the
+    // next document response rather than by notifying everyone meanwhile.
     expect(shouldShowBanner(null, "US-iad1")).toBe(false);
     expect(shouldShowBanner(null, "US-sfo1")).toBe(false);
   });
 
-  it("survives a missing cookie", () => {
-    expect(shouldShowBanner(null, null)).toBe(false);
+  it("survives a missing cookie by notifying rather than throwing", () => {
+    expect(shouldShowBanner(null, null)).toBe(true);
+    expect(shouldShowBanner("granted", null)).toBe(false);
   });
 });
 

@@ -8,19 +8,20 @@ export type Choice = "granted" | "denied";
 
 export const CONSENT_STORAGE_KEY = "credenza.cookie-consent";
 
-import { isRegulatedRegion } from "./geoRegion";
+import { shouldNotify } from "./geoRegion";
 
 /**
- * Show the notice only to a visitor in a regulated region who has not already
- * answered. A stored choice always wins — including over a region change — so
- * someone who has answered is never asked twice.
+ * Show the notice to a visitor who has not already answered and is either in a
+ * regulated region or somewhere we could not determine. A stored choice always
+ * wins — including over a region change — so someone who has answered is never
+ * asked twice.
  */
 export function shouldShowBanner(
   savedChoice: Choice | null,
   geoRegion: string | null,
 ): boolean {
   if (savedChoice) return false;
-  return isRegulatedRegion(geoRegion);
+  return shouldNotify(geoRegion);
 }
 
 /** The four Google Consent Mode signals a choice maps to. */
