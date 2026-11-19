@@ -11,7 +11,7 @@ export default function middleware(request: Request) {
 
   return next({
     headers: {
-      "Set-Cookie": `geo-region=${value}; Path=/; Max-Age=3600; SameSite=Lax`,
+      "Set-Cookie": `geo-region=${value}; Path=/; Max-Age=3600; SameSite=Lax; Secure`,
     },
   });
 }
