@@ -12,5 +12,17 @@
       "source": "/(for-designers|shopify|integrations|integrations/klaviyo|integrations/quickbooks|resale-certificate-management|automated-designer-verification|pricing|resources|resources/interior-designer-resale-certificate-guide|about|week-in-design|privacy-policy|terms-of-use|vendor-agreement|dpa|eula|social-cards)",
       "destination": "/"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://use.typekit.net https://p.typekit.net https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://app.loops.so https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com; frame-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'" }
+      ]
+    }
   ]
 }
