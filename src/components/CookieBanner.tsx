@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "credenza.cookie-consent";
-type Choice = "granted" | "denied";
-
-const REGULATED_REGIONS = new Set([
-  "US-CA","US-CO","US-CT","US-UT","US-VA","US-TX","US-OR",
-  "US-MT","US-IA","US-DE","US-NH","US-NJ","US-TN",
-  "GB","AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR",
-  "DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT",
-  "NL","NO","PL","PT","RO","SK","SI","ES","SE",
-  "BR","CA",
-]);
+import {
+  CONSENT_STORAGE_KEY,
+  consentPayload,
+  parseChoice,
+  shouldShowBanner,
+  type Choice,
+} from "../lib/consent";
 
 function readCookie(name: string): string | null {
   const match = document.cookie.match(
@@ -19,16 +15,9 @@ function readCookie(name: string): string | null {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
-function isRegulatedRegion(): boolean {
-  const region = readCookie("geo-region");
-  if (!region) return false;
-  return REGULATED_REGIONS.has(region);
-}
-
 function readChoice(): Choice | null {
   try {
-    const v = localStorage.getItem(STORAGE_KEY);
-    return v === "granted" || v === "denied" ? v : null;
+    return parseChoice(localStorage.getItem(CONSENT_STORAGE_KEY));
   } catch {
     return null;
   }
@@ -36,19 +25,14 @@ function readChoice(): Choice | null {
 
 function writeChoice(choice: Choice) {
   try {
-    localStorage.setItem(STORAGE_KEY, choice);
+    localStorage.setItem(CONSENT_STORAGE_KEY, choice);
   } catch {
     /* ignore */
   }
 }
 
 function updateConsent(choice: Choice) {
-  window.gtag?.("consent", "update", {
-    analytics_storage: choice,
-    ad_storage: choice,
-    ad_user_data: choice,
-    ad_personalization: choice,
-  });
+  window.gtag?.("consent", "update", consentPayload(choice));
 }
 
 export default function CookieBanner() {
@@ -60,7 +44,7 @@ export default function CookieBanner() {
       updateConsent(saved);
       return;
     }
-    if (!isRegulatedRegion()) return;
+    if (!shouldShowBanner(saved, readCookie("geo-region"))) return;
     setVisible(true);
   }, []);
 
