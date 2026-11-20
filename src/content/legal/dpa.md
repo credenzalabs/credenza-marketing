@@ -1,15 +1,15 @@
 Data Processing Addendum
 
-Last Updated: 2026-09-09
+Last Updated: 2026-09-20
 
-This **Data Processing Addendum** ("DPA") forms part of, and is subject to, the Credenza Terms of Use at usecredenza.com/terms-of-use and the End-User License Agreement (together, the "Agreement") between **Credenza Labs, Inc.**, a Delaware corporation ("Credenza," "we," or "Processor"), and the customer entity that has entered into the Agreement ("Customer," "you," or "Controller"). This DPA governs the Processing of Personal Data by Credenza on Customer's behalf in connection with the Credenza platform and services (the "Services").  
+This **Data Processing Addendum** ("DPA") forms part of, and is subject to, the Credenza Terms of Use at usecredenza.com/terms-of-use, the Vendor Agreement, the End-User License Agreement, and any applicable subscription order form (together, the "Agreement") between **Credenza Labs, Inc.**, a Delaware corporation ("Credenza," "we," or "Processor"), and the customer entity that has entered into the Agreement ("Customer," "you," or "Controller"). This DPA governs the Processing of Personal Data by Credenza on Customer's behalf in connection with the Credenza platform and services (the "Services").  
 In the event of a conflict between this DPA and the rest of the Agreement with respect to the Processing of Personal Data, this DPA controls. Capitalized terms not defined here have the meanings given in the Agreement.
 
 1\. Definitions
 
 		•	"Data Protection Laws" means all laws and regulations applicable to the Processing of Personal Data under the Agreement, including, as applicable, the EU General Data Protection Regulation 2016/679 ("GDPR"), the UK GDPR and Data Protection Act 2018 ("UK GDPR"), the Swiss Federal Act on Data Protection ("FADP"), and U.S. state privacy laws including the California Consumer Privacy Act as amended by the California Privacy Rights Act ("CCPA").  
 	•	"Controller," "Processor," "Data Subject," "Personal Data," "Personal Data Breach," "Processing," "Sub-processor," and "Supervisory Authority" have the meanings given in the GDPR, and their equivalents under other Data Protection Laws (for example, "Business," "Service Provider," and "Consumer" under the CCPA).  
-	•	"Customer Personal Data" means Personal Data contained within Customer Content that Credenza Processes on Customer's behalf in providing the Services.  
+	•	"Customer Personal Data" means Personal Data contained within Customer Content, including without limitation, Vendor Data, and Designer Data that Credenza Processes on Customer's behalf in providing the Services. Any data provided by Designers to Credenza within the scope of their direct relationship is not Customer Personal Data for purposes of this DPA.  
 	•	"Standard Contractual Clauses" or "SCCs" means (a) the standard contractual clauses for the transfer of personal data to third countries adopted by the European Commission in Decision 2021/914 (the "EU SCCs"); and (b) the UK International Data Transfer Addendum to the EU SCCs issued by the UK Information Commissioner (the "UK Addendum").  
 	•	"Sub-processor" means any third party engaged by Credenza to Process Customer Personal Data.
 
@@ -46,8 +46,8 @@ In the event of a conflict between this DPA and the rest of the Agreement with r
 
 6\. AI and Automated Processing
 
-6.1. Certain Services use third-party artificial-intelligence providers to analyze publicly available business information (such as website and social-media content) as part of trade-application verification. As described in Annex II and the Privacy Policy, Credenza limits the Personal Data sent to these providers and does not transmit sensitive identifiers (such as EIN, state tax identification numbers, resale-certificate numbers, or designer contact details) to them.  
-6.2. Credenza configures its AI Sub-processors, where contractually available, to operate under zero-data-retention or no-training terms, such that Customer Personal Data is not used to train the provider's models. Verification outputs are informational and do not constitute solely automated decisions producing legal or similarly significant effects on Data Subjects; Customer remains responsible for human review of, and any decisions based on, verification results.
+6.1. Certain Services use third-party artificial-intelligence providers to analyze business information as part of trade-application verification and certificate processing, including content published on the Designer's own public website and social-media profile, and resale or exemption certificates submitted to the Services, whether uploaded by a Designer, imported by Customer, or synchronized from a system Customer connects. As described in Annex II and the Privacy Policy, Credenza limits the Personal Data sent to these providers to what the relevant operation requires. Credenza does not transmit Employer Identification Numbers to AI providers as a data field, although a certificate or other document submitted to the Services may itself display one.  
+6.2. Credenza configures its AI Sub-processors to operate under no-training terms, and under zero-data-retention terms where the provider offers them, such that Customer Personal Data is not used to train the provider's models. Verification outputs are informational and do not constitute solely automated decisions producing legal or similarly significant effects on Data Subjects; Customer remains responsible for human review of, and any decisions based on, verification results.
 
 7\. Liability
 
@@ -94,7 +94,7 @@ Credenza maintains a security program that includes, at a minimum, the following
 			•	Access control and authentication. Passwordless authentication for users by emailed sign-in link or one-time passcode; role-based access; the principle of least privilege for personnel; multi-factor authentication for administrative access to production systems.  
 	•	Tenant isolation and data segregation. Row-Level Security enforced at the database layer scopes data to the owning firm or vendor; service-role credentials are confined to server-side functions and are never exposed to client applications.  
 	•	Encryption. Encryption of Personal Data in transit (TLS) and at rest using industry-standard mechanisms provided by Credenza's hosting Sub-processors.  
-	•	Data minimization for AI processing. Sensitive identifiers (EIN, state tax identification numbers, resale-certificate numbers, and designer contact details) are validated locally and are not transmitted to third-party AI providers; only the limited business information needed for analysis is sent. AI providers are engaged under zero-data-retention or no-training terms where available.  
+	•	Data minimization for AI processing. Employer Identification Numbers are not transmitted to third-party AI providers as a data field; EIN verification is performed by local format validation together with a dedicated tax-identification matching service listed in Annex III. Other information sent to AI providers is limited to what the relevant operation requires: business identifiers (business name, trade name, business type, city and state); content published on the Designer's own public website or social-media profile; and resale or exemption certificate documents submitted to the Services, which contain the business name, address and state tax identification number. AI providers are engaged under no-training terms, and under zero-data-retention terms where the provider offers them.  
 	•	Secrets management. API keys and credentials are stored as environment secrets, never in source code or client bundles.  
 	•	Logging and monitoring. Append-only audit logging of significant actions; operational monitoring and alerting; session-health monitoring for integrated services.  
 	•	Resilience. Use of managed, redundant cloud infrastructure with backups; idempotent and recoverable processing for critical workflows.  
@@ -110,12 +110,14 @@ Customer authorizes the following Sub-processors. Credenza will update this list
 | Supabase | Database, authentication, file storage, and serverless functions hosting | United States |
 | Vercel | Frontend application hosting and content delivery | United States / Global edge |
 | Fly.io | Hosting for the authenticated profile-verification microservice | United States |
+| Amazon Web Services (AWS) | Offsite backup of stored documents and certificates | United States |
 | Stripe | Subscription billing and payment processing | United States |
 | Anthropic (Claude) | AI analysis of public business website and social-media content for verification | United States |
 | OpenAI | Vision-model classification of public profile content within the verification microservice | United States |
 | Sentry (Functional Software, Inc.) | Application error monitoring and diagnostics | United States |
 | Resend | Transactional email delivery and authentication email | United States |
 | Serper.dev | Public news/press search to support verification | United States |
+| TINCheck | Employer Identification Number verification against tax-authority records | United States |
 
 Note: Some entries (for example, search and directory lookups) may process limited business identifiers rather than Personal Data. The list reflects providers used in delivering the Services and is maintained as the source of truth for Sub-processor notice and objection under Section 3.4.
 

@@ -94,7 +94,7 @@ export function PrivacyPolicyContent() {
       </ul>
 
       <h2 className="font-freight mt-8 mb-3 text-charcoal" style={{ fontSize: "1.15rem" }}>10. Security and Data Location</h2>
-      <p className="mb-4">Credenza's primary database and document storage are hosted in the United States, in Amazon Web Services' us-west-2 region.</p>
+      <p className="mb-4">Credenza's primary database and document storage are hosted in the United States on Amazon Web Services (AWS).</p>
       <p className="mb-2">Our safeguards include:</p>
       <ul className="mb-4 pl-5 list-disc">
         <li className="mb-2">Encryption in transit (TLS) and encryption at rest for stored data, including uploaded certificates and documents.</li>
