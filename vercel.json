@@ -35,7 +35,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'sha256-pzVq5iuw88raS/wUmQVYEPyvYpVvgRccMgY/5OSJBa4=' https://www.googletagmanager.com https://*.google-analytics.com; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://use.typekit.net https://p.typekit.net https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://app.loops.so https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'"
+          "value": "default-src 'self'; script-src 'self' 'sha256-9UVgX0+2kCPuQXsTH8p9uLcGNDE1bNinmdDIoh+FlDA=' https://www.googletagmanager.com https://*.google-analytics.com; style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://use.typekit.net https://p.typekit.net https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://app.loops.so https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'"
         }
       ]
     }
