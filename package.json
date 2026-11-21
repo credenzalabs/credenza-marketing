@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/check-csp-hash.mjs",
     "build:spa": "tsc --noEmit && vite build",
     "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview --host",

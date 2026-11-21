@@ -144,6 +144,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <!-- Adobe Fonts — Freight Display Pro (Typekit kit: vqm2hhx) -->
     <link rel="stylesheet" href="https://use.typekit.net/vqm2hhx.css" />
+    <meta name="ga-id" content="%VITE_GA_ID%" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -170,7 +171,12 @@
         ]
       });
       gtag('js', new Date());
-      gtag('config', '%VITE_GA_ID%', { send_page_view: false });
+      // Read the id from the meta tag rather than inlining it: Vite substitutes
+      // the GA id token per environment, and this script is allowed by a CSP hash,
+      // which pins exact bytes. Baking the id in here makes the hash differ
+      // between preview and production and the script is then blocked outright.
+      var gaId = document.querySelector('meta[name="ga-id"]').content;
+      if (gaId) gtag('config', gaId, { send_page_view: false });
     </script>
   </head>
   <body>
